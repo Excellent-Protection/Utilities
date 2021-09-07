@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Utilities.Mappers.Resolver
 {
-    class EntityReferanceToStringName : IMemberValueResolver<Entity, object, EntityReference, string>
+    public class EntityReferanceToStringName : IMemberValueResolver<Entity, object, EntityReference, string>
     {
 
 
