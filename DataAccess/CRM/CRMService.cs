@@ -53,7 +53,7 @@ namespace Utilities.DataAccess.CRM
 
 
                 HttpContext context = HttpContext.Current;
-                String strCookieName = ConfigurationManager.AppSettings["company"]+"passcookiesforax1";
+                String strCookieName = "passcookiesforax1";
                
                 if (checkIfCookieExist(strCookieName, context))
                 {

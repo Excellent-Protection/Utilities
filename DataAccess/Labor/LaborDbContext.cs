@@ -17,7 +17,7 @@ namespace Utilities.DataAccess.Labor
         string, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>
     {
         public LaborDbContext()
-            : base("EsadLaborDbContext")
+            : base("LaborDbContext")
         {
         }
 
