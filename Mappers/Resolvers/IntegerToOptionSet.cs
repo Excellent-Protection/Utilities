@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Utilities.Mappers.Resolver
 {
-    class FromIntegerToOptionSet : IMemberValueResolver<object, Entity, int?, OptionSetValue>
+    public class FromIntegerToOptionSet : IMemberValueResolver<object, Entity, int?, OptionSetValue>
     {
         public OptionSetValue Resolve(object source, Entity destination, int? sourceMember, OptionSetValue destMember, ResolutionContext context)
             {

@@ -199,6 +199,7 @@
     <Compile Include="Enums\RecordSource.cs" />
     <Compile Include="GlobalViewModels\ResultVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
+    <Compile Include="Helpers\BaseCrmEntityRepository.cs" />
     <Compile Include="HttpStatusCodeEnum.cs" />
     <Compile Include="RequestUtility.cs" />
     <Compile Include="Enums\UserLanguage.cs" />
