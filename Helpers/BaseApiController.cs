@@ -28,6 +28,11 @@ namespace Utilities.Helpers
         {
             return Request.CreateResponse((HttpStatusCode)statusCode, result);
         }
+        protected HttpResponseMessage Response(HttpStatusCodeEnum statusCode,bool result)
+           
+        {
+            return Request.CreateResponse((HttpStatusCode)statusCode, result);
+        }
         protected HttpResponseMessage Response(HttpStatusCodeEnum statusCode)
         {       
             return Request.CreateResponse(statusCode);

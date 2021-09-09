@@ -8,7 +8,7 @@ namespace Utilities.GlobalViewModels
 {
     public class PagingVm<T> where T : class
     {
-        public List<T> Model { get; set; }
+        public IEnumerable<T> Model { get; set; }
         public int TotalCount { get; set; }
         public int TotalCountInPages { get; set; }
     }
