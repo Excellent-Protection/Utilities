@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Models.CRM;
+
 [assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
 
 /// <summary>
@@ -24,6 +26,12 @@ public partial class CrmContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceCo
             base(service)
     {
     }
+    public System.Linq.IQueryable<ExcSettings> ExcSettingsSet
+    {
+        get
+        {
+            return this.CreateQuery<ExcSettings>();
+        }
+    }
 
-   
 }
