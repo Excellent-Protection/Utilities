@@ -203,7 +203,9 @@
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionManager.cs" />
     <Compile Include="GlobalManagers\MailManager.cs" />
+    <Compile Include="GlobalViewModels\AmbigusVm.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
+    <Compile Include="GlobalViewModels\ResponseVm.cs" />
     <Compile Include="GlobalViewModels\ResultVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
     <Compile Include="Helpers\BaseCrmEntityRepository.cs" />

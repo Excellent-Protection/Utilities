@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
+using Utilities.GlobalViewModels;
 
 namespace Utilities.Helpers
 {
@@ -23,7 +24,7 @@ namespace Utilities.Helpers
         {
             base.Initialize(controllerContext);
         }
-        protected HttpResponseMessage Response<T>(HttpStatusCodeEnum statusCode,T result)
+        protected HttpResponseMessage Response<T>(HttpStatusCodeEnum statusCode, T result)
             where T : class
         {
             return Request.CreateResponse((HttpStatusCode)statusCode, result);
@@ -36,6 +37,12 @@ namespace Utilities.Helpers
         protected HttpResponseMessage Response(HttpStatusCodeEnum statusCode)
         {       
             return Request.CreateResponse(statusCode);
+        }
+
+        protected HttpResponseMessage Response<T>(ResponseVm<T> result)
+             where T : class
+        {
+            return Request.CreateResponse((HttpStatusCode)result.Status, result.Data);
         }
     }
 }
