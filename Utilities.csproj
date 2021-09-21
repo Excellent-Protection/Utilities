@@ -186,6 +186,7 @@
   <ItemGroup>
     <Compile Include="ConvertDocToPDF.cs" />
     <Compile Include="CurrencyInfo.cs" />
+    <Compile Include="DataAccess\CRM\CRMAccessDB.cs" />
     <Compile Include="DataAccess\CRM\CrmContext.cs" />
     <Compile Include="DataAccess\CRM\CRMService.cs" />
     <Compile Include="DataAccess\Labor\DbFactory.cs" />
@@ -202,8 +203,11 @@
     <Compile Include="Enums\RecordSource.cs" />
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionManager.cs" />
+    <Compile Include="GlobalManagers\CRM\SettingsManager.cs" />
+    <Compile Include="GlobalManagers\CRM\SmsManager.cs" />
     <Compile Include="GlobalManagers\MailManager.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\SettingVM.cs" />
     <Compile Include="GlobalViewModels\ResultVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
     <Compile Include="Helpers\BaseCrmEntityRepository.cs" />
@@ -224,7 +228,6 @@
     <Compile Include="Helpers\BaseManager.cs" />
     <Compile Include="Helpers\Disposable.cs" />
     <Compile Include="Helpers\IDbFactory.cs" />
-    <Compile Include="Helpers\IEntityBase.cs" />
     <Compile Include="Helpers\IEntityBaseRepository.cs" />
     <Compile Include="Helpers\IUnitOfWork.cs" />
     <Compile Include="Helpers\LogError.cs" />
@@ -250,6 +253,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
