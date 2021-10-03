@@ -48,7 +48,6 @@ namespace Utilities.DataAccess.Labor
                 {
                     repository = new EntityBaseRepository<T>(dbFactory); // ToDo >> make it with dependency injection
                     repositories.Add(typeof(T), repository);
-
                 }
                 return (repository as IEntityBaseRepository<T>);
             }

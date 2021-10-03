@@ -1,4 +1,6 @@
-﻿using Microsoft.Xrm.Sdk.Messages;
+﻿using ISVGeneralServices;
+using ISVGeneralServices.Models;
+using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using System;
 using System.Collections.Generic;
@@ -57,5 +59,12 @@ namespace Utilities.Helpers
 
         }
 
+
+     
+        public VatGroup GetVatGroupForContract(DateTime contractDate, ContractServiceType contractServiceType)
+        {
+            var vatMgr = new VatManager();
+            return vatMgr.GetVatForContract(new VatContractRequest() { ContractServiceType = contractServiceType, ContractDate = contractDate });
+        }
     }
 }

@@ -49,6 +49,9 @@
     <Reference Include="GenerateEncodedSignature">
       <HintPath>..\Dependencies\GenerateEncodedSignature.dll</HintPath>
     </Reference>
+    <Reference Include="ISVGeneralServices">
+      <HintPath>..\Dependencies\ISVGeneralServices.dll</HintPath>
+    </Reference>
     <Reference Include="LinqKit, Version=1.1.26.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqKit.1.1.26\lib\net45\LinqKit.dll</HintPath>
     </Reference>
@@ -184,8 +187,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CityController.cs" />
+    <Compile Include="Controller\ContactAddressController.cs" />
+    <Compile Include="Controller\DynamicStepsController.cs" />
+    <Compile Include="Controller\ProfessionGroupsController.cs" />
+    <Compile Include="Controller\ResourceGroupController.cs" />
+    <Compile Include="Controller\SavedContactLocationController.cs" />
     <Compile Include="ConvertDocToPDF.cs" />
     <Compile Include="CurrencyInfo.cs" />
+    <Compile Include="DataAccess\CRM\CRMAccessDB.cs" />
     <Compile Include="DataAccess\CRM\CrmContext.cs" />
     <Compile Include="DataAccess\CRM\CRMService.cs" />
     <Compile Include="DataAccess\Labor\DbFactory.cs" />
@@ -200,17 +210,59 @@
     <Compile Include="Defaults\DefaultValues.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\RecordSource.cs" />
+    <Compile Include="GlobalManagers\CRM\CityManager.cs" />
+    <Compile Include="GlobalManagers\CRM\ContactLocationManager.cs" />
+    <Compile Include="GlobalManagers\CRM\EmployeeManager.cs" />
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
+    <Compile Include="GlobalManagers\CRM\ProfessionGroupsManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionManager.cs" />
+    <Compile Include="GlobalManagers\CRM\ResourceGroupManager.cs" />
+    <Compile Include="GlobalManagers\GlobalManager.cs" />
+    <Compile Include="GlobalManagers\Labor\DynamicStepsManager.cs" />
+    <Compile Include="GlobalManagers\Labor\StepManager.cs" />
     <Compile Include="GlobalManagers\MailManager.cs" />
-    <Compile Include="GlobalViewModels\AmbigusVm.cs" />
+    <Compile Include="GlobalRepositories\CRM\CityRepository.cs" />
+    <Compile Include="GlobalRepositories\CRM\ContactLocationRepository.cs" />
+    <Compile Include="GlobalRepositories\CRM\EmployeeRepository.cs" />
+    <Compile Include="GlobalRepositories\CRM\ProfessionGroupsRepository.cs" />
+    <Compile Include="GlobalRepositories\CRM\ResourceGroupRepository.cs" />
+    <Compile Include="GlobalRepositories\Labor\DynamicStepsRepository.cs" />
+    <Compile Include="GlobalRepositories\Labor\StepRepository.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
+    <Compile Include="GlobalViewModels\BoolStringVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
+    <Compile Include="GlobalViewModels\Custome\BaseQuickLookupWithImageVm.cs" />
+    <Compile Include="GlobalViewModels\Custome\ContactMainSubPreviouseLocationsVm.cs" />
+    <Compile Include="GlobalViewModels\Custome\LocationVm.cs" />
+    <Compile Include="GlobalViewModels\Custome\CityIdAndNameVm.cs" />
+    <Compile Include="GlobalViewModels\Custome\DistrictQuickLookupVm.cs" />
+    <Compile Include="GlobalViewModels\Custome\NationalityVm.cs" />
+    <Compile Include="GlobalViewModels\Custome\ProfessionVm.cs" />
+    <Compile Include="GlobalViewModels\Custome\SavedLocationVm.cs" />
+    <Compile Include="GlobalViewModels\Labor\StepDataVm.cs" />
+    <Compile Include="GlobalViewModels\Labor\StepDetailsVm.cs" />
     <Compile Include="GlobalViewModels\ResponseVm.cs" />
     <Compile Include="GlobalViewModels\ResultVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
     <Compile Include="Helpers\BaseCrmEntityRepository.cs" />
     <Compile Include="Helpers\DateTimeConvertor.cs" />
     <Compile Include="HttpStatusCodeEnum.cs" />
+    <Compile Include="InfraStructure\MathNumber.cs" />
+    <Compile Include="Mappers\Profiles\City_BaseQuickLookupVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\ContactPreviousLocation_ContactLocationVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\ContactPreviousLocation_SavedLocationVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Country_NationalityProfile.cs" />
+    <Compile Include="Mappers\Profiles\District_BaseQuickLookupVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\StepData_StepDataVmProfile.cs" />
+    <Compile Include="Mappers\Resolvers\ContractPreviouseLocationToSavedLocationVm.cs" />
+    <Compile Include="Migrations\202109191048321_stepsTabels.cs" />
+    <Compile Include="Migrations\202109191048321_stepsTabels.designer.cs">
+      <DependentUpon>202109191048321_stepsTabels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
     <Compile Include="Enums\UserLanguage.cs" />
     <Compile Include="Extensions\DateTimeFormat.cs" />
@@ -226,7 +278,6 @@
     <Compile Include="Helpers\BaseManager.cs" />
     <Compile Include="Helpers\Disposable.cs" />
     <Compile Include="Helpers\IDbFactory.cs" />
-    <Compile Include="Helpers\IEntityBase.cs" />
     <Compile Include="Helpers\IEntityBaseRepository.cs" />
     <Compile Include="Helpers\IUnitOfWork.cs" />
     <Compile Include="Helpers\LogError.cs" />
@@ -243,6 +294,16 @@
     <Compile Include="Mappers\ToModelMapper.cs" />
     <Compile Include="Mappers\ToViewModelMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\EnumResources.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnumResources.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EnumResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnumResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\SuccessFaildMessagesResources.Designer.cs" />
     <Compile Include="SharedClass.cs" />
     <Compile Include="SignatureGenerator.cs" />
@@ -260,9 +321,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\202109191048321_stepsTabels.resx">
+      <DependentUpon>202109191048321_stepsTabels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EnumResources.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EnumResources.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EnumResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EnumResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\SuccessFaildMessagesResources.ar.resx" />
     <EmbeddedResource Include="Resources\SuccessFaildMessagesResources.resx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

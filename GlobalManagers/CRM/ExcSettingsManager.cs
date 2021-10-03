@@ -51,7 +51,7 @@ namespace Utilities.GlobalManagers.CRM
                 }                
                 else
                 {
-                    return false;
+                    return null;
                 }
             }
         }

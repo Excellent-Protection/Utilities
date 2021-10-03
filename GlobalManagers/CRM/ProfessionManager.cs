@@ -44,7 +44,7 @@ namespace Utilities.GlobalManagers.CRM
 
 
                 var _service = CRMService.Get;
-                var result = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Profession>()).OrderBy(p => p.AppearanceOrder).Select(t => new BaseQuickLookupVm() { Key = t.Id.ToString(), Value = RequestUtility.Language == UserLanguage.Arabic ? (t.Name != null ? t.Name : t.EnglishName) : (t.EnglishName != null ? t.EnglishName : t.Name), AdditionalInformation = t.ForGender != null ? t.ForGender.Value.ToString() : null }).ToList();
+                var result = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Profession>()).OrderBy(p => p.AppearanceOrder).Select(t => new BaseQuickLookupVm() { Key = t.Id.ToString(), Value = RequestUtility.Language == UserLanguage.Arabic ? (t.Name != null ? t.Name : t.EnglishName) : (t.EnglishName != null ? t.EnglishName : t.Name) }).ToList();
 
                 return new List<BaseQuickLookupVm>(result);
 

@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Utilities.GlobalViewModels
 {
-  public  class BaseQuickLookupVm
+  public  class BoolStringVm 
     {
-        public string Key { get; set; }
+        public bool Key { get; set; }
         public string Value { get; set; }
-        //public string AdditionalInformation { get; set; }
-        //public string IconURl { get; set; }
     }
 }
