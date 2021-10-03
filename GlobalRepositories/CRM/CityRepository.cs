@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilities.DataAccess.CRM;
 using Utilities.Defaults;
+using Utilities.Enums;
 using Utilities.GlobalViewModels;
 
 namespace Utilities.GlobalRepositories.CRM
@@ -15,12 +16,23 @@ namespace Utilities.GlobalRepositories.CRM
     {
 
 
-        public bool CheckCityAvilabilityForIndividual(string cityId)
+        public bool CheckCityAvilabilityForIndividual(string cityId,ServiceType serviceType,string serviceId)
         {
             var service = CRMService.Get;
-            var city = service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_forindividual")).ToEntity<City>();
-            return city.IsForIndv.HasValue ? city.IsForIndv.Value : false;
+            bool isAvailable = false;
+            switch (serviceType)
+            {
+                case ServiceType.Individual:
+                    var city = service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_forindividual")).ToEntity<City>();
+                  isAvailable= city.IsForIndv.HasValue ? city.IsForIndv.Value : false;
+                    break;
+                case ServiceType.Hourly:
+                    isAvailable= false;
+                    break;
+            }
+            return isAvailable;
         }
+
 
 
         public List<City> GetActiveCities()
