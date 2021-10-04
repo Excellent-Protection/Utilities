@@ -11,6 +11,7 @@ namespace Utilities
         Ok=200,
         NotFound = 404,
         Ambiguous = 300,
-        IneternalServerError=500
+        IneternalServerError=500,
+        NotAllowed=405
     }
 }

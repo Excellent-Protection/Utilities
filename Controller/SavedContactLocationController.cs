@@ -44,8 +44,18 @@ namespace Utilities.Controller
                 return Response<List< SavedLocationVm>>(result);
             }
         }
+        [HttpGet]
+        [Route("RemoveAddress")]
+        public HttpResponseMessage RemoveAddress(string loctionId)
+        {
+            using (ContactLocationManager _mngr = new ContactLocationManager(RequestUtility))
+            {
+                var result = _mngr.RemoveAddress(loctionId);
+                return Response<SavedLocationVm>(result);
+            }
+        }
 
-  
+
 
 
 
