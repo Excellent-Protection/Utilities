@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.Defaults;
+using Utilities.Enums;
 using Utilities.GlobalRepositories.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.Helpers;
@@ -24,16 +25,16 @@ namespace Utilities.GlobalManagers.CRM
 
 
 
-        public ResponseVm<string> CheckCityAvilabilityForIndividual(string cityId)
+        public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId=null)
         {
             try
             {
-                var result = _repo.CheckCityAvilabilityForIndividual(cityId);
-                if(result)
+                var result = _repo.CheckCityAvilabilityForService(cityId, serviceType, serviceId);
+                if (result)
                 {
                     return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
                 }
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Data = "City Not Avilable For Indv" };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Data = "City Not Avilable " };
 
             }
             catch(Exception ex)
