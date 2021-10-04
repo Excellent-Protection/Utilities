@@ -83,12 +83,19 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 ContactPreviousLocation Location = LocationVm.ToCrmEntity<ContactPreviousLocation, ContactLocationVm>();
+                string oldMainLocationId = "";
+                if(LocationVm.Type==(int)ContactLocationType.Main)
+                {
+                    oldMainLocationId = _repo.GetContactMainLocation(LocationVm.ContactId)?.Id.ToString();
+                }
                 var _service = CRMService.Get;
+
                 Location.Id = Guid.NewGuid();
                 LocationVm.LocationId = _service.Create(Location).ToString();
-                if (LocationVm.LocationId!=null &&  LocationVm.Type== (int)ContactLocationType.Main)
+
+                if (LocationVm.LocationId!=null && oldMainLocationId!="")
                 {
-                    UpdateContactLocationsToBeSub(LocationVm.ContactId, LocationVm.LocationId);
+                    UpdateContactLocationsToBeSub(LocationVm.ContactId, oldMainLocationId);
                 }
                 return new ResponseVm<ContactLocationVm> { Status= HttpStatusCodeEnum.Ok , Data=LocationVm};
             }
@@ -116,12 +123,13 @@ namespace Utilities.GlobalManagers.CRM
                 return null;
             }
         }
-        public void UpdateContactLocationsToBeSub(string contactId , string lastMainLocation)
+        public void UpdateContactLocationsToBeSub(string contactId , string oldMainLocationId)
         {
             try
             {
-                var contactPrevLocations = _repo.GetContactPreviouseLocation(contactId);
-                var oldMainLocation = contactPrevLocations.Where(a => a.Id.ToString() != lastMainLocation && a.Type.Value== (int)ContactLocationType.Main).FirstOrDefault();
+
+                var oldMainLocation = _repo.GetLocationById(oldMainLocationId);
+                oldMainLocation.Type = new Microsoft.Xrm.Sdk.OptionSetValue();
                 var _service = CRMService.Get;
                 _service.Update(oldMainLocation);
             

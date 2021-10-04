@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Utilities.Enums;
 using Utilities.GlobalManagers.Labor;
 using Utilities.GlobalViewModels.Labor;
 using Utilities.Helpers;
@@ -46,11 +47,11 @@ namespace Utilities.Controller
 
         [HttpGet]
         [Route("StepDetailsByActionName")]
-        public HttpResponseMessage GetStepDetailsByActionName(int serviceType, string actionName)
+        public HttpResponseMessage GetStepDetailsByActionName(ServiceType serviceType, string actionName)
         {
             using (DynamicStepsManager _mngr = new DynamicStepsManager())
             {
-                var result = _mngr.GetStepDetailsByActionName(serviceType, actionName);
+                var result = _mngr.GetStepDetailsByActionNameAndServiceType(serviceType, actionName);
                 return Response<StepDetailsVm>(result);
             }
         }

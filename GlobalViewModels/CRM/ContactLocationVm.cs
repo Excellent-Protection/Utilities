@@ -10,7 +10,7 @@ namespace Utilities.GlobalViewModels.CRM
     {
         public string ContactId { get; set; }
         public string LocationId { get; set; }
-        public int? HouseNo { get; set; }
+        public string HouseNo { get; set; }
         public int? HouseType { get; set; }
 
         public int? FloorNo { get; set; }

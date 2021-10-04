@@ -74,6 +74,17 @@ namespace Utilities.GlobalRepositories.CRM
         }
 
 
+        public ContactPreviousLocation GetContactMainLocation(string contactId)
+        {
+            QueryExpression PrevLocationQuery = new QueryExpression(CrmEntityNamesMapping.ContactPreviousLocation);
+            PrevLocationQuery.Criteria.AddCondition("new_contact", ConditionOperator.Equal, contactId);
+            PrevLocationQuery.ColumnSet = new ColumnSet(true);
+            PrevLocationQuery.Criteria.AddCondition("new_type", ConditionOperator.Equal, (int)ContactLocationType.Main);
+            var _service = CRMService.Get;
+            var mainLoaction = _service.RetrieveMultiple(PrevLocationQuery).Entities.Select(a => a.ToEntity<ContactPreviousLocation>()).FirstOrDefault();
+            return mainLoaction;
+        }
+
         public ContactPreviousLocation GetLocationById(string locationId)
         {
             var _service = CRMService.Get;

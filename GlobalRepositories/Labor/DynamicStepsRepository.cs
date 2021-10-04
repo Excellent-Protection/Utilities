@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.DataAccess.Labor;
+using Utilities.Enums;
 
 namespace Utilities.GlobalRepositories.Labor
 {
@@ -18,7 +19,7 @@ namespace Utilities.GlobalRepositories.Labor
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                var result = unitOfWork.Repository<StepsDetails>().Find(s => s.IsAvailable == true && s.StepsHeader.ServiceType.ToString() == "IndividualService", a => a.StepsHeader)
+                var result = unitOfWork.Repository<StepsDetails>().Find(s => s.IsAvailable == true && s.StepsHeader.ServiceType ==(int) ServiceType.Individual, a => a.StepsHeader)
                     .OrderBy(a => a.StepOrder)
                     .ToList();
 
@@ -31,7 +32,7 @@ namespace Utilities.GlobalRepositories.Labor
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.StepsHeader.ServiceType.ToString() == "IndividualService", a => a.StepsHeader)
+                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.StepsHeader.ServiceType==(int) ServiceType.Individual, a => a.StepsHeader)
                 .OrderBy(a => a.StepOrder).FirstOrDefault();
 
             }
@@ -41,7 +42,7 @@ namespace Utilities.GlobalRepositories.Labor
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                return unitOfWork.Repository<StepsDetails>().Find(a => a.Action == ActionName && a.StepsHeader.ServiceType.ToString() == "IndividualService", a => a.StepsHeader).FirstOrDefault();
+                return unitOfWork.Repository<StepsDetails>().Find(a => a.Action == ActionName && a.StepsHeader.ServiceType ==  (int)ServiceType.Individual, a => a.StepsHeader).FirstOrDefault();
             }
         }
 

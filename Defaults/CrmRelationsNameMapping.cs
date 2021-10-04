@@ -49,6 +49,8 @@ namespace Utilities.Defaults
         public const string FinanceRequest_Collection = "new_new_finaicalrequest_new_payments_finaicalrequest";
         public const string FinanceRequest_RecieptVoucher = "new_new_finaicalrequest_new_receiptvoucher_financialrequest";
         public const string FinanceRequest_Contact = "new_contact_new_finaicalrequest_Contact";
+        public const string Profession_Employee = "new_new_profession_new_employee_professionId";
+        public const string Nationality_Employee = "new_new_country_new_employee_nationalityId";
 
     }
 }

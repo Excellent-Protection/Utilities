@@ -54,15 +54,15 @@ namespace Utilities.GlobalManagers.Labor
         }
 
 
-        public ResponseVm<StepDetailsVm> GetStepDetailsByActionName(int serviceType, string actionName)
+        public ResponseVm<StepDetailsVm> GetStepDetailsByActionNameAndServiceType(ServiceType serviceType, string actionName)
         {
 
             switch (serviceType)
             {
-                case (int)ServiceType.Individual:
+                case ServiceType.Individual:
                     return GetIndivStepDetailsByActionName(actionName);
 
-                case (int)ServiceType.Hourly:
+                case ServiceType.Hourly:
                     return null;
                 default:
                     return null;
@@ -109,7 +109,7 @@ namespace Utilities.GlobalManagers.Labor
         {
             try
             {
-                var result = _repo.GetIndivStepDetailsByActionName(actionName).Toclass<StepDetailsVm, StepsDetails>();
+                var result = _repo.GetIndivStepDetailsByActionName(actionName ).Toclass<StepDetailsVm, StepsDetails>();
                 return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
             }
             catch (Exception ex)

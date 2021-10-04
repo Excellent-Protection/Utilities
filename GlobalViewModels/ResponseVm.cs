@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Utilities.GlobalViewModels
 { 
-    public  class ResponseVm<T>  where T : class
+    public  class ResponseVm<T>  where T :   class
     {
         public HttpStatusCodeEnum Status { get; set; }
         public T Data { get; set; }
