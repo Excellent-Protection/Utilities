@@ -212,6 +212,7 @@
     <Compile Include="Defaults\DefaultValues.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\RecordSource.cs" />
+    <Compile Include="Extensions\SetDoubleDigits.cs" />
     <Compile Include="GlobalManagers\CRM\CityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactLocationManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactManager.cs" />

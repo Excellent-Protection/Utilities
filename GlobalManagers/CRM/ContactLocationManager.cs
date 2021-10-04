@@ -63,9 +63,14 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var result = _repo.GetContactPreviouseLocationByType(contactId , type).Select(a => a.ToEntity<ContactPreviousLocation>()).ToModelListData<SavedLocationVm>().ToList(); ;
-             
-                return new ResponseVm<List<SavedLocationVm>>() { Status = HttpStatusCodeEnum.Ok, Data = result };
+                var result = _repo.GetContactPreviouseLocationByType(contactId, type).Select(a => a.ToEntity<ContactPreviousLocation>()).ToModelListData<SavedLocationVm>();
+
+                if (type== (int)ContactLocationType.Main)
+                {
+                    return new ResponseVm<List<SavedLocationVm>>() { Status = HttpStatusCodeEnum.Ok, Data = new List<SavedLocationVm>() {result.FirstOrDefault()} };
+                }
+
+                return new ResponseVm<List<SavedLocationVm>>() { Status = HttpStatusCodeEnum.Ok, Data = result.ToList() };
 
             }
             catch (Exception ex)
@@ -137,6 +142,27 @@ namespace Utilities.GlobalManagers.CRM
             catch(Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("contactId", contactId));
+            }
+        }
+        public ResponseVm<SavedLocationVm> RemoveAddress(string locationId)
+        {
+            try
+            {
+                var address = _repo.GetLocationById(locationId);
+                if(address.Type.Value == (int)ContactLocationType.Main)
+                {
+                    return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.NotAllowed,Message="can not delete primary address" };
+                 }
+                var _service = CRMService.Get;
+                _service.Delete(address.LogicalName,new Guid(locationId));
+                return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.Ok  };
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("locationId",locationId));
+                return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.IneternalServerError };
+
             }
         }
 
