@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Utilities.Enums;
 using Utilities.GlobalManagers;
 using Utilities.GlobalManagers.CRM;
 using Utilities.GlobalViewModels;
@@ -18,11 +19,11 @@ namespace Utilities.Controller
     {
         [HttpGet]
         [Route("CheckCityAvailabilityForIndv")]
-        public HttpResponseMessage CheckCityAvailabilityForIndv(string cityId)
+        public HttpResponseMessage CheckCityAvailabilityForService(string cityId , ServiceType serviceType ,  string hourlyServiceId)
         {
             using (CityManager _mngr= new CityManager(RequestUtility))
             {
-              var result=  _mngr.CheckCityAvilabilityForIndividual(cityId);
+              var result=  _mngr.CheckCityAvilabilityForService(cityId,serviceType , hourlyServiceId);
                 return Response<string>(result);
             }
         }

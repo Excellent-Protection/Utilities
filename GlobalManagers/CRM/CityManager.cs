@@ -25,16 +25,16 @@ namespace Utilities.GlobalManagers.CRM
 
 
 
-        public ResponseVm<string> CheckCityAvilabilityForIndividual(string cityId, ServiceType serviceType, string serviceId=null)
+        public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId=null)
         {
             try
             {
-                var result = _repo.CheckCityAvilabilityForIndividual(cityId, serviceType, serviceId);
+                var result = _repo.CheckCityAvilabilityForService(cityId, serviceType, serviceId);
                 if (result)
                 {
                     return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
                 }
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Data = "City Not Avilable For Indv" };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Data = "City Not Avilable " };
 
             }
             catch(Exception ex)

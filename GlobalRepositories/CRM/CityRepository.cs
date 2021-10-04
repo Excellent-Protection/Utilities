@@ -16,21 +16,30 @@ namespace Utilities.GlobalRepositories.CRM
     {
 
 
-        public bool CheckCityAvilabilityForIndividual(string cityId,ServiceType serviceType,string serviceId)
+        public bool CheckCityAvilabilityForService(string cityId,ServiceType serviceType,string serviceId)
         {
-            var service = CRMService.Get;
-            bool isAvailable = false;
+
             switch (serviceType)
             {
                 case ServiceType.Individual:
-                    var city = service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_forindividual")).ToEntity<City>();
-                  isAvailable= city.IsForIndv.HasValue ? city.IsForIndv.Value : false;
-                    break;
+                    return CheckCityAvailabilityForIndvService(cityId);
                 case ServiceType.Hourly:
-                    isAvailable= false;
-                    break;
+                    return false; // will implement with hourly service steps 
+                default:
+                    return false;
             }
-            return isAvailable;
+
+        }
+
+
+
+        public bool CheckCityAvailabilityForIndvService(string cityId )
+        {
+            var service = CRMService.Get;
+            var city = service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_forindividual")).ToEntity<City>();
+            var isAvilable = city.IsForIndv.HasValue ? city.IsForIndv.Value : false;
+            return isAvilable;
+
         }
 
 
