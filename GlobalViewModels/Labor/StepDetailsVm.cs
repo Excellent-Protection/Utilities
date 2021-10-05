@@ -13,6 +13,8 @@ namespace Utilities.GlobalViewModels.Labor
         public string DBResourceName { get; set; }
         public string DBResourceFieldName { get; set; }
         public bool? IsAvailable { get; set; }
+        public bool IsAuthorized { get; set; }
+
         public string Controller { get; set; }
         public string Action { get; set; }
         public string IconClass { get; set; }
