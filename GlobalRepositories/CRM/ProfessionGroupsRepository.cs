@@ -62,18 +62,20 @@ namespace Utilities.GlobalRepositories.CRM
 
         public List<string> GetProfessionsId(string ProfGroupId)
         {
-            try
-            {
+
                 var _service = CRMService.Get;
                 var query = new QueryExpression(CrmEntityNamesMapping.Profession);
                 query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, ProfGroupId);
                 return _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
-            }
-            catch (Exception ex)
-            {
-                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("ProfGroupId", ProfGroupId));
-                return null;
-            }
+            
+        }
+
+        public string GetRequiredAttchmentsByProfessionGroup(string profGroupId)
+        {
+            var _service = CRMService.Get;
+            var prof = _service.Retrieve(CrmEntityNamesMapping.ProfessionGroup, new Guid(profGroupId), new ColumnSet("new_requiredattachments")).ToEntity<ProfessionGroups>();
+            return prof.RequiredAttachments;
+
         }
     }
 }

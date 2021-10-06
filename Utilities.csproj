@@ -264,6 +264,7 @@
     <Compile Include="Mappers\Profiles\ContactPreviousLocation_SavedLocationVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Country_NationalityProfile.cs" />
     <Compile Include="Mappers\Profiles\District_BaseQuickLookupVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Nationality_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepData_StepDataVmProfile.cs" />

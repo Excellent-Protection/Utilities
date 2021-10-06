@@ -18,8 +18,8 @@ namespace Utilities.Controller
     public class CityController: BaseApiController
     {
         [HttpGet]
-        [Route("CheckCityAvailabilityForIndv")]
-        public HttpResponseMessage CheckCityAvailabilityForService(string cityId , ServiceType serviceType ,  string hourlyServiceId)
+        [Route("CheckCityAvailabilityForService")]
+        public HttpResponseMessage CheckCityAvailabilityForService(string cityId , ServiceType serviceType ,  string hourlyServiceId=null)
         {
             using (CityManager _mngr= new CityManager(RequestUtility))
             {

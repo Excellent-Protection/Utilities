@@ -81,6 +81,7 @@ namespace Utilities.Defaults
         public const string CostInvoice= "new_invoicefees";
         public const string CostInvoiceDetails= "new_feeinvoicedetail";
         public const string SystemDocument = "mw_sysdocument";
+        public const string DocumentQuery = "new_documentquery";
         public const string ApprovedProfessions = "new_reqapprovals";
         public const string ProjectNotification = "new_projectnotifications";
         public const string ProjectTimeSheet = "new_projecttimesheet";

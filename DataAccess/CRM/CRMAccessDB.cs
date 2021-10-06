@@ -43,5 +43,24 @@ namespace Utilities.DataAccess.CRM
             return dataSet;
 
         }
+
+
+        public static System.Data.DataSet SelectQ(string queryString)
+        {
+
+            System.Data.IDbConnection dbConnection = new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.IDbCommand dbCommand = new System.Data.SqlClient.SqlCommand();
+            dbCommand.CommandText = queryString;
+            dbCommand.Connection = dbConnection;
+            dbCommand.CommandTimeout = 10000;
+
+            System.Data.IDbDataAdapter dataAdapter = new System.Data.SqlClient.SqlDataAdapter();
+            dataAdapter.SelectCommand = dbCommand;
+            System.Data.DataSet dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+
+            return dataSet;
+        }
     }
 }

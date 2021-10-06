@@ -16,7 +16,7 @@ using Utilities.Helpers;
 
 namespace Utilities.Controller
 {
-    [RoutePrefix("{lang}/api/ Contact")]
+    [RoutePrefix("{lang}/api/Contact")]
     public class ContactController : BaseApiController
     {
 

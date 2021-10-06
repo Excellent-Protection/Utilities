@@ -85,5 +85,19 @@ namespace Utilities.GlobalManagers.CRM
                 return null;
             }
         }
+
+
+        public ResponseVm< string> GetRequiredAttchmentsByProfessionGroup(string profGroupId)
+        {
+            try
+            {
+                return  new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = _rep.GetRequiredAttchmentsByProfessionGroup(profGroupId) };
+            }
+            catch(Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("ProfGroupId", profGroupId));
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurrred" };
+            }
+        }
     }
 }

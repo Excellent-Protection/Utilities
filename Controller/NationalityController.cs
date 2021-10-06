@@ -11,6 +11,8 @@ using Utilities.Helpers;
 
 namespace Utilities.Controller
 {
+    [RoutePrefix("{lang}/api/Nationality")]
+
     public class NationalityController : BaseApiController
     {
 
