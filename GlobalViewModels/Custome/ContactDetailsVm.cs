@@ -13,5 +13,8 @@ namespace Utilities.GlobalViewModels.Custome
         public string CityId { get; set; }
         public string NationalityId { get; set; }
         public int?   Gender { get; set; }
+        public string JobTitle { get; set; }
+        public string Email { get; set; }
+
     }
 }

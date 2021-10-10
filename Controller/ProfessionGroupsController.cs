@@ -30,17 +30,17 @@ namespace Utilities.Controller
             }
         }
 
-        [HttpGet]
-        [Route("RequiredAttachments")]
-        public HttpResponseMessage GetRequiredAttachments(string profGroupId)
-        {
-            using (ProfessionGroupsManager _mngr= new ProfessionGroupsManager(RequestUtility))
-            {
-                var result = _mngr.GetRequiredAttchmentsByProfessionGroup(profGroupId);
-                return Response<string>(result);
-            }
+        //[HttpGet]
+        //[Route("RequiredAttachments")]
+        //public HttpResponseMessage GetRequiredAttachments(string profGroupId)
+        //{
+        //    using (ProfessionGroupsManager _mngr= new ProfessionGroupsManager(RequestUtility))
+        //    {
+        //        var result = _mngr.GetRequiredAttchmentsByProfessionGroup(profGroupId);
+        //        return Response<string>(result);
+        //    }
 
-        }
+        //}
 
     }
 }

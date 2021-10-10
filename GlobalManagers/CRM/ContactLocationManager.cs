@@ -1,4 +1,5 @@
-﻿using Microsoft.Xrm.Sdk.Query;
+﻿using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 using Models.CRM;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace Utilities.GlobalManagers.CRM
 
                     ContactMainSubPreviouseLocationsVm result = new ContactMainSubPreviouseLocationsVm()
                     {
-                        MainLocations = PrevLocList.Where(a => a.Type == (int)ContactLocationType.Main).ToList(),
+                        MainLocations = PrevLocList.Where(a => a.Type == (int)ContactLocationType.Main).FirstOrDefault(),
                         SubLocation = PrevLocList.Where(a => a.Type == (int)ContactLocationType.Sub).ToList()
                     };
                     return new ResponseVm<ContactMainSubPreviouseLocationsVm>() { Status = HttpStatusCodeEnum.Ok, Data = result };
@@ -98,7 +99,7 @@ namespace Utilities.GlobalManagers.CRM
                 Location.Id = Guid.NewGuid();
                 LocationVm.LocationId = _service.Create(Location).ToString();
 
-                if (LocationVm.LocationId!=null && oldMainLocationId!="")
+                if (LocationVm.LocationId!=null && oldMainLocationId!="" && oldMainLocationId!=null)
                 {
                     UpdateContactLocationsToBeSub(LocationVm.ContactId, oldMainLocationId);
                 }
@@ -133,10 +134,13 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
 
-                var oldMainLocation = _repo.GetLocationById(oldMainLocationId);
-                oldMainLocation.Type = new Microsoft.Xrm.Sdk.OptionSetValue();
+                //var oldMainLocation = _repo.GetLocationById(oldMainLocationId);
+                //oldMainLocation.Type = new Microsoft.Xrm.Sdk.OptionSetValue((int)ContactLocationType.Sub);
                 var _service = CRMService.Get;
-                _service.Update(oldMainLocation);
+                Entity address = new Entity (CrmEntityNamesMapping.ContactPreviousLocation);
+                address.Id =new Guid( oldMainLocationId);
+                address["new_type"]= new Microsoft.Xrm.Sdk.OptionSetValue((int)ContactLocationType.Sub);
+                _service.Update(address);
             
             }
             catch(Exception ex)

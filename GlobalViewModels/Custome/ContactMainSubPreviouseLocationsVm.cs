@@ -9,7 +9,7 @@ namespace Utilities.GlobalViewModels.Custome
    public class ContactMainSubPreviouseLocationsVm
     {
 
-        public List<SavedLocationVm> MainLocations { get; set; }
+        public SavedLocationVm MainLocations { get; set; }
         public List<SavedLocationVm> SubLocation { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace Utilities.GlobalRepositories.Labor
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                var result = unitOfWork.Repository<StepsDetails>().Find(s => s.IsAvailable == true && s.StepsHeader.ServiceType ==(int) ServiceType.Individual, a => a.StepsHeader)
+                var result = unitOfWork.Repository<StepsDetails>().Find(s => s.IsAvailable == true && s.IsVisible==true && s.StepsHeader.ServiceType ==(int) ServiceType.Individual, a => a.StepsHeader)
                     .OrderBy(a => a.StepOrder)
                     .ToList();
 
@@ -32,7 +32,7 @@ namespace Utilities.GlobalRepositories.Labor
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.StepsHeader.ServiceType==(int) ServiceType.Individual, a => a.StepsHeader)
+                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible==true && a.StepsHeader.ServiceType==(int) ServiceType.Individual, a => a.StepsHeader)
                 .OrderBy(a => a.StepOrder).FirstOrDefault();
 
             }
@@ -42,7 +42,7 @@ namespace Utilities.GlobalRepositories.Labor
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                return unitOfWork.Repository<StepsDetails>().Find(a => a.Action == ActionName && a.StepsHeader.ServiceType ==  (int)ServiceType.Individual, a => a.StepsHeader).FirstOrDefault();
+                return unitOfWork.Repository<StepsDetails>().Find(a => a.Action == ActionName&& a.IsAvailable==true && a.StepsHeader.ServiceType ==  (int)ServiceType.Individual, a => a.StepsHeader).FirstOrDefault();
             }
         }
 

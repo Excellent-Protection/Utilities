@@ -195,6 +195,7 @@
     <Compile Include="Controller\ProfessionGroupsController.cs" />
     <Compile Include="Controller\ResourceGroupController.cs" />
     <Compile Include="Controller\SavedContactLocationController.cs" />
+    <Compile Include="Controller\StepDataController.cs" />
     <Compile Include="ConvertDocToPDF.cs" />
     <Compile Include="CurrencyInfo.cs" />
     <Compile Include="DataAccess\CRM\CRMAccessDB.cs" />
@@ -274,7 +275,7 @@
       <DependentUpon>202109191048321_stepsTabels.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202110041037477_update-stepHeader.cs" />
-    <Compile Include="Migrations\202110041037477_update-stepHeader.designer.cs">
+    <Compile Include="Migrations\202110041037477_update-stepHeader.Designer.cs">
       <DependentUpon>202110041037477_update-stepHeader.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
@@ -353,7 +354,9 @@
     <EmbeddedResource Include="Resources\SuccessFaildMessagesResources.ar.resx" />
     <EmbeddedResource Include="Resources\SuccessFaildMessagesResources.resx" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Filters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

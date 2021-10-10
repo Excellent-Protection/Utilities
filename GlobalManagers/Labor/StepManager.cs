@@ -1,4 +1,5 @@
-﻿using Models.Labor;
+﻿using Models.CRM.Individual_Contract;
+using Models.Labor;
 using Models.Labor.DynamicSteps;
 using System;
 using System.Collections.Generic;
@@ -29,11 +30,15 @@ namespace Utilities.GlobalManagers.Labor
 
         public StepDataVm GetById(string id)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
+            try
             {
-                var result = unitOfWork.Repository<StepData>().Single(new Guid(id));
-                return result.Toclass<StepDataVm, StepData>();
+                return _repo.GetStepDataById(id);
             }
+            catch(Exception ex)
+            {
+             
+            }
+            return null;
         }
 
         public int Update(StepDataVm entity)
@@ -63,7 +68,20 @@ namespace Utilities.GlobalManagers.Labor
             }
         }
 
+        public ResponseVm< StepDataVm> GetDataById(string id)
+        {
+            try
+            {
+                var result = _repo.GetStepDataById(id);
+                return new ResponseVm<StepDataVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
+            }
+            catch (Exception ex)
+            {
 
+            }
+            return new ResponseVm<StepDataVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message= "An Error"};
+
+        }
 
 
     }

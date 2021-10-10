@@ -25,7 +25,7 @@ namespace Utilities.GlobalRepositories.CRM
         public Contact GetContactDetails(string contactId)
         {
             var _service = CRMService.Get;
-            var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new Microsoft.Xrm.Sdk.Query.ColumnSet("new_gender", "new_idnumer", "new_contactcity", "new_contactnationality")).ToEntity<Contact>();
+            var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new Microsoft.Xrm.Sdk.Query.ColumnSet("new_gender", "new_idnumer", "new_contactcity", "new_contactnationality", "emailaddress1"  , "jobtitle")).ToEntity<Contact>();
             return contact;
         }
 

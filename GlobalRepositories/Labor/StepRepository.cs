@@ -6,21 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.DataAccess.Labor;
+using Utilities.GlobalViewModels.Labor;
+using Utilities.Mappers;
 
 namespace Utilities.GlobalRepositories.Labor
 {
  public   class StepRepository
     {
 
-        public List<StepsDetails> GetIndividualServiceSteps()
+        public StepDataVm GetStepDataById(string stepId)
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                var result = unitOfWork.Repository<StepsDetails>().Find(s => s.IsAvailable == true && s.StepsHeader.ServiceType.ToString() == "IndividualService", a => a.StepsHeader)
-                    .OrderBy(a => a.StepOrder)
-                    .ToList();
-
-                return result;
+                var result = unitOfWork.Repository<StepData>().Single(new Guid(stepId));
+                return result.Toclass<StepDataVm, StepData>();
             }
         }
 
