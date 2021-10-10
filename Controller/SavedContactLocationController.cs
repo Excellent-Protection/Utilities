@@ -5,6 +5,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Utilities.Defaults;
+using Utilities.Enums;
 using Utilities.GlobalManagers.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.GlobalViewModels.Custome;
@@ -29,6 +31,19 @@ namespace Utilities.Controller
         {
             using (ContactLocationManager _mngr = new ContactLocationManager(RequestUtility))
             {
+               // get setting check main addresses
+               //var dealingWithMainAddressSetting = new ExcSettingsManager(RequestUtility)[DefaultValues.DealingWithMainAddressName];
+               // var dealingWithMainAddress = DefaultValues.DealingWithMainAddress;
+               // if (dealingWithMainAddressSetting != null)
+               // {
+               //     dealingWithMainAddress = bool.Parse(dealingWithMainAddressSetting.ToString());
+               // }
+               // if (dealingWithMainAddress)
+               // {
+               //     var mainLocation = _mngr.GetContactPreviousLocationByType(contactId, (int)ContactLocationType.Main);
+               //     return Response<List<SavedLocationVm>>(mainLocation);
+               // }
+
                 var result = _mngr.GetAllPrevLocationsByContactId(contactId);
                 return Response<ContactMainSubPreviouseLocationsVm>(result);
             }

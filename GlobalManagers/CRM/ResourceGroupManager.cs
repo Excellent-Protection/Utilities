@@ -10,6 +10,7 @@ using Utilities.GlobalViewModels;
 using Utilities.GlobalViewModels.Custome;
 using Utilities.Helpers;
 using Utilities.Mappers;
+using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.CRM
 {
@@ -51,7 +52,7 @@ namespace Utilities.GlobalManagers.CRM
                 return new ResponseVm<List<BaseQuickLookupWithImageVm>>
                 {
                     Status = HttpStatusCodeEnum.IneternalServerError,
-                    Message = "An Error Occurred"
+                    Message = DbRes.T("AnerrorOccurred", "Shared") 
                 };
             }
         }

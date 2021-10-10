@@ -51,7 +51,10 @@ namespace Utilities.Defaults
         public const string PostPondVisitsFromOffsetSettingName = "PostPondVisitFromOffSet";
         public const string SelectProfessionsFromPackagesName = "SelectProfessionsFromPackages";
         public const string SelectNationalitiesFromPackagesName = "SelectNationalitiesFromPackages";
-        public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthenticationAvailable"; 
+        public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthenticationAvailable";
+        public const string DealingWithMainAddressName = "DealingWithMainAddress";
+
+
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
         public const string IsSelectEmployeeFromHouseBuildingAvailableSettingName = "IsSelectEmployeeFromHouseBuildingAvailableSetting";
@@ -75,6 +78,7 @@ namespace Utilities.Defaults
         public const bool IsTwoFactorAuthenticationAvailable = true;
         public const bool IsDeliveryEmployeeAvailableSetting = false;
         public const bool IsSelectEmployeeFromHouseBuildingAvailableSetting = false;
+        public const bool  DealingWithMainAddress = false;
 
 
 

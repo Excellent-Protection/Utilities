@@ -15,6 +15,7 @@ using Utilities.GlobalViewModels.CRM;
 using Utilities.GlobalViewModels.Custome;
 using Utilities.Helpers;
 using Utilities.Mappers;
+using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.CRM
 {
@@ -55,7 +56,7 @@ namespace Utilities.GlobalManagers.CRM
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("ContactId", contactId));
-                return new ResponseVm<ContactMainSubPreviouseLocationsVm>(){ Status = HttpStatusCodeEnum.IneternalServerError, Message = "Error" };
+                return new ResponseVm<ContactMainSubPreviouseLocationsVm>(){ Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
 
             }
         }
@@ -77,7 +78,7 @@ namespace Utilities.GlobalManagers.CRM
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("ContactId", contactId) , ("Type" , type));
-                return new ResponseVm<List<SavedLocationVm>>() { Status = HttpStatusCodeEnum.IneternalServerError, Message = "Error" };
+                return new ResponseVm<List<SavedLocationVm>>() { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
 
             }
         }
@@ -111,7 +112,7 @@ namespace Utilities.GlobalManagers.CRM
                 return new ResponseVm<ContactLocationVm>
                 {
                     Status = HttpStatusCodeEnum.IneternalServerError,
-                    Message =  "An Error Occurred...!" 
+                    Message = DbRes.T("AnerrorOccurred", "Shared")
                 };
             }
         }
@@ -155,7 +156,7 @@ namespace Utilities.GlobalManagers.CRM
                 var address = _repo.GetLocationById(locationId);
                 if(address.Type.Value == (int)ContactLocationType.Main)
                 {
-                    return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.NotAllowed,Message="can not delete primary address" };
+                    return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.NotAllowed,Message= DbRes.T("DeleteMainAddressNotAllowed", "IndividualResource") };
                  }
                 var _service = CRMService.Get;
                 _service.Delete(address.LogicalName,new Guid(locationId));
@@ -165,10 +166,12 @@ namespace Utilities.GlobalManagers.CRM
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("locationId",locationId));
-                return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.IneternalServerError };
+                return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.IneternalServerError , Message= DbRes.T("AnerrorOccurred", "Shared") };
 
             }
         }
+
+
 
     }
 }

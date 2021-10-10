@@ -9,6 +9,7 @@ using Utilities.GlobalRepositories.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.Helpers;
 using Utilities.Mappers;
+using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.CRM
 {
@@ -40,7 +41,7 @@ namespace Utilities.GlobalManagers.CRM
             catch(Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("cityId", cityId));
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurrred" };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
             }
         }
         public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities()
@@ -53,7 +54,7 @@ namespace Utilities.GlobalManagers.CRM
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
-                return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurrred" };
+                return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
 
             }
         }
@@ -69,7 +70,7 @@ namespace Utilities.GlobalManagers.CRM
             catch(Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
-                return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurrred" };
+                return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
 
             }
         }
@@ -84,7 +85,7 @@ namespace Utilities.GlobalManagers.CRM
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurrred" };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
             }
         }
 
