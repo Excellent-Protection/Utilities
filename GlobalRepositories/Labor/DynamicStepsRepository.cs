@@ -42,6 +42,7 @@ namespace Utilities.GlobalRepositories.Labor
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
+                var x= unitOfWork.Repository<StepsDetails>().Find(a => a.Action == ActionName && a.IsAvailable == true && a.StepsHeader.ServiceType == (int)ServiceType.Individual, a => a.StepsHeader).FirstOrDefault();
                 return unitOfWork.Repository<StepsDetails>().Find(a => a.Action == ActionName&& a.IsAvailable==true && a.StepsHeader.ServiceType ==  (int)ServiceType.Individual, a => a.StepsHeader).FirstOrDefault();
             }
         }
