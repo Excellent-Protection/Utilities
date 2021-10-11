@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
+using Utilities.GlobalManagers.CRM;
 using Utilities.GlobalViewModels;
 
 namespace Utilities.Helpers
@@ -14,10 +15,12 @@ namespace Utilities.Helpers
     public class BaseApiController : ApiController
     {
         public RequestUtility RequestUtility { get; set; }
-
+        public int PriceFormate { get; set; }
         public BaseApiController()
         {
             RequestUtility = new RequestUtility();
+          //  PriceFormate  =int.Parse(new ExcSettingsManager(this.RequestUtility)["PriceFormate"].ToString());
+
         }
 
         protected override void Initialize(HttpControllerContext controllerContext)

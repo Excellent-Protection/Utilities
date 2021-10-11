@@ -8,25 +8,45 @@ using Utilities.Helpers;
 
 namespace Utilities.Extensions
 {
-    class SetDoubleDigits :BaseManager
+   public static class SetDoubleDigits 
     {
-        ExcSettingsManager _excSettingMngr;
-        public SetDoubleDigits(RequestUtility requestUtility) : base(requestUtility)
+        //ExcSettingsManager _excSettingMngr;
+        //public SetDoubleDigits(RequestUtility requestUtility) : base(requestUtility)
+        //{
+        //    _excSettingMngr = new ExcSettingsManager(RequestUtility);
+        //}
+
+    public static decimal SetDecimalDegits(decimal value)
         {
-            _excSettingMngr = new ExcSettingsManager(RequestUtility);
+            //ExcSettingsManager _excSettingMngr= new ExcSettingsManager();
+            //var res = int.Parse(_excSettingMngr.GetSettingByName("NumberofDigit").Value);
+
+            return Math.Round(value, 4);
+
+            //var padding = new StringBuilder();
+
+            //for (int i = 0; i < res; i++)
+            //{
+            //    padding.Append("0");
+            //}
+            //return string.Format("{0:0." + padding + "}", value);
         }
 
-    public string setDigit(double value)
+
+        public static double SetDoubleDegits(double value)
         {
-            var res = int.Parse(_excSettingMngr.GetSettingByName("NumberofDigit").Value);
+            //ExcSettingsManager _excSettingMngr= new ExcSettingsManager();
+            //var res = int.Parse(_excSettingMngr.GetSettingByName("NumberofDigit").Value);
 
-            var padding = new StringBuilder();
+            return Math.Round(value, 4);
 
-            for (int i = 0; i < res; i++)
-            {
-                padding.Append("0");
-            }
-            return string.Format("{0:0." + padding + "}", value);
+            //var padding = new StringBuilder();
+
+            //for (int i = 0; i < res; i++)
+            //{
+            //    padding.Append("0");
+            //}
+            //return string.Format("{0:0." + padding + "}", value);
         }
     }
 }
