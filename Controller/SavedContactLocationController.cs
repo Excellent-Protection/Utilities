@@ -23,7 +23,16 @@ namespace Utilities.Controller
         {
 
         }
-
+        [HttpGet]
+        [Route("SetMainAddress")]
+        public HttpResponseMessage SetMainAddress(string addressId)
+        {
+            using (ContactLocationManager _mngr = new ContactLocationManager(RequestUtility))
+            {
+                var result = _mngr.SetMainAddress(addressId);
+                return Response<SavedLocationVm>(result);
+            }
+        }
 
         [HttpGet]
         [Route("ContactSavedAddress")]

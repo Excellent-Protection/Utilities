@@ -91,6 +91,12 @@ namespace Utilities.GlobalRepositories.CRM
             var location = _service.Retrieve(CrmEntityNamesMapping.ContactPreviousLocation, new Guid(locationId), new ColumnSet(true)).ToEntity<ContactPreviousLocation>();
             return location;
         }
+        public ContactPreviousLocation GetContactId(string locationId)
+        {
+            var _service = CRMService.Get;
+            var location = _service.Retrieve(CrmEntityNamesMapping.ContactPreviousLocation, new Guid(locationId), new ColumnSet("new_contact")).ToEntity<ContactPreviousLocation>();
+            return location;
+        }
 
 
 
