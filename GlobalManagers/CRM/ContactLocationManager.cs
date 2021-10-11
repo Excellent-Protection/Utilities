@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using Utilities.DataAccess.CRM;
 using Utilities.Defaults;
 using Utilities.Enums;
@@ -21,6 +22,9 @@ namespace Utilities.GlobalManagers.CRM
 {
     public class ContactLocationManager : BaseManager, IDisposable
     {
+
+
+
         internal RequestUtility _requestUtility;
         ContactLocationRepository _repo;
         public ContactLocationManager(RequestUtility requestUtility) : base(requestUtility)
@@ -32,6 +36,10 @@ namespace Utilities.GlobalManagers.CRM
         {
             _repo =new ContactLocationRepository();
         }
+
+
+
+
         public ResponseVm<ContactMainSubPreviouseLocationsVm> GetAllPrevLocationsByContactId(string contactId)
         {
             try
@@ -167,6 +175,45 @@ namespace Utilities.GlobalManagers.CRM
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("locationId",locationId));
                 return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.IneternalServerError , Message= DbRes.T("AnerrorOccurred", "Shared") };
+
+            }
+        }
+        public ResponseVm<SavedLocationVm> SetMainAddress(string locationId)
+        {
+            try
+            {
+                var loaction = _repo.GetContactId(locationId);
+                var mainContactLocations=_repo.GetContactPreviouseLocationByType(loaction.Contact.Id.ToString(), (int)ContactLocationType.Main);
+                var _service = CRMService.Get;
+
+                using (TransactionScope transaction = new TransactionScope())
+                {
+                    Entity address = new Entity(CrmEntityNamesMapping.ContactPreviousLocation);
+                    address.Id = new Guid(locationId);
+                    address["new_type"] =new Microsoft.Xrm.Sdk.OptionSetValue((int)ContactLocationType.Main);
+                    _service.Update(address);
+                    if (mainContactLocations.Count()>0)
+                    {
+                        foreach (var item in mainContactLocations)
+                        {
+                            Entity mainAddress = new Entity(CrmEntityNamesMapping.ContactPreviousLocation);
+                            mainAddress.Id = item.Id;
+                            mainAddress["new_type"] = new Microsoft.Xrm.Sdk.OptionSetValue((int)ContactLocationType.Sub);
+                            _service.Update(mainAddress);
+
+                        }
+                    }
+
+                    transaction.Complete();
+                };
+
+                return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.Ok };
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("locationId", locationId));
+                return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.IneternalServerError };
 
             }
         }
