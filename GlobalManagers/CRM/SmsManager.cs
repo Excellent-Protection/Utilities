@@ -12,9 +12,8 @@ using Utilities.Helpers;
 using Models.CRM;
 using Utilities.DataAccess.CRM;
 using Utilities.Defaults;
-using Recruitment.DataAccess;
 
-namespace Recruitment.Manager
+namespace Utilities.GlobalManagers.CRM
 {
     public class SmsManager : IDisposable
     {

@@ -7,7 +7,7 @@ using System.Data;
 using System.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace Recruitment.DataAccess
+namespace Utilities.DataAccess.CRM
 {
     /// <summary>
     /// Summary description for AccessDB
