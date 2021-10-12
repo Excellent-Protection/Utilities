@@ -39,8 +39,9 @@ namespace Utilities.Filters
                     if (step.Data.IsAuthorized)
                     {
                         bool isAuth = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
-                        if (isAuth)
+                        if (!isAuth)
                         actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
+                        
                     }
                 }
 

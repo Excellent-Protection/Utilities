@@ -53,6 +53,7 @@ namespace Utilities.Defaults
         public const string SelectNationalitiesFromPackagesName = "SelectNationalitiesFromPackages";
         public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthenticationAvailable";
         public const string DealingWithMainAddressName = "DealingWithMainAddress";
+        public const string PackageProperties = "PackageProperties";
 
 
 
@@ -79,6 +80,8 @@ namespace Utilities.Defaults
         public const bool IsDeliveryEmployeeAvailableSetting = false;
         public const bool IsSelectEmployeeFromHouseBuildingAvailableSetting = false;
         public const bool  DealingWithMainAddress = false;
+        public const string WebSettingResult = "";
+        public const string MobileSettingResult = "";
 
 
 

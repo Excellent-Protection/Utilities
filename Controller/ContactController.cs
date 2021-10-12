@@ -76,7 +76,7 @@ namespace Utilities.Controller
                 }
                 var validateIdNo = _mngr.IsIdentiefierExist(contact.ContactId, contact.IdNumber);
                 if(validateIdNo)
-                    return Response(new ResponseVm<ServiceStepResponseVm> { Status = HttpStatusCodeEnum.Ambiguous, Message="Id Number  Exists Before" });
+                    return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message="Id Number  Exists Before" });
 
                 var result = _mngr.CompleteProfile(contact);
                 if (result)
