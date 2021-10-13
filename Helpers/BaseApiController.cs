@@ -45,7 +45,7 @@ namespace Utilities.Helpers
         protected HttpResponseMessage Response<T>(ResponseVm<T> result)
              where T : class
         {
-            return Request.CreateResponse((HttpStatusCode)result.Status, result.Data);
+            return Request.CreateResponse((HttpStatusCode)result.Status, result);
         }
     }
 }
