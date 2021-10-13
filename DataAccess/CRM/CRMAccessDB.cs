@@ -9,13 +9,17 @@ using System.Threading.Tasks;
 
 namespace Utilities.DataAccess.CRM
 {
-  public  class CRMAccessDB
+    /// <summary>
+    /// Summary description for AccessDB
+    /// </summary>
+    public class CRMAccessDB
     {
 
         public CRMAccessDB()
         {
 
         }
+
         public static string connectionString
         {
             get
@@ -47,6 +51,9 @@ namespace Utilities.DataAccess.CRM
 
         public static System.Data.DataSet SelectQ(string queryString)
         {
+            //Response.Write(queryString);
+            //string connectionString = "server=\'(local)\'; trusted_connection=true; database=\'warehouse\'";
+            //
 
             System.Data.IDbConnection dbConnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
@@ -62,5 +69,8 @@ namespace Utilities.DataAccess.CRM
 
             return dataSet;
         }
+
     }
 }
+
+

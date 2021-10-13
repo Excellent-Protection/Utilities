@@ -31,6 +31,7 @@ namespace Utilities.Defaults
         public const string SADAD_InvoiceCode = "214";
         public const string AppleCardBrand = "APPLEPAY";
         public const string TomorrowVisitSms = "TomorrowVisitSms";
+        public const string RegisterUserActivationCode = "RegisterUserActivationCode";
 
 
 
