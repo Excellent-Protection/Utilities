@@ -50,6 +50,18 @@ namespace Utilities.Defaults
         public const string IsEditResourceGroupAvailableSettingName = "IsEditResourceGroupAvailable";
         public const bool IsEditResourceGroupAvailable = false;
         public const string PostPondVisitsFromOffsetSettingName = "PostPondVisitFromOffSet";
+        public const string SelectProfessionsFromPackagesName = "SelectProfessionsFromPackages";
+        public const string SelectNationalitiesFromPackagesName = "SelectNationalitiesFromPackages";
+        public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthenticationAvailable";
+        public const string DealingWithMainAddressName = "DealingWithMainAddress";
+        public const string PackageProperties = "PackageProperties";
+
+
+
+        public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
+        public const string IsSelectEmployeeFromHouseBuildingAvailableSettingName = "IsSelectEmployeeFromHouseBuildingAvailableSetting";
+
+
         public static readonly Dictionary<string, int> PostPondVisitsFromOffset = new Dictionary<string, int>() {
             { "PostPondVisitFromOffSetMorning",  -2},
             { "PostPondVisitFromOffSetEvening", 8},
@@ -63,6 +75,14 @@ namespace Utilities.Defaults
             { "HourlyServicesOffsetFullDay",  -4}
         };
 
+        public const bool SelectProfessionsFromPackages = true;
+        public const bool SelectNationalitiesFromPackages = true;
+        public const bool IsTwoFactorAuthenticationAvailable = true;
+        public const bool IsDeliveryEmployeeAvailableSetting = false;
+        public const bool IsSelectEmployeeFromHouseBuildingAvailableSetting = false;
+        public const bool  DealingWithMainAddress = false;
+        public const string WebSettingResult = "";
+        public const string MobileSettingResult = "";
 
 
 

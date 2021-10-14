@@ -9,13 +9,13 @@ using Utilities.Enums;
 
 namespace Utilities.Helpers
 {
-    public class BaseController:Controller
-    {
-        public RequestUtility RequestUtility { get; set; }
-        public BaseController()
-        {
-            RequestUtility = new RequestUtility();
-        }
+    //public class BaseController:Controller
+    //{
+    //    public RequestUtility RequestUtility { get; set; }
+    //    public BaseController()
+    //    {
+    //        RequestUtility = new RequestUtility();
+    //    }
 
-    }
+    //}
 }

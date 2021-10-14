@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Models.Labor;
+using Models.Labor.DynamicSteps;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -48,6 +49,8 @@ namespace Utilities.DataAccess.Labor
         public DbSet<StepData> StepDatas { get; set; }
         public DbSet<paymentMethod> paymentMethod { get; set; }
         public DbSet<TamayouzIntegratedDiscount> TamayouzIntegratedDiscount { get; set; }
+        public DbSet<StepsHeader> StepsHeader { get; set; }
+        public DbSet<StepsDetails> StepsDetails { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

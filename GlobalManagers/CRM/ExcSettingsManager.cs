@@ -27,6 +27,7 @@ namespace Utilities.GlobalManagers.CRM
             _requestUtility = RequestUtility;
         }
 
+      
 
 
         public object this[string Name]
@@ -51,7 +52,7 @@ namespace Utilities.GlobalManagers.CRM
                 }                
                 else
                 {
-                    return false;
+                    return null;
                 }
             }
         }
@@ -84,7 +85,21 @@ namespace Utilities.GlobalManagers.CRM
             }
 
         }
+        
+        public ExcSettingsVm GetSettingByNameAndSource(string key, int applyTo)
+        {
+            try
+            {
+                var Setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && a.ApplyTo.Value== applyTo);
+                return Setting.Toclass<ExcSettingsVm>();
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("key", key));
+                return null;
+            }
 
+        }
         public Dictionary<string, string> this[List<string> keys]
         {
             get

@@ -46,11 +46,11 @@ namespace Utilities.DataAccess.CRM
             get
             {
                 
+
                 string CRMServerURL = ConfigurationManager.AppSettings["serverUrl"];
                 string CRMOrganiza = ConfigurationManager.AppSettings["organization"];
                 string CRMUserName = ConfigurationManager.AppSettings["username"];
                 string CRMPassword = ConfigurationManager.AppSettings["password"];
-
 
                 HttpContext context = HttpContext.Current;
                 String strCookieName = "passcookiesforax1";
@@ -67,7 +67,9 @@ namespace Utilities.DataAccess.CRM
                     //CRMPassword = Convert.ToBase64String(Encoding.UTF8.GetBytes(CRMPassword));
                 }
                 //else
+
                 //    //CRMPassword = CRMPassword.DecryptText("Ahmed");
+
                 {
                     string CRMDomain = ConfigurationManager.AppSettings["domain"];
 

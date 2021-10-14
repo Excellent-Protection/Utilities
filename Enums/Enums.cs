@@ -786,4 +786,23 @@ namespace Utilities.Enums
         Ascending =0,
         Descending=1
     }
+
+    public enum ServiceType
+    {
+        Individual =1,
+        Hourly=2
+    }
+
+    public enum ContactLocationType
+    {
+        Main=1,
+        Sub=2
+    }
+
+    public enum DynamicStepType
+    {
+        Stratigy=1,
+        PageUi=2,
+        PostAction=3
+    }
 }

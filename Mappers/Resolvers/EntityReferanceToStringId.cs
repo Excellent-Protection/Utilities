@@ -15,7 +15,7 @@ namespace Utilities.Mappers.Resolver
 
         public string Resolve(Entity source, object destination, EntityReference sourceMember, string destMember, ResolutionContext context)
         {
-            if (sourceMember == null)
+            if (sourceMember != null)
             {
                 return sourceMember.Id.ToString();
 

@@ -81,12 +81,17 @@ namespace Utilities.Defaults
         public const string CostInvoice= "new_invoicefees";
         public const string CostInvoiceDetails= "new_feeinvoicedetail";
         public const string SystemDocument = "mw_sysdocument";
+        public const string DocumentQuery = "new_documentquery";
         public const string ApprovedProfessions = "new_reqapprovals";
         public const string ProjectNotification = "new_projectnotifications";
         public const string ProjectTimeSheet = "new_projecttimesheet";
         public const string Sanad = "new_sanad";
         public const string NafithCallbackAudit = "new_nafithcallbackaudit";
         public const string LoyalityCustomerActionsSetting = "new_loyaltycustomeractionssetting";
+
         public const string EmailTemplate = "new_emailtemplate";
+
+        public const string ProfessionGroup = "new_professiongroup";
+
     }
 }

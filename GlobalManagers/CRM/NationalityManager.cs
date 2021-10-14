@@ -8,18 +8,20 @@ using System.Threading.Tasks;
 using Utilities.DataAccess.CRM;
 using Utilities.Defaults;
 using Utilities.Enums;
+using Utilities.GlobalRepositories.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.Helpers;
+using Utilities.Mappers;
 
 namespace Utilities.GlobalManagers.CRM
 {
   public  class NationalityManager : BaseManager , IDisposable
     {
         internal RequestUtility _requestUtility;
-
+        NationalityRepository _repo;
         public NationalityManager(RequestUtility requestUtility) : base(requestUtility)
         {
-
+            _repo = new NationalityRepository(RequestUtility);
             _requestUtility = RequestUtility;
         }
 
@@ -44,6 +46,31 @@ namespace Utilities.GlobalManagers.CRM
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
             return null;
+        }
+
+
+
+        public ResponseVm<List<BaseQuickLookupVm>> GetActiveNationalities()
+        {
+            try
+            {
+                var nationalities = _repo.GetActiveNationalities().ToModelListData<BaseQuickLookupVm>().ToList();
+                return new ResponseVm<List<BaseQuickLookupVm>>()
+                {
+                    Status = HttpStatusCodeEnum.Ok,
+                    Data = nationalities
+                };
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                return new ResponseVm<List<BaseQuickLookupVm>>()
+                {
+                    Status = HttpStatusCodeEnum.IneternalServerError,
+                    Message = "An Error Occurred"
+                };
+
+            }
         }
 
     }

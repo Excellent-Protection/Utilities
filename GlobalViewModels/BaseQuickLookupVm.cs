@@ -10,7 +10,7 @@ namespace Utilities.GlobalViewModels
     {
         public string Key { get; set; }
         public string Value { get; set; }
-        public string AdditionalInformation { get; set; }
-        public string IconURl { get; set; }
+        //public string AdditionalInformation { get; set; }
+        //public string IconURl { get; set; }
     }
 }
