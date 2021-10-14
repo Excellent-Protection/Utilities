@@ -83,7 +83,7 @@ namespace Utilities.GlobalManagers
         {
 
             var Code = new QueryExpression(CrmEntityNamesMapping.EmailTemplate);
-            Code.ColumnSet = new ColumnSet("new_mailtemplate", "new_subject", "new_toemails", "new_ccemail");
+            Code.ColumnSet = new ColumnSet("new_mailtemplate", "new_subject", "new_toemails", "new_ccemail", "new_sql");
             Code.Criteria.AddCondition("new_code", ConditionOperator.Equal, Emailcode);
             var Email = CRMService.Get.RetrieveMultiple(Code).Entities.FirstOrDefault();
             string ToEmails = pTo;
