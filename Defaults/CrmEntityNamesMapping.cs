@@ -87,5 +87,6 @@ namespace Utilities.Defaults
         public const string Sanad = "new_sanad";
         public const string NafithCallbackAudit = "new_nafithcallbackaudit";
         public const string LoyalityCustomerActionsSetting = "new_loyaltycustomeractionssetting";
+        public const string EmailTemplate = "new_emailtemplate";
     }
 }
