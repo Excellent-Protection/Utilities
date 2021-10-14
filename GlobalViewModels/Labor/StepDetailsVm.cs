@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities.Enums;
 
 namespace Utilities.GlobalViewModels.Labor
 {
@@ -23,6 +24,7 @@ namespace Utilities.GlobalViewModels.Labor
         public string StepKeyword { get; set; }
         public string Description { get; set; }
         //public bool IsActiveStep { get; set; }
+       public DynamicStepType StepType { get; set; }
         public bool? IsVisible { get; set; }
 
     }

@@ -7,13 +7,13 @@ namespace Utilities.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class authorization : IMigrationMetadata
+    public sealed partial class addcolumnsteptype : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(authorization));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addcolumnsteptype));
         
         string IMigrationMetadata.Id
         {
-            get { return "202110101157213_authorization"; }
+            get { return "202110131135375_addcolumnsteptype"; }
         }
         
         string IMigrationMetadata.Source

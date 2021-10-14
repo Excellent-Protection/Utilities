@@ -799,5 +799,10 @@ namespace Utilities.Enums
         Sub=2
     }
 
-
+    public enum DynamicStepType
+    {
+        Stratigy=1,
+        PageUi=2,
+        PostAction=3
+    }
 }

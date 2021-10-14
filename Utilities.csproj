@@ -328,6 +328,7 @@
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepData_StepDataVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\StepDetails_StepDetailsVmProfile.cs" />
     <Compile Include="Mappers\Resolvers\ContractPreviouseLocationToSavedLocationVm.cs" />
     <Compile Include="Migrations\202109191048321_stepsTabels.cs" />
     <Compile Include="Migrations\202109191048321_stepsTabels.designer.cs">
@@ -337,9 +338,9 @@
     <Compile Include="Migrations\202110041037477_update-stepHeader.Designer.cs">
       <DependentUpon>202110041037477_update-stepHeader.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202110101157213_authorization.cs" />
-    <Compile Include="Migrations\202110101157213_authorization.designer.cs">
-      <DependentUpon>202110101157213_authorization.cs</DependentUpon>
+    <Compile Include="Migrations\202110131135375_addcolumnsteptype.cs" />
+    <Compile Include="Migrations\202110131135375_addcolumnsteptype.designer.cs">
+      <DependentUpon>202110131135375_addcolumnsteptype.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
@@ -392,7 +393,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
@@ -407,8 +407,8 @@
     <EmbeddedResource Include="Migrations\202110041037477_update-stepHeader.resx">
       <DependentUpon>202110041037477_update-stepHeader.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110101157213_authorization.resx">
-      <DependentUpon>202110101157213_authorization.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202110131135375_addcolumnsteptype.resx">
+      <DependentUpon>202110131135375_addcolumnsteptype.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
