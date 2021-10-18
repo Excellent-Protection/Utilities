@@ -36,7 +36,8 @@ namespace Utilities.GlobalManagers.Labor
             }
             catch(Exception ex)
             {
-             
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
             }
             return null;
         }
@@ -64,6 +65,8 @@ namespace Utilities.GlobalManagers.Labor
             }
             catch(Exception ex)
             {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
                 return null;
             }
         }
@@ -77,6 +80,7 @@ namespace Utilities.GlobalManagers.Labor
             }
             catch (Exception ex)
             {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
             }
             return new ResponseVm<StepDataVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message= "An Error"};
