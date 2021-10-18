@@ -9,7 +9,9 @@ namespace Utilities.GlobalViewModels.Labor
   public  class StepDataVm
     {
         public string Data { get; set; }
+        public string PreviousAction { get; set; }
         public string ControllerName { get; set; }
         public Guid Id { get; set; }
+
     }
 }

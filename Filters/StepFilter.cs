@@ -40,8 +40,8 @@ namespace Utilities.Filters
                     {
                         bool isAuth = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
                         if (!isAuth)
-                        actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
-                        
+                            actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
+
                     }
                 }
 

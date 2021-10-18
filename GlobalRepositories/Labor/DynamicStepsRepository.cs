@@ -56,6 +56,15 @@ namespace Utilities.GlobalRepositories.Labor
             }
         }
 
+        public int GetIndivStepDetailsTypeByActionName(string ActionName)
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
+            {
+               
+                return unitOfWork.Repository<StepsDetails>().Find(a => a.Action == ActionName && a.IsAvailable == true && a.StepsHeader.ServiceType == (int)ServiceType.Individual, a => a.StepsHeader).Select(a=>a.StepType).FirstOrDefault();
+            }
+        }
+
 
     }
 }

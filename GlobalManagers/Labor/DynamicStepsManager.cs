@@ -120,6 +120,23 @@ namespace Utilities.GlobalManagers.Labor
             }
         }
 
+        public bool CheckIfStepIsStratigy(string actionName)
+        {
+            try
+            {
+                var stepType = _repo.GetIndivStepDetailsTypeByActionName(actionName);
+                if (stepType == (int)DynamicStepType.Stratigy)
+                    return true;
+                else
+                 return   false;
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                return false;
+            }
+        }
 
         #endregion
         #endregion
