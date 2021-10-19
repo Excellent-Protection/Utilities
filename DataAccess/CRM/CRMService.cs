@@ -67,7 +67,9 @@ namespace Utilities.DataAccess.CRM
                     //CRMPassword = Convert.ToBase64String(Encoding.UTF8.GetBytes(CRMPassword));
                 }
                 //else
-                //    CRMPassword = CRMPassword.DecryptText("Ahmed");
+
+                //    //CRMPassword = CRMPassword.DecryptText("Ahmed");
+
                 {
                     string CRMDomain = ConfigurationManager.AppSettings["domain"];
 

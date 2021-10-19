@@ -266,6 +266,8 @@
     <Compile Include="Defaults\CrmEntityNamesMapping.cs" />
     <Compile Include="Defaults\CrmRelationsNameMapping.cs" />
     <Compile Include="Defaults\DefaultValues.cs" />
+    <Compile Include="Defaults\EmailCode.cs" />
+    <Compile Include="Defaults\SMSCodes.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\RecordSource.cs" />
     <Compile Include="Extensions\SetDoubleDigits.cs" />
@@ -312,6 +314,7 @@
     <Compile Include="GlobalViewModels\Labor\StepDetailsVm.cs" />
     <Compile Include="GlobalViewModels\ResponseVm.cs" />
     <Compile Include="GlobalViewModels\CRM\SettingVM.cs" />
+    <Compile Include="GlobalViewModels\MailToSendVM.cs" />
     <Compile Include="GlobalViewModels\ResultVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
     <Compile Include="Helpers\BaseCrmEntityRepository.cs" />
