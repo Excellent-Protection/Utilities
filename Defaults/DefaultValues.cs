@@ -186,7 +186,7 @@ namespace Utilities.Defaults
 
         public const string BSAdminRoleName = "ProjectsAdmin";
         public const int TokenLifespan =5;
-
+        public const string IsLaborStockAvailable = "IsLaborStockAvailable";
 
 
 
