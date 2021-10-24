@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities.Defaults;
 using Utilities.GlobalViewModels;
+using Utilities.Mappers.Resolvers;
 
 namespace Utilities.Mappers.Profiles
 {
@@ -18,10 +20,11 @@ namespace Utilities.Mappers.Profiles
 
            .IgnoreAllPropertiesWithAnInaccessibleSetter()
            .ReverseMap()
-           .ForMember(a => a.Key, opt => opt.MapFrom(s => s.Id != null ? s.Id.ToString() : null))
-           .ForMember(a => a.Value, opt => opt.MapFrom(s => s.EnglishName))
-     
-           ;
+           .ForMember(a => a.Key, opt => opt.MapFrom(s =>s.Id != null ? s.Id.ToString() : null))
+           .ForMember(a => a.Value, opt => opt.ResolveUsing((src, dest, destMember, context) => new ApplyLanguage(MapperConfig.lang,context.Items["ArabicName"].ToString(),context.Items["EnglishName"].ToString())))
+
+
+            ;
         }
     }
 }

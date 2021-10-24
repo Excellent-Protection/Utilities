@@ -321,6 +321,7 @@
     <Compile Include="Helpers\DateTimeConvertor.cs" />
     <Compile Include="HttpStatusCodeEnum.cs" />
     <Compile Include="InfraStructure\MathNumber.cs" />
+    <Compile Include="Mappers\MapperConfig.cs" />
     <Compile Include="Mappers\Profiles\City_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ContactDetailsVm_ContactProfile.cs" />
     <Compile Include="Mappers\Profiles\ContactPreviousLocation_ContactLocationVmProfile.cs" />
@@ -332,6 +333,7 @@
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepData_StepDataVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepDetails_StepDetailsVmProfile.cs" />
+    <Compile Include="Mappers\Resolvers\ApplyLanguage.cs" />
     <Compile Include="Mappers\Resolvers\ContractPreviouseLocationToSavedLocationVm.cs" />
     <Compile Include="Migrations\202109191048321_stepsTabels.cs" />
     <Compile Include="Migrations\202109191048321_stepsTabels.designer.cs">
