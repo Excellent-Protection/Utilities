@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.Defaults;
-using Utilities.GlobalViewModels.Custome;
+using Utilities.GlobalViewModels.Custom;
 using Utilities.Mappers.Resolver;
 
 namespace Utilities.Mappers.Profiles

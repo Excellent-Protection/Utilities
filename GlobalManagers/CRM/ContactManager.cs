@@ -8,7 +8,7 @@ using Utilities.DataAccess.CRM;
 using Utilities.Defaults;
 using Utilities.GlobalRepositories.CRM;
 using Utilities.GlobalViewModels;
-using Utilities.GlobalViewModels.Custome;
+using Utilities.GlobalViewModels.Custom;
 using Utilities.Helpers;
 using Utilities.Mappers;
 

@@ -9,7 +9,7 @@ using Utilities.DataAccess.CRM;
 using Utilities.Defaults;
 using Utilities.Enums;
 using Utilities.GlobalViewModels;
-using Utilities.GlobalViewModels.Custome;
+using Utilities.GlobalViewModels.Custom;
 using Utilities.Helpers;
 
 namespace Utilities.GlobalRepositories.CRM
