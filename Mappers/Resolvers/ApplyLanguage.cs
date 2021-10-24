@@ -5,40 +5,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.Defaults;
+using Utilities.GlobalViewModels.Custom;
 
 namespace Utilities.Mappers.Resolvers
 {
-    public class ApplyLanguage : IValueResolver<object,object, string>
+    public class ApplyLanguage : IMemberValueResolver<object,object, MappingTranslation, string>
     {
-        public string _lang { get; set; }
-        public string _arabicValue { get; set; }
-        public string _englishValue { get; set; }
         public ApplyLanguage()
         {
 
         }
-        public ApplyLanguage(string Lang, string ArabicValue, string EnglishValue)
+
+        public string Resolve(object source, object destination, MappingTranslation sourceMember, string destMember, ResolutionContext context)
         {
-            _lang = Lang;
-            _arabicValue = ArabicValue;
-            _englishValue = EnglishValue;
-        }
-        public string Resolve(object source, object destination, string destMember, ResolutionContext context)
-        {
-            switch (_lang)
+            switch (sourceMember._lang)
             {
                 case DefaultValues.RouteLang_ar:
                     {
-                        return _arabicValue ?? _englishValue;
+                        return sourceMember._arabicValue ?? sourceMember._englishValue;
                     }
                 case DefaultValues.RouteLang_en:
                     {
-                        return _englishValue ?? _arabicValue;
+                        return sourceMember._englishValue ?? sourceMember._arabicValue;
+                    }
+                default:
+                    {
+                        return DefaultValues.DefaultLanguageRoute == DefaultValues.RouteLang_ar ? (sourceMember._arabicValue ?? sourceMember._englishValue) : (sourceMember._englishValue ?? sourceMember._arabicValue);
                     }
 
             }
-            return DefaultValues.DefaultLanguageRoute == DefaultValues.RouteLang_ar ? (_arabicValue ?? _englishValue) : (_englishValue ?? _arabicValue);
+            
         }
-
-     }
+    }
 }

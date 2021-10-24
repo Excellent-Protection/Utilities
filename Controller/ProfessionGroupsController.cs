@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Utilities.GlobalManagers.CRM;
-using Utilities.GlobalViewModels.Custome;
+using Utilities.GlobalViewModels.Custom;
 using Utilities.Helpers;
 
 namespace Utilities.Controller

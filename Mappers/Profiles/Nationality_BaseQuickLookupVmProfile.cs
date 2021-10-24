@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.GlobalViewModels;
-using Utilities.GlobalViewModels.Custome;
+using Utilities.GlobalViewModels.Custom;
 
 namespace Utilities.Mappers.Profiles
 {
