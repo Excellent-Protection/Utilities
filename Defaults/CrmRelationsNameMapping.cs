@@ -39,6 +39,8 @@ namespace Utilities.Defaults
         public const string IndividualContract_IndividualPricing = "new_new_indvprice_new_indvcontract_null";
         public const string IndividualContract_Collection = "new_new_indvcontract_new_payments_indcontract";
         public const string IndividualContract_ReceiptVoucher = "new_new_indvcontract_new_receiptvoucher_indv";
+        public const string IndividualContract_ProfessionGroup = "new_new_professiongroup_new_indvcontract_professiongroup";
+        public const string IndividualContract_ResourceGroup = "new_new_resourcegroup_new_indvcontract_resourcegroup";
         public const string Nationality_AlternativeNationality = "new_new_country_new_country";
         public const string Service_ResourceGroupOneToMany = "new_new_service_new_resourcegroup_service";
         public const string Service_ResourceGroupOneToOne = "new_new_resourcegroup_new_service_resourcegroup";

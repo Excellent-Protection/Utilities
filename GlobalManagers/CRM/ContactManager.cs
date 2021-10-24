@@ -8,6 +8,7 @@ using Utilities.DataAccess.CRM;
 using Utilities.Defaults;
 using Utilities.GlobalRepositories.CRM;
 using Utilities.GlobalViewModels;
+using Utilities.GlobalViewModels.CRM;
 using Utilities.GlobalViewModels.Custome;
 using Utilities.Helpers;
 using Utilities.Mappers;
@@ -93,5 +94,23 @@ namespace Utilities.GlobalManagers.CRM
             }
             return false;
         }
+
+
+        public ContactVm GetContactNameAndNationality(string contactId)
+        {
+            try
+            {
+                return _repo.GetContactNameAndNationality(contactId).Toclass<ContactVm>();
+
+            }
+            catch(Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+            return null;
+        }
+
+
+
     }
 }

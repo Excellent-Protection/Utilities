@@ -79,6 +79,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy">
+      <HintPath>..\Dependencies\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
     </Reference>
@@ -197,11 +200,17 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -296,9 +305,13 @@
     <Compile Include="GlobalRepositories\Labor\StepRepository.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
     <Compile Include="GlobalViewModels\BoolStringVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\CollectionVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\ContactVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\RecieptVoucherVm.cs" />
     <Compile Include="GlobalViewModels\Custome\BaseQuickLookupWithImageVm.cs" />
+    <Compile Include="GlobalViewModels\Custome\BoolWithString.cs" />
     <Compile Include="GlobalViewModels\Custome\ContactDetailsVm.cs" />
     <Compile Include="GlobalViewModels\Custome\ContactMainSubPreviouseLocationsVm.cs" />
     <Compile Include="GlobalViewModels\Custome\LocationVm.cs" />
@@ -319,13 +332,16 @@
     <Compile Include="HttpStatusCodeEnum.cs" />
     <Compile Include="InfraStructure\MathNumber.cs" />
     <Compile Include="Mappers\Profiles\City_BaseQuickLookupVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Collection_CollectionVmProfiles.cs" />
     <Compile Include="Mappers\Profiles\ContactDetailsVm_ContactProfile.cs" />
     <Compile Include="Mappers\Profiles\ContactPreviousLocation_ContactLocationVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ContactPreviousLocation_SavedLocationVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Contact_ContactVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Country_NationalityProfile.cs" />
     <Compile Include="Mappers\Profiles\District_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Nationality_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepData_StepDataVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepDetails_StepDetailsVmProfile.cs" />

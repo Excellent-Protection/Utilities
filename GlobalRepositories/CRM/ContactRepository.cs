@@ -43,5 +43,12 @@ namespace Utilities.GlobalRepositories.CRM
             return false;
 
         }
+
+        public Contact GetContactNameAndNationality(string contactId)
+        {
+            var _service = CRMService.Get;
+            var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new Microsoft.Xrm.Sdk.Query.ColumnSet( "new_contactnationality", "fullname", "new_englishname")).ToEntity<Contact>();
+            return contact;
+        }
     }
 }

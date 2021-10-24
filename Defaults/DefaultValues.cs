@@ -55,6 +55,8 @@ namespace Utilities.Defaults
         public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthenticationAvailable";
         public const string DealingWithMainAddressName = "DealingWithMainAddress";
         public const string PackageProperties = "PackageProperties";
+        public const string DaysBeforeEndContractToShowRenewBtnSettingName = "DaysBeforeEndContractToShowRenewBtn";
+        public const string IncludInsuranceWithRenewSettingName = "IncludInsuranceWithRenew";
 
 
 
@@ -83,6 +85,8 @@ namespace Utilities.Defaults
         public const bool  DealingWithMainAddress = false;
         public const string WebSettingResult = "";
         public const string MobileSettingResult = "";
+        public const int DaysBeforeEndContractToShowRenewBtn = 7;
+        public const bool IncludInsuranceWithRenew = false;
 
 
 
