@@ -300,7 +300,6 @@
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
-    <Compile Include="GlobalViewModels\CRM\ContactVm.cs" />
     <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BaseQuickLookupWithImageVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BoolWithString.cs" />
@@ -324,6 +323,7 @@
     <Compile Include="GlobalViewModels\ResultVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
     <Compile Include="Helpers\BaseCrmEntityRepository.cs" />
+    <Compile Include="Helpers\WebService.cs" />
     <Compile Include="Helpers\DateTimeConvertor.cs" />
     <Compile Include="HttpStatusCodeEnum.cs" />
     <Compile Include="InfraStructure\MathNumber.cs" />
