@@ -9,7 +9,7 @@ using Utilities.Mappers;
 using Recruitment.ViewModel;
 using Utilities.Helpers;
 
-namespace Recruitment.Manager
+namespace Utilities.GlobalManagers.Labor
 {
     public class SettingsManager:IDisposable
     {

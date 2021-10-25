@@ -301,6 +301,7 @@
     <Compile Include="GlobalViewModels\BoolStringVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BaseQuickLookupWithImageVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactDetailsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactMainSubPreviouseLocationsVm.cs" />

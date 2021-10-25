@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Recruitment.Utility.InfraStructure
+namespace Utilities.InfraStructure
 {
     public class MathNumber
     {

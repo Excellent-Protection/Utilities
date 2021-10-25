@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Recruitment.ViewModel
+namespace Utilities.GlobalViewModels.Labor
 {
     public class SettingVM 
     {

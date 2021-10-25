@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilities.Enums;
 
-namespace Utilities.GlobalViewModels.Custome
+namespace Utilities.GlobalViewModels.Custom
 {
    public class SavedLocationVm 
     {

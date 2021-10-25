@@ -97,10 +97,6 @@ namespace Utilities.Enums
         Female = 2,
         both = 3
     }
-    public enum HyperPayStatus
-    {
-        Success, Fail
-    }
     public enum PaymentType
     {
         HourlyContract = 1,
