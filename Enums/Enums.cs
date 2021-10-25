@@ -801,4 +801,13 @@ namespace Utilities.Enums
         PageUi=2,
         PostAction=3
     }
+    public enum FlexContractStatus
+    {
+        Confirmed = 100000009,
+        ConfirmedNotPaid = 100000006,
+        Cancelled = 100000007,
+        Finished = 100000000,
+        PaymentIsPendingConfirmation = 100000008,
+        ConfirmedAndPaymentWasMade = 100000002
+    }
 }
