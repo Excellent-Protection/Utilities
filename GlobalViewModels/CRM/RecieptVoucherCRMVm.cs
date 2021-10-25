@@ -7,7 +7,7 @@ using Utilities.Enums;
 
 namespace Utilities.GlobalViewModels.CRM
 {
-  public  class RecieptVoucherVm
+    public class RecieptVoucherCRMVm
     {
         public Guid? Id { get; set; }
         public decimal? Amount { get; set; }
@@ -53,7 +53,7 @@ namespace Utilities.GlobalViewModels.CRM
         public decimal? Discount { get; set; }
         public decimal? AmountBeforeDiscount { get; set; }
         public decimal? CustomerBalance { get; set; }
-        public List<RecieptVoucherVm> PaidVouchers { get; set; }
+        public List<RecieptVoucherCRMVm> PaidVouchers { get; set; }
         public decimal PaidAmount { get; set; }
         public decimal RemainingAmount { get; set; }
         public decimal? ActivationAmount { get; set; }
