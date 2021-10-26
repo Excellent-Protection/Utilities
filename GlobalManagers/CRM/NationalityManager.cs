@@ -12,6 +12,7 @@ using Utilities.GlobalRepositories.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.Helpers;
 using Utilities.Mappers;
+using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.CRM
 {
@@ -29,23 +30,24 @@ namespace Utilities.GlobalManagers.CRM
         {
         }
 
-        public List<BaseQuickLookupVm> GetNationalitiesForIndvSales()
+        public ResponseVm< List<BaseQuickLookupVm>> GetNationalitiesForIndvSales()
         {
             try
             {
                 var query = new QueryExpression(CrmEntityNamesMapping.Nationality) { Distinct = true };
                 query.ColumnSet = new ColumnSet("new_countryid", "new_name", "new_nameenglish");
                 query.Criteria.AddCondition("new_isindv", ConditionOperator.Equal, true);
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 var nationalites = _service.RetrieveMultiple(query).Entities.
                     Select(a => a.ToEntity<Country>()).Select(t => new BaseQuickLookupVm() { Key = t.Id.ToString(), Value = RequestUtility.Language == UserLanguage.Arabic ? (t.Name != null ? t.Name : t.EnglishName) : (t.EnglishName != null ? t.EnglishName : t.Name) }).ToList();
-                return new List<BaseQuickLookupVm>(nationalites);
+                return new ResponseVm<List<BaseQuickLookupVm>> { Status=HttpStatusCodeEnum.Ok , Data= nationalites};
             }
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
-            return null;
+            return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred" , "Shared")};
+
         }
 
 

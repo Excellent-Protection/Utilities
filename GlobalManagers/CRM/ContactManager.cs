@@ -26,6 +26,62 @@ namespace Utilities.GlobalManagers.CRM
         {
         }
 
+
+        public ContactVm RegisterContactInPortal(ContactVm contact)
+        {
+            var crmEntity =_repo.GetContactByPhone(contact.MobilePhone).Toclass<ContactVm>();
+            if (crmEntity == null)
+                crmEntity = AddNewContactToCrm(contact);
+            else
+                UpdateCrmEntityFromRegisteration(contact, crmEntity.Id.ToString());
+
+            if (crmEntity == null || crmEntity.Id == null)
+                return null;
+
+            contact.Id = crmEntity.Id;
+            return contact;
+        }
+   
+        public ContactVm AddNewContactToCrm(ContactVm contactVm)
+        {
+            try
+            {
+                var _service = CRMService.Service;
+                var nameSegments = contactVm.FullName.Trim().Split(' ');
+                var name = contactVm.FullName.Trim();
+                contactVm.FName = string.Join(" ", nameSegments.Take(nameSegments.Length - 1));
+                contactVm.LastName = nameSegments[nameSegments.Length - 1];
+                contactVm.FullName = name;
+                //contact.PlatformSource =new OptionSetValue ((int)RequestUtility.Source);
+                contactVm.Id = Guid.NewGuid();
+                var contact = contactVm.ToCrmEntity<Contact, ContactVm>();
+                contactVm.Id = _service.Create(contact);
+                return contactVm;
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+            return null;
+        }
+        public ContactVm UpdateCrmEntityFromRegisteration(ContactVm newContact, string oldContactId)
+        {
+            try
+            {
+
+                newContact.Id = new Guid(oldContactId);
+                var service = CRMService.Service;
+                service.Update(newContact.ToCrmEntity<Contact, ContactVm>());
+                return newContact;
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("newContact", newContact), ("oldContactId", oldContactId));
+                return null;
+            }
+        }
+
         public  bool IsProfileCompleted(string contactId)
         {
             try
@@ -67,7 +123,7 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 var contactModel = contact.ToCrmEntity<Contact, ContactDetailsVm>();
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 _service.Update(contactModel);
                 return true;
             }
@@ -93,5 +149,18 @@ namespace Utilities.GlobalManagers.CRM
             }
             return false;
         }
-    }
+        public ContactVm GetContactByPhone(string mobilePhone)
+        {
+            try
+            {
+                var contact = _repo.GetContactByPhone(mobilePhone).Toclass<ContactVm>();
+                return contact;
+            }
+            catch(Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("MobilePhone", mobilePhone));
+            }
+            return null;
+        }
+        }
 }

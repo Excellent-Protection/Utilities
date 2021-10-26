@@ -25,7 +25,7 @@ namespace Utilities.GlobalRepositories.CRM
 
         public List<ResourceGroup> GetResourceGroupsFromIndividualPackages(string professionGroupId)
         {
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             var querypricing = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
             querypricing.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
             querypricing.Criteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
@@ -44,7 +44,7 @@ namespace Utilities.GlobalRepositories.CRM
         public List<ResourceGroup> GetResourceGroups(string professionGroupId)
         {
 
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             var query = new QueryExpression(CrmEntityNamesMapping.ResourceGroup);
             query.ColumnSet = new ColumnSet(true);
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
@@ -58,7 +58,7 @@ namespace Utilities.GlobalRepositories.CRM
         {
             try
             {
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 var query = new QueryExpression(CrmEntityNamesMapping.Nationality);
                 query.Criteria.AddCondition("new_resourcegroup", ConditionOperator.Equal, resourceGropId);
                 return _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
