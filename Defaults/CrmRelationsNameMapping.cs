@@ -52,5 +52,7 @@ namespace Utilities.Defaults
         public const string Profession_Employee = "new_new_profession_new_employee_professionId";
         public const string Nationality_Employee = "new_new_country_new_employee_nationalityId";
 
+        public const string FlexContract_RecieptVoucher = "new_new_flexibleserviceperhour_new_receiptvoucher_flexibleserviceperhour";
+        public const string FlexContract_Appointment = "new_new_flexibleserviceperhour_new_hourlyappointment_flexibleserviceperhour";
     }
 }

@@ -761,7 +761,9 @@ namespace Utilities.Enums
     {
         New = 1,
         SmsSent = 2,
-        paid = 3 
+        paid = 3 ,
+        Cancelled = 4,
+        PaymentIsPendingConfirmation = 5
     }
 
     public enum FinancialRequestType

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilities.Defaults;
 using Utilities.GlobalViewModels.CRM;
-using Utilities.Mappers.Resolver;
+using Utilities.Mappers.Resolvers;
 
 namespace Utilities.Mappers.Profiles
 {
@@ -28,9 +28,9 @@ namespace Utilities.Mappers.Profiles
 
           .IgnoreAllPropertiesWithAnInaccessibleSetter()
           .ReverseMap()
-          .ForMember(a => a.CityId, o => o.ResolveUsing(new EntityReferanceToStringId(), s => s.City))
-          .ForMember(a => a.DistrictId, o => o.ResolveUsing(new EntityReferanceToStringId(), s => s.District))
-          .ForMember(a => a.ContactId, o => o.ResolveUsing(new EntityReferanceToStringId(), s => s.Contact))
+          .ForMember(a => a.CityId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.City))
+          .ForMember(a => a.DistrictId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.District))
+          .ForMember(a => a.ContactId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.Contact))
           .ForMember(a => a.FloorNo, o => o.ResolveUsing(new FromOptionSetToInt(), s => s.FloorNumber))
           .ForMember(a => a.HouseType, o => o.ResolveUsing(new FromOptionSetToInt(), s => s.HouseType))
           .ForMember(a => a.FloorNo, o => o.MapFrom(s => s.FloorNumber))

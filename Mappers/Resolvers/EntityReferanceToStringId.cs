@@ -7,24 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Utilities.Mappers.Resolver
+namespace Utilities.Mappers.Resolvers
 {
-    public class EntityReferanceToStringId : IMemberValueResolver<Entity, object, EntityReference, string>
+    public class EntityReferenceIdToStringResolver : IMemberValueResolver<Entity, object, EntityReference, string>
     {
-
-
         public string Resolve(Entity source, object destination, EntityReference sourceMember, string destMember, ResolutionContext context)
         {
-            if (sourceMember != null)
-            {
-                return sourceMember.Id.ToString();
-
-            }
-
-            return null;
+            return sourceMember != null ? sourceMember.Id.ToString() : null;
         }
-
-     
     }
-   
+
 }

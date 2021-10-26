@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilities.Defaults;
 using Utilities.GlobalViewModels.Custom;
-using Utilities.Mappers.Resolver;
+using Utilities.Mappers.Resolvers;
 
 namespace Utilities.Mappers.Profiles
 {
@@ -28,8 +28,8 @@ namespace Utilities.Mappers.Profiles
                    .ForMember(a => a.Gender, o => o.MapFrom(s => s.GenderId))
                                .ForMember(a => a.JobTitle, o => o.MapFrom(s => s.JobTitle))
                      .ForMember(a => a.Email, o => o.MapFrom(s => s.Email))
-                   .ForMember(a => a.NationalityId, o => o.ResolveUsing(new EntityReferanceToStringId(), s => s.NationalityId))
-                   .ForMember(a => a.CityId, o => o.ResolveUsing(new EntityReferanceToStringId(), s => s.CityId))
+                   .ForMember(a => a.NationalityId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.NationalityId))
+                   .ForMember(a => a.CityId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.CityId))
                    
                      ;
 

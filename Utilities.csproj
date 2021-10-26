@@ -79,6 +79,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy">
+      <HintPath>..\Dependencies\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
     </Reference>
@@ -270,6 +273,7 @@
     <Compile Include="Defaults\SMSCodes.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\RecordSource.cs" />
+    <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\SetDoubleDigits.cs" />
     <Compile Include="Filters\StepFilter.cs" />
     <Compile Include="GlobalManagers\CRM\CityManager.cs" />
@@ -341,6 +345,8 @@
     <Compile Include="Mappers\Profiles\StepDetails_StepDetailsVmProfile.cs" />
     <Compile Include="Mappers\Resolvers\ApplyLanguage.cs" />
     <Compile Include="Mappers\Resolvers\ContractPreviouseLocationToSavedLocationVm.cs" />
+    <Compile Include="Mappers\Resolvers\DateTimeAddThreeHoursResolver.cs" />
+    <Compile Include="Mappers\Resolvers\RelatedEntityToListResolver.cs" />
     <Compile Include="Migrations\202109191048321_stepsTabels.cs" />
     <Compile Include="Migrations\202109191048321_stepsTabels.designer.cs">
       <DependentUpon>202109191048321_stepsTabels.cs</DependentUpon>
