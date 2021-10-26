@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilities.GlobalViewModels.Labor;
 
-namespace Utilities.GlobalViewModels.Custome
+namespace Utilities.GlobalViewModels.Custom
 {
   public  class ServiceStepResponseVm
     {

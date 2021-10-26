@@ -79,9 +79,6 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Crm.Sdk.Proxy">
-      <HintPath>..\Dependencies\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
     </Reference>
@@ -200,17 +197,11 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -275,6 +266,8 @@
     <Compile Include="Defaults\CrmEntityNamesMapping.cs" />
     <Compile Include="Defaults\CrmRelationsNameMapping.cs" />
     <Compile Include="Defaults\DefaultValues.cs" />
+    <Compile Include="Defaults\EmailCode.cs" />
+    <Compile Include="Defaults\SMSCodes.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\RecordSource.cs" />
     <Compile Include="Extensions\SetDoubleDigits.cs" />
@@ -289,8 +282,9 @@
     <Compile Include="GlobalManagers\CRM\ResourceGroupManager.cs" />
     <Compile Include="GlobalManagers\GlobalManager.cs" />
     <Compile Include="GlobalManagers\Labor\DynamicStepsManager.cs" />
+    <Compile Include="GlobalManagers\Labor\SettingsManager.cs" />
     <Compile Include="GlobalManagers\Labor\StepManager.cs" />
-    <Compile Include="GlobalManagers\CRM\SettingsManager.cs" />
+    <Compile Include="GlobalManagers\Labor\SettingsManager.cs" />
     <Compile Include="GlobalManagers\CRM\SmsManager.cs" />
     <Compile Include="GlobalManagers\MailManager.cs" />
     <Compile Include="GlobalRepositories\CRM\CityRepository.cs" />
@@ -305,46 +299,46 @@
     <Compile Include="GlobalRepositories\Labor\StepRepository.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
     <Compile Include="GlobalViewModels\BoolStringVm.cs" />
-    <Compile Include="GlobalViewModels\CRM\CollectionVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
-    <Compile Include="GlobalViewModels\CRM\ContactVm.cs" />
-    <Compile Include="GlobalViewModels\CRM\RecieptVoucherVm.cs" />
-    <Compile Include="GlobalViewModels\Custome\BaseQuickLookupWithImageVm.cs" />
-    <Compile Include="GlobalViewModels\Custome\BoolWithString.cs" />
-    <Compile Include="GlobalViewModels\Custome\ContactDetailsVm.cs" />
-    <Compile Include="GlobalViewModels\Custome\ContactMainSubPreviouseLocationsVm.cs" />
-    <Compile Include="GlobalViewModels\Custome\LocationVm.cs" />
-    <Compile Include="GlobalViewModels\Custome\CityIdAndNameVm.cs" />
-    <Compile Include="GlobalViewModels\Custome\DistrictQuickLookupVm.cs" />
-    <Compile Include="GlobalViewModels\Custome\NationalityVm.cs" />
-    <Compile Include="GlobalViewModels\Custome\ProfessionVm.cs" />
-    <Compile Include="GlobalViewModels\Custome\SavedLocationVm.cs" />
-    <Compile Include="GlobalViewModels\Custome\ServiceStepResponseVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\BaseQuickLookupWithImageVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\ContactDetailsVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\ContactMainSubPreviouseLocationsVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\LocationVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\CityIdAndNameVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\DistrictQuickLookupVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\MappingTranslation.cs" />
+    <Compile Include="GlobalViewModels\Custom\NationalityVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\ProfessionVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\ResultMessageVM.cs" />
+    <Compile Include="GlobalViewModels\Custom\SavedLocationVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\ServiceStepResponseVm.cs" />
+    <Compile Include="GlobalViewModels\Labor\SettingVM.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDataVm.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDetailsVm.cs" />
     <Compile Include="GlobalViewModels\ResponseVm.cs" />
-    <Compile Include="GlobalViewModels\CRM\SettingVM.cs" />
+    <Compile Include="GlobalViewModels\Labor\SettingVM.cs" />
+    <Compile Include="GlobalViewModels\MailToSendVM.cs" />
     <Compile Include="GlobalViewModels\ResultVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
     <Compile Include="Helpers\BaseCrmEntityRepository.cs" />
     <Compile Include="Helpers\DateTimeConvertor.cs" />
     <Compile Include="HttpStatusCodeEnum.cs" />
     <Compile Include="InfraStructure\MathNumber.cs" />
+    <Compile Include="Mappers\MapperConfig.cs" />
     <Compile Include="Mappers\Profiles\City_BaseQuickLookupVmProfile.cs" />
-    <Compile Include="Mappers\Profiles\Collection_CollectionVmProfiles.cs" />
     <Compile Include="Mappers\Profiles\ContactDetailsVm_ContactProfile.cs" />
     <Compile Include="Mappers\Profiles\ContactPreviousLocation_ContactLocationVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ContactPreviousLocation_SavedLocationVmProfile.cs" />
-    <Compile Include="Mappers\Profiles\Contact_ContactVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Country_NationalityProfile.cs" />
     <Compile Include="Mappers\Profiles\District_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Nationality_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
-    <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepData_StepDataVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepDetails_StepDetailsVmProfile.cs" />
+    <Compile Include="Mappers\Resolvers\ApplyLanguage.cs" />
     <Compile Include="Mappers\Resolvers\ContractPreviouseLocationToSavedLocationVm.cs" />
     <Compile Include="Migrations\202109191048321_stepsTabels.cs" />
     <Compile Include="Migrations\202109191048321_stepsTabels.designer.cs">

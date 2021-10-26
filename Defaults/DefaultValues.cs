@@ -31,7 +31,7 @@ namespace Utilities.Defaults
         public const string SADAD_InvoiceCode = "214";
         public const string AppleCardBrand = "APPLEPAY";
         public const string TomorrowVisitSms = "TomorrowVisitSms";
-        public const string RegisterUserActivationCode = "RegisterUserActivationCode";
+        
 
 
 
@@ -190,7 +190,7 @@ namespace Utilities.Defaults
 
         public const string BSAdminRoleName = "ProjectsAdmin";
         public const int TokenLifespan =5;
-
+        public const string IsLaborStockAvailable = "IsLaborStockAvailable";
 
 
 

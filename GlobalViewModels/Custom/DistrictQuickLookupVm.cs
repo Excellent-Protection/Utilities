@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Utilities.GlobalViewModels.Custome
+namespace Utilities.GlobalViewModels.Custom
 {
  public   class DistrictQuickLookupVm : BaseQuickLookupVm
     {

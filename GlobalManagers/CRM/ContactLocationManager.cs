@@ -13,7 +13,7 @@ using Utilities.Enums;
 using Utilities.GlobalRepositories.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.GlobalViewModels.CRM;
-using Utilities.GlobalViewModels.Custome;
+using Utilities.GlobalViewModels.Custom;
 using Utilities.Helpers;
 using Utilities.Mappers;
 using Westwind.Globalization;
@@ -98,6 +98,13 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 ContactPreviousLocation Location = LocationVm.ToCrmEntity<ContactPreviousLocation, ContactLocationVm>();
+             var isExist=   _repo.isAlreadyExist(Location);
+                if (isExist)
+                {
+                    return new ResponseVm<ContactLocationVm> { Status = HttpStatusCodeEnum.Ambiguous, Data = LocationVm };
+
+                }
+
                 string oldMainLocationId = "";
                 if(LocationVm.Type==(int)ContactLocationType.Main)
                 {
