@@ -6,10 +6,10 @@ using Models.CRM;
 using Utilities.DataAccess.Labor;
 using Models.Labor;
 using Utilities.Mappers;
-using Recruitment.ViewModel;
 using Utilities.Helpers;
+using Utilities.GlobalViewModels.Labor;
 
-namespace Recruitment.Manager
+namespace Utilities.GlobalManagers.Labor
 {
     public class SettingsManager:IDisposable
     {
