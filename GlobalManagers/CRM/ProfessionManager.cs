@@ -10,6 +10,7 @@ using Utilities.Defaults;
 using Utilities.Enums;
 using Utilities.GlobalViewModels;
 using Utilities.Helpers;
+using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.CRM
 {
@@ -28,7 +29,7 @@ namespace Utilities.GlobalManagers.CRM
         {
         }
 
-        public List<BaseQuickLookupVm> GetAvailableProfession()
+        public ResponseVm< List<BaseQuickLookupVm>> GetAvailableProfession()
         {
             try
             {
@@ -46,14 +47,14 @@ namespace Utilities.GlobalManagers.CRM
                 var _service = CRMService.Get;
                 var result = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Profession>()).OrderBy(p => p.AppearanceOrder).Select(t => new BaseQuickLookupVm() { Key = t.Id.ToString(), Value = RequestUtility.Language == UserLanguage.Arabic ? (t.Name != null ? t.Name : t.EnglishName) : (t.EnglishName != null ? t.EnglishName : t.Name) }).ToList();
 
-                return new List<BaseQuickLookupVm>(result);
+                return new ResponseVm<List<BaseQuickLookupVm>> { Status=HttpStatusCodeEnum.Ok , Data=result};
 
             }
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
-            return null;
+            return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError,Message=DbRes.T("AnErrorOccurred","Shared") };
         }
     }
 }
