@@ -35,7 +35,7 @@ namespace Utilities.GlobalRepositories.CRM
 
         public bool CheckCityAvailabilityForIndvService(string cityId )
         {
-            var service = CRMService.Get;
+            var service = CRMService.Service;
             var city = service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_forindividual")).ToEntity<City>();
             var isAvilable = city.IsForIndv.HasValue ? city.IsForIndv.Value : false;
             return isAvilable;
@@ -46,7 +46,7 @@ namespace Utilities.GlobalRepositories.CRM
 
         public List<City> GetActiveCities()
         {
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
             CityQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active city
             CityQuery.ColumnSet = new ColumnSet(true);
@@ -74,13 +74,13 @@ namespace Utilities.GlobalRepositories.CRM
             //{
             //    query.AddOrder("new_englishname", OrderType.Ascending);
             //}
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             return _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<District>()).ToList();
         }
         public string GetDistrictPolygon(string districtId)
         {
 
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 var PolygonResult = _service.Retrieve(CrmEntityNamesMapping.District, new Guid(districtId), new ColumnSet("new_polygonpath")).ToEntity<District>().PolygonPath;
                 return PolygonResult;
   
@@ -89,13 +89,13 @@ namespace Utilities.GlobalRepositories.CRM
 
         public City GetCityDeliveryCost(string cityId)
         {
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_individualcontractdeliverycost")).ToEntity<City>();
             return city;
         } 
         public City GetEmployeeSelectMthodsByCity(string cityId)
         {
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_recieveworkertype")).ToEntity<City>();
             return city;
         }

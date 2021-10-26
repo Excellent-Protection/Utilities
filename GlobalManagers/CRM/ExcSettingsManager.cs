@@ -23,7 +23,7 @@ namespace Utilities.GlobalManagers.CRM
 
         public ExcSettingsManager(RequestUtility requestUtility) : base(requestUtility)
         {
-            _ctx = new CrmContext(CRMService.Get);
+            _ctx = new CrmContext(CRMService.Service);
             _requestUtility = RequestUtility;
         }
 
@@ -152,7 +152,7 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 var filter = new FilterExpression(LogicalOperator.And)
                 {
                     Conditions = { new ConditionExpression("new_service", ConditionOperator.In, serviceIds) }
@@ -181,7 +181,7 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 var filter = new FilterExpression(LogicalOperator.And)
                 {
                     Conditions = { new ConditionExpression("new_service", ConditionOperator.Equal, serviceId) }
@@ -210,7 +210,7 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 var filter = new FilterExpression(LogicalOperator.And)
                 {
                     Conditions = { new ConditionExpression("new_service", ConditionOperator.Equal, serviceId) }

@@ -250,12 +250,14 @@
     <Compile Include="Controller\ContactController.cs" />
     <Compile Include="Controller\DynamicStepsController.cs" />
     <Compile Include="Controller\NationalityController.cs" />
+    <Compile Include="Controller\ProfessionController.cs" />
     <Compile Include="Controller\ProfessionGroupsController.cs" />
     <Compile Include="Controller\ResourceGroupController.cs" />
     <Compile Include="Controller\SavedContactLocationController.cs" />
     <Compile Include="Controller\StepDataController.cs" />
     <Compile Include="ConvertDocToPDF.cs" />
     <Compile Include="CurrencyInfo.cs" />
+    <Compile Include="DataAccess\CRM\Contact_ContactVmProfile.cs" />
     <Compile Include="DataAccess\CRM\CRMAccessDB.cs" />
     <Compile Include="DataAccess\CRM\CrmContext.cs" />
     <Compile Include="DataAccess\CRM\CRMService.cs" />
@@ -279,6 +281,7 @@
     <Compile Include="GlobalManagers\CRM\CityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactLocationManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactManager.cs" />
+    <Compile Include="GlobalManagers\CRM\ContactVm.cs" />
     <Compile Include="GlobalManagers\CRM\EmployeeManager.cs" />
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionGroupsManager.cs" />

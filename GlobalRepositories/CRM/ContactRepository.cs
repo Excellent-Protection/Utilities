@@ -24,7 +24,7 @@ namespace Utilities.GlobalRepositories.CRM
      
         public Contact GetContactDetails(string contactId)
         {
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new Microsoft.Xrm.Sdk.Query.ColumnSet("new_gender", "new_idnumer", "new_contactcity", "new_contactnationality", "emailaddress1"  , "jobtitle")).ToEntity<Contact>();
             return contact;
         }
@@ -35,13 +35,24 @@ namespace Utilities.GlobalRepositories.CRM
                 QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Contact);
                 query.Criteria.AddCondition("new_idnumer", ConditionOperator.Equal, IdNo);
                 query.Criteria.AddCondition("contactid", ConditionOperator.NotEqual, id);
-                var _Service = CRMService.Get;
+                var _Service = CRMService.Service;
                 var Result = _Service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Contact>());
                 if (Result.Count() > 0)
                     return true;
 
             return false;
 
+        }
+
+        public Contact GetContactByPhone(string mobilePhone)
+        {
+            QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Contact);
+            query.ColumnSet = new ColumnSet(true);
+            query.Criteria.AddCondition("mobilephone", ConditionOperator.Equal, mobilePhone);
+
+            var _service = CRMService.Service;
+            var contact = _service.RetrieveMultiple(query).Entities.Select(q => q.ToEntity<Contact>()).FirstOrDefault();
+            return contact;
         }
     }
 }

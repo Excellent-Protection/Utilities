@@ -42,7 +42,7 @@ namespace Utilities.DataAccess.CRM
         {
             return GetCRMService(ServerURL, Organization, UserName, Password, DomainName, "");
         }
-        public static IOrganizationService Get
+        public static IOrganizationService Service
         {
             get
             {

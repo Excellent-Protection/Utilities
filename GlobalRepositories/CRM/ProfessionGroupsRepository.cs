@@ -24,7 +24,7 @@ namespace Utilities.GlobalRepositories.CRM
         public List<ProfessionGroups> GetProfessionGroups()
         {
 
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             var query = new QueryExpression(CrmEntityNamesMapping.ProfessionGroup);
             query.ColumnSet = new ColumnSet(true);
             var peofessionGroups = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<ProfessionGroups>()).ToList();
@@ -34,7 +34,7 @@ namespace Utilities.GlobalRepositories.CRM
 
         public List<ProfessionGroups> GetProfessionGroupsFromPackages()
         {
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             var querypricing = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
             querypricing.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
             querypricing.Criteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
@@ -54,7 +54,7 @@ namespace Utilities.GlobalRepositories.CRM
 
         public ProfessionGroups GetProfessionGender(string professionGroupId)
         {
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             var professionData = _service.Retrieve(CrmEntityNamesMapping.ProfessionGroup, new Guid(professionGroupId), new ColumnSet("new_gender")).ToEntity<ProfessionGroups>();
             return professionData;
 
@@ -63,7 +63,7 @@ namespace Utilities.GlobalRepositories.CRM
         public List<string> GetProfessionsId(string ProfGroupId)
         {
 
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 var query = new QueryExpression(CrmEntityNamesMapping.Profession);
                 query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, ProfGroupId);
                 return _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
@@ -72,7 +72,7 @@ namespace Utilities.GlobalRepositories.CRM
 
         public string GetRequiredAttchmentsByProfessionGroup(string profGroupId)
         {
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             var prof = _service.Retrieve(CrmEntityNamesMapping.ProfessionGroup, new Guid(profGroupId), new ColumnSet("new_requiredattachments")).ToEntity<ProfessionGroups>();
             return prof.RequiredAttachments;
 

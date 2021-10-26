@@ -24,7 +24,7 @@ namespace Utilities.GlobalRepositories.CRM
                 query.ColumnSet = new ColumnSet(true);
 
             query.Criteria.AddCondition(new ConditionExpression(searchColumn, ConditionOperator.Equal, searchValue));
-            var record = CRMService.Get.RetrieveMultiple(query);
+            var record = CRMService.Service.RetrieveMultiple(query);
             if (record.Entities == null || record.Entities.Count == 0)
                 throw new Exception("No record");
 
