@@ -27,5 +27,28 @@ namespace Utilities.Controller
 
             }
         }
+
+
+        [HttpGet]
+        [Route("GetNationalitiesForIndvSector")]
+
+        public HttpResponseMessage GetNationalitiesForIndvSectore()
+        {
+            if (ModelState.IsValid)
+            {
+                using (var _nationalityManager = new NationalityManager(RequestUtility))
+                {
+                    var nationalities = _nationalityManager.GetNationalitiesForIndvSales();
+                    if (nationalities != null)
+                        return Response(Utilities.HttpStatusCodeEnum.Ok, nationalities);
+
+                    return Response(Utilities.HttpStatusCodeEnum.Ambiguous, "An Error Occurred.. Try Again ");
+                }
+            }
+            return Response(Utilities.HttpStatusCodeEnum.IneternalServerError, "Invalid Data");
+
+
+        }
+
     }
 }

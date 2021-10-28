@@ -761,7 +761,9 @@ namespace Utilities.Enums
     {
         New = 1,
         SmsSent = 2,
-        paid = 3 
+        paid = 3 ,
+        Cancelled = 4,
+        PaymentIsPendingConfirmation = 5
     }
 
     public enum FinancialRequestType
@@ -813,5 +815,14 @@ namespace Utilities.Enums
     {
         SameContract = 1,
         NewContract = 2
+    }
+    public enum FlexContractStatus
+    {
+        Confirmed = 100000009,
+        ConfirmedNotPaid = 100000006,
+        Cancelled = 100000007,
+        Finished = 100000000,
+        PaymentIsPendingConfirmation = 100000008,
+        ConfirmedAndPaymentWasMade = 100000002
     }
 }

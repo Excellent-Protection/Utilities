@@ -76,5 +76,6 @@ namespace Utilities.GlobalViewModels.CRM
         public decimal? PriceWithoutDiscount { get; set; }
         public int? PaymentPosting { get; set; }
         public int? CollectionCreated { get; set; }
+        public int? CardLast4Digit { get; set; }
     }
 }

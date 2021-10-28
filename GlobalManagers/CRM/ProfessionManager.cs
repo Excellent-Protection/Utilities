@@ -29,7 +29,8 @@ namespace Utilities.GlobalManagers.CRM
         {
         }
 
-        public ResponseVm< List<BaseQuickLookupVm>> GetAvailableProfession()
+
+        public ResponseVm<List<BaseQuickLookupVm>> GetAvailableProfessionForIndvSector()
         {
             try
             {
@@ -44,10 +45,10 @@ namespace Utilities.GlobalManagers.CRM
                 query.LinkEntities[0].LinkCriteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
 
 
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 var result = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Profession>()).OrderBy(p => p.AppearanceOrder).Select(t => new BaseQuickLookupVm() { Key = t.Id.ToString(), Value = RequestUtility.Language == UserLanguage.Arabic ? (t.Name != null ? t.Name : t.EnglishName) : (t.EnglishName != null ? t.EnglishName : t.Name) }).ToList();
 
-                return new ResponseVm<List<BaseQuickLookupVm>> { Status=HttpStatusCodeEnum.Ok , Data=result};
+                return new ResponseVm<List<BaseQuickLookupVm>> {Status=HttpStatusCodeEnum.Ok , Data= result};
 
             }
             catch (Exception ex)

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Utilities.Mappers.Resolver
+namespace Utilities.Mappers.Resolvers
 {
     class FromIntToEnum<T> : IMemberValueResolver<object, object, int?, T> where T : Enum
     {

@@ -37,7 +37,7 @@ namespace Utilities.Helpers
             attReq.EntityLogicalName = entityName;
             attReq.LogicalName = optionName;
             attReq.RetrieveAsIfPublished = true;
-            var Service =CRMService.Get;
+            var Service =CRMService.Service;
             var attResponse = (RetrieveAttributeResponse)Service.Execute(attReq);
             var attMetadata = ((EnumAttributeMetadata)attResponse.AttributeMetadata).OptionSet.Options;
             try

@@ -79,6 +79,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy">
+      <HintPath>..\Dependencies\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
     </Reference>
@@ -247,12 +250,14 @@
     <Compile Include="Controller\ContactController.cs" />
     <Compile Include="Controller\DynamicStepsController.cs" />
     <Compile Include="Controller\NationalityController.cs" />
+    <Compile Include="Controller\ProfessionController.cs" />
     <Compile Include="Controller\ProfessionGroupsController.cs" />
     <Compile Include="Controller\ResourceGroupController.cs" />
     <Compile Include="Controller\SavedContactLocationController.cs" />
     <Compile Include="Controller\StepDataController.cs" />
     <Compile Include="ConvertDocToPDF.cs" />
     <Compile Include="CurrencyInfo.cs" />
+    <Compile Include="DataAccess\CRM\Contact_ContactVmProfile.cs" />
     <Compile Include="DataAccess\CRM\CRMAccessDB.cs" />
     <Compile Include="DataAccess\CRM\CrmContext.cs" />
     <Compile Include="DataAccess\CRM\CRMService.cs" />
@@ -267,14 +272,17 @@
     <Compile Include="Defaults\CrmRelationsNameMapping.cs" />
     <Compile Include="Defaults\DefaultValues.cs" />
     <Compile Include="Defaults\EmailCode.cs" />
+    <Compile Include="Defaults\ExcSettingNames.cs" />
     <Compile Include="Defaults\SMSCodes.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\RecordSource.cs" />
+    <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\SetDoubleDigits.cs" />
     <Compile Include="Filters\StepFilter.cs" />
     <Compile Include="GlobalManagers\CRM\CityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactLocationManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactManager.cs" />
+    <Compile Include="GlobalManagers\CRM\ContactVm.cs" />
     <Compile Include="GlobalManagers\CRM\EmployeeManager.cs" />
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionGroupsManager.cs" />
@@ -298,11 +306,11 @@
     <Compile Include="GlobalRepositories\Labor\DynamicStepsRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\StepRepository.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
-    <Compile Include="GlobalViewModels\BoolStringVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BaseQuickLookupWithImageVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\BoolWithString.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactDetailsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactMainSubPreviouseLocationsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\LocationVm.cs" />
@@ -323,6 +331,7 @@
     <Compile Include="GlobalViewModels\ResultVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
     <Compile Include="Helpers\BaseCrmEntityRepository.cs" />
+    <Compile Include="Helpers\WebService.cs" />
     <Compile Include="Helpers\DateTimeConvertor.cs" />
     <Compile Include="HttpStatusCodeEnum.cs" />
     <Compile Include="InfraStructure\MathNumber.cs" />
@@ -340,6 +349,8 @@
     <Compile Include="Mappers\Profiles\StepDetails_StepDetailsVmProfile.cs" />
     <Compile Include="Mappers\Resolvers\ApplyLanguage.cs" />
     <Compile Include="Mappers\Resolvers\ContractPreviouseLocationToSavedLocationVm.cs" />
+    <Compile Include="Mappers\Resolvers\DateTimeAddThreeHoursResolver.cs" />
+    <Compile Include="Mappers\Resolvers\RelatedEntityToListResolver.cs" />
     <Compile Include="Migrations\202109191048321_stepsTabels.cs" />
     <Compile Include="Migrations\202109191048321_stepsTabels.designer.cs">
       <DependentUpon>202109191048321_stepsTabels.cs</DependentUpon>

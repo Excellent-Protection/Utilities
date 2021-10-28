@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 
 
-namespace Utilities.Mappers.Resolver
+namespace Utilities.Mappers.Resolvers
 {
     class FromEnumToOptionSet<T>  :  IMemberValueResolver<object, Entity, T, OptionSetValue>
     {

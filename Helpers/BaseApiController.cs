@@ -41,6 +41,22 @@ namespace Utilities.Helpers
         {       
             return Request.CreateResponse(statusCode);
         }
+        protected HttpResponseMessage NotFoundResponse(string Message)
+        {       
+            return Request.CreateResponse(HttpStatusCode.NotFound,Message);
+        }
+        protected HttpResponseMessage AmbigiousResponse(string Message)
+        {       
+            return Request.CreateResponse(HttpStatusCode.Ambiguous, Message);
+        }
+        protected HttpResponseMessage InternalServerErrorResponse(string Message)
+        {       
+            return Request.CreateResponse(HttpStatusCode.InternalServerError, Message);
+        }
+        protected HttpResponseMessage OKResponse<T>(T Data)
+        {       
+            return Request.CreateResponse(HttpStatusCode.OK,Data);
+        }
 
         protected HttpResponseMessage Response<T>(ResponseVm<T> result)
              where T : class

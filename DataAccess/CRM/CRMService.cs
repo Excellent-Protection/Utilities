@@ -1,4 +1,5 @@
-﻿using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,8 @@ namespace Utilities.DataAccess.CRM
         {
             return GetCRMService(ServerURL, Organization, UserName, Password, DomainName, "");
         }
-        public static IOrganizationService Get // service 
+
+        public static IOrganizationService Service
         {
             get
             {
@@ -91,6 +93,15 @@ namespace Utilities.DataAccess.CRM
                 cookie.Value.ToString().Replace("===", ";").Split(';').Length == 2
                 ? true :
                 false;
+        }
+        public static Guid LoginSystemUserId
+        {
+            get
+            {
+                WhoAmIRequest systemUserRequest = new WhoAmIRequest();
+                WhoAmIResponse systemUserResponse = (WhoAmIResponse)Service.Execute(systemUserRequest);
+                return systemUserResponse.UserId;
+            }
         }
     }
 }
