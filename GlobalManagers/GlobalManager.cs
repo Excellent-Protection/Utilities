@@ -27,7 +27,7 @@ namespace Utilities.GlobalManagers
         public static Guid LoginSystemUserId()
         {
             WhoAmIRequest systemUserRequest = new WhoAmIRequest();
-            WhoAmIResponse systemUserResponse = (WhoAmIResponse)CRMService.Get.Execute(systemUserRequest);
+            WhoAmIResponse systemUserResponse = (WhoAmIResponse)CRMService.Service.Execute(systemUserRequest);
             return systemUserResponse.UserId;
         }
         public void Dispose()
