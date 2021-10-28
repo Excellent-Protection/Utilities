@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Utilities.Mappers.Resolver
+namespace Utilities.Mappers.Resolvers
 {
     class FromAliasedValue<T>  : IMemberValueResolver<Entity, object, AttributeCollection, T> 
     {

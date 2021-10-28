@@ -35,7 +35,7 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     SMS.Regarding = new EntityReference(EntityName, new Guid(Regarding));
                 }
-                CRMService.Get.Create(SMS);
+                CRMService.Service.Create(SMS);
                 return true;
             }
             catch (Exception ex)
@@ -58,7 +58,7 @@ namespace Utilities.GlobalManagers.CRM
             var Code = new QueryExpression(CrmEntityNamesMapping.SmsText);
             Code.ColumnSet = new ColumnSet("new_smsbody", "new_sql");
             Code.Criteria.AddCondition("new_code", ConditionOperator.Equal, Smscode);
-            var Sms = CRMService.Get.RetrieveMultiple(Code).Entities.FirstOrDefault();
+            var Sms = CRMService.Service.RetrieveMultiple(Code).Entities.FirstOrDefault();
             if (Sms != null)
             {
                 string SmsBody = Sms["new_smsbody"].ToString();

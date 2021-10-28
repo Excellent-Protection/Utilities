@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Utilities.Mappers.Resolver
+namespace Utilities.Mappers.Resolvers
 {
     public class FromOptionSetToInt : IMemberValueResolver<Entity, object, OptionSetValue, int?>
     {

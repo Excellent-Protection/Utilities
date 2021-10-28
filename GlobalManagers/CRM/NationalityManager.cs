@@ -37,7 +37,7 @@ namespace Utilities.GlobalManagers.CRM
                 var query = new QueryExpression(CrmEntityNamesMapping.Nationality) { Distinct = true };
                 query.ColumnSet = new ColumnSet("new_countryid", "new_name", "new_nameenglish");
                 query.Criteria.AddCondition("new_isindv", ConditionOperator.Equal, true);
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 var nationalites = _service.RetrieveMultiple(query).Entities.
                     Select(a => a.ToEntity<Country>()).Select(t => new BaseQuickLookupVm() { Key = t.Id.ToString(), Value = RequestUtility.Language == UserLanguage.Arabic ? (t.Name != null ? t.Name : t.EnglishName) : (t.EnglishName != null ? t.EnglishName : t.Name) }).ToList();
                 return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data = nationalites };
@@ -48,8 +48,6 @@ namespace Utilities.GlobalManagers.CRM
             }
             return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message=DbRes.T("AnErrorOccurred","Shared") };
         }
-
-
 
         public ResponseVm<List<BaseQuickLookupVm>> GetActiveNationalities()
         {

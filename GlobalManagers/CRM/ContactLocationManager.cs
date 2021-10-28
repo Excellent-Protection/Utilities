@@ -110,7 +110,7 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     oldMainLocationId = _repo.GetContactMainLocation(LocationVm.ContactId)?.Id.ToString();
                 }
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
 
                 Location.Id = Guid.NewGuid();
                 LocationVm.LocationId = _service.Create(Location).ToString();
@@ -152,7 +152,7 @@ namespace Utilities.GlobalManagers.CRM
 
                 //var oldMainLocation = _repo.GetLocationById(oldMainLocationId);
                 //oldMainLocation.Type = new Microsoft.Xrm.Sdk.OptionSetValue((int)ContactLocationType.Sub);
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 Entity address = new Entity (CrmEntityNamesMapping.ContactPreviousLocation);
                 address.Id =new Guid( oldMainLocationId);
                 address["new_type"]= new Microsoft.Xrm.Sdk.OptionSetValue((int)ContactLocationType.Sub);
@@ -173,7 +173,7 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     return new ResponseVm<string> { Status = HttpStatusCodeEnum.NotAllowed,Message= DbRes.T("DeleteMainAddressNotAllowed", "IndividualResource") };
                  }
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
                 _service.Delete(address.LogicalName,new Guid(locationId));
                 return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok  , Data=DbRes.T("LocationDeletedSuccessfully","Shared")};
 
@@ -191,7 +191,7 @@ namespace Utilities.GlobalManagers.CRM
             {
                 var loaction = _repo.GetContactId(locationId);
                 var mainContactLocations=_repo.GetContactPreviouseLocationByType(loaction.Contact.Id.ToString(), (int)ContactLocationType.Main);
-                var _service = CRMService.Get;
+                var _service = CRMService.Service;
 
                 using (TransactionScope transaction = new TransactionScope())
                 {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Utilities.Mappers.Resolver
+namespace Utilities.Mappers.Resolvers
 {
     class StringToEntityReferanceMapper : IMemberValueResolver<object, Entity, string, EntityReference>
     {
