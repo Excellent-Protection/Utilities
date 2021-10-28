@@ -79,6 +79,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy">
       <HintPath>..\Dependencies\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
     </Reference>
@@ -310,6 +313,7 @@
     <Compile Include="GlobalRepositories\Labor\DynamicStepsRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\StepRepository.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\CollectionVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
@@ -371,6 +375,14 @@
     <Compile Include="Migrations\202110141331266_stepdatapreviousaction.cs" />
     <Compile Include="Migrations\202110141331266_stepdatapreviousaction.designer.cs">
       <DependentUpon>202110141331266_stepdatapreviousaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110281000057_paymentPlatform.cs" />
+    <Compile Include="Migrations\202110281000057_paymentPlatform.designer.cs">
+      <DependentUpon>202110281000057_paymentPlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110281149381_IsTestPayment.cs" />
+    <Compile Include="Migrations\202110281149381_IsTestPayment.designer.cs">
+      <DependentUpon>202110281149381_IsTestPayment.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
@@ -442,6 +454,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110141331266_stepdatapreviousaction.resx">
       <DependentUpon>202110141331266_stepdatapreviousaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110281000057_paymentPlatform.resx">
+      <DependentUpon>202110281000057_paymentPlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110281149381_IsTestPayment.resx">
+      <DependentUpon>202110281149381_IsTestPayment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
