@@ -152,18 +152,20 @@ namespace Utilities.GlobalManagers.CRM
         }
 
 
-        public ContactVm GetContactNameAndNationality(string contactId)
+        public bool IsSaudi(string contactId)
         {
             try
             {
-                return _repo.GetContactNameAndNationality(contactId).Toclass<ContactVm>();
-
+                var nationalityId = _repo.GetContactNationality(contactId).NationalityId.Id.ToString();
+                return nationalityId == DefaultValues.SaudiNationalityId ? true : false;
             }
             catch (Exception ex)
             {
+
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
             }
-            return null;
+            return false;
         }
 
 
@@ -182,6 +184,7 @@ namespace Utilities.GlobalManagers.CRM
             }
             return null;
         }
+
     }
 
 }

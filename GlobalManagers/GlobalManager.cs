@@ -30,6 +30,7 @@ namespace Utilities.GlobalManagers
             WhoAmIResponse systemUserResponse = (WhoAmIResponse)CRMService.Service.Execute(systemUserRequest);
             return systemUserResponse.UserId;
         }
+
         public void Dispose()
         {
         }

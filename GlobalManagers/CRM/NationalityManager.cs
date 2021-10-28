@@ -53,7 +53,7 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var nationalities = _repo.GetActiveNationalities().ToModelListData<BaseQuickLookupVm>().ToList();
+                var nationalities = _repo.GetActiveNationalities().ToModelListData<BaseQuickLookupVm>().Where(a=>a.Key!=DefaultValues.BlockCountryId && a.Key!=DefaultValues.AllCountriesId).ToList();
                 return new ResponseVm<List<BaseQuickLookupVm>>()
                 {
                     Status = HttpStatusCodeEnum.Ok,

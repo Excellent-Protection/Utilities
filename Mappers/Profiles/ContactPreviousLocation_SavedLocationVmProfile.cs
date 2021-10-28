@@ -24,6 +24,8 @@ namespace Utilities.Mappers.Profiles
             .ForMember(a => a.CityName, o => o.MapFrom(s => s.Attributes.Contains("new_city.new_englsihname") ? ((AliasedValue)s.Attributes["new_city.new_englsihname"]).Value.ToString() : s.City.Name))
             .ForMember(a => a.DistrictName, o => o.MapFrom(s => s.Attributes.Contains("new_district.new_englishname") ? ((AliasedValue)s.Attributes["new_district.new_englishname"]).Value.ToString() : s.City.Name))
             .ForMember(a => a.FloorNo, o => o.MapFrom(s => s.FloorNumber))
+            .ForMember(a => a.Latitude, o => o.MapFrom(s =>!string.IsNullOrEmpty( s.Latitude)? s.Latitude : null))
+            .ForMember(a => a.Longitude, o => o.MapFrom(s =>!string.IsNullOrEmpty( s.Longitude) ? s.Longitude :null))
             .ForMember(a => a.ApartmentNumber, o => o.MapFrom(s => s.ApartmentNumber))
             .ForMember(a => a.HouseType, o => o.ResolveUsing(new FromOptionSetToInt(), s => s.HouseType))
             .ForMember(a => a.Type, o => o.ResolveUsing(new FromOptionSetToInt(), s => s.Type))

@@ -25,5 +25,8 @@ namespace Utilities.GlobalViewModels.Custom
         public bool AvailableForHourly { get; set; }
         public bool AvailableForIndividual { get; set; }
 
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+
     }
 }

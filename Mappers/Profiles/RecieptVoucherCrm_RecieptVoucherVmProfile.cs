@@ -17,7 +17,7 @@ namespace Utilities.Mappers.Profiles
         public RecieptVoucherCrm_RecieptVoucherVmProfile()
         {
           
-                CreateMap<RecieptVoucherVm, ReceiptVoucherCRM>()
+                CreateMap<RecieptVoucherCRMVm, ReceiptVoucherCRM>()
 
                      //from recieptvouchervm to recieptvoucher
                      .ForMember(a => a.ReceiptDate, opt => opt.MapFrom(s => s.ReceiptDate != null ? s.ReceiptDate.Value.Date : DateTime.Now.Date))
