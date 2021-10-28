@@ -27,8 +27,6 @@ namespace Utilities.GlobalRepositories.CRM
             query.ColumnSet = new ColumnSet("new_countryid", "new_name", "new_nameenglish");
 
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);// active 
-            var _service = CRMService.Get;
-
             query.Criteria.AddCondition("new_isindv", ConditionOperator.Equal, true);
             var _service = CRMService.Service;
 
