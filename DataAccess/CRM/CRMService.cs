@@ -1,4 +1,6 @@
-﻿using Microsoft.Crm.Sdk.Messages;
+﻿
+//using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using System;
@@ -98,7 +100,7 @@ namespace Utilities.DataAccess.CRM
             get
             {
                 WhoAmIRequest systemUserRequest = new WhoAmIRequest();
-                WhoAmIResponse systemUserResponse = (WhoAmIResponse)Get.Execute(systemUserRequest);
+                WhoAmIResponse systemUserResponse = (WhoAmIResponse)Service.Execute(systemUserRequest);
                 return systemUserResponse.UserId;
             }
         }
