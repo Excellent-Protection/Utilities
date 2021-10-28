@@ -162,5 +162,21 @@ namespace Utilities.GlobalManagers.CRM
             }
             return null;
         }
+
+        public bool isSaudi(string contactId)
+        {
+            try
+            {
+                var nationalityId= _repo.GetContactNationality(contactId).NationalityId.Id.ToString();
+                return nationalityId == DefaultValues.SaudiNationalityId ? true : false;
+            }
+            catch(Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+            }
+            return false;
+        }
+
         }
 }
