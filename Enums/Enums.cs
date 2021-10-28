@@ -808,6 +808,11 @@ namespace Utilities.Enums
         SamePakage=2
 
     }
+    public enum AvailableForNew
+    {
+        Yes=1,
+        No=2
+    }
 
     public enum RenewOption
     {

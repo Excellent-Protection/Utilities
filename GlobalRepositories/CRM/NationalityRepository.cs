@@ -25,7 +25,7 @@ namespace Utilities.GlobalRepositories.CRM
         {
             var query = new QueryExpression(CrmEntityNamesMapping.Nationality) { Distinct = true };
             query.ColumnSet = new ColumnSet("new_countryid", "new_name", "new_nameenglish");
-            query.Criteria.AddCondition("new_isindv", ConditionOperator.Equal, true);
+            query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);// active 
             var _service = CRMService.Get;
             var nationalites = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Country>()).ToList();
             return nationalites;

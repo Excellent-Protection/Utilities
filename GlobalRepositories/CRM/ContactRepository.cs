@@ -44,10 +44,10 @@ namespace Utilities.GlobalRepositories.CRM
 
         }
 
-        public Contact GetContactNameAndNationality(string contactId)
+        public Contact GetContactNationality(string contactId)
         {
             var _service = CRMService.Get;
-            var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new Microsoft.Xrm.Sdk.Query.ColumnSet( "new_contactnationality", "fullname", "new_englishname")).ToEntity<Contact>();
+            var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new Microsoft.Xrm.Sdk.Query.ColumnSet( "new_contactnationality")).ToEntity<Contact>();
             return contact;
         }
     }

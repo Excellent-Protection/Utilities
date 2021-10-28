@@ -25,27 +25,27 @@ namespace Utilities.Filters
             // var serviceType = int.Parse(HttpContext.Current.Request.Params["serviceType"]);
             //  var actionName = HttpContext.Current.Request.Params["actionName"];
             var actionName = actionContext.ActionDescriptor.ActionName;
-            using (DynamicStepsManager _mgr = new DynamicStepsManager())
-            {
-                var step = _mgr.GetStepDetailsByActionNameAndServiceType(_serviceType, actionName);
-                if (step.Data == null)
-                {
-                    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.NotFound);
-                    return;
+            //using (DynamicStepsManager _mgr = new DynamicStepsManager())
+            //{
+            //    var step = _mgr.GetStepDetailsByActionNameAndServiceType(_serviceType, actionName);
+            //    if (step.Data == null)
+            //    {
+            //        actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.NotFound);
+            //        return;
 
-                }
-                else
-                {
-                    if (step.Data.IsAuthorized)
-                    {
-                        bool isAuth = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
-                        if (!isAuth)
-                            actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
+            //    }
+            //    else
+            //    {
+            //        if (step.Data.IsAuthorized)
+            //        {
+            //            bool isAuth = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            //            if (!isAuth)
+            //                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
 
-                    }
-                }
+            //        }
+            //    }
 
-            }
+            //}
 
         }
     

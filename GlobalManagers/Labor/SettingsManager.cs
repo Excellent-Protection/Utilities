@@ -6,8 +6,8 @@ using Models.CRM;
 using Utilities.DataAccess.Labor;
 using Models.Labor;
 using Utilities.Mappers;
-using Recruitment.ViewModel;
 using Utilities.Helpers;
+using Utilities.GlobalViewModels.Labor;
 
 namespace Utilities.GlobalManagers.Labor
 {

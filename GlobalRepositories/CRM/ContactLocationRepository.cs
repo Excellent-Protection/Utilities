@@ -25,9 +25,9 @@ namespace Utilities.GlobalRepositories.CRM
                 PrevLocationQuery.ColumnSet = new ColumnSet(true);
                 PrevLocationQuery.AddLink(CrmEntityNamesMapping.City, "new_city", "new_cityid", JoinOperator.Inner);
                 PrevLocationQuery.AddLink(CrmEntityNamesMapping.District, "new_district", "new_districtid", JoinOperator.Inner);
-                PrevLocationQuery.LinkEntities[0].Columns = new ColumnSet("new_englsihname", "new_forindividual" , "new_isdalal");
+                PrevLocationQuery.LinkEntities[0].Columns = new ColumnSet("new_englsihname", "new_name", "new_forindividual" , "new_isdalal");
                 PrevLocationQuery.LinkEntities[0].EntityAlias = CrmEntityNamesMapping.City;
-                PrevLocationQuery.LinkEntities[1].Columns = new ColumnSet("new_englishname");
+                PrevLocationQuery.LinkEntities[1].Columns = new ColumnSet("new_englishname", "new_name");
                 PrevLocationQuery.LinkEntities[1].EntityAlias = CrmEntityNamesMapping.District;
                 PrevLocationQuery.Criteria.AddCondition("new_latitude", ConditionOperator.NotNull);
                 PrevLocationQuery.Criteria.AddCondition("new_longitude", ConditionOperator.NotNull);
