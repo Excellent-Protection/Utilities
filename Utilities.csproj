@@ -272,6 +272,7 @@
     <Compile Include="Defaults\CrmRelationsNameMapping.cs" />
     <Compile Include="Defaults\DefaultValues.cs" />
     <Compile Include="Defaults\EmailCode.cs" />
+    <Compile Include="Defaults\ExcSettingNames.cs" />
     <Compile Include="Defaults\SMSCodes.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\RecordSource.cs" />

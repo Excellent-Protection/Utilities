@@ -48,7 +48,12 @@ namespace Utilities.Helpers
         protected HttpResponseMessage AmbigiousResponse(string Message)
         {       
             return Request.CreateResponse(HttpStatusCode.Ambiguous, Message);
-        }protected HttpResponseMessage OKResponse<T>(T Data)
+        }
+        protected HttpResponseMessage InternalServerErrorResponse(string Message)
+        {       
+            return Request.CreateResponse(HttpStatusCode.InternalServerError, Message);
+        }
+        protected HttpResponseMessage OKResponse<T>(T Data)
         {       
             return Request.CreateResponse(HttpStatusCode.OK,Data);
         }
