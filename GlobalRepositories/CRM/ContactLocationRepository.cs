@@ -94,7 +94,6 @@ namespace Utilities.GlobalRepositories.CRM
 
             PrevLocationQuery.Criteria.AddCondition("new_contact", ConditionOperator.Equal, location.ContactId);
 
-            PrevLocationQuery.Criteria.AddCondition("new_housenumber", ConditionOperator.Equal,location.HouseNo??0);
             PrevLocationQuery.Criteria.AddCondition("new_city", ConditionOperator.Equal, location.CityId);
             PrevLocationQuery.Criteria.AddCondition("new_district", ConditionOperator.Equal, location.DistrictId);
             PrevLocationQuery.Criteria.AddCondition("new_latitude", ConditionOperator.Equal, location.Latitude);
@@ -108,10 +107,7 @@ namespace Utilities.GlobalRepositories.CRM
             {
                 PrevLocationQuery.Criteria.AddCondition("new_floornumber", ConditionOperator.Equal, location.FloorNo);
             }
-            if (location.HouseNo != null)
-            {
-                PrevLocationQuery.Criteria.AddCondition("new_housenumber", ConditionOperator.Equal, location.HouseNo);
-            }
+
             if (location.ApartmentNo != null)
             {
                 PrevLocationQuery.Criteria.AddCondition("new_apartmentnumber", ConditionOperator.Equal, location.ApartmentNo);
