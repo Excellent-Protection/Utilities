@@ -313,7 +313,6 @@
     <Compile Include="GlobalRepositories\Labor\DynamicStepsRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\StepRepository.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
-    <Compile Include="GlobalViewModels\CRM\CollectionVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
