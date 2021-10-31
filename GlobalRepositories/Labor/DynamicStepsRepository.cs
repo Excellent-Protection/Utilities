@@ -56,7 +56,7 @@ namespace Utilities.GlobalRepositories.Labor
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible == true && a.StepsHeader.ServiceType == (int)ServiceType.Renew, a => a.StepsHeader)
+                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible == true && a.StepsHeader.ServiceType == (int)ServiceType.Renew && string.IsNullOrEmpty(a.PreviousStepAction), a => a.StepsHeader)
                 .OrderBy(a => a.StepOrder).FirstOrDefault();
 
             }
@@ -66,7 +66,7 @@ namespace Utilities.GlobalRepositories.Labor
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible == true && a.StepsHeader.ServiceType == serviceType && a.NextStepAction==null, a => a.StepsHeader)
+                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible == true &&  string.IsNullOrEmpty(a.NextStepAction) && a.StepsHeader.ServiceType == serviceType , a => a.StepsHeader)
                 .OrderBy(a => a.StepOrder).FirstOrDefault();
 
             }
