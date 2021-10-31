@@ -62,11 +62,11 @@ namespace Utilities.GlobalRepositories.Labor
             }
         }
 
-        public StepsDetails GetRenewLastStep()
+        public StepsDetails GetLastStep(int serviceType)
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible == true && a.StepsHeader.ServiceType == (int)ServiceType.Renew && a.NextStepAction==null, a => a.StepsHeader)
+                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible == true && a.StepsHeader.ServiceType == serviceType && a.NextStepAction==null, a => a.StepsHeader)
                 .OrderBy(a => a.StepOrder).FirstOrDefault();
 
             }
