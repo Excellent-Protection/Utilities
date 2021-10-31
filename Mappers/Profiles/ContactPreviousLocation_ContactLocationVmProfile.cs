@@ -20,8 +20,10 @@ namespace Utilities.Mappers.Profiles
           .ForMember(a => a.City, o => o.MapFrom(s => s.CityId != null ? new EntityReference(CrmEntityNamesMapping.City, new Guid(s.CityId)) : null))
           .ForMember(a => a.Contact, o => o.MapFrom(s => s.ContactId != null ? new EntityReference(CrmEntityNamesMapping.Contact, new Guid(s.ContactId)) : null))
           .ForMember(a => a.District, o => o.MapFrom(s => s.DistrictId != null ? new EntityReference(CrmEntityNamesMapping.District, new Guid(s.DistrictId)) : null))
-                  .ForMember(a => a.HouseNumber, o => o.MapFrom(s => s.HouseNo))
-                  .ForMember(a => a.ApartmentNumber, o => o.MapFrom(s => s.ApartmentNo))
+                  .ForMember(a => a.HouseNumber, o => o.MapFrom(s => s.HouseNo??0))
+                  .ForMember(a => a.ApartmentNumber, o => o.MapFrom(s => s.ApartmentNo??0))
+                  .ForMember(a => a.FloorNumber, o => o.MapFrom(s => s.FloorNo.HasValue ? new OptionSetValue(s.HouseType.Value) : null))
+
                   .ForMember(a => a.HouseType, o => o.MapFrom(s => s.HouseType.HasValue ? new OptionSetValue(s.HouseType.Value)  :null))
                   .ForMember(a => a.Type, o => o.MapFrom(s => s.Type.HasValue ? new OptionSetValue(s.Type.Value)  :null))
                 
