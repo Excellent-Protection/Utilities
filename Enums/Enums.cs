@@ -788,7 +788,8 @@ namespace Utilities.Enums
     public enum ServiceType
     {
         Individual =1,
-        Hourly=2
+        Hourly=2,
+        Renew=3
     }
 
     public enum ContactLocationType
@@ -802,6 +803,23 @@ namespace Utilities.Enums
         Stratigy=1,
         PageUi=2,
         PostAction=3
+    }
+    public enum AvailableForRenew
+    {
+        Yes=1,
+        SamePakage=2
+
+    }
+    public enum AvailableForNew
+    {
+        Yes=1,
+        No=2
+    }
+
+    public enum RenewOption
+    {
+        SameContract = 1,
+        NewContract = 2
     }
     public enum FlexContractStatus
     {

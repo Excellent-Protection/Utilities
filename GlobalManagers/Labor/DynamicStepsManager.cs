@@ -47,6 +47,8 @@ namespace Utilities.GlobalManagers.Labor
 
                 case (int)ServiceType.Hourly:
                     return null;
+                case (int)ServiceType.Renew:
+                    return GetRenewFirstStep();
                 default:
                     return null;
             }
@@ -64,6 +66,8 @@ namespace Utilities.GlobalManagers.Labor
 
                 case ServiceType.Hourly:
                     return null;
+                case ServiceType.Renew:
+                   return GetRenewStepDetailsByActionName(actionName);
                 default:
                     return null;
             }
@@ -105,6 +109,23 @@ namespace Utilities.GlobalManagers.Labor
             }
         }
 
+
+        public ResponseVm<StepDetailsVm> GetRenewFirstStep()
+        {
+            try
+            {
+                var result = _repo.GetRenewFirstStep().Toclass<StepDetailsVm, StepsDetails>();
+                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurred" };
+
+            }
+        }
+
         public ResponseVm<StepDetailsVm> GetIndivStepDetailsByActionName(string actionName)
         {
             try
@@ -119,7 +140,20 @@ namespace Utilities.GlobalManagers.Labor
                 return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurrred" };
             }
         }
+        public ResponseVm<StepDetailsVm> GetRenewStepDetailsByActionName(string actionName)
+        {
+            try
+            {
+                var result = _repo.GetRenewStepDetailsByActionName(actionName).Toclass<StepDetailsVm, StepsDetails>();
+                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
+                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurrred" };
+            }
+        }
         public bool CheckIfStepIsStratigy(string actionName)
         {
             try

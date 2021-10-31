@@ -40,23 +40,20 @@ namespace Utilities.GlobalManagers.CRM
                 var _service = CRMService.Service;
                 var nationalites = _service.RetrieveMultiple(query).Entities.
                     Select(a => a.ToEntity<Country>()).Select(t => new BaseQuickLookupVm() { Key = t.Id.ToString(), Value = RequestUtility.Language == UserLanguage.Arabic ? (t.Name != null ? t.Name : t.EnglishName) : (t.EnglishName != null ? t.EnglishName : t.Name) }).ToList();
-                return new ResponseVm<List<BaseQuickLookupVm>> { Status=HttpStatusCodeEnum.Ok , Data= nationalites};
+                return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data = nationalites };
             }
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
-            return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred" , "Shared")};
-
+            return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message=DbRes.T("AnErrorOccurred","Shared") };
         }
-
-
 
         public ResponseVm<List<BaseQuickLookupVm>> GetActiveNationalities()
         {
             try
             {
-                var nationalities = _repo.GetActiveNationalities().ToModelListData<BaseQuickLookupVm>().ToList();
+                var nationalities = _repo.GetActiveNationalities().ToModelListData<BaseQuickLookupVm>().Where(a=>a.Key!=DefaultValues.BlockCountryId && a.Key!=DefaultValues.AllCountriesId).ToList();
                 return new ResponseVm<List<BaseQuickLookupVm>>()
                 {
                     Status = HttpStatusCodeEnum.Ok,

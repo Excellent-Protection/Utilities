@@ -83,6 +83,7 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Microsoft.Crm.Sdk.Proxy">
+
       <HintPath>..\Dependencies\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -313,8 +314,12 @@
     <Compile Include="GlobalRepositories\Labor\DynamicStepsRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\StepRepository.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
+
+    <Compile Include="GlobalViewModels\CRM\CollectionVm.cs" />
+
     <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\ContactVm.cs" />
     <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BaseQuickLookupWithImageVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BoolWithString.cs" />
@@ -345,13 +350,16 @@
     <Compile Include="InfraStructure\MathNumber.cs" />
     <Compile Include="Mappers\MapperConfig.cs" />
     <Compile Include="Mappers\Profiles\City_BaseQuickLookupVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Collection_CollectionVmProfiles.cs" />
     <Compile Include="Mappers\Profiles\ContactDetailsVm_ContactProfile.cs" />
     <Compile Include="Mappers\Profiles\ContactPreviousLocation_ContactLocationVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ContactPreviousLocation_SavedLocationVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Contact_ContactVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Country_NationalityProfile.cs" />
     <Compile Include="Mappers\Profiles\District_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Nationality_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepData_StepDataVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepDetails_StepDetailsVmProfile.cs" />

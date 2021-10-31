@@ -22,8 +22,6 @@ namespace Utilities.Mappers.Profiles
                 .ForMember(a => a.Key, o => o.MapFrom(s => s.Id))
                   .ForMember(a => a.Value, opt => opt.ResolveUsing(new ApplyLanguage(), a => new MappingTranslation(MapperConfig.lang, a.NameAr, a.Name)))
 
-
-
                 .ForMember(a=>a.Image , o=>o.MapFrom(s=>s.ImageUrl!=null ?ConfigurationManager.AppSettings["ProfessionGroupsImagesFolder"].ToString() +s.ImageUrl  :""))
                 ;
         }

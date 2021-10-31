@@ -35,7 +35,7 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
                 }
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Data = "City Not Avilable " };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("CityNotAvilableForService","Shared") };
 
             }
             catch(Exception ex)

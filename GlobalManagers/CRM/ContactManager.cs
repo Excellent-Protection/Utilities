@@ -9,12 +9,13 @@ using Utilities.Defaults;
 using Utilities.GlobalRepositories.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.GlobalViewModels.Custom;
+using Utilities.GlobalViewModels.CRM;
 using Utilities.Helpers;
 using Utilities.Mappers;
 
 namespace Utilities.GlobalManagers.CRM
 {
-   public class ContactManager :BaseManager , IDisposable
+    public class ContactManager : BaseManager, IDisposable
     {
         ContactRepository _repo;
         public ContactManager(RequestUtility requestUtility) : base(requestUtility)
@@ -29,7 +30,7 @@ namespace Utilities.GlobalManagers.CRM
 
         public ContactVm RegisterContactInPortal(ContactVm contact)
         {
-            var crmEntity =_repo.GetContactByPhone(contact.MobilePhone).Toclass<ContactVm>();
+            var crmEntity = _repo.GetContactByPhone(contact.MobilePhone).Toclass<ContactVm>();
             if (crmEntity == null)
                 crmEntity = AddNewContactToCrm(contact);
             else
@@ -41,7 +42,7 @@ namespace Utilities.GlobalManagers.CRM
             contact.Id = crmEntity.Id;
             return contact;
         }
-   
+
         public ContactVm AddNewContactToCrm(ContactVm contactVm)
         {
             try
@@ -82,17 +83,17 @@ namespace Utilities.GlobalManagers.CRM
             }
         }
 
-        public  bool IsProfileCompleted(string contactId)
+        public bool IsProfileCompleted(string contactId)
         {
             try
             {
                 using (var _globalRep = new GlobalCrmRepository())
                 {
                     bool isCompleted = _globalRep.GetEmptyFieldsNamesForRecord(CrmEntityNamesMapping.Contact, "contactid", contactId, new[] { "new_gender", "new_idnumer", "new_contactcity", "new_contactnationality" }).Count() == 0;
-                    return isCompleted ;
+                    return isCompleted;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("ContactId", contactId));
 
@@ -108,7 +109,7 @@ namespace Utilities.GlobalManagers.CRM
                 return new ResponseVm<ContactDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = contactDetails };
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("ContactId", contactId));
 
@@ -118,7 +119,7 @@ namespace Utilities.GlobalManagers.CRM
 
 
 
-        public  bool CompleteProfile(ContactDetailsVm contact)
+        public bool CompleteProfile(ContactDetailsVm contact)
         {
             try
             {
@@ -127,7 +128,7 @@ namespace Utilities.GlobalManagers.CRM
                 _service.Update(contactModel);
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("Contact", contact));
 
@@ -149,6 +150,27 @@ namespace Utilities.GlobalManagers.CRM
             }
             return false;
         }
+
+
+        public bool IsSaudi(string contactId)
+        {
+            try
+            {
+                var nationalityId = _repo.GetContactNationality(contactId).NationalityId.Id.ToString();
+                return nationalityId == DefaultValues.SaudiNationalityId ? true : false;
+            }
+            catch (Exception ex)
+            {
+
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+            }
+            return false;
+        }
+
+
+
+
         public ContactVm GetContactByPhone(string mobilePhone)
         {
             try
@@ -156,7 +178,7 @@ namespace Utilities.GlobalManagers.CRM
                 var contact = _repo.GetContactByPhone(mobilePhone).Toclass<ContactVm>();
                 return contact;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("MobilePhone", mobilePhone));
             }
@@ -167,10 +189,10 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var nationalityId= _repo.GetContactNationality(contactId).NationalityId.Id.ToString();
+                var nationalityId = _repo.GetContactNationality(contactId).NationalityId.Id.ToString();
                 return nationalityId == DefaultValues.SaudiNationalityId ? true : false;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
@@ -178,5 +200,8 @@ namespace Utilities.GlobalManagers.CRM
             return false;
         }
 
-        }
+    }
+
 }
+
+

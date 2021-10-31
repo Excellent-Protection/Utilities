@@ -62,7 +62,7 @@ namespace Utilities.Controller
             using (ContactLocationManager _mngr = new ContactLocationManager(RequestUtility))
             {
                 var result = _mngr.RemoveAddress(loctionId);
-                return Response<SavedLocationVm>(result);
+                return Response<string>(result);
             }
         }
 

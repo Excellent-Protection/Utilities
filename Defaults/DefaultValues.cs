@@ -31,7 +31,8 @@ namespace Utilities.Defaults
         public const string SADAD_InvoiceCode = "214";
         public const string AppleCardBrand = "APPLEPAY";
         public const string TomorrowVisitSms = "TomorrowVisitSms";
-        
+        public const string AllCountriesId = "c9da5d56-a54a-e311-8887-00155d010303";
+        public const string BlockCountryId = "30ce18ed-4afe-e611-80d5-0050568411f9";
 
 
 
@@ -55,6 +56,8 @@ namespace Utilities.Defaults
         public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthenticationAvailable";
         public const string DealingWithMainAddressName = "DealingWithMainAddress";
         public const string PackageProperties = "PackageProperties";
+        public const string DaysBeforeEndContractToShowRenewBtnSettingName = "DaysBeforeEndContractToShowRenewBtn";
+        public const string IncludInsuranceWithRenewSettingName = "IncludInsuranceWithRenew";
 
 
 
@@ -83,6 +86,8 @@ namespace Utilities.Defaults
         public const bool  DealingWithMainAddress = false;
         public const string WebSettingResult = "";
         public const string MobileSettingResult = "";
+        public const int DaysBeforeEndContractToShowRenewBtn = 7;
+        public const bool IncludInsuranceWithRenew = false;
 
 
 

@@ -92,8 +92,9 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 return  _rep.GetRequiredAttchmentsByProfessionGroup(profGroupId) ;
+                
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("ProfGroupId", profGroupId));
                 return null;

@@ -16,15 +16,11 @@ namespace Utilities.Mappers.Profiles
         public Nationality_BaseQuickLookupVmProfile()
         {
             CreateMap<BaseQuickLookupVm, Country>()
-
            .IgnoreAllPropertiesWithAnInaccessibleSetter()
            .ReverseMap()
            .ForMember(a => a.Key, opt => opt.MapFrom(s => s.Id != null ? s.Id.ToString() : null))
            .ForMember(a => a.Value, opt => opt.ResolveUsing(new ApplyLanguage(), a => new MappingTranslation(MapperConfig.lang, a.Name, a.EnglishName)))
-
-        ;
-
-
+;
 
         }
 

@@ -164,24 +164,24 @@ namespace Utilities.GlobalManagers.CRM
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("contactId", contactId));
             }
         }
-        public ResponseVm<SavedLocationVm> RemoveAddress(string locationId)
+        public ResponseVm<string> RemoveAddress(string locationId)
         {
             try
             {
                 var address = _repo.GetLocationById(locationId);
                 if(address.Type.Value == (int)ContactLocationType.Main)
                 {
-                    return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.NotAllowed,Message= DbRes.T("DeleteMainAddressNotAllowed", "IndividualResource") };
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.NotAllowed,Message= DbRes.T("DeleteMainAddressNotAllowed", "IndividualResource") };
                  }
                 var _service = CRMService.Service;
                 _service.Delete(address.LogicalName,new Guid(locationId));
-                return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.Ok  };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok  , Data=DbRes.T("LocationDeletedSuccessfully","Shared")};
 
             }
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("locationId",locationId));
-                return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.IneternalServerError , Message= DbRes.T("AnerrorOccurred", "Shared") };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError , Message= DbRes.T("AnerrorOccurred", "Shared") };
 
             }
         }

@@ -29,6 +29,7 @@ namespace Utilities.GlobalManagers.CRM
         {
         }
 
+
         public ResponseVm<List<BaseQuickLookupVm>> GetAvailableProfessionForIndvSector()
         {
             try
@@ -54,7 +55,7 @@ namespace Utilities.GlobalManagers.CRM
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
-            return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred", "Shared") };
+            return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError,Message=DbRes.T("AnErrorOccurred","Shared") };
         }
     }
 }
