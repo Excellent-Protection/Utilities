@@ -97,13 +97,13 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                ContactPreviousLocation Location = LocationVm.ToCrmEntity<ContactPreviousLocation, ContactLocationVm>();
-             var isExist=   _repo.isAlreadyExist(Location);
+              var isExist=   _repo.isAlreadyExist(LocationVm);
                 if (isExist)
                 {
-                    return new ResponseVm<ContactLocationVm> { Status = HttpStatusCodeEnum.Ambiguous, Data = LocationVm };
+                    return new ResponseVm<ContactLocationVm> { Status = HttpStatusCodeEnum.NotAllowed, Message = DbRes.T("LocationAddedBefore", "Shared") };
 
                 }
+                ContactPreviousLocation Location = LocationVm.ToCrmEntity<ContactPreviousLocation, ContactLocationVm>();
 
                 string oldMainLocationId = "";
                 if(LocationVm.Type==(int)ContactLocationType.Main)

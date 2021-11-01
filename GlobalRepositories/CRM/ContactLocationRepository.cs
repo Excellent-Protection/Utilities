@@ -9,6 +9,7 @@ using Utilities.DataAccess.CRM;
 using Utilities.Defaults;
 using Utilities.Enums;
 using Utilities.GlobalViewModels;
+using Utilities.GlobalViewModels.CRM;
 using Utilities.GlobalViewModels.Custom;
 using Utilities.Helpers;
 
@@ -84,22 +85,40 @@ namespace Utilities.GlobalRepositories.CRM
             var mainLoaction = _service.RetrieveMultiple(PrevLocationQuery).Entities.Select(a => a.ToEntity<ContactPreviousLocation>()).FirstOrDefault();
             return mainLoaction;
         }
-        public bool isAlreadyExist(ContactPreviousLocation location)
+        public bool isAlreadyExist(ContactLocationVm location)
         {
+            var _service = CRMService.Get;
             QueryExpression PrevLocationQuery = new QueryExpression(CrmEntityNamesMapping.ContactPreviousLocation);
-            PrevLocationQuery.Criteria.AddCondition("new_contact", ConditionOperator.Equal, location.Contact.Id);
-        //    PrevLocationQuery.Criteria.AddCondition("new_housenumber", ConditionOperator.Equal,int.Parse( location.HouseNumber));
-           // PrevLocationQuery.Criteria.AddCondition("new_housetype", ConditionOperator.Equal, location.HouseType.Value);
-            PrevLocationQuery.Criteria.AddCondition("new_city", ConditionOperator.Equal, location.City.Id);
-            PrevLocationQuery.Criteria.AddCondition("new_district", ConditionOperator.Equal, location.District.Id);
+
+            var reas = _service.RetrieveMultiple(PrevLocationQuery).Entities.First();
+
+            PrevLocationQuery.Criteria.AddCondition("new_contact", ConditionOperator.Equal, location.ContactId);
+
+            PrevLocationQuery.Criteria.AddCondition("new_city", ConditionOperator.Equal, location.CityId);
+            PrevLocationQuery.Criteria.AddCondition("new_district", ConditionOperator.Equal, location.DistrictId);
             PrevLocationQuery.Criteria.AddCondition("new_latitude", ConditionOperator.Equal, location.Latitude);
             PrevLocationQuery.Criteria.AddCondition("new_longitude", ConditionOperator.Equal, location.Longitude);
-            //PrevLocationQuery.Criteria.AddCondition("new_apartmentnumber", ConditionOperator.Equal, int.Parse(location.ApartmentNumber));
-            //PrevLocationQuery.Criteria.AddCondition("new_floornumber", ConditionOperator.Equal, location.FloorNumber?.Value);
 
-           // PrevLocationQuery.Criteria.AddCondition("new_type", ConditionOperator.Equal, location.Type.Value);
-            var _service = CRMService.Service;
-        return _service.RetrieveMultiple(PrevLocationQuery).Entities.Count() > 0;
+            //PrevLocationQuery.Criteria.AddCondition("new_apartmentnumber", ConditionOperator.Equal, location.ApartmentNo);
+            if (location.HouseType != null)
+            {
+                PrevLocationQuery.Criteria.AddCondition("new_housetype", ConditionOperator.Equal, location.HouseType.Value);
+            }
+            if (location.FloorNo != null)
+            {
+                PrevLocationQuery.Criteria.AddCondition("new_floornumber", ConditionOperator.Equal, location.FloorNo);
+            }
+
+            if (location.ApartmentNo != null)
+            {
+                PrevLocationQuery.Criteria.AddCondition("new_apartmentnumber", ConditionOperator.Equal, location.ApartmentNo);
+            }
+
+            // PrevLocationQuery.Criteria.AddCondition("new_type", ConditionOperator.Equal, location.Type.Value);
+        var res= _service.RetrieveMultiple(PrevLocationQuery).Entities.Count() > 0;
+
+            return res;
+
         }
         public ContactPreviousLocation GetLocationById(string locationId)
         {
