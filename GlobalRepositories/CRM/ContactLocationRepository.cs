@@ -87,10 +87,10 @@ namespace Utilities.GlobalRepositories.CRM
         }
         public bool isAlreadyExist(ContactLocationVm location)
         {
-            var _service = CRMService.Get;
+            var _service = CRMService.Service;
             QueryExpression PrevLocationQuery = new QueryExpression(CrmEntityNamesMapping.ContactPreviousLocation);
 
-            var reas = _service.RetrieveMultiple(PrevLocationQuery).Entities.First();
+            PrevLocationQuery.ColumnSet = new ColumnSet(true);
 
             PrevLocationQuery.Criteria.AddCondition("new_contact", ConditionOperator.Equal, location.ContactId);
 
@@ -111,11 +111,11 @@ namespace Utilities.GlobalRepositories.CRM
 
             if (location.ApartmentNo != null)
             {
-                PrevLocationQuery.Criteria.AddCondition("new_apartmentnumber", ConditionOperator.Equal, location.ApartmentNo);
+                PrevLocationQuery.Criteria.AddCondition("new_apartmentnumber", ConditionOperator.Equal, location.ApartmentNo.ToString());
             }
 
             // PrevLocationQuery.Criteria.AddCondition("new_type", ConditionOperator.Equal, location.Type.Value);
-        var res= _service.RetrieveMultiple(PrevLocationQuery).Entities.Count() > 0;
+           var res= _service.RetrieveMultiple(PrevLocationQuery).Entities.Count() > 0;
 
             return res;
 
