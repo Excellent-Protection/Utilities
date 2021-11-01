@@ -25,7 +25,7 @@ namespace Utilities.Filters
             //var serviceType = int.Parse(HttpContext.Current.Request.Params["serviceType"]);
             //var actionName = HttpContext.Current.Request.Params["actionName"];
 
-            //var actionName = actionContext.ActionDescriptor.ActionName;
+            var actionName = actionContext.ActionDescriptor.ActionName;
             //using (DynamicStepsManager _mgr = new DynamicStepsManager())
             //{
             //    var step = _mgr.GetStepDetailsByActionNameAndServiceType(_serviceType, actionName);
