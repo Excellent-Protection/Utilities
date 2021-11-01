@@ -113,9 +113,12 @@ namespace Utilities.GlobalRepositories.CRM
             {
                 PrevLocationQuery.Criteria.AddCondition("new_apartmentnumber", ConditionOperator.Equal, location.ApartmentNo.ToString());
             }
-
+            if (location.HouseNo != null)
+            {
+                PrevLocationQuery.Criteria.AddCondition("new_housenumber", ConditionOperator.Equal, location.ApartmentNo.ToString());
+            }
             // PrevLocationQuery.Criteria.AddCondition("new_type", ConditionOperator.Equal, location.Type.Value);
-           var res= _service.RetrieveMultiple(PrevLocationQuery).Entities.Count() > 0;
+            var res= _service.RetrieveMultiple(PrevLocationQuery).Entities.Count() > 0;
 
             return res;
 
