@@ -100,7 +100,7 @@ namespace Utilities.GlobalManagers.CRM
               var isExist=   _repo.isAlreadyExist(LocationVm);
                 if (isExist)
                 {
-                    return new ResponseVm<ContactLocationVm> { Status = HttpStatusCodeEnum.NotAllowed, Data = LocationVm };
+                    return new ResponseVm<ContactLocationVm> { Status = HttpStatusCodeEnum.NotAllowed, Message = DbRes.T("LocationAddedBefore", "Shared") };
 
                 }
                 ContactPreviousLocation Location = LocationVm.ToCrmEntity<ContactPreviousLocation, ContactLocationVm>();
