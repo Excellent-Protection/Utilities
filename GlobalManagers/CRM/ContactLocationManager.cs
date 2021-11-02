@@ -98,7 +98,7 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 ContactPreviousLocation Location = LocationVm.ToCrmEntity<ContactPreviousLocation, ContactLocationVm>();
-             var isExist=   _repo.isAlreadyExist(Location);
+               var isExist=   _repo.isAlreadyExist(Location);
                 if (isExist)
                 {
                     return new ResponseVm<ContactLocationVm> { Status = HttpStatusCodeEnum.Ambiguous, Data = LocationVm };

@@ -26,6 +26,17 @@ namespace Utilities.GlobalRepositories.Labor
                 return result;
             }
         }
+             public List<StepsDetails> GetRenewSteps()
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
+            {
+                var result = unitOfWork.Repository<StepsDetails>().Find(s => s.IsAvailable == true && s.IsVisible==true && s.StepsHeader.ServiceType ==(int) ServiceType.Renew, a => a.StepsHeader)
+                    .OrderBy(a => a.StepOrder)
+                    .ToList();
+
+                return result;
+            }
+        }
 
 
         public StepsDetails GetIndividualServiceFirstStep()

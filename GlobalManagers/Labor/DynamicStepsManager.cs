@@ -35,7 +35,7 @@ namespace Utilities.GlobalManagers.Labor
                 case (int)ServiceType.Hourly:
                     return null;
                 default:
-                    return null;
+                    return GetRenewSteps();
             }
 
         }
@@ -190,5 +190,21 @@ namespace Utilities.GlobalManagers.Labor
 
         #endregion
         #endregion
+
+
+        public ResponseVm<List<StepDetailsVm>> GetRenewSteps()
+        {
+            try
+            {
+                var steps = _repo.GetRenewSteps().ToclassList<StepDetailsVm, StepsDetails>().ToList();
+                return new ResponseVm<List<StepDetailsVm>> { Status = HttpStatusCodeEnum.Ok, Data = steps };
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                return new ResponseVm<List<StepDetailsVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "Error in Get Dynamic Steps " };
+
+            }
+        }
     }
 }
