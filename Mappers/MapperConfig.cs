@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.Enums;
+using Utilities.Mappers.Profiles;
 
 namespace Utilities.Mappers
 {
@@ -17,7 +18,6 @@ namespace Utilities.Mappers
             _profiles = Profiles;
             Mapper.Initialize(cfg =>
             {
-
                 foreach (var profile in _profiles)
                 {
                     cfg.AddProfile(profile);

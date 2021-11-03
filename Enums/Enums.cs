@@ -328,7 +328,7 @@ namespace Utilities.Enums
     {
         New = 1,
         Approved = 100000000,
-        Canceled = 100000001,
+        Cancelled = 100000001,
         ConfirmedByFinance = 100000004,
         PaymentIsPendingConfirmation = 100000006
     }
