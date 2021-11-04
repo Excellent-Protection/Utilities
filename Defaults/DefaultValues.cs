@@ -58,6 +58,8 @@ namespace Utilities.Defaults
         public const string PackageProperties = "PackageProperties";
         public const string DaysBeforeEndContractToShowRenewBtnSettingName = "DaysBeforeEndContractToShowRenewBtn";
         public const string IncludInsuranceWithRenewSettingName = "IncludInsuranceWithRenew";
+        public const string IsRenewAvailableSettingName = "IsRenewAvailable";
+        public const string ProceduresReventRenewSettingname = "ProceduresReventRenew";
 
 
 
@@ -88,6 +90,8 @@ namespace Utilities.Defaults
         public const string MobileSettingResult = "";
         public const int DaysBeforeEndContractToShowRenewBtn = 7;
         public const bool IncludInsuranceWithRenew = false;
+        public const bool IsRenewAvailable = false;
+        public const string ProceduresReventRenew = "1,2,4";
 
 
 
