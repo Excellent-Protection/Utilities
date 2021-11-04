@@ -263,7 +263,6 @@
     <Compile Include="Controller\StepDataController.cs" />
     <Compile Include="ConvertDocToPDF.cs" />
     <Compile Include="CurrencyInfo.cs" />
-    <Compile Include="DataAccess\CRM\Contact_ContactVmProfile.cs" />
     <Compile Include="DataAccess\CRM\CRMAccessDB.cs" />
     <Compile Include="DataAccess\CRM\CrmContext.cs" />
     <Compile Include="DataAccess\CRM\CRMService.cs" />
