@@ -171,7 +171,7 @@ namespace Utilities.GlobalManagers.CRM
                 var address = _repo.GetLocationById(locationId);
                 if(address.Type.Value == (int)ContactLocationType.Main)
                 {
-                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.NotAllowed,Message= DbRes.T("DeleteMainAddressNotAllowed", "IndividualResource") };
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.NotAllowed,Message= DbRes.T("DeleteMainAddressNotAllowed", "Shared") };
                  }
                 var _service = CRMService.Service;
                 _service.Delete(address.LogicalName,new Guid(locationId));

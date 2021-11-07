@@ -56,6 +56,17 @@ namespace Utilities.Controller
             }
         }
 
-    
+        [HttpGet]
+        [Route("StepDetailsByActionName")]
+        public HttpResponseMessage GetNextActionDetailsByActionName(ServiceType serviceType, string actionName)
+        {
+            using (DynamicStepsManager _mngr = new DynamicStepsManager())
+            {
+                var result = _mngr.GetNextStepDetailsByCurrentActionName(actionName, serviceType);
+                return Response<StepDetailsVm>(result);
+            }
+        }
+
+
     }
 }
