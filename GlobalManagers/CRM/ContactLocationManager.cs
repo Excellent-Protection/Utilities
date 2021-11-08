@@ -93,21 +93,18 @@ namespace Utilities.GlobalManagers.CRM
 
 
 
-        public ResponseVm<ContactLocationVm> AddLocation(ContactLocationVm LocationVm)
+        public ResponseVm<string> AddLocation(ContactLocationVm LocationVm)
         {
             try
             {
 
                 ContactPreviousLocation Location = LocationVm.ToCrmEntity<ContactPreviousLocation, ContactLocationVm>();
-               var isExist=   _repo.isAlreadyExist(Location);
+               var isExist=   _repo.isAlreadyExist(LocationVm);
 
                 if (isExist)
                 {
-                    return new ResponseVm<ContactLocationVm> { Status = HttpStatusCodeEnum.NotAllowed, Message = DbRes.T("LocationAddedBefore", "Shared") };
-
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.NotAllowed, Message = DbRes.T("LocationAddedBefore", "Shared") };
                 }
-                ContactPreviousLocation Location = LocationVm.ToCrmEntity<ContactPreviousLocation, ContactLocationVm>();
-
                 string oldMainLocationId = "";
                 if(LocationVm.Type==(int)ContactLocationType.Main)
                 {
@@ -122,12 +119,12 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     UpdateContactLocationsToBeSub(LocationVm.ContactId, oldMainLocationId);
                 }
-                return new ResponseVm<ContactLocationVm> { Status= HttpStatusCodeEnum.Ok , Data=LocationVm};
+                return new ResponseVm<string> { Status= HttpStatusCodeEnum.Ok , Data=DbRes.T("LocationSavedSuccessfully","Shareds")};
             }
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("LocationVm", LocationVm));
-                return new ResponseVm<ContactLocationVm>
+                return new ResponseVm<string>
                 {
                     Status = HttpStatusCodeEnum.IneternalServerError,
                     Message = DbRes.T("AnerrorOccurred", "Shared")

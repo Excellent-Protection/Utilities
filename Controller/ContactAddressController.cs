@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Utilities.Defaults;
 using Utilities.GlobalManagers;
+using Utilities.GlobalManagers.CRM;
 using Utilities.GlobalViewModels;
+using Utilities.GlobalViewModels.CRM;
 using Utilities.Helpers;
 
 namespace Utilities.Controller
@@ -33,6 +35,17 @@ namespace Utilities.Controller
             {
                 var result = _mngr.GetOptionSetList("new_floorno", CrmEntityNamesMapping.IndividualContractRequest);
                 return Response<List<BaseOptionSetVM>>(result);
+            }
+        }
+
+        [HttpPost]
+        [Route("AddNewAddress")]
+        public HttpResponseMessage AddNewAddress(ContactLocationVm contactLocationModel)
+        {
+            using (ContactLocationManager _locationMngr = new ContactLocationManager(RequestUtility))
+            {
+                var result = _locationMngr.AddLocation(contactLocationModel);
+                return Response<string>(result);
             }
         }
 
