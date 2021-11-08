@@ -382,6 +382,14 @@
     <Compile Include="Migrations\202110141331266_stepdatapreviousaction.designer.cs">
       <DependentUpon>202110141331266_stepdatapreviousaction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110281000057_paymentPlatform.cs" />
+    <Compile Include="Migrations\202110281000057_paymentPlatform.designer.cs">
+      <DependentUpon>202110281000057_paymentPlatform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110281149381_IsTestPayment.cs" />
+    <Compile Include="Migrations\202110281149381_IsTestPayment.designer.cs">
+      <DependentUpon>202110281149381_IsTestPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
     <Compile Include="Enums\UserLanguage.cs" />
@@ -452,6 +460,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110141331266_stepdatapreviousaction.resx">
       <DependentUpon>202110141331266_stepdatapreviousaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110281000057_paymentPlatform.resx">
+      <DependentUpon>202110281000057_paymentPlatform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110281149381_IsTestPayment.resx">
+      <DependentUpon>202110281149381_IsTestPayment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
