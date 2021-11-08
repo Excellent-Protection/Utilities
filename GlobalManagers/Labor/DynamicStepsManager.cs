@@ -10,6 +10,7 @@ using Utilities.GlobalViewModels;
 using Utilities.GlobalViewModels.Labor;
 using Utilities.Helpers;
 using Utilities.Mappers;
+using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.Labor
 {
@@ -34,7 +35,7 @@ namespace Utilities.GlobalManagers.Labor
                 case (int)ServiceType.Hourly:
                     return null;
                 default:
-                    return null;
+                    return GetRenewSteps();
             }
 
         }
@@ -53,6 +54,21 @@ namespace Utilities.GlobalManagers.Labor
                     return null;
             }
 
+        }
+
+          public ResponseVm<StepDetailsVm> GetLastStep(int serviceType)
+        {
+            try
+            {
+                var result= _repo.GetLastStep(serviceType).Toclass<StepDetailsVm, StepsDetails>();
+                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
+            }
+            catch(Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred", "Shared") };
+            }
         }
 
 
@@ -212,5 +228,21 @@ namespace Utilities.GlobalManagers.Labor
 
         #endregion
         #endregion
+
+
+        public ResponseVm<List<StepDetailsVm>> GetRenewSteps()
+        {
+            try
+            {
+                var steps = _repo.GetRenewSteps().ToclassList<StepDetailsVm, StepsDetails>().ToList();
+                return new ResponseVm<List<StepDetailsVm>> { Status = HttpStatusCodeEnum.Ok, Data = steps };
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                return new ResponseVm<List<StepDetailsVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "Error in Get Dynamic Steps " };
+
+            }
+        }
     }
 }

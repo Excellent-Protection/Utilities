@@ -26,6 +26,17 @@ namespace Utilities.GlobalRepositories.Labor
                 return result;
             }
         }
+             public List<StepsDetails> GetRenewSteps()
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
+            {
+                var result = unitOfWork.Repository<StepsDetails>().Find(s => s.IsAvailable == true && s.IsVisible==true && s.StepsHeader.ServiceType ==(int) ServiceType.Renew, a => a.StepsHeader)
+                    .OrderBy(a => a.StepOrder)
+                    .ToList();
+
+                return result;
+            }
+        }
 
 
         public StepsDetails GetIndividualServiceFirstStep()
@@ -66,17 +77,17 @@ namespace Utilities.GlobalRepositories.Labor
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible == true && a.StepsHeader.ServiceType == (int)ServiceType.Renew, a => a.StepsHeader)
+                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible == true && a.StepsHeader.ServiceType == (int)ServiceType.Renew && string.IsNullOrEmpty(a.PreviousStepAction), a => a.StepsHeader)
                 .OrderBy(a => a.StepOrder).FirstOrDefault();
 
             }
         }
 
-        public StepsDetails GetRenewLastStep()
+        public StepsDetails GetLastStep(int serviceType)
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible == true && a.StepsHeader.ServiceType == (int)ServiceType.Renew && a.NextStepAction==null, a => a.StepsHeader)
+                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible == true &&  string.IsNullOrEmpty(a.NextStepAction) && a.StepsHeader.ServiceType == serviceType , a => a.StepsHeader)
                 .OrderBy(a => a.StepOrder).FirstOrDefault();
 
             }
