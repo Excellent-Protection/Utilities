@@ -74,6 +74,28 @@ namespace Utilities.GlobalManagers.Labor
 
         }
 
+
+        public ResponseVm<StepDetailsVm> GetNextStepDetailsByActionNameAndServiceType(ServiceType serviceType, string actionName)
+        {
+
+            switch (serviceType)
+            {
+                case ServiceType.Individual:
+                    return GetIndivStepDetailsByActionName(actionName);
+
+                case ServiceType.Hourly:
+                    return null;
+                case ServiceType.Renew:
+                    return GetRenewStepDetailsByActionName(actionName);
+                default:
+                    return null;
+            }
+
+        }
+
+
+
+
         #region DynamicSteps
 
 
@@ -169,6 +191,22 @@ namespace Utilities.GlobalManagers.Labor
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
                 return false;
+            }
+        }
+
+
+        public ResponseVm<StepDetailsVm> GetNextStepDetailsByCurrentActionName(string actionName , ServiceType serviceType)
+        {
+            try
+            {
+                var result = _repo.GetNextStepDetailsByCurrentActionName(actionName, serviceType).Toclass<StepDetailsVm, StepsDetails>();
+                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurrred" };
             }
         }
 

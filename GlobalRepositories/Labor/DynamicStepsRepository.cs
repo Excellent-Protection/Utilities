@@ -44,6 +44,16 @@ namespace Utilities.GlobalRepositories.Labor
             {
                 return unitOfWork.Repository<StepsDetails>().Find(a => a.Action == ActionName&& a.IsAvailable==true && a.StepsHeader.ServiceType ==  (int)ServiceType.Individual, a => a.StepsHeader).FirstOrDefault();
             }
+        }     
+        
+        public StepsDetails GetNextStepDetailsByCurrentActionName(string actionName, ServiceType serviceType)
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
+            {
+                var nextAction = unitOfWork.Repository<StepsDetails>().Find(a => a.Action == actionName&& a.IsAvailable==true && a.StepsHeader.ServiceType ==(int) serviceType, a => a.StepsHeader).FirstOrDefault().NextStepAction;
+             
+               return  unitOfWork.Repository<StepsDetails>().Find(a => a.Action == nextAction&& a.IsAvailable==true && a.StepsHeader.ServiceType ==(int) serviceType, a => a.StepsHeader).FirstOrDefault();
+            }
         }
         public StepsDetails GetRenewStepDetailsByActionName(string ActionName)
         {
