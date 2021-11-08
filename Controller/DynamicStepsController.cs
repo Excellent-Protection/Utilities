@@ -57,7 +57,7 @@ namespace Utilities.Controller
         }
 
         [HttpGet]
-        [Route("StepDetailsByActionName")]
+        [Route("NextActionDetailsByActionName")]
         public HttpResponseMessage GetNextActionDetailsByActionName(ServiceType serviceType, string actionName)
         {
             using (DynamicStepsManager _mngr = new DynamicStepsManager())

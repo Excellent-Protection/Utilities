@@ -42,20 +42,25 @@ namespace Utilities.Helpers
             return Request.CreateResponse(statusCode);
         }
         protected HttpResponseMessage NotFoundResponse(string Message)
-        {       
-            return Request.CreateResponse(HttpStatusCode.NotFound,Message);
+        {
+            var response = new ResponseVm<object> { Status = HttpStatusCodeEnum.NotFound, Message = Message };
+            return Request.CreateResponse(HttpStatusCode.NotFound,response);
         }
         protected HttpResponseMessage AmbigiousResponse(string Message)
-        {       
-            return Request.CreateResponse(HttpStatusCode.Ambiguous, Message);
+        {
+            var response = new ResponseVm<object> { Status = HttpStatusCodeEnum.Ambiguous, Message = Message };
+
+            return Request.CreateResponse(HttpStatusCode.Ambiguous, response);
         }
         protected HttpResponseMessage InternalServerErrorResponse(string Message)
-        {       
-            return Request.CreateResponse(HttpStatusCode.InternalServerError, Message);
+        {
+            var response = new ResponseVm<object> { Status = HttpStatusCodeEnum.IneternalServerError, Message = Message };
+            return Request.CreateResponse(HttpStatusCode.InternalServerError, response);
         }
         protected HttpResponseMessage OKResponse<T>(T Data)
-        {       
-            return Request.CreateResponse(HttpStatusCode.OK,Data);
+        {
+            var response = new ResponseVm<object>() { Data = Data, Status = HttpStatusCodeEnum.Ok };
+            return Request.CreateResponse(HttpStatusCode.OK,response);
         }
 
         protected HttpResponseMessage Response<T>(ResponseVm<T> result)
