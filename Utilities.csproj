@@ -258,6 +258,7 @@
     <Compile Include="Controller\NationalityController.cs" />
     <Compile Include="Controller\ProfessionController.cs" />
     <Compile Include="Controller\ProfessionGroupsController.cs" />
+    <Compile Include="Controller\ProfileController.cs" />
     <Compile Include="Controller\ResourceGroupController.cs" />
     <Compile Include="Controller\SavedContactLocationController.cs" />
     <Compile Include="Controller\StepDataController.cs" />
@@ -288,6 +289,7 @@
     <Compile Include="GlobalManagers\CRM\ContactLocationManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactVm.cs" />
+    <Compile Include="GlobalManagers\CRM\DashboardManager.cs" />
     <Compile Include="GlobalManagers\CRM\EmployeeManager.cs" />
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionGroupsManager.cs" />
@@ -321,6 +323,7 @@
     <Compile Include="GlobalViewModels\Custom\BoolWithString.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactDetailsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactMainSubPreviouseLocationsVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\DashboardCounts.cs" />
     <Compile Include="GlobalViewModels\Custom\LocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\CityIdAndNameVm.cs" />
     <Compile Include="GlobalViewModels\Custom\DistrictQuickLookupVm.cs" />
@@ -378,14 +381,6 @@
     <Compile Include="Migrations\202110141331266_stepdatapreviousaction.cs" />
     <Compile Include="Migrations\202110141331266_stepdatapreviousaction.designer.cs">
       <DependentUpon>202110141331266_stepdatapreviousaction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110281000057_paymentPlatform.cs" />
-    <Compile Include="Migrations\202110281000057_paymentPlatform.designer.cs">
-      <DependentUpon>202110281000057_paymentPlatform.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110281149381_IsTestPayment.cs" />
-    <Compile Include="Migrations\202110281149381_IsTestPayment.designer.cs">
-      <DependentUpon>202110281149381_IsTestPayment.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
@@ -457,12 +452,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110141331266_stepdatapreviousaction.resx">
       <DependentUpon>202110141331266_stepdatapreviousaction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110281000057_paymentPlatform.resx">
-      <DependentUpon>202110281000057_paymentPlatform.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110281149381_IsTestPayment.resx">
-      <DependentUpon>202110281149381_IsTestPayment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
