@@ -26,9 +26,9 @@ namespace Utilities.Mappers.Resolvers
                 description += new ApplyLanguage().Resolve(source, destination, new MappingTranslation(MapperConfig.lang, source.Attributes.Contains("new_district.new_name") ? ((AliasedValue)source.Attributes["new_district.new_name"]).Value.ToString() : null, source.Attributes.Contains("new_district.new_englishname") ? ((AliasedValue)source.Attributes["new_district.new_englishname"]).Value.ToString() : null), destMember, context) + " - ";
                 if (source.HouseType != null)
                     description +=( source.HouseType.Value == 0 ? DbRes.T("Villa","Shared") : DbRes.T("Apartment", "Shared"))+" - ";
-                if (source.HouseType.Value == 0 && source.HouseNumber != null)
+                if (source.HouseType!=null && source.HouseType.Value == 0 && source.HouseNumber != null)
                     description +=DbRes.T("Number" ,"Shared") + ":" +source.HouseNumber ;
-                if (source.HouseType.Value == 1 &&source.ApartmentNumber != null)
+                if (source.HouseType!=null && source.HouseType.Value == 1 &&source.ApartmentNumber != null)
                     description += DbRes.T("Number", "Shared") + ":" + source.ApartmentNumber;
                 if (source.FloorNumber != null)
                     description +=" - "+ DbRes.T("FloorNo", "Shared") + ":" + source.FloorNumber.Value;
