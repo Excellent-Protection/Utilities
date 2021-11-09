@@ -1,5 +1,7 @@
 ﻿using AuthonticationLib.Repositories;
 using AuthonticationLib.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
@@ -10,18 +12,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Utilities.DataAccess.Labor;
+using Utilities.GlobalViewModels;
+using Utilities.GlobalViewModels.Custom;
 using Utilities.Helpers;
 using Utilities.Mappers;
+using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.Labor.Identity
 {
  public   class ApplicationUserManager : BaseManager
 
     {
+        private LaborDbContext _ctx;
         private ApplicationUserRepository _repository;
 
         public ApplicationUserManager(RequestUtility requestUtility) : base(requestUtility)
         {
+            _ctx = new LaborDbContext();
+            _repository = new ApplicationUserRepository(new UserStore<ApplicationUser, ApplicationRole, string, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>(_ctx));
+            _repository.RegisterTwoFactorProvider("PhoneCode", new PhoneNumberTokenProvider<ApplicationUser> { });
+
         }
 
         ApplicationUserRepository Repository
@@ -108,16 +119,11 @@ namespace Utilities.GlobalManagers.Labor.Identity
             var user = await Repository.FindByIdAsync(id);
             return user.ToApplicationUserVModel<ApplicationUser, ApplicationUserVm>();
         }
-
-
-
         public async Task<ApplicationUser> FindAsync(string Username, string Password)
         {
             var user = await Repository.FindAsync(Username, Password);
             return user;
         }
-
-
         public async Task<string> GetCrmUserId(string currentUserId)
         {
             try
@@ -135,6 +141,21 @@ namespace Utilities.GlobalManagers.Labor.Identity
             }
 
         }
+
+        public ResponseVm<UserProfileDataVm> GetUserProfileData(string userId)
+        {
+            try
+            {
+                var user = _repository.Users.FirstOrDefault(t => t.Id == userId).ToApplicationUserVModel<ApplicationUser, UserProfileDataVm>();
+                return new ResponseVm<UserProfileDataVm> { Status = HttpStatusCodeEnum.Ok, Data = user };
+            }
+            catch(Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+            return new ResponseVm<UserProfileDataVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred", "Shared") };
+        }
+
     }
 }
 

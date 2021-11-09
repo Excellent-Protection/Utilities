@@ -333,6 +333,7 @@
     <Compile Include="GlobalViewModels\Custom\ResultMessageVM.cs" />
     <Compile Include="GlobalViewModels\Custom\SavedLocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ServiceStepResponseVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\UserProfileDataVm.cs" />
     <Compile Include="GlobalViewModels\Labor\ApplicationUserVm.cs" />
     <Compile Include="GlobalViewModels\Labor\SettingVM.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDataVm.cs" />
@@ -348,6 +349,8 @@
     <Compile Include="HttpStatusCodeEnum.cs" />
     <Compile Include="InfraStructure\MathNumber.cs" />
     <Compile Include="Mappers\MapperConfig.cs" />
+    <Compile Include="Mappers\Profiles\ApplicationUser_ApplicationUserVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\ApplicationUser_UserProfileDataVmProfile.cs" />
     <Compile Include="Mappers\Profiles\City_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Collection_CollectionVmProfiles.cs" />
     <Compile Include="Mappers\Profiles\ContactDetailsVm_ContactProfile.cs" />

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Utilities.GlobalManagers.CRM;
+using Utilities.GlobalManagers.Labor.Identity;
 using Utilities.GlobalViewModels.Custom;
 using Utilities.Helpers;
 
@@ -26,6 +27,14 @@ namespace Utilities.Controller
                 return Response<DashboardCounts>(result);
 
             }
+        }
+        [HttpGet]
+        [Route("UserProfileData")]
+        public HttpResponseMessage GetUserProfileData(string userId)
+        {
+            ApplicationUserManager _userMngr = new ApplicationUserManager(RequestUtility);
+            var userData = _userMngr.GetUserProfileData(userId);
+            return Response<UserProfileDataVm>(userData);
         }
 
     }
