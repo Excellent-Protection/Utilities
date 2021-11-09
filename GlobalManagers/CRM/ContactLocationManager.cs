@@ -106,9 +106,13 @@ namespace Utilities.GlobalManagers.CRM
                 ContactPreviousLocation Location = LocationVm.ToCrmEntity<ContactPreviousLocation, ContactLocationVm>();
 
                 string oldMainLocationId = "";
+                // contact add new main location so old main location must updated to be sub .... contact has only one main location 
                 if(LocationVm.Type==(int)ContactLocationType.Main)
                 {
+                    // get old main location id to update it 
                     oldMainLocationId = _repo.GetContactMainLocation(LocationVm.ContactId)?.Id.ToString();
+                    //update contact address to main address data 
+                    UpdateContactAddressData(LocationVm);
                 }
                 var _service = CRMService.Service;
 
@@ -189,8 +193,8 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var loaction = _repo.GetContactId(locationId);
-                var mainContactLocations=_repo.GetContactPreviouseLocationByType(loaction.Contact.Id.ToString(), (int)ContactLocationType.Main);
+                var location = _repo.GetLocationById(locationId).Toclass<ContactLocationVm>();
+                var mainContactLocations=_repo.GetContactPreviouseLocationByType(location.ContactId.ToString(), (int)ContactLocationType.Main);
                 var _service = CRMService.Service;
 
                 using (TransactionScope transaction = new TransactionScope())
@@ -199,6 +203,10 @@ namespace Utilities.GlobalManagers.CRM
                     address.Id = new Guid(locationId);
                     address["new_type"] =new Microsoft.Xrm.Sdk.OptionSetValue((int)ContactLocationType.Main);
                     _service.Update(address);
+                    //update contact data to main location data 
+                    UpdateContactAddressData(location);
+
+                    //update old main location to be sub 
                     if (mainContactLocations.Count()>0)
                     {
                         foreach (var item in mainContactLocations)
@@ -222,6 +230,25 @@ namespace Utilities.GlobalManagers.CRM
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("locationId", locationId));
                 return new ResponseVm<SavedLocationVm> { Status = HttpStatusCodeEnum.IneternalServerError };
 
+            }
+        }
+
+
+        public void UpdateContactAddressData(ContactLocationVm model)
+        {
+            try
+            {
+                Entity contact = new Entity(CrmEntityNamesMapping.Contact);
+                contact.Id = new Guid(model.ContactId);
+                contact["new_contactcity"] = new EntityReference(CrmEntityNamesMapping.City,new Guid( model.CityId));
+                contact["new_contdistid"] = new EntityReference(CrmEntityNamesMapping.District,new Guid( model.DistrictId));
+                var _service = CRMService.Service;
+                _service.Update(contact);
+
+            }
+            catch(Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
 
