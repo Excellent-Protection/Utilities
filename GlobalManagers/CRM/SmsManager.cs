@@ -56,15 +56,15 @@ namespace Utilities.GlobalManagers.CRM
         {
 
             var Code = new QueryExpression(CrmEntityNamesMapping.SmsText);
-            Code.ColumnSet = new ColumnSet("new_smsbody", "new_sql");
+            Code.ColumnSet = new ColumnSet("new_smsbody", "new_sqlquery");
             Code.Criteria.AddCondition("new_code", ConditionOperator.Equal, Smscode);
             var Sms = CRMService.Service.RetrieveMultiple(Code).Entities.FirstOrDefault();
             if (Sms != null)
             {
                 string SmsBody = Sms["new_smsbody"].ToString();
-                if (Sms.Attributes.Contains("new_sql") && !string.IsNullOrEmpty(Sms["new_sql"].ToString()))
+                if (Sms.Attributes.Contains("new_sqlquery") && !string.IsNullOrEmpty(Sms["new_sqlquery"].ToString()))
                 {
-                    var query = Sms["new_sql"].ToString().Replace("@id", EntityID);
+                    var query = Sms["new_sqlquery"].ToString().Replace("@id", EntityID);
                     var QueryResult = CRMAccessDB.SelectQ(query).Tables[0];
                     if (QueryResult.Rows.Count > 0)
                     {
