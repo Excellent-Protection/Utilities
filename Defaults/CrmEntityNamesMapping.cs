@@ -92,6 +92,8 @@ namespace Utilities.Defaults
         public const string EmailTemplate = "new_emailtemplate";
 
         public const string ProfessionGroup = "new_professiongroup";
+        public const string EmployeeSkillsDetails = "new_employeeskillsdetails";
+        public const string EmployeeSkills = "new_employeeskills";
 
     }
 }

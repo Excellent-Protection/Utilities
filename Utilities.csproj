@@ -303,6 +303,7 @@
     <Compile Include="GlobalManagers\Labor\SettingsManager.cs" />
     <Compile Include="GlobalManagers\CRM\SmsManager.cs" />
     <Compile Include="GlobalManagers\MailManager.cs" />
+    <Compile Include="GlobalManagers\ProfileManager.cs" />
     <Compile Include="GlobalRepositories\CRM\CityRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ContactLocationRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ContactRepository.cs" />
@@ -323,6 +324,7 @@
     <Compile Include="GlobalViewModels\Custom\BoolWithString.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactDetailsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactMainSubPreviouseLocationsVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\ContactUsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\DashboardCounts.cs" />
     <Compile Include="GlobalViewModels\Custom\LocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\CityIdAndNameVm.cs" />

@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Utilities.GlobalManagers;
 using Utilities.GlobalManagers.CRM;
 using Utilities.GlobalManagers.Labor.Identity;
 using Utilities.GlobalViewModels.Custom;
@@ -35,6 +36,20 @@ namespace Utilities.Controller
             ApplicationUserManager _userMngr = new ApplicationUserManager(RequestUtility);
             var userData = _userMngr.GetUserProfileData(userId);
             return Response<UserProfileDataVm>(userData);
+        }
+
+
+        [HttpPost]
+        [Route("ContactUs")]
+        public HttpResponseMessage ContactUs(ContactUsVm model)
+        {
+            using (ProfileManager _mngr= new ProfileManager(RequestUtility))
+            {
+                var result = _mngr.ContactUs(model);
+                return Response<string>(result);
+            
+            
+            }
         }
 
     }
