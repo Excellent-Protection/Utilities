@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities.Defaults;
+using Utilities.GlobalManagers.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.GlobalViewModels.Custom;
 using Utilities.Helpers;
@@ -23,7 +25,13 @@ namespace Utilities.GlobalManagers
             try
             {
                 //get support email 
-                var supportEmail = ConfigurationManager.AppSettings["SupportEmail"].ToString();
+
+                string supportEmail = DefaultValues.SupportEmail;
+                var supportEmailSetting = new ExcSettingsManager(RequestUtility)[DefaultValues.SupportEmailSettingName];
+                if (supportEmailSetting != null)
+                {
+                    supportEmail = supportEmailSetting.ToString();
+                }
                 string CCEmail = "";
                 string subject = "User Want To Communicate";
                 string body = "<div style='direction:ltr;'>";

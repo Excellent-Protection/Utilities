@@ -60,6 +60,7 @@ namespace Utilities.Defaults
         public const string IncludInsuranceWithRenewSettingName = "IncludInsuranceWithRenew";
         public const string IsRenewAvailableSettingName = "IsRenewAvailable";
         public const string ProceduresReventRenewSettingname = "ProceduresReventRenew";
+        public const string SupportEmailSettingName = "SupportEmail";
 
 
 
@@ -92,6 +93,7 @@ namespace Utilities.Defaults
         public const bool IncludInsuranceWithRenew = false;
         public const bool IsRenewAvailable = false;
         public const string ProceduresReventRenew = "1,2,4";
+        public const string SupportEmail = "e.shahin@excp.sa";
 
 
 

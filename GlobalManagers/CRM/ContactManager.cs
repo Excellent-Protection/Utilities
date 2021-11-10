@@ -89,7 +89,7 @@ namespace Utilities.GlobalManagers.CRM
             {
                 using (var _globalRep = new GlobalCrmRepository())
                 {
-                    bool isCompleted = _globalRep.GetEmptyFieldsNamesForRecord(CrmEntityNamesMapping.Contact, "contactid", contactId, new[] { "new_gender", "new_idnumer", "new_contactcity", "new_contactnationality" }).Count() == 0;
+                    bool isCompleted = _globalRep.GetEmptyFieldsNamesForRecord(CrmEntityNamesMapping.Contact, "contactid", contactId, new[] { "new_gender", "new_idnumer",  "new_contactnationality" }).Count() == 0;
                     return isCompleted;
                 }
             }
