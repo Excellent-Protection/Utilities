@@ -32,6 +32,7 @@ namespace Utilities.GlobalRepositories.CRM
                 PrevLocationQuery.LinkEntities[1].EntityAlias = CrmEntityNamesMapping.District;
                 PrevLocationQuery.Criteria.AddCondition("new_latitude", ConditionOperator.NotNull);
                 PrevLocationQuery.Criteria.AddCondition("new_longitude", ConditionOperator.NotNull);
+               PrevLocationQuery.AddOrder("createdon", OrderType.Descending);
                 var _service = CRMService.Service;
                 var PrevLocResult = _service.RetrieveMultiple(PrevLocationQuery).Entities;
 
