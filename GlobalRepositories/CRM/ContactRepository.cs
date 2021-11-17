@@ -61,5 +61,12 @@ namespace Utilities.GlobalRepositories.CRM
 
             return contact;
         }
+
+       public Contact GetContactName (string contactId)
+        {
+            var _service = CRMService.Service;
+            var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new ColumnSet("fullname")).ToEntity<Contact>();
+            return contact;
+        }
     }
 }

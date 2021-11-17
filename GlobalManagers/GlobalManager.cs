@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Utilities.DataAccess.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.Helpers;
+using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers
 {
@@ -22,7 +23,7 @@ namespace Utilities.GlobalManagers
             var options = GetOptionSet(optionName, entityName);
             if (options != null)
                 return new ResponseVm<List<BaseOptionSetVM>> { Status = HttpStatusCodeEnum.Ok, Data = options };
-            return new ResponseVm<List<BaseOptionSetVM>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurred" };
+            return new ResponseVm<List<BaseOptionSetVM>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurrred", "Shared") };
         }
         public static Guid LoginSystemUserId()
         {

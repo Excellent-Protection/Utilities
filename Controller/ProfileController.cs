@@ -22,7 +22,7 @@ namespace Utilities.Controller
         [Route("DashboardData")]
         public HttpResponseMessage DashboardData(string contactId)
         {
-            using (DashboardManager _mngr = new DashboardManager())
+            using (DashboardManager _mngr = new DashboardManager(RequestUtility))
             {
                 var result = _mngr.DashboardCounts(contactId);
                 return Response<DashboardCounts>(result);

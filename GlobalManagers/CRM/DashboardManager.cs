@@ -16,8 +16,12 @@ using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.CRM
 {
-   public class DashboardManager: IDisposable
+   public class DashboardManager: BaseManager, IDisposable 
     {
+        public DashboardManager(RequestUtility  requestUtility) : base(requestUtility)
+        {
+                
+        }
 
         public ResponseVm<DashboardCounts> DashboardCounts(string contactId)
         {
@@ -45,7 +49,7 @@ namespace Utilities.GlobalManagers.CRM
                 // contact individual contracts 
                 QueryExpression indvQuery = new QueryExpression(CrmEntityNamesMapping.IndividualContract);
                 indvQuery.Criteria.AddCondition("new_contact", ConditionOperator.Equal, contactId);
-                indvQuery.ColumnSet = new ColumnSet("statuscode");
+                indvQuery.ColumnSet = new ColumnSet("statuscode", "new_serviceenddate");
                 var indvContracts = _service.RetrieveMultiple(indvQuery).Entities.Select(a => a.ToEntity<IndividualContract>()).ToList();
                 // contact hourly contracts 
                 QueryExpression hourlyQuery = new QueryExpression(CrmEntityNamesMapping.ServiceContractPerHour);
@@ -59,7 +63,14 @@ namespace Utilities.GlobalManagers.CRM
                 obj.CanceledContracts =
                     indvContracts.Where(a => a.StatusCode.Value == (int)IndividualContractStatus.Cancelled).ToList().Count()
                 + hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.Canceled).ToList().Count();
-                obj.AlmostOverContracts = indvContracts.Where(a => a.StatusCode.Value == (int)IndividualContractStatus.ActiveLaborDelivered /*&& (DateTime.Now - a.ServiceEndDate.Value) <=7 */).ToList().Count()
+                int defaultDays = DefaultValues.DaysBeforeEndContractToShowRenewBtn;
+                    var daysToRenew = new ExcSettingsManager(RequestUtility)[DefaultValues.DaysBeforeEndContractToShowRenewBtnSettingName];
+                    if (daysToRenew != null)
+                    {
+                        defaultDays = int.Parse(daysToRenew.ToString());
+                    }
+                
+                obj.AlmostOverContracts = indvContracts.Where(a => a.StatusCode.Value == (int)IndividualContractStatus.ActiveLaborDelivered &&a.ServiceEndDate.HasValue && (DateTime.Now - a.ServiceEndDate.Value).TotalDays <=defaultDays ).ToList().Count()
                    + hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.ConfirmedByFinance && a.RemainingVisit == 1).ToList().Count();
                 obj.CommingVisits = hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.ConfirmedByFinance).Select(a => new { remain = a.RemainingVisit != null ? a.RemainingVisit.Value / a.NoOfWorker.Value : 0 }).Select(a => a.remain).Sum();
                 return obj;

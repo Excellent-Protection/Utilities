@@ -261,6 +261,7 @@
     <Compile Include="Controller\ProfileController.cs" />
     <Compile Include="Controller\ResourceGroupController.cs" />
     <Compile Include="Controller\SavedContactLocationController.cs" />
+    <Compile Include="Controller\ShortenerUrlController.cs" />
     <Compile Include="Controller\StepDataController.cs" />
     <Compile Include="ConvertDocToPDF.cs" />
     <Compile Include="CurrencyInfo.cs" />
@@ -288,7 +289,6 @@
     <Compile Include="GlobalManagers\CRM\CityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactLocationManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactManager.cs" />
-    <Compile Include="GlobalManagers\CRM\ContactVm.cs" />
     <Compile Include="GlobalManagers\CRM\DashboardManager.cs" />
     <Compile Include="GlobalManagers\CRM\EmployeeManager.cs" />
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
@@ -304,6 +304,7 @@
     <Compile Include="GlobalManagers\CRM\SmsManager.cs" />
     <Compile Include="GlobalManagers\MailManager.cs" />
     <Compile Include="GlobalManagers\ProfileManager.cs" />
+    <Compile Include="GlobalManagers\UManager.cs" />
     <Compile Include="GlobalRepositories\CRM\CityRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ContactLocationRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ContactRepository.cs" />
@@ -395,6 +396,14 @@
     <Compile Include="Migrations\202110281149381_IsTestPayment.designer.cs">
       <DependentUpon>202110281149381_IsTestPayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111161401456_shortner.cs" />
+    <Compile Include="Migrations\202111161401456_shortner.designer.cs">
+      <DependentUpon>202111161401456_shortner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111161404127_shortners.cs" />
+    <Compile Include="Migrations\202111161404127_shortners.designer.cs">
+      <DependentUpon>202111161404127_shortners.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
     <Compile Include="Enums\UserLanguage.cs" />
@@ -471,6 +480,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110281149381_IsTestPayment.resx">
       <DependentUpon>202110281149381_IsTestPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111161401456_shortner.resx">
+      <DependentUpon>202111161401456_shortner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111161404127_shortners.resx">
+      <DependentUpon>202111161404127_shortners.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

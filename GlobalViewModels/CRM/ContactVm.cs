@@ -20,13 +20,13 @@ namespace Utilities.GlobalViewModels.CRM
         public string OtherMobilePhone { get; set; }
         public string JobTitle { get; set; }
         public string CityId { get; set; }
-        public string TempNationalityId { get; set; }
+        //public string TempNationalityId { get; set; }
         public string NationalityId { get; set; }
         public string NationalityName { get; set; }
         public string IdentificationNo { get; set; }
         public string RegionId { get; set; }
         public int? GenderId { get; set; }
-        public string GenderName { get; set; }
+        //public string GenderName { get; set; }
         public int? WorkSector { get; set; }
         public string WorkSectorName { get; set; }
         public int? PlatformSource { get; set; }
@@ -45,11 +45,11 @@ namespace Utilities.GlobalViewModels.CRM
         public List<CollectionVm> Collections { get; set; }
        // public List<LoyaltyPointsSourceVm> LoyaltyPointsSources { get; set; }
         //public List<CustomerLevelVm> CustomerLevels { get; set; }
-        public decimal? WalletAmount { get; set; }
-        public bool ShowLoyality { get; set; }
-        public bool ShowWallet { get; set; }
-        //public WalletValuesDataVm WalletData { get; set; }
-        public decimal ValidPoints { get; set; }
+        //public decimal? WalletAmount { get; set; }
+        //public bool ShowLoyality { get; set; }
+        //public bool ShowWallet { get; set; }
+        ////public WalletValuesDataVm WalletData { get; set; }
+        //public decimal ValidPoints { get; set; }
         //public string ValidPointsString
         //{
         //    get

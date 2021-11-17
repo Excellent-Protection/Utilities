@@ -56,6 +56,7 @@ namespace Utilities.Defaults
         public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthenticationAvailable";
         public const string DealingWithMainAddressName = "DealingWithMainAddress";
         public const string PackageProperties = "PackageProperties";
+        public const string RequestDetailsPackageProperties = "RequestDetailsPackageProperties";
         public const string DaysBeforeEndContractToShowRenewBtnSettingName = "DaysBeforeEndContractToShowRenewBtn";
         public const string IncludInsuranceWithRenewSettingName = "IncludInsuranceWithRenew";
         public const string IsRenewAvailableSettingName = "IsRenewAvailable";
@@ -94,6 +95,8 @@ namespace Utilities.Defaults
         public const bool IsRenewAvailable = false;
         public const string ProceduresReventRenew = "1,2,4";
         public const string SupportEmail = "e.shahin@excp.sa";
+        public const string IndividualSectorEnabled = "IndividualSectorEnabled";
+        public const string HourlySectorEnabled = "HourlySectorEnabled";
 
 
 

@@ -86,11 +86,35 @@ namespace Utilities.GlobalManagers.CRM
 
         }
         
-        public ExcSettingsVm GetSettingByNameAndSource(string key, int applyTo)
+        //public ExcSettingsVm GetSettingByNameAndSource(string key, int applyTo)
+        //{
+        //    try
+        //    {
+        //        var Setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && a.ApplyTo.Value== applyTo);
+        //        return Setting.Toclass<ExcSettingsVm>();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("key", key));
+        //        return null;
+        //    }
+
+        //}
+        public ExcSettingsVm GetSettingByNameAndSource(string key, RecordSource source)
         {
             try
             {
-                var Setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && a.ApplyTo.Value== applyTo);
+                int applyTo = 0;
+                switch (source)
+                {
+                    case RecordSource.Web:
+                        applyTo = (int)ApplyToOrDisplayFor.Web;
+                        break;
+                    case RecordSource.Mobile:
+                        applyTo = (int)ApplyToOrDisplayFor.Mobile;
+                        break;
+                }
+                var Setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && a.ApplyTo.Value == applyTo);
                 return Setting.Toclass<ExcSettingsVm>();
             }
             catch (Exception ex)
@@ -100,6 +124,7 @@ namespace Utilities.GlobalManagers.CRM
             }
 
         }
+
         public Dictionary<string, string> this[List<string> keys]
         {
             get

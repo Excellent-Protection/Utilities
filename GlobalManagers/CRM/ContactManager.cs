@@ -167,7 +167,20 @@ namespace Utilities.GlobalManagers.CRM
             }
             return false;
         }
+        public string GetContactNationality(string contactId)
+        {
+            try
+            {
+                var nationalityId = _repo.GetContactNationality(contactId).NationalityId.Id.ToString();
+                return nationalityId;
+            }
+            catch(Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
+            }
+            return null;
+        }
 
 
 
@@ -185,19 +198,36 @@ namespace Utilities.GlobalManagers.CRM
             return null;
         }
 
-        public bool isSaudi(string contactId)
+
+
+        public string GetContacIdtByPhone(string mobilePhone)
         {
             try
             {
-                var nationalityId = _repo.GetContactNationality(contactId).NationalityId.Id.ToString();
-                return nationalityId == DefaultValues.SaudiNationalityId ? true : false;
+                var contactId = _repo.GetContactByPhone(mobilePhone).Id;
+                return contactId.ToString();
             }
             catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("MobilePhone", mobilePhone));
+            }
+            return null;
+        }
+
+
+        public string GetContactName(string contactId)
+        {
+            try
+            {
+                var contactName = _repo.GetContactName(contactId).FullName;
+                return contactName;
+            }
+            catch(Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
             }
-            return false;
+            return null;
         }
 
     }
