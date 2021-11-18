@@ -43,10 +43,13 @@ namespace Utilities.GlobalManagers.CRM
                         return settingboolean 
                         ;
                     }
-                    Parse = decimal.TryParse(result.Value, out decimal settinginteger);
-                    if (Parse)
+                    if (result.Type != ExcSettingsType.String)
                     {
-                        return  settinginteger;
+                        Parse = decimal.TryParse(result.Value, out decimal settinginteger);
+                        if (Parse)
+                        {
+                            return settinginteger;
+                        }
                     }
                     return  result.Value;
                 }                

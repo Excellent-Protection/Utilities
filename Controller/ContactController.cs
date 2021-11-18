@@ -13,6 +13,7 @@ using Utilities.GlobalManagers.Labor;
 using Utilities.GlobalViewModels;
 using Utilities.GlobalViewModels.Custom;
 using Utilities.Helpers;
+using Westwind.Globalization;
 
 namespace Utilities.Controller
 {
@@ -76,7 +77,7 @@ namespace Utilities.Controller
                 }
                 var validateIdNo = _mngr.IsIdentiefierExist(contact.ContactId, contact.IdNumber);
                 if(validateIdNo)
-                    return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message="Id Number  Exists Before" });
+                    return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message=DbRes.T("IdNumberExistsBefore", "ProfileResources") });
 
                 var result = _mngr.CompleteProfile(contact);
                 if (result)
