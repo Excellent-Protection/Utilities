@@ -55,14 +55,15 @@ namespace Utilities.Defaults
         public const string SelectNationalitiesFromPackagesName = "SelectNationalitiesFromPackages";
         public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthenticationAvailable";
         public const string DealingWithMainAddressName = "DealingWithMainAddress";
-        public const string PackageProperties = "PackageProperties";
-        public const string RequestDetailsPackageProperties = "RequestDetailsPackageProperties";
+        public const string PackagePropertiesSettingName = "PackageProperties";
+        public const string RequestDetailsPackagePropertiesSettingName = "RequestDetailsPackageProperties";
         public const string DaysBeforeEndContractToShowRenewBtnSettingName = "DaysBeforeEndContractToShowRenewBtn";
         public const string IncludInsuranceWithRenewSettingName = "IncludInsuranceWithRenew";
         public const string IsRenewAvailableSettingName = "IsRenewAvailable";
         public const string ProceduresReventRenewSettingname = "ProceduresReventRenew";
         public const string SupportEmailSettingName = "SupportEmail";
-
+        public const string IndividualSectorEnabledSettingName = "IndividualSectorEnabled";
+        public const string HourlySectorEnabledSettingName = "HourlySectorEnabled";
 
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
@@ -93,10 +94,13 @@ namespace Utilities.Defaults
         public const int DaysBeforeEndContractToShowRenewBtn = 7;
         public const bool IncludInsuranceWithRenew = false;
         public const bool IsRenewAvailable = false;
+        public const bool IndividualSectorEnabled = false;
+        public const bool HourlySectorEnabled = false;
         public const string ProceduresReventRenew = "1,2,4";
         public const string SupportEmail = "e.shahin@excp.sa";
-        public const string IndividualSectorEnabled = "IndividualSectorEnabled";
-        public const string HourlySectorEnabled = "HourlySectorEnabled";
+
+        public const string PackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
+        public const string RequestDetailsPackageProperties = "{'packageDisplayName': {'type': 'string'},'finalPriceToPay': {'type': 'currency'},'discount': {'type': 'currency'},'packagePriceAfterDiscount': {'type': 'currency'},'activationAmount':{'type': 'currency'},'advancedAmount': {'type': 'currency'},'vatAmountOfFinalPrice': {'type': 'currency'},'packagePrice': {'type': 'currency'   },'professionGroupName':{'type': 'string'},'amountInsurance': {'type': 'currency'}}";
 
 
 
