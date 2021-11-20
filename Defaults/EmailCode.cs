@@ -8,6 +8,8 @@ namespace Utilities.Defaults
 {
     public static class EmailCode
     {
-        public const string ActivationCodeInEtanmia = "ActivationCodeInEtanmia";
+        public const string ActivationCode = "ActivationCode";
+        public const string SignInCode = "SignInCode";
+        public const string ResetPasswordCode = "ResetPasswordCode";
     }
 }
