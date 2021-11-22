@@ -95,6 +95,8 @@ namespace Utilities.Defaults
         public const string EmployeeSkillsDetails = "new_employeeskillsdetails";
         public const string EmployeeSkills = "new_employeeskills";
         public const string Skill = "new_skill";
+        public const string ResourceGroupNationality = "new_resourcegroupnationalities";
+
 
     }
 }

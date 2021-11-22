@@ -64,6 +64,7 @@ namespace Utilities.Defaults
         public const string SupportEmailSettingName = "SupportEmail";
         public const string IndividualSectorEnabledSettingName = "IndividualSectorEnabled";
         public const string HourlySectorEnabledSettingName = "HourlySectorEnabled";
+        public const string IndividualRequestDocumentCodeSettingName = "IndividualRequestDocumentCode";
 
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
@@ -98,6 +99,7 @@ namespace Utilities.Defaults
         public const bool HourlySectorEnabled = false;
         public const string ProceduresReventRenew = "1,2,4";
         public const string SupportEmail = "e.shahin@excp.sa";
+        public const string IndividualRequestDocumentCode = "SD-11111";
 
         public const string PackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
         public const string RequestDetailsPackageProperties = "{'packageDisplayName': {'type': 'string'},'finalPriceToPay': {'type': 'currency'},'discount': {'type': 'currency'},'packagePriceAfterDiscount': {'type': 'currency'},'activationAmount':{'type': 'currency'},'advancedAmount': {'type': 'currency'},'vatAmountOfFinalPrice': {'type': 'currency'},'packagePrice': {'type': 'currency'   },'professionGroupName':{'type': 'string'},'amountInsurance': {'type': 'currency'}}";

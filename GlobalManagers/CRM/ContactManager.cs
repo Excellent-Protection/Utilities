@@ -171,8 +171,10 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var nationalityId = _repo.GetContactNationality(contactId).NationalityId.Id.ToString();
-                return nationalityId;
+                var   contactData = _repo.GetContactNationality(contactId);
+                if(contactData!=null && contactData.NationalityId!=null)    
+                return contactData.NationalityId.Id.ToString();
+                return null;
             }
             catch(Exception ex)
             {

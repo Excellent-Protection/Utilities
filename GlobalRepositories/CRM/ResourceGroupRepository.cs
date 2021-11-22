@@ -60,7 +60,9 @@ namespace Utilities.GlobalRepositories.CRM
             {
                 var _service = CRMService.Service;
                 var query = new QueryExpression(CrmEntityNamesMapping.Nationality);
-                query.Criteria.AddCondition("new_resourcegroup", ConditionOperator.Equal, resourceGropId);
+                query.AddLink(CrmEntityNamesMapping.ResourceGroupNationality, "new_countryid" ,"new_nationality");
+                query.LinkEntities[0].LinkCriteria.AddCondition("new_resourcegroup", ConditionOperator.Equal, resourceGropId);
+                query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
                 return _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
             }
             catch (Exception ex)
