@@ -70,6 +70,17 @@ namespace Utilities.Enums
         HO = 3
     }
 
+    public enum CustomerTicketStatus
+    {
+        PendingService = 100000000,
+        SendtoCSforclose = 100000012,
+        Servicehadstopped = 100000008,
+        Servicehaddonesuccessfully = 100000009,
+        SendToResponsable = 100000010,
+        Rejected = 100000013,
+        SendtoCallCenterSupervisor = 100000014
+    }
+
     public enum Who
     {
         CRM = 1,
