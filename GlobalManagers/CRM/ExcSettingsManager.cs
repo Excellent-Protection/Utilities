@@ -107,18 +107,19 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                int applyTo = 0;
+                ExcSettings settings = null;
                 switch (source)
                 {
                     case RecordSource.Web:
-                        applyTo = (int)ApplyToOrDisplayFor.Web;
+                         settings = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && ( a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Web || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile));
+
                         break;
                     case RecordSource.Mobile:
-                        applyTo = (int)ApplyToOrDisplayFor.Mobile;
+                        settings = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Mobile || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile));
+
                         break;
                 }
-                var Setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && a.ApplyTo.Value == applyTo);
-                return Setting.Toclass<ExcSettingsVm>();
+                return settings.Toclass<ExcSettingsVm>();
             }
             catch (Exception ex)
             {
