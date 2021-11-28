@@ -21,7 +21,7 @@ namespace Utilities.GlobalViewModels.Custom
         public int? Type { get; set; }
         public string CityName { get; set; }
         public string DistrictName { get; set; }
-        public int FloorNo { get; set; }
+        public int? FloorNo { get; set; }
 
         public bool AvailableForHourly { get; set; }
         public bool AvailableForIndividual { get; set; }
