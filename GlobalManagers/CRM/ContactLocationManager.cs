@@ -123,7 +123,7 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     UpdateContactLocationsToBeSub(LocationVm.ContactId, oldMainLocationId);
                 }
-                return new ResponseVm<string> { Status= HttpStatusCodeEnum.Ok , Data=DbRes.T("LocationSavedSuccessfully","Shareds")};
+                return new ResponseVm<string> { Status= HttpStatusCodeEnum.Ok , Data=DbRes.T("LocationSavedSuccessfully","Shared")};
             }
             catch (Exception ex)
             {
