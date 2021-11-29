@@ -6,11 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilities.DataAccess.Labor;
 using Utilities.GlobalManagers.CRM;
+using Utilities.Helpers;
 
 namespace Utilities.GlobalManagers
 {
-   public class UManager :IDisposable
+   public class UManager : BaseManager, IDisposable 
     {
+        public UManager(RequestUtility requestUtility):base(requestUtility)
+        {
+
+        }
         public UrlShortener GetLongUrl(string token)
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
@@ -38,7 +43,7 @@ namespace Utilities.GlobalManagers
                 {
                     var OnlinePortalUrl = new ExcSettingsManager(new RequestUtility())["OnlinePortalUrl"].ToString();
                     string token = GetAlphanumericID(7);
-                    string shortUrl = OnlinePortalUrl + "/ShortenerUrlController/" + token;
+                    string shortUrl = OnlinePortalUrl +RequestUtility.Language + "/api/Index/" + token;
                     var result = unitOfWork.Repository<UrlShortener>().Add(new UrlShortener()
                     {
                         ShortUrl = shortUrl.ToLower(),

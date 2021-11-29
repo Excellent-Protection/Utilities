@@ -20,7 +20,7 @@ namespace Utilities.Controller
         {
             try
             {
-                using (var _mngr = new UManager())
+                using (var _mngr = new UManager(RequestUtility))
                 {
                     var record = _mngr.GetLongUrl(id);
                     if (record != null)
