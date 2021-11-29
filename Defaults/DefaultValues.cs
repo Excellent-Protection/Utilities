@@ -53,7 +53,7 @@ namespace Utilities.Defaults
         public const string PostPondVisitsFromOffsetSettingName = "PostPondVisitFromOffSet";
         public const string SelectProfessionsFromPackagesName = "SelectProfessionsFromPackages";
         public const string SelectNationalitiesFromPackagesName = "SelectNationalitiesFromPackages";
-        public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthenticationAvailable";
+        public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthAvailable";
         public const string DealingWithMainAddressName = "DealingWithMainAddress";
         public const string PackagePropertiesSettingName = "PackageProperties";
         public const string RenewPackagePropertiesSettingName = "RenewPackageProperties";
