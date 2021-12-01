@@ -43,7 +43,7 @@ namespace Utilities.GlobalManagers
                 {
                     var OnlinePortalUrl = new ExcSettingsManager(new RequestUtility())["OnlinePortalUrl"].ToString();
                     string token = GetAlphanumericID(7);
-                    string shortUrl = OnlinePortalUrl +RequestUtility.Language + "/api/Index/" + token;
+                    string shortUrl = OnlinePortalUrl+"/"+RequestUtility.RouteLanguage + "/api/Index/" + token;
                     var result = unitOfWork.Repository<UrlShortener>().Add(new UrlShortener()
                     {
                         ShortUrl = shortUrl.ToLower(),

@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Net;
@@ -27,8 +28,8 @@ namespace Utilities.GlobalManagers
         {
             try
             {
-                string CurrentCSEmail = "e.shahin@excp.sa";
-                string CurrentCSPassword = "pass.123";
+                string CurrentCSEmail =ConfigurationManager.AppSettings["CSEmail"];
+                string CurrentCSPassword = ConfigurationManager.AppSettings["CSPassword"];
                 string exchangeDomain = "smtp.office365.com";
                 string SMTPServer = "smtp.office365.com";
 
