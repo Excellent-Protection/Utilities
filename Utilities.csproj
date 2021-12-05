@@ -295,6 +295,7 @@
     <Compile Include="GlobalManagers\CRM\ProfessionGroupsManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionManager.cs" />
     <Compile Include="GlobalManagers\CRM\ResourceGroupManager.cs" />
+    <Compile Include="GlobalManagers\CRM\SkillManager.cs" />
     <Compile Include="GlobalManagers\GlobalManager.cs" />
     <Compile Include="GlobalManagers\Labor\DynamicStepsManager.cs" />
     <Compile Include="GlobalManagers\Labor\Identity\ApplicationUserManager.cs" />
@@ -313,6 +314,7 @@
     <Compile Include="GlobalRepositories\CRM\NationalityRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ProfessionGroupsRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ResourceGroupRepository.cs" />
+    <Compile Include="GlobalRepositories\CRM\SkillRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\DynamicStepsRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\StepRepository.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
@@ -327,6 +329,7 @@
     <Compile Include="GlobalViewModels\Custom\ContactMainSubPreviouseLocationsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactUsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\DashboardCounts.cs" />
+    <Compile Include="GlobalViewModels\Custom\EmployeeSkillsDetailVM.cs" />
     <Compile Include="GlobalViewModels\Custom\LocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\CityIdAndNameVm.cs" />
     <Compile Include="GlobalViewModels\Custom\DistrictQuickLookupVm.cs" />
