@@ -88,7 +88,7 @@ namespace Utilities.Defaults
 
         public const bool SelectProfessionsFromPackages = true;
         public const bool SelectNationalitiesFromPackages = true;
-        public const bool IsTwoFactorAuthenticationAvailable = true;
+        public const bool IsTwoFactorAuthenticationAvailable = false;
         public const bool IsDeliveryEmployeeAvailableSetting = false;
         public const bool IsSelectEmployeeFromHouseBuildingAvailableSetting = false;
         public const bool  DealingWithMainAddress = false;
@@ -106,7 +106,7 @@ namespace Utilities.Defaults
         public const string PackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
         public const string RequestDetailsPackageProperties = "{'packageDisplayName': {'type': 'string'},'finalPriceToPay': {'type': 'currency'},'discount': {'type': 'currency'},'packagePriceAfterDiscount': {'type': 'currency'},'activationAmount':{'type': 'currency'},'advancedAmount': {'type': 'currency'},'vatAmountOfFinalPrice': {'type': 'currency'},'packagePrice': {'type': 'currency'   },'professionGroupName':{'type': 'string'},'amountInsurance': {'type': 'currency'}}";
         public const string RenewPackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
-        public const int RenewOptionValue = 1;//same contract
+        public const int RenewOptionValue = 2;//new contract
 
 
 
