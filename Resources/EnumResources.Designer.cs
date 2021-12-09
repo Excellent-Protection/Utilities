@@ -61,6 +61,24 @@ namespace Utilities.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Christian.
+        /// </summary>
+        public static string Christian {
+            get {
+                return ResourceManager.GetString("Christian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Christian.
+        /// </summary>
+        public static string ChristianFemale {
+            get {
+                return ResourceManager.GetString("ChristianFemale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Divorcee.
         /// </summary>
         public static string Divorcee {
