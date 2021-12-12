@@ -110,13 +110,13 @@ namespace Utilities.GlobalRepositories.CRM
                 PrevLocationQuery.Criteria.AddCondition("new_floornumber", ConditionOperator.Equal, location.FloorNo);
             }
 
-            if (location.ApartmentNo != null)
+            if (!string.IsNullOrEmpty(location.ApartmentNo))
             {
-                PrevLocationQuery.Criteria.AddCondition("new_apartmentnumber", ConditionOperator.Equal, location.ApartmentNo.ToString());
+                PrevLocationQuery.Criteria.AddCondition("new_apartmentnumber", ConditionOperator.Equal, location.ApartmentNo);
             }
-            if (location.HouseNo != null)
+            if (!string.IsNullOrEmpty(location.HouseNo))
             {
-                PrevLocationQuery.Criteria.AddCondition("new_housenumber", ConditionOperator.Equal, location.HouseNo.ToString());
+                PrevLocationQuery.Criteria.AddCondition("new_housenumber", ConditionOperator.Equal, location.HouseNo);
             }
             PrevLocationQuery.Criteria.AddCondition("new_type", ConditionOperator.Equal, location.Type.Value);
             var res= _service.RetrieveMultiple(PrevLocationQuery).Entities.Count() > 0;
