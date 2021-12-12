@@ -156,7 +156,8 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var nationalityId = _repo.GetContactNationality(contactId).NationalityId.Id.ToString();
+                var contactNationality = _repo.GetContactNationality(contactId);
+                    var nationalityId=contactNationality.NationalityId!=null ?contactNationality.NationalityId.Id.ToString(): null;
                 return nationalityId == DefaultValues.SaudiNationalityId ? true : false;
             }
             catch (Exception ex)

@@ -97,10 +97,8 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-
                 ContactPreviousLocation Location = LocationVm.ToCrmEntity<ContactPreviousLocation, ContactLocationVm>();
                var isExist=   _repo.isAlreadyExist(LocationVm);
-
                 if (isExist)
                 {
                     return new ResponseVm<string> { Status = HttpStatusCodeEnum.NotAllowed, Message = DbRes.T("LocationAddedBefore", "Shared") };
@@ -111,8 +109,6 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     // get old main location id to update it 
                     oldMainLocationId = _repo.GetContactMainLocation(LocationVm.ContactId)?.Id.ToString();
-                    //update contact address to main address data 
-                    UpdateContactAddressData(LocationVm);
                 }
                 var _service = CRMService.Service;
 
@@ -123,7 +119,12 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     UpdateContactLocationsToBeSub(LocationVm.ContactId, oldMainLocationId);
                 }
-                return new ResponseVm<string> { Status= HttpStatusCodeEnum.Ok , Data=DbRes.T("LocationSavedSuccessfully","Shared")};
+                if(LocationVm.LocationId!=null && LocationVm.Type == (int)ContactLocationType.Main)
+                {
+                    //update contact address to main address data 
+                    UpdateContactAddressData(LocationVm);
+                }
+                return new ResponseVm<string> { Status= HttpStatusCodeEnum.Ok , Data=LocationVm.LocationId};
             }
             catch (Exception ex)
             {
