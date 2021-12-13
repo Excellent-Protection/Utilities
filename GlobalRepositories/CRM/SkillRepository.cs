@@ -35,7 +35,7 @@ namespace Utilities.GlobalRepositories.CRM
             QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Skill);
             query.ColumnSet = new ColumnSet("new_name", "new_skillarabicname", "new_icon");
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
-            query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
+            query.Criteria.AddCondition("new_professiongroupidid", ConditionOperator.Equal, professionGroupId);
 
             var _service = CRMService.Service;
             var data = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Skill>()).ToList();
