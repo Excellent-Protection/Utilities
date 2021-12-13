@@ -30,13 +30,15 @@ namespace Utilities.GlobalRepositories.CRM
                 return data;
 
         }
-        public List<Skill> GetSkillsForFilter()
+        public List<Skill> GetSkillsForFilter(string professionGroupId)
         {
-              QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Skill);
-                query.ColumnSet = new ColumnSet("new_name", "new_skillarabicname", "new_icon");
-                query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
-                var _service = CRMService.Service;
-                var data = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Skill>()).ToList();
+            QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Skill);
+            query.ColumnSet = new ColumnSet("new_name", "new_skillarabicname", "new_icon");
+            query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+            query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
+
+            var _service = CRMService.Service;
+            var data = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Skill>()).ToList();
                 return data;
 
 

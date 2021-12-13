@@ -43,13 +43,15 @@ namespace Utilities.GlobalManagers.CRM
             }
             return null;
         }
+     
 
-        public ResponseVm<List<BaseQuickLookupVm>> GetSkillsForFilter()
+
+        public ResponseVm<List<BaseQuickLookupVm>> GetSkillsForFilter(string professionGroupId)
         {
             try
             {
                 
-                var data =_repo.GetSkillsForFilter().ToModelListData<BaseQuickLookupVm>().ToList();
+                var data =_repo.GetSkillsForFilter(professionGroupId).ToModelListData<BaseQuickLookupVm>().ToList();
                return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data = data };
 
 
