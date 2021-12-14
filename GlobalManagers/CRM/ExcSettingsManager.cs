@@ -57,25 +57,22 @@ namespace Utilities.GlobalManagers.CRM
                 }
             }
         }
-        public T GetSettingValueByName<T>(string setingName, T DefaultValue)
+        public T GetSettingValueByName<T>(string settingName, T DefaultValue)
         {
             try
             {
                 var result = GetSettingByName(setingName);
                 if (result != null && !string.IsNullOrEmpty(result.Value))
                 {
-              var tt= (T)Convert.ChangeType(result.Value, typeof(T)); ;
                     return (T)Convert.ChangeType(result.Value, typeof(T));
-
-                   
-
                 }
                 return DefaultValue;
             }
 
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 return DefaultValue;
-            } 
+            }
         }
 
 
