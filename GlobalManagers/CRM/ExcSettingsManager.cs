@@ -61,7 +61,7 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var result = GetSettingByName(setingName);
+                var result = GetSettingByName(settingName);
                 if (result != null && !string.IsNullOrEmpty(result.Value))
                 {
                     return (T)Convert.ChangeType(result.Value, typeof(T));
