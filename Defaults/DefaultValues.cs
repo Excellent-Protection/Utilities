@@ -67,6 +67,7 @@ namespace Utilities.Defaults
         public const string HourlySectorEnabledSettingName = "HourlySectorEnabled";
         public const string IndividualRequestDocumentCodeSettingName = "IndividualRequestDocumentCode";
         public const string RenewOptionSettingName = "RenewOption";
+        public const string PaymentAvailableSettingName = "IsPaymentAvailable";
 
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
@@ -115,8 +116,9 @@ namespace Utilities.Defaults
         public const string SuccessErrorMessageResource = "SuccessErrorMessageResource";
         public const string ShowCustomerWalletSettingName = "ShowCustomerWallet";
         public const bool ShowCustomerWalletSetting = false;
+        public const bool IsPaymentAvailable = false;
 
-    
+
         public const bool TamayousSystemAvailable = false;
         public const string ShowTamayousSetting = "TamayousPayment";
 

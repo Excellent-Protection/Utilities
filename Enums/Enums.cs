@@ -841,4 +841,9 @@ namespace Utilities.Enums
         PaymentIsPendingConfirmation = 100000008,
         ConfirmedAndPaymentWasMade = 100000002
     }
+
+    public enum PricingType
+    {
+        Weekly = 11111
+    }
 }

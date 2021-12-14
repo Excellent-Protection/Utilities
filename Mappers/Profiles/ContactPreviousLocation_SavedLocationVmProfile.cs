@@ -29,6 +29,7 @@ namespace Utilities.Mappers.Profiles
             .ForMember(a => a.Latitude, o => o.MapFrom(s =>!string.IsNullOrEmpty( s.Latitude)? s.Latitude : null))
             .ForMember(a => a.Longitude, o => o.MapFrom(s =>!string.IsNullOrEmpty( s.Longitude) ? s.Longitude :null))
             .ForMember(a => a.ApartmentNumber, o => o.MapFrom(s => s.ApartmentNumber))
+            .ForMember(a => a.HouseNumber, o => o.MapFrom(s => s.HouseNumber))
             .ForMember(a => a.HouseType, o => o.ResolveUsing(new FromOptionSetToInt(), s => s.HouseType))
             .ForMember(a => a.Type, o => o.ResolveUsing(new FromOptionSetToInt(), s => s.Type))
             .ForMember(a => a.AvailableForIndividual, o => o.MapFrom(s => s.Attributes.Contains("new_city.new_forindividual") ? ((AliasedValue)s.Attributes["new_city.new_forindividual"]).Value : s.City.Name))

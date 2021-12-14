@@ -15,8 +15,8 @@ namespace Utilities.GlobalViewModels.Custom
             get; set;
                 }
         public int? HouseType { get; set; }
-        public int ApartmentNumber { get; set; }
-        public int HouseNumber { get; set; }
+        public string ApartmentNumber { get; set; }
+        public string HouseNumber { get; set; }
         public string  CityId { get; set; }
         public int? Type { get; set; }
         public string CityName { get; set; }
