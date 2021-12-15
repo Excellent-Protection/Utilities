@@ -7,14 +7,14 @@
     {
         public override void Up()
         {
-            DropIndex("dbo.UrlShorteners", new[] { "ShortUr" });
-            AddColumn("dbo.UrlShorteners", "ShortUrl", c => c.String(maxLength: 100));
-            AddColumn("dbo.UrlShorteners", "LongUrl", c => c.String());
-            AddColumn("dbo.UrlShorteners", "NoOfVisits", c => c.Int(nullable: false));
-            CreateIndex("dbo.UrlShorteners", "ShortUrl", unique: true);
-            DropColumn("dbo.UrlShorteners", "ShortUr");
-            DropColumn("dbo.UrlShorteners", "LongUr");
-            DropColumn("dbo.UrlShorteners", "NoOfVisit");
+            //DropIndex("dbo.UrlShorteners", new[] { "ShortUr" });
+            //AddColumn("dbo.UrlShorteners", "ShortUrl", c => c.String(maxLength: 100));
+            //AddColumn("dbo.UrlShorteners", "LongUrl", c => c.String());
+            //AddColumn("dbo.UrlShorteners", "NoOfVisits", c => c.Int(nullable: false));
+            //CreateIndex("dbo.UrlShorteners", "ShortUrl", unique: true);
+            //DropColumn("dbo.UrlShorteners", "ShortUr");
+            //DropColumn("dbo.UrlShorteners", "LongUr");
+            //DropColumn("dbo.UrlShorteners", "NoOfVisit");
         }
         
         public override void Down()
