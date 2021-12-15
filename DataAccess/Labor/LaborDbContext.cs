@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Utilities.DataAccess.Configuration.Identity;
 
 namespace Utilities.DataAccess.Labor
 { 
@@ -55,11 +56,22 @@ namespace Utilities.DataAccess.Labor
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Configurations.Add(new ApplicationPageConfiguration());
-            //modelBuilder.Configurations.Add(new ApplicationRoleConfiguration());
-            //modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
-            //modelBuilder.Configurations.Add(new DeviceConfiguration());
-            //modelBuilder.Configurations.Add(new SettingConfiguration());
+
+            modelBuilder.Configurations.Add(new ApplicationPageConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationRoleConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
+            modelBuilder.Configurations.Add(new DeviceConfiguration());
+            modelBuilder.Configurations.Add(new SettingConfiguration());
+            modelBuilder.Configurations.Add(new PaymentTransactionConfiguration());
+            modelBuilder.Configurations.Add(new PaymentMethodConfiguration());
+            modelBuilder.Configurations.Add(new BranchConfiguration());
+            modelBuilder.Configurations.Add(new RecieptVoucherConfiguration());
+            modelBuilder.Configurations.Add(new StepDataConfiguration());
+            modelBuilder.Configurations.Add(new TamayouzIntegratedDiscountConfiguration());
+            modelBuilder.Configurations.Add(new DbSqlQueryConfiguration());
+            modelBuilder.Configurations.Add(new DynamicTemplateConfiguration());
+            modelBuilder.Configurations.Add(new UrlShortenerConfiguration());
+            modelBuilder.Configurations.Add(new UserNotificationConfiguration());
             base.OnModelCreating(modelBuilder);
         }
         public override int SaveChanges()
