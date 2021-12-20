@@ -30,8 +30,8 @@ namespace Utilities.Controller
 
 
         [HttpGet]
-        [Route("ActiveCities")]
-        public HttpResponseMessage GetActiveCities(string serviceId)
+        [Route("HourlyActiveCities")]
+        public HttpResponseMessage GetHourlyActiveCities(string serviceId)
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
@@ -39,6 +39,20 @@ namespace Utilities.Controller
                 return Response<List<BaseQuickLookupVm>>(result);
             }
         }
+
+
+        [HttpGet]
+        [Route("IndividualActiveCities")]
+        public HttpResponseMessage GetIndividualActiveCities()
+        {
+            using (CityManager _mngr = new CityManager(RequestUtility))
+            {
+                var result = _mngr.GetActiveCities();
+                return Response<List<BaseQuickLookupVm>>(result);
+            }
+        }
+
+
         [HttpGet]
         [Route("CityDistricts")]
         public HttpResponseMessage GetCityDistricts(string cityId)

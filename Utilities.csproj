@@ -313,7 +313,6 @@
     <Compile Include="GlobalRepositories\CRM\ContactRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\EmployeeRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\GlobalCrmRepository.cs" />
-    <Compile Include="GlobalRepositories\CRM\HourlyContractRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\NationalityRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ProfessionGroupsRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ResourceGroupRepository.cs" />

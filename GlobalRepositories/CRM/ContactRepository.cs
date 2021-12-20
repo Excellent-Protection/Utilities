@@ -70,8 +70,10 @@ namespace Utilities.GlobalRepositories.CRM
         }
 
         public bool? IsBlocked(string id)
-        {
-            var contact = GetContactDetails(id);
+        {          
+            var _service = CRMService.Service;
+            var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(id), new ColumnSet("new_blacklist")).ToEntity<Contact>();
+
             return contact == null ? false : contact.IsBlocked;
 
         }
