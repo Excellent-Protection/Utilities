@@ -63,6 +63,8 @@ namespace Utilities.Controller
                 return Response<List<BaseQuickLookupVm>>(result);
             }
         }
+
+
         [HttpGet]
         [Route("GetPolygonPath")]
         public HttpResponseMessage GetPolygonPath(string districtId)

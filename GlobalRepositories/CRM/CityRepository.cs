@@ -42,12 +42,7 @@ namespace Utilities.GlobalRepositories.CRM
 
         }
 
-        // GetHourlyCities .. service 
-
-
-        // GetCitiesAvailableForHourly   .. Is Dala = true 
-        // Get ALl Active Cities ,,, old 
-        //Get ServiceCities .. join
+     
 
         public List<City> GetALlActiveCities()
         {
@@ -55,13 +50,13 @@ namespace Utilities.GlobalRepositories.CRM
 
             var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
             CityQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active city
-            CityQuery.ColumnSet = new ColumnSet(true);
-
+           
             var OrFilter = new FilterExpression(LogicalOperator.Or);
             OrFilter.AddCondition("new_availablefor", ConditionOperator.In, 1, 3);   //1 show for all   ,3 mobile and web
             OrFilter.AddCondition("new_availablefor", ConditionOperator.Null);
 
             CityQuery.Criteria.AddFilter(OrFilter);
+            CityQuery.ColumnSet = new ColumnSet("new_citiesid", "new_name", "new_englsihname");
 
             var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
             return result;
@@ -82,7 +77,7 @@ namespace Utilities.GlobalRepositories.CRM
             OrFilter.AddCondition("new_availablefor", ConditionOperator.Null);
 
             CityQuery.Criteria.AddFilter(OrFilter);
-            CityQuery.ColumnSet = new ColumnSet("new_citiesid", "new_name");
+            CityQuery.ColumnSet = new ColumnSet("new_citiesid", "new_name", "new_englsihname");
 
             var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
             return result;
@@ -107,7 +102,7 @@ namespace Utilities.GlobalRepositories.CRM
             CityQuery.Criteria.AddFilter(AndFilter);
 
 
-            CityQuery.ColumnSet = new ColumnSet("new_citiesid", "new_name");
+            CityQuery.ColumnSet = new ColumnSet("new_citiesid", "new_name", "new_englsihname");
 
             var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
             return result;
@@ -153,7 +148,7 @@ namespace Utilities.GlobalRepositories.CRM
                 query.LinkEntities[0].LinkCriteria.AddCondition("new_service", ConditionOperator.Equal, serviceId);
             }
                 
-            query.ColumnSet = new ColumnSet("new_englishname", "new_name", "new_districtid");
+            query.ColumnSet = new ColumnSet( "new_name", "new_districtid");
 
             return _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<District>()).Distinct().ToList();
         }

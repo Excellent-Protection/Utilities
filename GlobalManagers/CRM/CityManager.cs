@@ -49,7 +49,7 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 var cities =new List<BaseQuickLookupVm>();
-                if (serviceId == null)
+                if (serviceId == "")
                     cities = _repo.GetALlActiveCities().ToModelListData<BaseQuickLookupVm>().ToList();
                 else
                     cities = _repo.GetHourlyCities(serviceId).ToModelListData<BaseQuickLookupVm>().ToList();
