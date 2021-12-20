@@ -861,4 +861,10 @@ namespace Utilities.Enums
 
     }
 
+    public enum DisplayDistrictForService
+    {
+        All = 1,
+        OnlyServiceDistricts = 2,
+    }
+
 }

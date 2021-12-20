@@ -55,11 +55,11 @@ namespace Utilities.Controller
 
         [HttpGet]
         [Route("CityDistricts")]
-        public HttpResponseMessage GetCityDistricts(string cityId)
+        public HttpResponseMessage GetCityDistricts(string cityId, string serviceId)
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
-                var result = _mngr.GetCityDistricts(cityId);
+                var result = _mngr.GetCityDistricts(cityId, serviceId);
                 return Response<List<BaseQuickLookupVm>>(result);
             }
         }

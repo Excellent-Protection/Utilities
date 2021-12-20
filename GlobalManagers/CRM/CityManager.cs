@@ -63,11 +63,11 @@ namespace Utilities.GlobalManagers.CRM
             }
         }
 
-        public ResponseVm<List<BaseQuickLookupVm>> GetCityDistricts(string cityId)
+        public ResponseVm<List<BaseQuickLookupVm>> GetCityDistricts(string cityId, string serviceId)
         {
             try
             {
-                var districts = _repo.GetCityDistricts(cityId).ToModelListData<BaseQuickLookupVm>().ToList();
+                var districts = _repo.GetCityDistricts(cityId, serviceId).ToModelListData<BaseQuickLookupVm>().ToList();
                 return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data = districts };
 
             }
