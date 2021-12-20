@@ -44,18 +44,41 @@ namespace Utilities.GlobalRepositories.CRM
 
 
 
-        public List<City> GetActiveCities()
+        public List<City> GetActiveCities(string serviceId)
         {
             var _service = CRMService.Service;
+            var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId.ToString()), new ColumnSet("new_displaycities")).ToEntity<Service>();
+            var displayCities = service.DisplayCities.Value;   //1 all ,2 only Service Cities ,3 Available For Hourly
+            var result=new List<City>();
+
             var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
-            CityQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active city
-            CityQuery.ColumnSet = new ColumnSet(true);
-            var OrFilter = new FilterExpression(LogicalOperator.Or);
-            OrFilter.AddCondition("new_availablefor", ConditionOperator.In, 1, 3);
-            OrFilter.AddCondition("new_availablefor", ConditionOperator.Null);
-            CityQuery.Criteria.AddFilter(OrFilter);
-            var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>());
-            return result.ToList();
+            if (displayCities == 2)
+            {
+                CityQuery.AddLink(CrmEntityNamesMapping.ServiceCity, "new_cityid", "new_city");
+            }
+            else if(displayCities == 1|| displayCities == 3) 
+            {
+            
+                CityQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active city
+                //CityQuery.ColumnSet = new ColumnSet(true);
+              
+                var OrFilter = new FilterExpression(LogicalOperator.Or);
+                OrFilter.AddCondition("new_availablefor", ConditionOperator.In, 1, 3);   //1 show for all   ,3 mobile and web
+                OrFilter.AddCondition("new_availablefor", ConditionOperator.Null);
+              
+                if (displayCities == 3)  //new_isdalal
+                {           
+                    var AndFilter = new FilterExpression(LogicalOperator.And);
+                    AndFilter.AddCondition("new_isdalal", ConditionOperator.Equal,true);
+                    CityQuery.Criteria.AddFilter(AndFilter);
+                }
+          
+                CityQuery.Criteria.AddFilter(OrFilter);
+            }
+            CityQuery.ColumnSet = new ColumnSet("new_citiesid", "new_name");
+            result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
+
+            return result;
 
         }
         public List<District> GetCityDistricts(string cityId)

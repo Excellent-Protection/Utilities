@@ -31,11 +31,11 @@ namespace Utilities.Controller
 
         [HttpGet]
         [Route("ActiveCities")]
-        public HttpResponseMessage GetActiveCities()
+        public HttpResponseMessage GetActiveCities(string serviceId)
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
-                var result = _mngr.GetActiveCities();
+                var result = _mngr.GetActiveCities(serviceId);
                 return Response<List<BaseQuickLookupVm>>(result);
             }
         }

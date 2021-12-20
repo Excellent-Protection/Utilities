@@ -18,9 +18,11 @@ namespace Utilities.GlobalManagers.CRM
     public class ContactManager : BaseManager, IDisposable
     {
         ContactRepository _repo;
+        HourlyContractRepository _HourlyContractrepo;
         public ContactManager(RequestUtility requestUtility) : base(requestUtility)
         {
             _repo = new ContactRepository(RequestUtility);
+            _HourlyContractrepo = new HourlyContractRepository(RequestUtility);
         }
 
         public void Dispose()
@@ -151,7 +153,19 @@ namespace Utilities.GlobalManagers.CRM
             return false;
         }
 
+        public bool? IsBlocked(string id)
+        {
+            try
+            {
+                return _repo.IsBlocked(id);
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
+            }
+            return false;
+        }
         public bool IsSaudi(string contactId)
         {
             try
@@ -232,6 +246,32 @@ namespace Utilities.GlobalManagers.CRM
             }
             return null;
         }
+
+        public bool? HaveContactContracts(string contactId, string ServiceId, string UnPaidContractStatus)  //1 Tosameservice ,2 anyservice
+        {
+            try
+            {
+                bool? haveContracts = false;
+
+                if (UnPaidContractStatus == "1")  //same Service
+                {
+                    haveContracts = _HourlyContractrepo.HaveContactContracts(contactId, ServiceId);
+                }
+                else if (UnPaidContractStatus == "2")     //any Service
+                {
+                    haveContracts = _HourlyContractrepo.HaveContactContracts(contactId, null);
+                }
+                return haveContracts;
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+            return false;
+        }
+
+
 
     }
 

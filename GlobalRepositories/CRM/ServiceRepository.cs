@@ -93,5 +93,15 @@ namespace HourlySectorLib.Repositories
             var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_serviceshifts")).ToEntity<Service>();
             return service;
         }
+
+
+        public int? GetUnPaidContractStatus(string serviceId)
+        {
+            var service = CRMService.Service;
+            var Service = service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_contractrestrict")).ToEntity<Service>();
+            return Service.ContractRestrictUnpaid?.Value;
+
+        }
+
     }
 }

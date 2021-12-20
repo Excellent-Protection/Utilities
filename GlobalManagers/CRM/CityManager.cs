@@ -44,11 +44,11 @@ namespace Utilities.GlobalManagers.CRM
                 return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
             }
         }
-        public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities()
+        public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities(string serviceId)
         {
             try
             {
-                var cities = _repo.GetActiveCities().ToModelListData<BaseQuickLookupVm>().ToList();
+                var cities = _repo.GetActiveCities(serviceId).ToModelListData<BaseQuickLookupVm>().ToList();
                 return new ResponseVm<List<BaseQuickLookupVm>> {Status= HttpStatusCodeEnum.Ok , Data= cities };
             }
             catch (Exception ex)

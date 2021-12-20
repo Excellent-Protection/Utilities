@@ -112,6 +112,23 @@ namespace HourlySectorLib.Managers
             return null;
         }
 
+
+        public string GetUnPaidContractStatus(string serviceId)
+        {
+            try
+            {
+                var UnPaidContractStatus = _repo.GetUnPaidContractStatus(serviceId);
+                return UnPaidContractStatus.ToString() ;
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                return null;
+            }
+
+
+        }
+
         public void Dispose()
         {
         }
