@@ -15,6 +15,26 @@ namespace Utilities.GlobalRepositories.CRM
     public class CityRepository
     {
 
+        public bool CheckDistrictAvilabilityForService(string serviceId, string districtId)
+        {
+            var _service = CRMService.Service;
+            var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_displaydistricts")).ToEntity<Service>();
+            var displayDistrict = service.DisplayDistrict.Value;   //1 all ,2 only District service   
+
+            if (displayDistrict == (int)DisplayDistrictForService.All)
+                return true;
+
+
+            var query = new QueryExpression(CrmEntityNamesMapping.District);
+            query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+            query.Criteria.AddCondition("new_districtid", ConditionOperator.Equal, districtId);
+            query.AddLink(CrmEntityNamesMapping.ServiceDistrict, "new_districtid", "new_district");
+            query.LinkEntities[0].LinkCriteria.AddCondition("new_service", ConditionOperator.Equal, serviceId);
+
+            var res= _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<District>()).Distinct().ToList();
+            return res.Count > 0;
+        }
+
 
         public bool CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId)
         {
@@ -35,10 +55,10 @@ namespace Utilities.GlobalRepositories.CRM
         {
             var _service = CRMService.Service;
             var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_displaycities")).ToEntity<Service>();
-         
-            if(service.DisplayCities.Value != (int)DisplayCitiesForService.All)
+
+            if (service.DisplayCities.Value != (int)DisplayCitiesForService.All)
             {
-                if(service.DisplayCities.Value == (int)DisplayCitiesForService.onlyServiceCities)
+                if (service.DisplayCities.Value == (int)DisplayCitiesForService.onlyServiceCities)
                 {
                     var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
                     CityQuery.AddLink(CrmEntityNamesMapping.ServiceCity, "new_cityid", "new_city");
@@ -50,10 +70,10 @@ namespace Utilities.GlobalRepositories.CRM
                 var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_isdalal")).ToEntity<City>();
                 var IsForHourly = city.IsForHourly.HasValue ? city.IsForHourly.Value : false;
                 return IsForHourly;
-              
+
             }
 
-                return true;
+            return true;
         }
 
         public bool CheckCityAvailabilityForIndvService(string cityId)
@@ -65,7 +85,7 @@ namespace Utilities.GlobalRepositories.CRM
 
         }
 
-     
+
 
         public List<City> GetALlActiveCities()
         {
@@ -73,7 +93,7 @@ namespace Utilities.GlobalRepositories.CRM
 
             var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
             CityQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active city
-           
+
             var OrFilter = new FilterExpression(LogicalOperator.Or);
             OrFilter.AddCondition("new_availablefor", ConditionOperator.In, 1, 3);   //1 show for all   ,3 mobile and web
             OrFilter.AddCondition("new_availablefor", ConditionOperator.Null);
@@ -166,12 +186,13 @@ namespace Utilities.GlobalRepositories.CRM
             query.Criteria.AddCondition("new_cityid", ConditionOperator.Equal, cityId);
 
 
-            if (displayDistrict == (int)DisplayDistrictForService.OnlyServiceDistricts) {
+            if (displayDistrict == (int)DisplayDistrictForService.OnlyServiceDistricts)
+            {
                 query.AddLink(CrmEntityNamesMapping.ServiceDistrict, "new_districtid", "new_district");
                 query.LinkEntities[0].LinkCriteria.AddCondition("new_service", ConditionOperator.Equal, serviceId);
             }
-                
-            query.ColumnSet = new ColumnSet( "new_name", "new_districtid");
+
+            query.ColumnSet = new ColumnSet("new_name", "new_districtid");
 
             return _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<District>()).Distinct().ToList();
         }

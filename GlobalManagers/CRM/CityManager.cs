@@ -23,10 +23,10 @@ namespace Utilities.GlobalManagers.CRM
             _repo = new CityRepository();
         }
 
+        
 
 
-
-        public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId=null)
+        public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId)
         {
             try
             {
@@ -44,6 +44,27 @@ namespace Utilities.GlobalManagers.CRM
                 return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
             }
         }
+
+        public ResponseVm<string> CheckDistrictAvilabilityForService(string serviceId, string districtId)
+        {
+            try
+            {
+                var result = _repo.CheckDistrictAvilabilityForService(serviceId,districtId);
+                if (result)
+                {
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
+                }
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("districtNotAvilableForService", "Shared") };
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("districtId", districtId));
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
+            }
+        }
+
+
         public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities(string serviceId="")
         {
             try

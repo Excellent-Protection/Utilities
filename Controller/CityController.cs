@@ -19,11 +19,22 @@ namespace Utilities.Controller
     {
         [HttpGet]
         [Route("CheckCityAvailabilityForService")]
-        public HttpResponseMessage CheckCityAvailabilityForService(string cityId , ServiceType serviceType ,  string hourlyServiceId=null)
+        public HttpResponseMessage CheckCityAvailabilityForService(string cityId , ServiceType serviceType ,  string hourlyServiceId)
         {
             using (CityManager _mngr= new CityManager(RequestUtility))
             {
               var result=  _mngr.CheckCityAvilabilityForService(cityId,serviceType , hourlyServiceId);
+                return Response<string>(result);
+            }
+        }
+
+        [HttpGet]
+        [Route("CheckDistrictAvailabilityForService")]
+        public HttpResponseMessage CheckDistrictAvailabilityForService(string ServiceId,string districtId)
+        {
+            using (CityManager _mngr = new CityManager(RequestUtility))
+            {
+                var result = _mngr.CheckDistrictAvilabilityForService(ServiceId, districtId);
                 return Response<string>(result);
             }
         }
