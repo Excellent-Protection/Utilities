@@ -867,4 +867,13 @@ namespace Utilities.Enums
         OnlyServiceDistricts = 2,
     }
 
+
+    public enum ChangedAttributesWithSelectedHourlyPricing
+    {
+        NumOfWorkers=1,
+        NumOfHours=2,
+        ServiceShifts=3,
+        NumOfVisits = 4,
+        ContractDuration=5
+    }
 }
