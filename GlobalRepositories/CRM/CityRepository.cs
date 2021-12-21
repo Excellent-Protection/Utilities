@@ -24,14 +24,37 @@ namespace Utilities.GlobalRepositories.CRM
                 case ServiceType.Individual:
                     return CheckCityAvailabilityForIndvService(cityId);
                 case ServiceType.Hourly:
-                    return false; // will implement with hourly service steps 
+                    return CheckCityAvailabilityForHourlyService(cityId, serviceId); // will implement with hourly service steps 
                 default:
                     return false;
             }
 
         }
 
+        public bool CheckCityAvailabilityForHourlyService(string cityId, string serviceId)
+        {
+            var _service = CRMService.Service;
+            var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_displaycities")).ToEntity<Service>();
+         
+            if(service.DisplayCities.Value != (int)DisplayCitiesForService.All)
+            {
+                if(service.DisplayCities.Value == (int)DisplayCitiesForService.onlyServiceCities)
+                {
+                    var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
+                    CityQuery.AddLink(CrmEntityNamesMapping.ServiceCity, "new_cityid", "new_city");
+                    CityQuery.LinkEntities[0].LinkCriteria.AddCondition("new_service", ConditionOperator.Equal, serviceId);
+                    CityQuery.LinkEntities[0].LinkCriteria.AddCondition("new_city", ConditionOperator.Equal, cityId);
+                    var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
+                    return result.Count > 0;
+                }
+                var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_isdalal")).ToEntity<City>();
+                var IsForHourly = city.IsForHourly.HasValue ? city.IsForHourly.Value : false;
+                return IsForHourly;
+              
+            }
 
+                return true;
+        }
 
         public bool CheckCityAvailabilityForIndvService(string cityId)
         {
