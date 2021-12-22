@@ -7,7 +7,7 @@
     {
         public override void Up()
         {
-            AddColumn("dbo.StepDatas", "PreviousAction", c => c.String());
+            //AddColumn("dbo.StepDatas", "PreviousAction", c => c.String());
         }
         
         public override void Down()

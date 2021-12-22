@@ -257,6 +257,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Identity\ApplicationPageConfiguration.cs" />
+    <Compile Include="Configuration\Identity\ApplicationRoleConfiguration.cs" />
+    <Compile Include="Configuration\Identity\ApplicationUserConfiguration.cs" />
+    <Compile Include="Configuration\Identity\BranchConfiguration.cs" />
+    <Compile Include="Configuration\Identity\DbSqlQueryConfiguration.cs" />
+    <Compile Include="Configuration\Identity\DeviceConfiguration.cs" />
+    <Compile Include="Configuration\Identity\DynamicTemplateConfiguration.cs" />
+    <Compile Include="Configuration\Identity\PaymentMethodConfiguration.cs" />
+    <Compile Include="Configuration\Identity\PaymentTransactionConfiguration.cs" />
+    <Compile Include="Configuration\Identity\RecieptVoucherConfiguration.cs" />
+    <Compile Include="Configuration\Identity\SettingConfiguration.cs" />
+    <Compile Include="Configuration\Identity\StepDataConfiguration.cs" />
+    <Compile Include="Configuration\Identity\TamayouzIntegratedDiscountConfiguration.cs" />
+    <Compile Include="Configuration\Identity\UrlShortenerConfiguration.cs" />
+    <Compile Include="Configuration\Identity\UserNotificationConfiguration.cs" />
+    <Compile Include="Configuration\Identity\UserProjectConfiguration.cs" />
     <Compile Include="Controller\CityController.cs" />
     <Compile Include="Controller\ContactAddressController.cs" />
     <Compile Include="Controller\ContactController.cs" />
@@ -410,6 +426,10 @@
     <Compile Include="Migrations\202111161404127_shortners.designer.cs">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112150911421_config.cs" />
+    <Compile Include="Migrations\202112150911421_config.designer.cs">
+      <DependentUpon>202112150911421_config.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
     <Compile Include="Enums\UserLanguage.cs" />
@@ -492,6 +512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111161404127_shortners.resx">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112150911421_config.resx">
+      <DependentUpon>202112150911421_config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
