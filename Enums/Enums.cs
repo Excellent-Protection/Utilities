@@ -868,7 +868,7 @@ namespace Utilities.Enums
     }
 
 
-    public enum ChangedAttributesWithSelectedHourlyPricing
+    public enum ChangedAttributesforSelectedHourlyPricing
     {
         NumOfWorkers=1,
         NumOfHours=2,
