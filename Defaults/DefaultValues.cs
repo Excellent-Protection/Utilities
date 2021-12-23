@@ -66,6 +66,9 @@ namespace Utilities.Defaults
         public const string IndividualSectorEnabledSettingName = "IndividualSectorEnabled";
         public const string HourlySectorEnabledSettingName = "HourlySectorEnabled";
         public const string IndividualRequestDocumentCodeSettingName = "IndividualRequestDocumentCode";
+        public const string RenewOptionSettingName = "RenewOption";
+        public const string PaymentAvailableSettingName = "IsPaymentAvailable";
+        public const string QcTeamEmailSettingName = "QcTeamEmail";
 
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
@@ -87,7 +90,7 @@ namespace Utilities.Defaults
 
         public const bool SelectProfessionsFromPackages = true;
         public const bool SelectNationalitiesFromPackages = true;
-        public const bool IsTwoFactorAuthenticationAvailable = true;
+        public const bool IsTwoFactorAuthenticationAvailable = false;
         public const bool IsDeliveryEmployeeAvailableSetting = false;
         public const bool IsSelectEmployeeFromHouseBuildingAvailableSetting = false;
         public const bool  DealingWithMainAddress = false;
@@ -105,6 +108,8 @@ namespace Utilities.Defaults
         public const string PackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
         public const string RequestDetailsPackageProperties = "{'packageDisplayName': {'type': 'string'},'finalPriceToPay': {'type': 'currency'},'discount': {'type': 'currency'},'packagePriceAfterDiscount': {'type': 'currency'},'activationAmount':{'type': 'currency'},'advancedAmount': {'type': 'currency'},'vatAmountOfFinalPrice': {'type': 'currency'},'packagePrice': {'type': 'currency'   },'professionGroupName':{'type': 'string'},'amountInsurance': {'type': 'currency'}}";
         public const string RenewPackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
+        public const int RenewOptionValue = 2;//new contract
+        public const string QcTeamEmail = "e.shahin@excp.sa,";
 
 
 
@@ -113,8 +118,9 @@ namespace Utilities.Defaults
         public const string SuccessErrorMessageResource = "SuccessErrorMessageResource";
         public const string ShowCustomerWalletSettingName = "ShowCustomerWallet";
         public const bool ShowCustomerWalletSetting = false;
+        public const bool IsPaymentAvailable = false;
 
-    
+
         public const bool TamayousSystemAvailable = false;
         public const string ShowTamayousSetting = "TamayousPayment";
 
@@ -209,6 +215,9 @@ namespace Utilities.Defaults
         public const string BSAdminRoleName = "ProjectsAdmin";
         public const int TokenLifespan =5;
         public const string IsLaborStockAvailable = "IsLaborStockAvailable";
+
+
+        public const string OnlinePaymentUrl = "/#/payment?contractId=@id&type=@type";
 
 
 

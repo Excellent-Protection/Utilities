@@ -130,7 +130,7 @@ namespace Utilities.GlobalManagers
                     {
                         subject = subject.Replace("@" + dt.Columns[i].ColumnName, dt.Rows[0][i].ToString());
                         body = body.Replace("@" + dt.Columns[i].ColumnName, dt.Rows[0][i].ToString());
-                        toDynamic = ToEmails.Replace("@" + dt.Columns[i].ColumnName, dt.Rows[0][i].ToString());
+                        //toDynamic = ToEmails.Replace("@" + dt.Columns[i].ColumnName, dt.Rows[0][i].ToString());
                         ccdynamic = ccdynamic.Replace("@" + dt.Columns[i].ColumnName, dt.Rows[0][i].ToString());
 
                     }
@@ -143,7 +143,7 @@ namespace Utilities.GlobalManagers
 
                 subject = subject.Replace("@" + Keys.Key, Keys.Value);
                 body = body.Replace("@" + Keys.Key, Keys.Value);
-                toDynamic = ToEmails.Replace("@" + Keys.Key, Keys.Value);
+                //toDynamic = ToEmails.Replace("@" + Keys.Key, Keys.Value);
                 ccdynamic = CCEmail.Replace("@" + Keys.Key, Keys.Value);
 
             }
@@ -152,7 +152,7 @@ namespace Utilities.GlobalManagers
             {
                 body = body,
                 subject = subject,
-                ToEmails = ToEmails + ";" + toDynamic,
+                ToEmails = ToEmails + ";" /*+ toDynamic*/,
                 CCEmail = CCEmail + ";" + ccdynamic
             };
         }

@@ -62,7 +62,6 @@ namespace Utilities.GlobalRepositories.CRM
 
         public List<string> GetProfessionsId(string ProfGroupId)
         {
-
                 var _service = CRMService.Service;
                 var query = new QueryExpression(CrmEntityNamesMapping.Profession);
                 query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, ProfGroupId);

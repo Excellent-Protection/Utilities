@@ -11,6 +11,7 @@ using Utilities.GlobalManagers.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.GlobalViewModels.CRM;
 using Utilities.Helpers;
+using Westwind.Globalization;
 
 namespace Utilities.Controller
 {
@@ -45,6 +46,10 @@ namespace Utilities.Controller
             using (ContactLocationManager _locationMngr = new ContactLocationManager(RequestUtility))
             {
                 var result = _locationMngr.AddLocation(contactLocationModel);
+                if(result.Status==HttpStatusCodeEnum.Ok)
+                {
+                    return  Response(new ResponseVm<string> {Status= result.Status , Data= DbRes.T("LocationSavedSuccessfully", "Shared") });
+                }
                 return Response<string>(result);
             }
         }

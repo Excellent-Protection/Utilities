@@ -9,10 +9,8 @@ namespace Utilities.Defaults
     public static class SMSCodes
     {
 
-        public const string RegisterUserActivationCode = "RegisterUserActivationCode";
-        public const string ThankForRegisterInHader = "ThankForRegisterInHader";
-        public const string PleaseUseCodeCompleteLogin = "PleaseUseCodeCompleteLogin";
-        public const string PleaseUseFollowCodeToCompleteLoginHader = "PleaseUseFollowCodeToCompleteLoginHader";
-        public const string PleaseUseFollowCodeToResetPassword = "PleaseUseFollowCodeToResetPassword";
+        public const string ActivationCode = "ActivationCode";
+        public const string SignInCode = "SignInCode";
+        public const string ResetPasswordCode = "ResetPasswordCode";
     }
 }

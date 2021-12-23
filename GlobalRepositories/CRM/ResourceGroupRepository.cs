@@ -28,27 +28,27 @@ namespace Utilities.GlobalRepositories.CRM
             var _service = CRMService.Service;
             var querypricing = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
             querypricing.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+            querypricing.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
             querypricing.Criteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
             querypricing.ColumnSet = new ColumnSet(true);
             var Pricing = _service.RetrieveMultiple(querypricing).Entities.Select(a => a.ToEntity<IndividualPricing>()).ToList();
             var resourceGroupIds = Pricing.Where (a=>a.ResourceGroup!=null).Select(a => a.ResourceGroup.Id.ToString()).Distinct().ToList();
             var resourceGroupQuery = new QueryExpression(CrmEntityNamesMapping.ResourceGroup);
             resourceGroupQuery.Criteria.AddCondition("new_resourcegroupid", ConditionOperator.In, resourceGroupIds.ToArray());
-            resourceGroupQuery.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
             resourceGroupQuery.ColumnSet = new ColumnSet(true);
             var resourceGroups = _service.RetrieveMultiple(resourceGroupQuery).Entities.Select(a => a.ToEntity<ResourceGroup>()).ToList();
             return resourceGroups;
         }
 
 
-        public List<ResourceGroup> GetResourceGroups(string professionGroupId)
+        public List<ResourceGroup> GetResourceGroups()
         {
 
             var _service = CRMService.Service;
             var query = new QueryExpression(CrmEntityNamesMapping.ResourceGroup);
             query.ColumnSet = new ColumnSet(true);
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
-            query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
+            //query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
             var resourceGroups = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<ResourceGroup>()).ToList();
             return resourceGroups;
 

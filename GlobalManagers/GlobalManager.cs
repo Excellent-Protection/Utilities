@@ -1,4 +1,6 @@
 ﻿using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,22 @@ namespace Utilities.GlobalManagers
             WhoAmIRequest systemUserRequest = new WhoAmIRequest();
             WhoAmIResponse systemUserResponse = (WhoAmIResponse)CRMService.Service.Execute(systemUserRequest);
             return systemUserResponse.UserId;
+        }
+
+        public static EntityCollection GetEntitiesBy(string entityName, string SearchColumn, object searchValue)
+        {
+            return GetEntitiesBy(entityName, SearchColumn, searchValue, true);
+
+        }
+        public static EntityCollection GetEntitiesBy(string entityName, string SearchColumn, object searchValue, bool AllColumns)
+        {
+            
+            QueryExpression query = new QueryExpression(entityName);
+            query.ColumnSet = new ColumnSet(AllColumns);
+            query.Criteria.AddCondition(new ConditionExpression(SearchColumn, ConditionOperator.Equal, searchValue));
+            var _service = CRMService.Service;
+            return _service.RetrieveMultiple(query);
+
         }
 
         public void Dispose()

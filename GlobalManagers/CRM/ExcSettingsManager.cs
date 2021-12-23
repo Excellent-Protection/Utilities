@@ -83,8 +83,21 @@ namespace Utilities.GlobalManagers.CRM
 
             try
             {
-                var Setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key);
-                return Setting.Toclass<ExcSettingsVm>();
+                var source = RequestUtility.Source.Value;
+                ExcSettings setting = null ;
+                switch (source)
+                {
+                    case RecordSource.Web:
+                        setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Web || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile || a.ApplyTo==null));
+
+                        break;
+                    case RecordSource.Mobile:
+                        setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Mobile || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile || a.ApplyTo == null));
+
+                        break;
+                }
+
+                return setting.Toclass<ExcSettingsVm>();
             }
             catch (Exception ex)
             {
@@ -126,15 +139,16 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
+
                 ExcSettings settings = null;
                 switch (source)
                 {
                     case RecordSource.Web:
-                         settings = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && ( a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Web || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile));
+                         settings = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && ( a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Web || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile || a.ApplyTo == null));
 
                         break;
                     case RecordSource.Mobile:
-                        settings = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Mobile || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile));
+                        settings = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Mobile || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile || a.ApplyTo == null));
 
                         break;
                 }
@@ -276,12 +290,12 @@ namespace Utilities.GlobalManagers.CRM
                         }
                     case RecordSource.Web:
                         {
-                            filter.AddCondition("new_applyto", ConditionOperator.In, (int)ApplyToOrDisplayFor.All, (int)ApplyToOrDisplayFor.Web, (int)ApplyToOrDisplayFor.WebAndMobile);
+                            filter.AddCondition("new_applyto", ConditionOperator.In, (int)ApplyToOrDisplayFor.All, (int)ApplyToOrDisplayFor.Web, (int)ApplyToOrDisplayFor.WebAndMobile );
                             break;
                         }
                     case RecordSource.Mobile:
                         {
-                            filter.AddCondition("new_applyto", ConditionOperator.In, (int)ApplyToOrDisplayFor.All, (int)ApplyToOrDisplayFor.Mobile, (int)ApplyToOrDisplayFor.WebAndMobile);
+                            filter.AddCondition("new_applyto", ConditionOperator.In, (int)ApplyToOrDisplayFor.All, (int)ApplyToOrDisplayFor.Mobile, (int)ApplyToOrDisplayFor.WebAndMobile );
                             break;
                         }
                 }
