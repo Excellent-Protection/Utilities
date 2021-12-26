@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Utilities.Enums;
 using Utilities.GlobalManagers.CRM;
 using Utilities.GlobalViewModels.Custom;
 using Utilities.Helpers;
@@ -19,12 +20,12 @@ namespace Utilities.Controller
 
         [HttpGet]
         [Route("AvailableProfessions")]
-        public HttpResponseMessage GetAvailableProfession()
+        public HttpResponseMessage GetAvailableProfession(ServiceType? serviceType=null) 
         {
 
             using (ProfessionGroupsManager _Mngr = new ProfessionGroupsManager(RequestUtility))
             {
-                var result = _Mngr.GetProfessionGroups();
+                var result = _Mngr.GetProfessionGroups(serviceType);
                 return Response <List<BaseQuickLookupWithImageVm >> (result);
 
             }
