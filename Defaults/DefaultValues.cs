@@ -217,6 +217,9 @@ namespace Utilities.Defaults
         public const string IsLaborStockAvailable = "IsLaborStockAvailable";
 
 
+        public const string OnlinePaymentUrl = "/#/payment?contractId=@id&type=@type";
+
+
 
     }
 }

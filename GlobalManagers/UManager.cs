@@ -41,9 +41,9 @@ namespace Utilities.GlobalManagers
             {
                 using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
                 {
-                    var OnlinePortalUrl = new ExcSettingsManager(new RequestUtility())["OnlinePortalUrl"].ToString();
+                    var OnlineAPIUrl = new ExcSettingsManager(RequestUtility)["OnlineAPIUrl"].ToString();
                     string token = GetAlphanumericID(7);
-                    string shortUrl = OnlinePortalUrl+"/"+RequestUtility.RouteLanguage + "/api/Index/" + token;
+                    string shortUrl = OnlineAPIUrl+"/"+RequestUtility.RouteLanguage + "/u/" + token;
                     var result = unitOfWork.Repository<UrlShortener>().Add(new UrlShortener()
                     {
                         ShortUrl = shortUrl.ToLower(),

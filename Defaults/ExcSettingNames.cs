@@ -9,5 +9,6 @@ namespace Utilities.Defaults
     public static class ExcSettingNames
     {
         public const string BankTransferAvailableForPaymentRequest = "BankTransferAvailableForPaymentRequest";
+        public const string OnlinePaymentUrl = "OnlinePaymentUrl";
     }
 }
