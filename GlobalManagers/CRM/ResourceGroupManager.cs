@@ -42,9 +42,9 @@ namespace Utilities.GlobalManagers.CRM
                 }
                 if (selectProfFromPackages)
                 {
-                    return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _repo.GetResourceGroupsFromIndividualPackages(professiongroupId).ToModelListData<BaseQuickLookupWithImageVm, ResourceGroup>().ToList() };
+                    return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _repo.GetResourceGroupsFromIndividualPackages(professiongroupId,serviceType).ToModelListData<BaseQuickLookupWithImageVm, ResourceGroup>().ToList() };
                 }
-                return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _repo.GetResourceGroups().ToModelListData<BaseQuickLookupWithImageVm, ResourceGroup>().ToList() };
+                return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _repo.GetResourceGroups(serviceType).ToModelListData<BaseQuickLookupWithImageVm, ResourceGroup>().ToList() };
 
             }
             catch (Exception ex)
