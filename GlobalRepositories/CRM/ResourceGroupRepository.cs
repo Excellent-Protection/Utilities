@@ -36,8 +36,8 @@ namespace Utilities.GlobalRepositories.CRM
             var resourceGroupQuery = new QueryExpression(CrmEntityNamesMapping.ResourceGroup);
             resourceGroupQuery.Criteria.AddCondition("new_resourcegroupid", ConditionOperator.In, resourceGroupIds.ToArray());
            
-            if(serviceType != ServiceType.Individual) 
-            resourceGroupQuery.Criteria.AddCondition("new_individualFor", ConditionOperator.Equal,true);
+            if(serviceType == ServiceType.Individual) 
+            resourceGroupQuery.Criteria.AddCondition("new_individualfor", ConditionOperator.Equal,true);
           
             resourceGroupQuery.ColumnSet = new ColumnSet(true);
             var resourceGroups = _service.RetrieveMultiple(resourceGroupQuery).Entities.Select(a => a.ToEntity<ResourceGroup>()).ToList();
@@ -53,8 +53,8 @@ namespace Utilities.GlobalRepositories.CRM
             query.ColumnSet = new ColumnSet(true);
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
           
-            if (serviceType != ServiceType.Individual)
-                query.Criteria.AddCondition("new_individualFor", ConditionOperator.Equal, true);
+            if (serviceType == ServiceType.Individual)
+                query.Criteria.AddCondition("new_individualfor", ConditionOperator.Equal, true);
 
             //query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
             var resourceGroups = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<ResourceGroup>()).ToList();

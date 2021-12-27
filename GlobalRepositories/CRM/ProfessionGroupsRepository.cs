@@ -21,18 +21,23 @@ namespace Utilities.GlobalRepositories.CRM
 
         }
 
-        public List<ProfessionGroups> GetProfessionGroups()
+        public List<ProfessionGroups> GetProfessionGroups(ServiceType? serviceType = null)
         {
 
             var _service = CRMService.Service;
             var query = new QueryExpression(CrmEntityNamesMapping.ProfessionGroup);
             query.ColumnSet = new ColumnSet(true);
+
+
+            if (serviceType == ServiceType.Individual)
+                query.Criteria.AddCondition("new_individualfor", ConditionOperator.Equal, true);
+
             var peofessionGroups = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<ProfessionGroups>()).ToList();
             return peofessionGroups;
 
         }
 
-        public List<ProfessionGroups> GetProfessionGroupsFromPackages()
+        public List<ProfessionGroups> GetProfessionGroupsFromPackages(ServiceType? serviceType = null)
         {
             var _service = CRMService.Service;
             var querypricing = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
@@ -44,6 +49,9 @@ namespace Utilities.GlobalRepositories.CRM
             var professionQuery = new QueryExpression(CrmEntityNamesMapping.ProfessionGroup);
             FilterExpression filter = new FilterExpression();
             filter.AddCondition("new_professiongroupid", ConditionOperator.In, professionsIds.ToArray());
+           
+            if(serviceType == ServiceType.Individual)
+                filter.AddCondition("new_individualfor", ConditionOperator.Equal,true);
 
             professionQuery.Criteria.AddFilter(filter);
             professionQuery.ColumnSet = new ColumnSet(true);
