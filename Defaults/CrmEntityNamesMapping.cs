@@ -13,6 +13,8 @@ namespace Utilities.Defaults
         public const string Contact = "contact";
         public const string HourlyPricing = "new_hourlypricing";
         public const string City = "new_city";
+        public const string ServiceCity = "new_servicecity";
+        public const string ServiceDistrict = "new_servicedistrict";
         public const string Campaign = "new_marketingcampaign";
         public const string District = "new_district";
         public const string Region = "territory";
