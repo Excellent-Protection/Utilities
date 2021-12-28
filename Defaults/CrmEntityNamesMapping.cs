@@ -8,6 +8,8 @@ namespace Utilities.Defaults
 {
     public static class CrmEntityNamesMapping
     {
+        public const string Profession_ProfessionGroup = "new_new_professiongroup_new_profession";
+
         public const string ServiceContractPerHour = "new_hindvcontract";
         public const string Nationality = "new_country";
         public const string Contact = "contact";
