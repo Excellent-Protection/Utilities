@@ -18,9 +18,11 @@ namespace Utilities.GlobalManagers.CRM
     public class ContactManager : BaseManager, IDisposable
     {
         ContactRepository _repo;
+
         public ContactManager(RequestUtility requestUtility) : base(requestUtility)
         {
             _repo = new ContactRepository(RequestUtility);
+     
         }
 
         public void Dispose()
@@ -151,7 +153,19 @@ namespace Utilities.GlobalManagers.CRM
             return false;
         }
 
+        public bool? IsBlocked(string id)
+        {
+            try
+            {
+                return _repo.IsBlocked(id);
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
+            }
+            return false;
+        }
         public bool IsSaudi(string contactId)
         {
             try
@@ -232,6 +246,8 @@ namespace Utilities.GlobalManagers.CRM
             }
             return null;
         }
+
+    
 
     }
 

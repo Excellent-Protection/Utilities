@@ -261,6 +261,7 @@
     <Compile Include="Controller\ProfileController.cs" />
     <Compile Include="Controller\ResourceGroupController.cs" />
     <Compile Include="Controller\SavedContactLocationController.cs" />
+    <Compile Include="Controller\ServiceController.cs" />
     <Compile Include="Controller\ShortenerUrlController.cs" />
     <Compile Include="Controller\StepDataController.cs" />
     <Compile Include="ConvertDocToPDF.cs" />
@@ -295,6 +296,7 @@
     <Compile Include="GlobalManagers\CRM\ProfessionGroupsManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionManager.cs" />
     <Compile Include="GlobalManagers\CRM\ResourceGroupManager.cs" />
+    <Compile Include="GlobalManagers\CRM\ServiceManager.cs" />
     <Compile Include="GlobalManagers\CRM\SkillManager.cs" />
     <Compile Include="GlobalManagers\GlobalManager.cs" />
     <Compile Include="GlobalManagers\Labor\DynamicStepsManager.cs" />
@@ -314,6 +316,7 @@
     <Compile Include="GlobalRepositories\CRM\NationalityRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ProfessionGroupsRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ResourceGroupRepository.cs" />
+    <Compile Include="GlobalRepositories\CRM\ServiceRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\SkillRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\DynamicStepsRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\StepRepository.cs" />
@@ -323,12 +326,14 @@
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactVm.cs" />
     <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\ServiceVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BaseQuickLookupWithImageVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BoolWithString.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactDetailsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactMainSubPreviouseLocationsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactUsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\DashboardCounts.cs" />
+    <Compile Include="GlobalViewModels\Custom\DisplayServiceVm.cs" />
     <Compile Include="GlobalViewModels\Custom\EmployeeSkillsDetailVM.cs" />
     <Compile Include="GlobalViewModels\Custom\LocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\CityIdAndNameVm.cs" />

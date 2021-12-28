@@ -68,5 +68,14 @@ namespace Utilities.GlobalRepositories.CRM
             var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new ColumnSet("fullname")).ToEntity<Contact>();
             return contact;
         }
+
+        public bool? IsBlocked(string id)
+        {          
+            var _service = CRMService.Service;
+            var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(id), new ColumnSet("new_blacklist")).ToEntity<Contact>();
+
+            return contact == null ? false : contact.IsBlocked;
+
+        }
     }
 }
