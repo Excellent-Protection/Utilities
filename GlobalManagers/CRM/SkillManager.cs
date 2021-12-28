@@ -46,13 +46,13 @@ namespace Utilities.GlobalManagers.CRM
      
 
 
-        public ResponseVm<List<BaseQuickLookupVm>> GetSkillsForFilter(string professionGroupId)
+        public ResponseVm<List<BaseQuickLookupWithImageVm>> GetSkillsForFilter(string professionGroupId)
         {
             try
             {
                 
-                var data =_repo.GetSkillsForFilter(professionGroupId).ToModelListData<BaseQuickLookupVm>().ToList();
-               return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data = data };
+                var data =_repo.GetSkillsForFilter(professionGroupId).ToModelListData<BaseQuickLookupWithImageVm>().ToList();
+               return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = data };
 
 
             }
@@ -62,7 +62,7 @@ namespace Utilities.GlobalManagers.CRM
 
 
             }
-            return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred", "Shared") };
+            return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred", "Shared") };
         }
     }
 }
