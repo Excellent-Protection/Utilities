@@ -44,11 +44,47 @@ namespace Utilities.GlobalManagers.CRM
                 return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
             }
         }
+<<<<<<< Updated upstream
         public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities()
         {
             try
             {
                 var cities = _repo.GetActiveCities().ToModelListData<BaseQuickLookupVm>().ToList();
+=======
+
+        public ResponseVm<string> CheckDistrictAvilabilityForService(string serviceId, string districtId)
+        {
+            try
+            {
+                var result = _repo.CheckDistrictAvilabilityForService(serviceId,districtId);
+                if (result)
+                {
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
+                }
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("districtNotAvilableForService", "Shared") };
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("districtId", districtId));
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
+            }
+        }
+
+
+        public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities(ServiceType serviceType, string serviceId=null)
+        {
+            try
+            {
+                if(serviceType == ServiceType.Hourly && serviceId==null)
+                    return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("enterserviceId", "Shared") };
+               
+                var cities =new List<BaseQuickLookupVm>();
+                if (serviceType== ServiceType.Individual)
+                    cities = _repo.GetALlActiveCities().ToModelListData<BaseQuickLookupVm>().ToList();
+                else
+                    cities = _repo.GetHourlyCities(serviceId).ToModelListData<BaseQuickLookupVm>().ToList();
+>>>>>>> Stashed changes
                 return new ResponseVm<List<BaseQuickLookupVm>> {Status= HttpStatusCodeEnum.Ok , Data= cities };
             }
             catch (Exception ex)

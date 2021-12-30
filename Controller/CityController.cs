@@ -29,19 +29,41 @@ namespace Utilities.Controller
         }
 
 
+<<<<<<< Updated upstream
         [HttpGet]
         [Route("ActiveCities")]
         public HttpResponseMessage GetActiveCities()
+=======
+        //[HttpGet]
+        //[Route("HourlyActiveCities")]
+        //public HttpResponseMessage GetHourlyActiveCities(string serviceId)
+        //{
+        //    using (CityManager _mngr = new CityManager(RequestUtility))
+        //    {
+        //        var result = _mngr.GetActiveCities(serviceId);
+        //        return Response<List<BaseQuickLookupVm>>(result);
+        //    }
+        //}
+
+
+        [HttpGet]
+        [Route("IndividualActiveCities")]
+        public HttpResponseMessage GetActiveCities(ServiceType serviceType,string serviceId = null)
+>>>>>>> Stashed changes
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
-                var result = _mngr.GetActiveCities();
+                var result = _mngr.GetActiveCities(serviceType,serviceId);
                 return Response<List<BaseQuickLookupVm>>(result);
             }
         }
         [HttpGet]
         [Route("CityDistricts")]
+<<<<<<< Updated upstream
         public HttpResponseMessage GetCityDistricts(string cityId)
+=======
+        public HttpResponseMessage GetCityDistricts(ServiceType serviceType, string cityId, string serviceId)
+>>>>>>> Stashed changes
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
