@@ -45,6 +45,7 @@ namespace Utilities.GlobalManagers.CRM
             }
         }
 
+
         public ResponseVm<string> CheckDistrictAvilabilityForService(string serviceId, string districtId)
         {
             try
@@ -65,15 +66,21 @@ namespace Utilities.GlobalManagers.CRM
         }
 
 
-        public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities(string serviceId="")
+
+        public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities(ServiceType serviceType, string serviceId=null)
         {
             try
             {
+                if(serviceType == ServiceType.Hourly && serviceId==null)
+                    return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("enterserviceId", "Shared") };
+               
                 var cities =new List<BaseQuickLookupVm>();
-                if (serviceId == "")
+                if (serviceType== ServiceType.Individual)
                     cities = _repo.GetALlActiveCities().ToModelListData<BaseQuickLookupVm>().ToList();
                 else
                     cities = _repo.GetHourlyCities(serviceId).ToModelListData<BaseQuickLookupVm>().ToList();
+
+
                 return new ResponseVm<List<BaseQuickLookupVm>> {Status= HttpStatusCodeEnum.Ok , Data= cities };
             }
             catch (Exception ex)

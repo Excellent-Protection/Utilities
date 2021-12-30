@@ -57,6 +57,10 @@ namespace Utilities.Defaults
         public const string DealingWithMainAddressName = "DealingWithMainAddress";
         public const string PackagePropertiesSettingName = "PackageProperties";
         public const string RenewPackagePropertiesSettingName = "RenewPackageProperties";
+        
+        public const string SelectedPackagePropertiesSettingName = "SelectedPackageProperties";
+        public const string DefaultSelectedPackagePropertiesSettingName = "DefaultSelectedPackageProperties";
+
         public const string RequestDetailsPackagePropertiesSettingName = "RequestDetailsPackageProperties";
         public const string DaysBeforeEndContractToShowRenewBtnSettingName = "DaysBeforeEndContractToShowRenewBtn";
         public const string IncludInsuranceWithRenewSettingName = "IncludInsuranceWithRenew";
