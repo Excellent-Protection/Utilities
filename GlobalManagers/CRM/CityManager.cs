@@ -67,21 +67,16 @@ namespace Utilities.GlobalManagers.CRM
 
 
 
-        public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities(ServiceType serviceType, string serviceId=null)
+        public ResponseVm<List<BaseQuickLookupVm>> GetActiveCities(string serviceId = "")
         {
             try
             {
-                if(serviceType == ServiceType.Hourly && serviceId==null)
-                    return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("enterserviceId", "Shared") };
-               
-                var cities =new List<BaseQuickLookupVm>();
-                if (serviceType== ServiceType.Individual)
+                var cities = new List<BaseQuickLookupVm>();
+                if (serviceId == "")
                     cities = _repo.GetALlActiveCities().ToModelListData<BaseQuickLookupVm>().ToList();
                 else
                     cities = _repo.GetHourlyCities(serviceId).ToModelListData<BaseQuickLookupVm>().ToList();
-
-
-                return new ResponseVm<List<BaseQuickLookupVm>> {Status= HttpStatusCodeEnum.Ok , Data= cities };
+                return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data = cities };
             }
             catch (Exception ex)
             {

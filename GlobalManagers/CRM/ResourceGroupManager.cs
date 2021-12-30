@@ -44,7 +44,7 @@ namespace Utilities.GlobalManagers.CRM
             }
         }
 
-        public ResponseVm<List<BaseQuickLookupWithImageVm>> GetResourceGroup(string professiongroupId)
+        public ResponseVm<List<BaseQuickLookupWithImageVm>> GetResourceGroup(string professiongroupId, ServiceType? servicetype)
 
         {
             try
