@@ -62,13 +62,7 @@ namespace Utilities.GlobalRepositories.CRM
 
         public List<string> GetProfessionsId(string ProfGroupId)
         {
-<<<<<<< Updated upstream
-                var _service = CRMService.Service;
-                var query = new QueryExpression(CrmEntityNamesMapping.Profession);
-                query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, ProfGroupId);
-                return _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
-            
-=======
+
             var _service = CRMService.Service;
 
             var query = new QueryExpression(CrmEntityNamesMapping.Profession);
@@ -76,7 +70,7 @@ namespace Utilities.GlobalRepositories.CRM
             query.LinkEntities[0].LinkCriteria.AddCondition("new_professiongroupid", ConditionOperator.Equal, ProfGroupId);
             var res= _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
             return res;
->>>>>>> Stashed changes
+
         }
 
         public string GetRequiredAttchmentsByProfessionGroup(string profGroupId)

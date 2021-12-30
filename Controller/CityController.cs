@@ -28,12 +28,6 @@ namespace Utilities.Controller
             }
         }
 
-
-<<<<<<< Updated upstream
-        [HttpGet]
-        [Route("ActiveCities")]
-        public HttpResponseMessage GetActiveCities()
-=======
         //[HttpGet]
         //[Route("HourlyActiveCities")]
         //public HttpResponseMessage GetHourlyActiveCities(string serviceId)
@@ -45,11 +39,10 @@ namespace Utilities.Controller
         //    }
         //}
 
-
         [HttpGet]
-        [Route("IndividualActiveCities")]
+        [Route("ActiveCities")]
         public HttpResponseMessage GetActiveCities(ServiceType serviceType,string serviceId = null)
->>>>>>> Stashed changes
+
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
@@ -57,13 +50,12 @@ namespace Utilities.Controller
                 return Response<List<BaseQuickLookupVm>>(result);
             }
         }
+
+
         [HttpGet]
         [Route("CityDistricts")]
-<<<<<<< Updated upstream
-        public HttpResponseMessage GetCityDistricts(string cityId)
-=======
         public HttpResponseMessage GetCityDistricts(ServiceType serviceType, string cityId, string serviceId)
->>>>>>> Stashed changes
+
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
