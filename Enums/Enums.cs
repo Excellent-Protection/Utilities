@@ -621,10 +621,11 @@ namespace Utilities.Enums
     }
     public enum PromotionOfferType
     {
-        DiscountPercentage = 1,
-        FixedDiscount = 2,
-        HourPriceDicount = 3,
-        FreeVisits = 4,
+        Discount = 1,
+        HourPrice = 2,
+        FreeVisits = 3,
+        None=4
+    
     }
     public enum IndividualContractProcedureStatus
     {

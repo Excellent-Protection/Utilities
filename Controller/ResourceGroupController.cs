@@ -24,7 +24,7 @@ namespace Utilities.Controller
 
         [HttpGet]
         [Route("AvailableResourceGroups")]
-        public HttpResponseMessage GetAvailableResourceGroup(string professionGroupId  , ServiceType? serviceType = null)
+        public HttpResponseMessage GetAvailableResourceGroup(string professionGroupId=null  , ServiceType? serviceType = null , string serviceId=null)
         {
 
             using (ResourceGroupManager _Mngr = new ResourceGroupManager(RequestUtility))
@@ -34,5 +34,8 @@ namespace Utilities.Controller
 
             }
         }
+
+
+
     }
 }
