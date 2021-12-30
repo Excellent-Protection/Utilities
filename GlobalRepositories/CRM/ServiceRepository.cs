@@ -109,5 +109,11 @@ namespace HourlySectorLib.Repositories
             return service;
 
         }
+        public Service GetServiceTerms(string serviceId, string servicetermsField)
+        {
+            var _service = CRMService.Service;
+            var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet(servicetermsField)).ToEntity<Service>();
+            return service;
+        }
     }
 }

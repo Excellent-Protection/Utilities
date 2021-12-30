@@ -39,7 +39,16 @@ namespace HourlySectorLib.Controller
             }
         }
 
+        [Route("GetServiceTerms")]
+        public HttpResponseMessage GetServiceTerms(string serviceId)
+        {
+            using (ServiceManager serviceManager = new ServiceManager(RequestUtility))
+            {
+                var result = serviceManager.GetServiceTerms(serviceId);
+                return Response<string>(result);
 
+            }
+        }
 
     }
 }
