@@ -18,21 +18,22 @@ namespace Utilities.Mappers.Resolvers
         {
             if (source != null)
             {
-
                 string description="";
                 if (source.Attributes.Contains("new_city.new_englsihname") || source.Attributes.Contains("new_city.new_name"))
-                description +=new ApplyLanguage().Resolve(source , destination , new MappingTranslation(MapperConfig.lang, source.Attributes.Contains("new_city.new_name") ?((AliasedValue)source.Attributes["new_city.new_name"]).Value.ToString():null, source.Attributes.Contains("new_city.new_englsihname") ?((AliasedValue)source.Attributes["new_city.new_englsihname"]).Value.ToString():null), destMember, context) +" - ";
+                description +=new ApplyLanguage().Resolve(source , destination , new MappingTranslation(MapperConfig.lang, source.Attributes.Contains("new_city.new_name") ?((AliasedValue)source.Attributes["new_city.new_name"]).Value.ToString():null, source.Attributes.Contains("new_city.new_englsihname") ?((AliasedValue)source.Attributes["new_city.new_englsihname"]).Value.ToString():null), destMember, context) +"-";
                 if (source.Attributes.ContainsKey("new_district.new_englishname") || source.Attributes.Contains("new_district.new_name"))
-                description += new ApplyLanguage().Resolve(source, destination, new MappingTranslation(MapperConfig.lang, source.Attributes.Contains("new_district.new_name") ? ((AliasedValue)source.Attributes["new_district.new_name"]).Value.ToString() : null, source.Attributes.Contains("new_district.new_englishname") ? ((AliasedValue)source.Attributes["new_district.new_englishname"]).Value.ToString() : null), destMember, context) + " - ";
+                description += new ApplyLanguage().Resolve(source, destination, new MappingTranslation(MapperConfig.lang, source.Attributes.Contains("new_district.new_name") ? ((AliasedValue)source.Attributes["new_district.new_name"]).Value.ToString() : null, source.Attributes.Contains("new_district.new_englishname") ? ((AliasedValue)source.Attributes["new_district.new_englishname"]).Value.ToString() : null), destMember, context) + "-";
                 if (source.HouseType != null)
-                    description +=( source.HouseType.Value == 0 ? DbRes.T("Villa","Shared") : DbRes.T("Apartment", "Shared"))+" - ";
-                if (source.HouseType!=null && source.HouseType.Value == 0 && source.HouseNumber != null)
-                    description +=DbRes.T("Number" ,"Shared") + ":" +source.HouseNumber ;
+                    description +=( source.HouseType.Value == 0 ? DbRes.T("Villa","Shared") : DbRes.T("Building", "Shared"))+"-";
+                if (source.HouseNumber != null)
+                    description +=DbRes.T("Number" ,"Shared") + ":" +source.HouseNumber  ;
                 if (source.HouseType!=null && source.HouseType.Value == 1 &&source.ApartmentNumber != null)
-                    description += DbRes.T("Number", "Shared") + ":" + source.ApartmentNumber;
-                if (source.FloorNumber != null)
-                    description +=" - "+ DbRes.T("FloorNo", "Shared") + ":" + source.FloorNumber.Value;
-                            return description;
+                    description += "-"+ DbRes.T("Apartment", "Shared") +"-"+ DbRes.T("Number", "Shared") + ":" + source.ApartmentNumber + "-";
+                if (source.FloorNumber != null && source.FloorNumber.Value==0)
+                    description += DbRes.T("FloorNo", "Shared") + ":" + DbRes.T("Ground" , "Shared");
+                if(source.FloorNumber != null && source.FloorNumber.Value != 0)
+                    description += DbRes.T("FloorNo", "Shared") + ":" + source.FloorNumber.Value;
+                return description;
             }
             return null;
 

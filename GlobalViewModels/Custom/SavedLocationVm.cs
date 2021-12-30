@@ -28,6 +28,7 @@ namespace Utilities.GlobalViewModels.Custom
 
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        public string AddressNotes { get; set; }
 
     }
 }

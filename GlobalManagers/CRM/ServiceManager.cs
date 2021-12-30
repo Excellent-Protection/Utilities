@@ -128,7 +128,45 @@ namespace HourlySectorLib.Managers
 
 
         }
+        public ResponseVm<List<string>> GetCalendarDays(string serviceId)
+        {
+            List<string> days = null;
+            try
+            {
+                var service = _repo.GetCalendarDays(serviceId).CalendarDays;
+                if (!string.IsNullOrEmpty(service))
+                {
+                    days = service.Split(',').ToList();
+                }
 
+                return new ResponseVm<List<string>> { Status = HttpStatusCodeEnum.Ok, Data = days };
+            }
+            catch (Exception e)
+            {
+                return new ResponseVm<List<string>> { Status = HttpStatusCodeEnum.IneternalServerError };
+
+            }
+        }
+        public ResponseVm<string> GetServiceTerms(string serviceId)
+        {
+            try
+            {
+                string servicetermsField = RequestUtility.Language == UserLanguage.Arabic ? "new_arabicterms" : "new_englishterms";
+
+                var service = _repo.GetServiceTerms(serviceId, servicetermsField);
+                if (service.Attributes.Contains(servicetermsField))
+                {
+
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = service.Attributes[servicetermsField].ToString() };
+                }
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = "" };
+
+            }
+            catch (Exception e)
+            {
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred", "Shared") };
+            }
+        }
         public void Dispose()
         {
         }

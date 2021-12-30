@@ -27,6 +27,7 @@ namespace Utilities.Mappers.Profiles
 
             .ForMember(a => a.FloorNo, o => o.ResolveUsing(new FromOptionSetToInt(), s=>s.FloorNumber))
             .ForMember(a => a.Latitude, o => o.MapFrom(s =>!string.IsNullOrEmpty( s.Latitude)? s.Latitude : null))
+            .ForMember(a => a.AddressNotes, o => o.MapFrom(s =>!string.IsNullOrEmpty( s.AddressNotes)? s.AddressNotes : null))
             .ForMember(a => a.Longitude, o => o.MapFrom(s =>!string.IsNullOrEmpty( s.Longitude) ? s.Longitude :null))
             .ForMember(a => a.ApartmentNumber, o => o.MapFrom(s => s.ApartmentNumber))
             .ForMember(a => a.HouseNumber, o => o.MapFrom(s => s.HouseNumber))

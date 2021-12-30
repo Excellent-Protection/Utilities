@@ -11,7 +11,7 @@ using Utilities.Helpers;
 
 namespace Utilities.Controller
 {
-    [RoutePrefix("{lang}/api/Index")]
+    [RoutePrefix("{lang}/u")]
     public class ShortenerUrlController : BaseApiController
     {
         [Route("{id}")]
@@ -31,13 +31,14 @@ namespace Utilities.Controller
                     var response = Request.CreateResponse(HttpStatusCode.Moved);
                     response.Headers.Location = new Uri(record.LongUrl);
                     return response;
-                    //return Redirect(record.LongUrl);
                 }
             }
             catch { }
 
             return null;
         }
+
+       
 
     }
 }

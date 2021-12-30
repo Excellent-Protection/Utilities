@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.Defaults;
+using Utilities.Enums;
 using Utilities.GlobalRepositories.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.GlobalViewModels.Custom;
@@ -29,7 +30,7 @@ namespace Utilities.GlobalManagers.CRM
         {
         }
 
-        public ResponseVm<List<BaseQuickLookupWithImageVm>> GetResourceGroup(string professiongroupId)
+        public ResponseVm<List<BaseQuickLookupWithImageVm>> GetResourceGroup(string professiongroupId , ServiceType? serviceType = null)
         {
             try
             {
