@@ -147,7 +147,26 @@ namespace HourlySectorLib.Managers
 
             }
         }
+        public ResponseVm<string> GetServiceTerms(string serviceId)
+        {
+            try
+            {
+                string servicetermsField = RequestUtility.Language == UserLanguage.Arabic ? "new_arabicterms" : "new_englishterms";
 
+                var service = _repo.GetServiceTerms(serviceId, servicetermsField);
+                if (service.Attributes.Contains(servicetermsField))
+                {
+
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = service.Attributes[servicetermsField].ToString() };
+                }
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = "" };
+
+            }
+            catch (Exception e)
+            {
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred", "Shared") };
+            }
+        }
         public void Dispose()
         {
         }

@@ -62,7 +62,7 @@ namespace HourlySectorLib.Repositories
             var query = new QueryExpression(CrmEntityNamesMapping.Service);
             query.Criteria.AddCondition("new_projectid", ConditionOperator.Equal, projectId);
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, (int)CrmEntityState.Active);
-            query.ColumnSet = new ColumnSet("new_serviceid", "new_servicenamearabic", "new_serviceenglishname", "new_arabicdescription", "new_englishdescription", "new_icon");
+            query.ColumnSet = new ColumnSet("new_serviceid", "new_servicenamearabic", "new_serviceenglishname", "new_arabicdescription", "new_englishdescription", "new_icon", "new_servicenote", "new_servicenotear");
             return _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Service>());
 
         }
