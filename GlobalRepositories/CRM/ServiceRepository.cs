@@ -102,6 +102,12 @@ namespace HourlySectorLib.Repositories
             return Service.ContractRestrictUnpaid?.Value;
 
         }
+        public Service GetCalendarDays(string serviceId)
+        {
+            var _service = CRMService.Service;
+            var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_servicecalendar")).ToEntity<Service>();
+            return service;
 
+        }
     }
 }

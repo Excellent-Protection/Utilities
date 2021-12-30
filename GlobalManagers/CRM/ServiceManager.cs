@@ -128,6 +128,25 @@ namespace HourlySectorLib.Managers
 
 
         }
+        public ResponseVm<List<string>> GetCalendarDays(string serviceId)
+        {
+            List<string> days = null;
+            try
+            {
+                var service = _repo.GetCalendarDays(serviceId).CalendarDays;
+                if (!string.IsNullOrEmpty(service))
+                {
+                    days = service.Split(',').ToList();
+                }
+
+                return new ResponseVm<List<string>> { Status = HttpStatusCodeEnum.Ok, Data = days };
+            }
+            catch (Exception e)
+            {
+                return new ResponseVm<List<string>> { Status = HttpStatusCodeEnum.IneternalServerError };
+
+            }
+        }
 
         public void Dispose()
         {
