@@ -23,10 +23,10 @@ namespace Utilities.GlobalManagers.CRM
             _repo = new CityRepository();
         }
 
+        
 
 
-
-        public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId=null)
+        public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId)
         {
             try
             {
@@ -44,11 +44,36 @@ namespace Utilities.GlobalManagers.CRM
                 return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
             }
         }
-        public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities()
+
+        public ResponseVm<string> CheckDistrictAvilabilityForService(string serviceId, string districtId)
         {
             try
             {
-                var cities = _repo.GetActiveCities().ToModelListData<BaseQuickLookupVm>().ToList();
+                var result = _repo.CheckDistrictAvilabilityForService(serviceId,districtId);
+                if (result)
+                {
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
+                }
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("districtNotAvilableForService", "Shared") };
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("districtId", districtId));
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
+            }
+        }
+
+
+        public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities(string serviceId="")
+        {
+            try
+            {
+                var cities =new List<BaseQuickLookupVm>();
+                if (serviceId == "")
+                    cities = _repo.GetALlActiveCities().ToModelListData<BaseQuickLookupVm>().ToList();
+                else
+                    cities = _repo.GetHourlyCities(serviceId).ToModelListData<BaseQuickLookupVm>().ToList();
                 return new ResponseVm<List<BaseQuickLookupVm>> {Status= HttpStatusCodeEnum.Ok , Data= cities };
             }
             catch (Exception ex)
@@ -59,11 +84,11 @@ namespace Utilities.GlobalManagers.CRM
             }
         }
 
-        public ResponseVm<List<BaseQuickLookupVm>> GetCityDistricts(string cityId)
+        public ResponseVm<List<BaseQuickLookupVm>> GetCityDistricts(string cityId, string serviceId)
         {
             try
             {
-                var districts = _repo.GetCityDistricts(cityId).ToModelListData<BaseQuickLookupVm>().ToList();
+                var districts = _repo.GetCityDistricts(cityId, serviceId).ToModelListData<BaseQuickLookupVm>().ToList();
                 return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data = districts };
 
             }

@@ -846,4 +846,34 @@ namespace Utilities.Enums
     {
         Weekly = 11111
     }
+
+    public enum ContractRestrict
+    {
+        OnlyOneUnpaidContractForSameService = 1,
+        OnlyOneUnpaidContractForAnyService=2,
+        UnResrtricted=3
+    }
+    public enum DisplayCitiesForService
+    {
+        All = 1,
+        onlyServiceCities = 2,
+        AvailableForHourly = 3
+
+    }
+
+    public enum DisplayDistrictForService
+    {
+        All = 1,
+        OnlyServiceDistricts = 2,
+    }
+
+
+    public enum ChangedAttributesforSelectedHourlyPricing
+    {
+        NumOfWorkers=1,
+        NumOfHours=2,
+        ServiceShifts=3,
+        NumOfVisits = 4,
+        ContractDuration=5
+    }
 }

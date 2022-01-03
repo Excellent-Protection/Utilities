@@ -19,7 +19,7 @@ namespace Utilities.Controller
     {
         [HttpGet]
         [Route("CheckCityAvailabilityForService")]
-        public HttpResponseMessage CheckCityAvailabilityForService(string cityId , ServiceType serviceType ,  string hourlyServiceId=null)
+        public HttpResponseMessage CheckCityAvailabilityForService(string cityId , ServiceType serviceType ,  string hourlyServiceId)
         {
             using (CityManager _mngr= new CityManager(RequestUtility))
             {
@@ -28,10 +28,33 @@ namespace Utilities.Controller
             }
         }
 
+        [HttpGet]
+        [Route("CheckDistrictAvailabilityForService")]
+        public HttpResponseMessage CheckDistrictAvailabilityForService(string ServiceId,string districtId)
+        {
+            using (CityManager _mngr = new CityManager(RequestUtility))
+            {
+                var result = _mngr.CheckDistrictAvilabilityForService(ServiceId, districtId);
+                return Response<string>(result);
+            }
+        }
+
 
         [HttpGet]
-        [Route("ActiveCities")]
-        public HttpResponseMessage GetActiveCities()
+        [Route("HourlyActiveCities")]
+        public HttpResponseMessage GetHourlyActiveCities(string serviceId)
+        {
+            using (CityManager _mngr = new CityManager(RequestUtility))
+            {
+                var result = _mngr.GetActiveCities(serviceId);
+                return Response<List<BaseQuickLookupVm>>(result);
+            }
+        }
+
+
+        [HttpGet]
+        [Route("IndividualActiveCities")]
+        public HttpResponseMessage GetIndividualActiveCities()
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
@@ -39,16 +62,20 @@ namespace Utilities.Controller
                 return Response<List<BaseQuickLookupVm>>(result);
             }
         }
+
+
         [HttpGet]
         [Route("CityDistricts")]
-        public HttpResponseMessage GetCityDistricts(string cityId)
+        public HttpResponseMessage GetCityDistricts(string cityId, string serviceId)
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
-                var result = _mngr.GetCityDistricts(cityId);
+                var result = _mngr.GetCityDistricts(cityId, serviceId);
                 return Response<List<BaseQuickLookupVm>>(result);
             }
         }
+
+
         [HttpGet]
         [Route("GetPolygonPath")]
         public HttpResponseMessage GetPolygonPath(string districtId)
