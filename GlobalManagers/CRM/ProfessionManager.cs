@@ -38,11 +38,9 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     Distinct = true
                 };
-                query.AddLink(CrmEntityNamesMapping.IndividualPricing, "new_professionid", "new_profession");
                 query.Criteria.AddCondition("new_isvalidforsales", ConditionOperator.Equal, true);
-                query.ColumnSet = new ColumnSet("new_professionid", "new_name", "new_professionenglish", "new_appearanceorder", "new_forgender");
+                query.ColumnSet = new ColumnSet("new_professionid", "new_name", "new_professionenglish");
                 //Is available for web and mobile => available=true
-                query.LinkEntities[0].LinkCriteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
 
 
                 var _service = CRMService.Service;
