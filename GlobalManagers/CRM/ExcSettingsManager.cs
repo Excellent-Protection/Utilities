@@ -16,7 +16,7 @@ using Utilities.Mappers;
 
 namespace Utilities.GlobalManagers.CRM
 {
-    public class ExcSettingsManager : BaseManager
+    public class ExcSettingsManager : BaseManager , IDisposable
     {
         internal CrmContext _ctx;
         internal RequestUtility _requestUtility;
@@ -296,7 +296,9 @@ namespace Utilities.GlobalManagers.CRM
             return null;
         }
 
-
-
+        public void Dispose()
+        {
+            
+        }
     }
 }

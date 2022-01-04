@@ -94,7 +94,7 @@ namespace HourlySectorLib.Managers
             return null;
 
         }
-        public List<string> GetServiceShifts(string serviceId)
+        public List<VisitShift> GetServiceShifts(string serviceId)
         {
             try
             {
@@ -102,7 +102,8 @@ namespace HourlySectorLib.Managers
                 var serviceShifts = service != null ? service.ServiceShifts.Split(',').ToList() : new List<string>();
                 using (GlobalManager _mngr = new GlobalManager(RequestUtility))
                 {
-                    return serviceShifts;
+                    var shifts = serviceShifts.Select(a =>(VisitShift)Enum.Parse(typeof(VisitShift),a)).ToList();
+                    return shifts;
                 }
             }
             catch (Exception ex)
