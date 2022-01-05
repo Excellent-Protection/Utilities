@@ -78,10 +78,10 @@ namespace Utilities.GlobalManagers.Labor
             switch (serviceType)
             {
                 case ServiceType.Individual:
-                    return GetIndivStepDetailsByActionName(actionName);
+                    return GetStepDetailsByActionName(actionName, serviceType);
 
                 case ServiceType.Hourly:
-                    return null;
+                    return GetStepDetailsByActionName(actionName, serviceType);
                 case ServiceType.Renew:
                    return GetRenewStepDetailsByActionName(actionName);
                 default:
@@ -97,10 +97,10 @@ namespace Utilities.GlobalManagers.Labor
             switch (serviceType)
             {
                 case ServiceType.Individual:
-                    return GetIndivStepDetailsByActionName(actionName);
+                    return GetStepDetailsByActionName(actionName,serviceType);
 
                 case ServiceType.Hourly:
-                    return null;
+                    return GetStepDetailsByActionName(actionName, serviceType);
                 case ServiceType.Renew:
                     return GetRenewStepDetailsByActionName(actionName);
                 default:
@@ -164,11 +164,26 @@ namespace Utilities.GlobalManagers.Labor
             }
         }
 
-        public ResponseVm<StepDetailsVm> GetIndivStepDetailsByActionName(string actionName)
+        //public ResponseVm<StepDetailsVm> GetIndivStepDetailsByActionName(string actionName)
+        //{
+        //    try
+        //    {
+        //        var result = _repo.GetIndivStepDetailsByActionName(actionName ).Toclass<StepDetailsVm, StepsDetails>();
+        //        return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+        //        return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurrred" };
+        //    }
+        //}
+
+        public ResponseVm<StepDetailsVm> GetStepDetailsByActionName(string actionName, ServiceType serviceType)
         {
             try
             {
-                var result = _repo.GetIndivStepDetailsByActionName(actionName ).Toclass<StepDetailsVm, StepsDetails>();
+                var result = _repo.GetStepDetailsByActionName(actionName, serviceType).Toclass<StepDetailsVm, StepsDetails>();
                 return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
             }
             catch (Exception ex)
