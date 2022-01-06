@@ -877,4 +877,12 @@ namespace Utilities.Enums
         NumOfVisits = 4,
         ContractDuration=5
     }
+
+    public enum VisitType
+    {
+        Ordinary=1,
+        Gift=2,
+        Vacation=3
+    }
+
 }
