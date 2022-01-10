@@ -15,28 +15,31 @@ namespace Utilities.GlobalRepositories.CRM
     public class CityRepository
     {
 
-        public bool CheckDistrictAvilabilityForService(string serviceId, string districtId)
+        public bool CheckDistrictAvilabilityForService( string districtId, string serviceId = null)
         {
             var _service = CRMService.Service;
-            var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_displaydistricts")).ToEntity<Service>();
-            var displayDistrict = service.DisplayDistrict.Value;   //1 all ,2 only District service   
-
-            if (displayDistrict == (int)DisplayDistrictForService.All)
-                return true;
-
-
             var query = new QueryExpression(CrmEntityNamesMapping.District);
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
             query.Criteria.AddCondition("new_districtid", ConditionOperator.Equal, districtId);
             query.AddLink(CrmEntityNamesMapping.ServiceDistrict, "new_districtid", "new_district");
-            query.LinkEntities[0].LinkCriteria.AddCondition("new_service", ConditionOperator.Equal, serviceId);
+            if (serviceId != null)
+            {
+                var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_displaydistricts")).ToEntity<Service>();
+                var displayDistrict = service.DisplayDistrict.Value;   //1 all ,2 only District service   
+
+                if (displayDistrict == (int)DisplayDistrictForService.All)
+                    return true;
+                query.LinkEntities[0].LinkCriteria.AddCondition("new_service", ConditionOperator.Equal, serviceId);
+
+            }
+
 
             var res= _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<District>()).Distinct().ToList();
             return res.Count > 0;
         }
 
 
-        public bool CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId)
+        public bool CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId=null)
         {
 
             switch (serviceType)
