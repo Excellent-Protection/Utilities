@@ -206,11 +206,17 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -251,6 +257,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Identity\ApplicationPageConfiguration.cs" />
+    <Compile Include="Configuration\Identity\ApplicationRoleConfiguration.cs" />
+    <Compile Include="Configuration\Identity\ApplicationUserConfiguration.cs" />
+    <Compile Include="Configuration\Identity\BranchConfiguration.cs" />
+    <Compile Include="Configuration\Identity\DbSqlQueryConfiguration.cs" />
+    <Compile Include="Configuration\Identity\DeviceConfiguration.cs" />
+    <Compile Include="Configuration\Identity\DynamicTemplateConfiguration.cs" />
+    <Compile Include="Configuration\Identity\PaymentMethodConfiguration.cs" />
+    <Compile Include="Configuration\Identity\PaymentTransactionConfiguration.cs" />
+    <Compile Include="Configuration\Identity\RecieptVoucherConfiguration.cs" />
+    <Compile Include="Configuration\Identity\SettingConfiguration.cs" />
+    <Compile Include="Configuration\Identity\StepDataConfiguration.cs" />
+    <Compile Include="Configuration\Identity\TamayouzIntegratedDiscountConfiguration.cs" />
+    <Compile Include="Configuration\Identity\UrlShortenerConfiguration.cs" />
+    <Compile Include="Configuration\Identity\UserNotificationConfiguration.cs" />
+    <Compile Include="Configuration\Identity\UserProjectConfiguration.cs" />
     <Compile Include="Controller\CityController.cs" />
     <Compile Include="Controller\ContactAddressController.cs" />
     <Compile Include="Controller\ContactController.cs" />
@@ -412,6 +434,10 @@
     <Compile Include="Migrations\202111161404127_shortners.designer.cs">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112150911421_config.cs" />
+    <Compile Include="Migrations\202112150911421_config.designer.cs">
+      <DependentUpon>202112150911421_config.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202112081322546_isauthorized.cs" />
     <Compile Include="Migrations\202112081322546_isauthorized.designer.cs">
       <DependentUpon>202112081322546_isauthorized.cs</DependentUpon>
@@ -506,6 +532,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111161404127_shortners.resx">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
+    </EmbeddedResource>
+
+    <EmbeddedResource Include="Migrations\202112150911421_config.resx">
+      <DependentUpon>202112150911421_config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112081322546_isauthorized.resx">
       <DependentUpon>202112081322546_isauthorized.cs</DependentUpon>

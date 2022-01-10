@@ -7,7 +7,7 @@
     {
         public override void Up()
         {
-            AddColumn("dbo.StepsDetails", "IsAuthorized", c => c.Boolean(nullable: false));
+            //AddColumn("dbo.StepsDetails", "IsAuthorized", c => c.Boolean(nullable: false));
         }
         
         public override void Down()
