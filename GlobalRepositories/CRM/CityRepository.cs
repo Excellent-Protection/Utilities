@@ -15,9 +15,19 @@ namespace Utilities.GlobalRepositories.CRM
     public class CityRepository
     {
 
-        public bool CheckDistrictAvilabilityForService( string districtId, string serviceId = null)
+        public bool CheckDistrictAvilabilityForService( string districtId, string serviceId=null)
         {
             var _service = CRMService.Service;
+            if (serviceId != null)
+            {
+                var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_displaydistricts")).ToEntity<Service>();
+                var displayDistrict = service.DisplayDistrict.Value;   //1 all ,2 only District service   
+
+                if (displayDistrict == (int)DisplayDistrictForService.All)
+                    return true;
+            }
+
+
             var query = new QueryExpression(CrmEntityNamesMapping.District);
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
             query.Criteria.AddCondition("new_districtid", ConditionOperator.Equal, districtId);
@@ -175,27 +185,32 @@ namespace Utilities.GlobalRepositories.CRM
             return result;
 
         }
-        public List<District> GetCityDistricts(string cityId, string serviceId)
+        public List<District> GetCityDistricts(string cityId, string serviceId=null)
         {
 
             var _service = CRMService.Service;
-
-            var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId.ToString()), new ColumnSet("new_displaydistricts")).ToEntity<Service>();
-            var displayDistrict = service.DisplayDistrict.Value;   //1 all ,2 only District service   
-
-
             var query = new QueryExpression(CrmEntityNamesMapping.District);
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
             query.Criteria.AddCondition("new_cityid", ConditionOperator.Equal, cityId);
 
 
-            if (displayDistrict == (int)DisplayDistrictForService.OnlyServiceDistricts)
-            {
-                query.AddLink(CrmEntityNamesMapping.ServiceDistrict, "new_districtid", "new_district");
-                query.LinkEntities[0].LinkCriteria.AddCondition("new_service", ConditionOperator.Equal, serviceId);
-            }
+
 
             query.ColumnSet = new ColumnSet("new_name", "new_districtid");
+            if (serviceId != null)
+            {
+                var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId.ToString()), new ColumnSet("new_displaydistricts")).ToEntity<Service>();
+                var displayDistrict = service.DisplayDistrict.Value;   //1 all ,2 only District service   
+                if (displayDistrict == (int)DisplayDistrictForService.OnlyServiceDistricts)
+                {
+                    query.AddLink(CrmEntityNamesMapping.ServiceDistrict, "new_districtid", "new_district");
+                    query.LinkEntities[0].LinkCriteria.AddCondition("new_service", ConditionOperator.Equal, serviceId);
+                }
+            }
+                
+
+
+          
 
             return _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<District>()).Distinct().ToList();
         }

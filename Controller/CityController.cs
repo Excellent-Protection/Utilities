@@ -66,7 +66,7 @@ namespace Utilities.Controller
 
         [HttpGet]
         [Route("CityDistricts")]
-        public HttpResponseMessage GetCityDistricts(string cityId, string serviceId)
+        public HttpResponseMessage GetCityDistricts(string cityId, string serviceId=null)
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
