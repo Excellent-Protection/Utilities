@@ -7,8 +7,8 @@
     {
         public override void Up()
         {
-            AddColumn("dbo.StepsDetails", "StepType", c => c.Int(nullable: false));
-            AlterColumn("dbo.StepsHeaders", "ServiceType", c => c.Int(nullable: false));
+            //AddColumn("dbo.StepsDetails", "StepType", c => c.Int(nullable: false));
+            //AlterColumn("dbo.StepsHeaders", "ServiceType", c => c.Int(nullable: false));
         }
         
         public override void Down()
