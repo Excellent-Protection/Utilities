@@ -26,7 +26,7 @@ namespace Utilities.GlobalManagers.CRM
         
 
 
-        public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId)
+        public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId=null)
         {
             try
             {
@@ -45,7 +45,9 @@ namespace Utilities.GlobalManagers.CRM
             }
         }
 
-        public ResponseVm<string> CheckDistrictAvilabilityForService(string serviceId, string districtId)
+
+        public ResponseVm<string> CheckDistrictAvilabilityForService( string districtId, string serviceId=null)
+
         {
             try
             {
@@ -65,12 +67,12 @@ namespace Utilities.GlobalManagers.CRM
         }
 
 
-        public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities(string serviceId="")
+        public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities(string serviceId=null)
         {
             try
             {
                 var cities =new List<BaseQuickLookupVm>();
-                if (serviceId == "")
+                if (serviceId == null)
                     cities = _repo.GetALlActiveCities().ToModelListData<BaseQuickLookupVm>().ToList();
                 else
                     cities = _repo.GetHourlyCities(serviceId).ToModelListData<BaseQuickLookupVm>().ToList();
@@ -84,7 +86,7 @@ namespace Utilities.GlobalManagers.CRM
             }
         }
 
-        public ResponseVm<List<BaseQuickLookupVm>> GetCityDistricts(string cityId, string serviceId)
+        public ResponseVm<List<BaseQuickLookupVm>> GetCityDistricts(string cityId, string serviceId=null)
         {
             try
             {

@@ -19,7 +19,7 @@ namespace Utilities.Controller
     {
         [HttpGet]
         [Route("CheckCityAvailabilityForService")]
-        public HttpResponseMessage CheckCityAvailabilityForService(string cityId , ServiceType serviceType ,  string hourlyServiceId)
+        public HttpResponseMessage CheckCityAvailabilityForService(string cityId , ServiceType serviceType ,  string hourlyServiceId=null)
         {
             using (CityManager _mngr= new CityManager(RequestUtility))
             {
@@ -30,19 +30,19 @@ namespace Utilities.Controller
 
         [HttpGet]
         [Route("CheckDistrictAvailabilityForService")]
-        public HttpResponseMessage CheckDistrictAvailabilityForService(string ServiceId,string districtId)
+        public HttpResponseMessage CheckDistrictAvailabilityForService(string districtId, string ServiceId = null)
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
-                var result = _mngr.CheckDistrictAvilabilityForService(ServiceId, districtId);
+                var result = _mngr.CheckDistrictAvilabilityForService( districtId, ServiceId);
                 return Response<string>(result);
             }
         }
 
 
         [HttpGet]
-        [Route("HourlyActiveCities")]
-        public HttpResponseMessage GetHourlyActiveCities(string serviceId)
+        [Route("ActiveCities")]
+        public HttpResponseMessage GetActiveCities(string serviceId=null)
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
@@ -66,7 +66,7 @@ namespace Utilities.Controller
 
         [HttpGet]
         [Route("CityDistricts")]
-        public HttpResponseMessage GetCityDistricts(string cityId, string serviceId)
+        public HttpResponseMessage GetCityDistricts(string cityId, string serviceId=null)
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
