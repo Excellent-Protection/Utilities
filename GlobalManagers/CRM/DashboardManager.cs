@@ -96,9 +96,11 @@ namespace Utilities.GlobalManagers.CRM
                 query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
                 query.ColumnSet = new ColumnSet("statuscode");
                 var tickets = _service.RetrieveMultiple(query).Entities.Select(e => e.ToEntity<CustomerTicket>()).ToList();
-                obj.ClosedTickets = tickets.Where(a => a.Status.Value == (int)TicketStatus.ClosedByClient).Count();
+                //obj.ClosedTickets = tickets.Where(a => a.Status.Value == (int)TicketStatus.ClosedByClient || a.Status.Value == (int)TicketStatus.Rejected ).Count();
+                obj.ClosedTickets = tickets.Where(a => a.Status.Value == (int)CustomerTicketStatus.Servicehadstopped || a.Status.Value == (int)CustomerTicketStatus.Servicehaddonesuccessfully ).Count();
                 obj.AllTickets = tickets.Count();
-                obj.OpeningTickets = tickets.Where(a => a.Status.Value != (int)TicketStatus.Cancelled || a.Status.Value != (int)TicketStatus.Rejected || a.Status.Value != (int)TicketStatus.ClosedByClient).ToList().Count();
+                //obj.OpeningTickets = tickets.Where(a => a.Status.Value != (int)TicketStatus.Cancelled || a.Status.Value != (int)TicketStatus.Rejected || a.Status.Value != (int)TicketStatus.ClosedByClient).ToList().Count();
+                obj.OpeningTickets = tickets.Where(a => a.Status.Value != (int)CustomerTicketStatus.Servicehadstopped && a.Status.Value != (int)CustomerTicketStatus.Servicehaddonesuccessfully).ToList().Count();
                 return obj;
             }
             catch(Exception ex)
