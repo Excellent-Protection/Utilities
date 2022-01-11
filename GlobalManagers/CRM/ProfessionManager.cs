@@ -39,6 +39,7 @@ namespace Utilities.GlobalManagers.CRM
                     Distinct = true
                 };
                 query.Criteria.AddCondition("new_isvalidforsales", ConditionOperator.Equal, true);
+                query.Criteria.AddCondition("new_isindv", ConditionOperator.Equal, true);
                 query.ColumnSet = new ColumnSet("new_professionid", "new_name", "new_professionenglish");
                 //Is available for web and mobile => available=true
 
