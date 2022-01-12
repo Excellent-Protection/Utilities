@@ -62,64 +62,80 @@ namespace Utilities.GlobalRepositories.CRM
 
         }
 
+        //public List<string> GetProfessionsId(string ProfGroupId)
+        //{
+
+        //    var _service = CRMService.Service;
+
+        //    var query = new QueryExpression(CrmEntityNamesMapping.Profession);
+        //    query.AddLink(CrmEntityNamesMapping.Profession_ProfessionGroup, "new_professionid", "new_professionid");
+        //    query.LinkEntities[0].LinkCriteria.AddCondition("new_professiongroupid", ConditionOperator.Equal, ProfGroupId);
+        //    var res= _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
+        //    return res;
+
+        //}
+
+
+
         public List<string> GetProfessionsId(string ProfGroupId)
         {
             var _service = CRMService.Service;
 
-        
-            string sql = string.Empty;
-            string sqlQuery = string.Empty;
-            string sqlInfo = string.Empty;
 
-            sql = @"select new_professionid from new_new_professiongroup_new_profession where new_professiongroupid ='@ProfGroupId'";
+            //string sql = string.Empty;
+            //string sqlQuery = string.Empty;
+            //string sqlInfo = string.Empty;
 
-            sql = sql.Replace("@ProfGroupId", ProfGroupId);
+            //sql = @"select new_professionid from new_new_professiongroup_new_profession where new_professiongroupid ='@ProfGroupId'";
 
-
-            DataTable dt = new DataTable();
-            dt = CRMAccessDB.SelectQ(sql).Tables[0];
+            //sql = sql.Replace("@ProfGroupId", "");
+            //sql = sql.Replace("@ProfGroupId", ProfGroupId);
 
 
-          
+            //DataTable dt = new DataTable();
+            //dt = CRMAccessDB.SelectQ(sql).Tables[0];
 
-            string fetchXml =
 
-                            String.Format(@" < fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='true'>
-                            <entity name='new_profession'>
-                       
-                               <attribute name='new_professionid' />
-                            
-                               <link-relation name='new_new_professiongroup_new_profession' from='new_professionid' to='new_professionid' visible='false' intersect='true'>
-                            
-                                <link-entity name='new_professiongroup' from='new_professiongroupid' to='new_professiongroupid' alias='ad'>
-                            
-                                  <filter type='and'>
-                            
-                                     <condition attribute='new_professiongroupid' operator='eq' uiname='' uitype='new_professiongroup' value='{0}' />
-                            
-                                  </filter>
-                            
-                                </link-entity>
-                            
-                            </link-relation>
-                            
-                            </entity>
-                            
-                            </fetch>", ProfGroupId);
 
-            EntityCollection result = _service.RetrieveMultiple(new FetchExpression(fetchXml));
-        
 
-            
+            //string fetchXml =
 
-             
+            //                String.Format(@" < fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='true'>
+            //                <entity name='new_profession'>
 
-            QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Profession_ProfessionGroup);
+            //                   <attribute name='new_professionid' />
 
-            query.Criteria = new FilterExpression();
+            //                   <link-relation name='new_new_professiongroup_new_profession' from='new_professionid' to='new_professionid' visible='false' intersect='true'>
+
+            //                    <link-entity name='new_professiongroup' from='new_professiongroupid' to='new_professiongroupid' alias='ad'>
+
+            //                      <filter type='and'>
+
+            //                         <condition attribute='new_professiongroupid' operator='eq' uiname='' uitype='new_professiongroup' value='{0}' />
+
+            //                      </filter>
+
+            //                    </link-entity>
+
+            //                </link-relation>
+
+            //                </entity>
+
+            //                </fetch>", ProfGroupId);
+
+            //EntityCollection result = _service.RetrieveMultiple(new FetchExpression(fetchXml));
+
+
+
+
+
+
+            //QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Profession_ProfessionGroup);
+
+            //query.Criteria = new FilterExpression();
             //query.Criteria.AddCondition("new_professiongroupid", ConditionOperator.Equal, ProfGroupId);
-            var res = _service.RetrieveMultiple(query).Entities/*.Select(a => a.ToEntity<Profession>()).ToList(*/.Select(x => x.Id.ToString()).ToList();
-            return res;
+            //var res = _service.RetrieveMultiple(query).Entities/*.Select(a => a.ToEntity<Profession>()).ToList(*/.Select(x => x.Id.ToString()).ToList();
+            //return res;
 
 
             //var query = new QueryExpression(CrmEntityNamesMapping.Profession);
@@ -129,9 +145,9 @@ namespace Utilities.GlobalRepositories.CRM
             //return _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
 
 
-            //var query = new QueryExpression(CrmEntityNamesMapping.Profession);
-            //query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, ProfGroupId);
-            //return _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
+            var query = new QueryExpression(CrmEntityNamesMapping.Profession);
+            query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, ProfGroupId);
+            return _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
 
         }
 
