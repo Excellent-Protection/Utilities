@@ -86,7 +86,7 @@ namespace Utilities.GlobalManagers.CRM
             }
         }
 
-        public ResponseVm<List<BaseQuickLookupVm>> GetCityDistricts(string cityId, string serviceId)
+        public ResponseVm<List<BaseQuickLookupVm>> GetCityDistricts(string cityId, string serviceId=null)
         {
             try
             {
