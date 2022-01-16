@@ -44,10 +44,11 @@ namespace Utilities.GlobalManagers.Labor
             switch (serviceType)
             {
                 case (int)ServiceType.Individual:
-                    return GetIndividualServiceFirstStep();
+                    //return GetIndividualServiceFirstStep();
+                    return GetServiceFirstStep(serviceType);
 
                 case (int)ServiceType.Hourly:
-                    return null;
+                    return GetServiceFirstStep(serviceType);
                 case (int)ServiceType.Renew:
                     return GetRenewFirstStep();
                 default:
@@ -109,7 +110,21 @@ namespace Utilities.GlobalManagers.Labor
 
         }
 
+        public ResponseVm<StepDetailsVm> GetServiceFirstStep(int serviceType)
+        {
+            try
+            {
+                var result = _repo.GetServiceFirstStep(serviceType).Toclass<StepDetailsVm, StepsDetails>();
+                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
+                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurred" };
+
+            }
+        }
 
 
         #region DynamicSteps
@@ -131,21 +146,7 @@ namespace Utilities.GlobalManagers.Labor
             }
         }
 
-        public ResponseVm<StepDetailsVm> GetIndividualServiceFirstStep()
-        {
-            try
-            {
-                var result = _repo.GetIndividualServiceFirstStep().Toclass<StepDetailsVm, StepsDetails>();
-                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
-            }
-            catch (Exception ex)
-            {
-                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
-                return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurred" };
-
-            }
-        }
 
 
         public ResponseVm<StepDetailsVm> GetRenewFirstStep()

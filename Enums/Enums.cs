@@ -871,12 +871,15 @@ namespace Utilities.Enums
 
     public enum ChangedAttributesforSelectedHourlyPricing
     {
-        NumOfWorkers=1,
-        NumOfHours=2,
-        ServiceShifts=3,
-        NumOfVisits = 4,
-        ContractDuration=5
+        //same name in ChangedAttributesWithSelectedHourlyPricing setting and SelectedHourlyPricingVm model
+        EmployeeNumber = 1,
+        HoursNumber= 2,
+        VisitShift = 3,
+        WeeklyVisits = 4,
+        ContractDuration=5,
+        ResourceGroupId=6
     }
+
 
     public enum VisitType
     {

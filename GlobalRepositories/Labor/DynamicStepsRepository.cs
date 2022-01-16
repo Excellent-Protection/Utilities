@@ -39,23 +39,17 @@ namespace Utilities.GlobalRepositories.Labor
         }
 
 
-        public StepsDetails GetIndividualServiceFirstStep()
+        public StepsDetails GetServiceFirstStep(int serviceType)
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
             {
-                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible==true && a.StepsHeader.ServiceType==(int) ServiceType.Individual, a => a.StepsHeader)
+                return unitOfWork.Repository<StepsDetails>().Find(a => a.IsAvailable == true && a.IsVisible == true && a.StepsHeader.ServiceType == serviceType, a => a.StepsHeader)
                 .OrderBy(a => a.StepOrder).FirstOrDefault();
 
             }
         }
 
-        //public StepsDetails GetIndivStepDetailsByActionName(string ActionName)
-        //{
-        //    using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
-        //    {
-        //        return unitOfWork.Repository<StepsDetails>().Find(a => a.Action == ActionName&& a.IsAvailable==true && a.StepsHeader.ServiceType ==  (int)ServiceType.Individual, a => a.StepsHeader).FirstOrDefault();
-        //    }
-        //}
+ 
 
         public StepsDetails GetStepDetailsByActionName(string ActionName, ServiceType serviceType)
         {

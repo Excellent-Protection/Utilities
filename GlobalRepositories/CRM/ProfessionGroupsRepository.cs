@@ -67,7 +67,12 @@ namespace Utilities.GlobalRepositories.CRM
 
             var query = new QueryExpression(CrmEntityNamesMapping.Profession);
             query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, ProfGroupId);
-            return _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
+            var res=  _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
+            if (res.Count == 0)
+                res.Add(_service.Retrieve(CrmEntityNamesMapping.ProfessionGroup, new Guid(ProfGroupId), new ColumnSet("new_defaultprofession"))
+                    .ToEntity<ProfessionGroups>().Defaultprofession.Id.ToString());
+         
+            return res;
 
         }
 
