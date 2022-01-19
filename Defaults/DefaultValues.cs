@@ -69,6 +69,7 @@ namespace Utilities.Defaults
         public const string RenewOptionSettingName = "RenewOption";
         public const string PaymentAvailableSettingName = "IsPaymentAvailable";
         public const string QcTeamEmailSettingName = "QcTeamEmail";
+        public const string SystemVersionSettingName = "SystemVersion";
 
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
@@ -110,7 +111,7 @@ namespace Utilities.Defaults
         public const string RenewPackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
         public const int RenewOptionValue = 2;//new contract
         public const string QcTeamEmail = "e.shahin@excp.sa,";
-
+        public const int SystemVersion = 2; //new version
 
 
         public static readonly string[] DateFormat = { "dd-MM-yyyy", "yyyy-MM-dd", "dd/MM/yyyy", "yyyy/MM/dd","MM/dd/yyyy","M/d/yyyy","dd/MM/yyyy hh:mm:ss","d/M/yyyy h:m:s" , "M/d/yyyy h:m:s tt" }; 
