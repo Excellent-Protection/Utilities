@@ -93,6 +93,9 @@ namespace Utilities.GlobalManagers.CRM
                         break;
                     case RecordSource.Mobile:
                         setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Mobile || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile || a.ApplyTo == null));
+                        break;
+                    case RecordSource.CRMPortal:
+                        setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.CRMNewPortal || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo == null));
 
                         break;
                 }

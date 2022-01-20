@@ -10,11 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Utilities</RootNamespace>
     <AssemblyName>Utilities</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
@@ -53,7 +56,7 @@
       <HintPath>..\Dependencies\GenerateEncodedSignature.dll</HintPath>
     </Reference>
     <Reference Include="IdentityModel, Version=5.1.0.0, Culture=neutral, PublicKeyToken=e7877f4675df049f, processorArchitecture=MSIL">
-      <HintPath>..\packages\IdentityModel.5.1.0\lib\net472\IdentityModel.dll</HintPath>
+      <HintPath>..\packages\IdentityModel.5.1.0\lib\net461\IdentityModel.dll</HintPath>
     </Reference>
     <Reference Include="ISVGeneralServices">
       <HintPath>..\Dependencies\ISVGeneralServices.dll</HintPath>
@@ -107,13 +110,13 @@
       <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.1\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Logging, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.13.1\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.13.1\lib\net461\Microsoft.IdentityModel.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Protocols, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.6.13.1\lib\net472\Microsoft.IdentityModel.Protocols.dll</HintPath>
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.6.13.1\lib\net461\Microsoft.IdentityModel.Protocols.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.13.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.13.1\lib\net461\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
@@ -203,7 +206,7 @@
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -323,9 +326,7 @@
     <Compile Include="GlobalManagers\GlobalManager.cs" />
     <Compile Include="GlobalManagers\Labor\DynamicStepsManager.cs" />
     <Compile Include="GlobalManagers\Labor\Identity\ApplicationUserManager.cs" />
-    <Compile Include="GlobalManagers\Labor\SettingsManager.cs" />
     <Compile Include="GlobalManagers\Labor\StepManager.cs" />
-    <Compile Include="GlobalManagers\Labor\SettingsManager.cs" />
     <Compile Include="GlobalManagers\CRM\SmsManager.cs" />
     <Compile Include="GlobalManagers\MailManager.cs" />
     <Compile Include="GlobalManagers\ProfileManager.cs" />
@@ -368,11 +369,9 @@
     <Compile Include="GlobalViewModels\Custom\ServiceStepResponseVm.cs" />
     <Compile Include="GlobalViewModels\Custom\UserProfileDataVm.cs" />
     <Compile Include="GlobalViewModels\Labor\ApplicationUserVm.cs" />
-    <Compile Include="GlobalViewModels\Labor\SettingVM.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDataVm.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDetailsVm.cs" />
     <Compile Include="GlobalViewModels\ResponseVm.cs" />
-    <Compile Include="GlobalViewModels\Labor\SettingVM.cs" />
     <Compile Include="GlobalViewModels\MailToSendVM.cs" />
     <Compile Include="GlobalViewModels\ResultVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
@@ -533,7 +532,6 @@
     <EmbeddedResource Include="Migrations\202111161404127_shortners.resx">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Migrations\202112150911421_config.resx">
       <DependentUpon>202112150911421_config.cs</DependentUpon>
     </EmbeddedResource>
