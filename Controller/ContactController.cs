@@ -67,7 +67,7 @@ namespace Utilities.Controller
             using (ContactManager _mngr = new ContactManager(RequestUtility))
             {
                 var CurrentActionName = this.ActionContext.ActionDescriptor.ActionName;
-                DynamicStepsManager _dynamicStepMngr = new DynamicStepsManager();
+                DynamicStepsManager _dynamicStepMngr = new DynamicStepsManager(RequestUtility);
                 var currentStepDetails = _dynamicStepMngr.GetStepDetailsByActionNameAndServiceType(serviceType, CurrentActionName);
                 var nextAction = currentStepDetails.Data.NextStepAction;
                 if (stepType == (int)StepTypeEnum.Previous)

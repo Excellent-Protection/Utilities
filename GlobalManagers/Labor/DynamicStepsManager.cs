@@ -17,9 +17,9 @@ namespace Utilities.GlobalManagers.Labor
     public class DynamicStepsManager : IDisposable
     {
         DynamicStepsRepository _repo;
-        public DynamicStepsManager()
+        public DynamicStepsManager(RequestUtility requestUtility) 
         {
-            _repo = new DynamicStepsRepository();
+            _repo = new DynamicStepsRepository(requestUtility);
         }
         public void Dispose()
         {
@@ -30,10 +30,10 @@ namespace Utilities.GlobalManagers.Labor
             switch (serviceType)
             {
                 case (int)ServiceType.Individual:
-                    return GetIndividualServiceSteps();
+                    return GetServiceSteps(serviceType);
 
                 case (int)ServiceType.Hourly:
-                    return null;
+                    return GetServiceSteps(serviceType);
                 default:
                     return GetRenewSteps();
             }
@@ -44,7 +44,6 @@ namespace Utilities.GlobalManagers.Labor
             switch (serviceType)
             {
                 case (int)ServiceType.Individual:
-                    //return GetIndividualServiceFirstStep();
                     return GetServiceFirstStep(serviceType);
 
                 case (int)ServiceType.Hourly:
@@ -131,11 +130,11 @@ namespace Utilities.GlobalManagers.Labor
 
 
         #region Individual Steps 
-        public ResponseVm<List<StepDetailsVm>> GetIndividualServiceSteps()
+        public ResponseVm<List<StepDetailsVm>> GetServiceSteps(int serviceType)
         {
             try
             {
-                var steps = _repo.GetIndividualServiceSteps().ToclassList<StepDetailsVm, StepsDetails>().ToList();
+                var steps = _repo.GetServiceSteps(serviceType).ToclassList<StepDetailsVm, StepsDetails>().ToList();
                 return new ResponseVm<List<StepDetailsVm>> { Status = HttpStatusCodeEnum.Ok, Data = steps };
             }
             catch (Exception ex)

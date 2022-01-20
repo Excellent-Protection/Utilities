@@ -414,17 +414,9 @@
     <Compile Include="Migrations\202111161404127_shortners.designer.cs">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202112081322546_isauthorized.cs" />
-    <Compile Include="Migrations\202112081322546_isauthorized.designer.cs">
-      <DependentUpon>202112081322546_isauthorized.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112081327118_isauthorize.cs" />
-    <Compile Include="Migrations\202112081327118_isauthorize.designer.cs">
-      <DependentUpon>202112081327118_isauthorize.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112081333223_isauthoriz.cs" />
-    <Compile Include="Migrations\202112081333223_isauthoriz.designer.cs">
-      <DependentUpon>202112081333223_isauthoriz.cs</DependentUpon>
+    <Compile Include="Migrations\202201170817509_addsourceinstepdetails.cs" />
+    <Compile Include="Migrations\202201170817509_addsourceinstepdetails.designer.cs">
+      <DependentUpon>202201170817509_addsourceinstepdetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
@@ -509,14 +501,8 @@
     <EmbeddedResource Include="Migrations\202111161404127_shortners.resx">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112081322546_isauthorized.resx">
-      <DependentUpon>202112081322546_isauthorized.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112081327118_isauthorize.resx">
-      <DependentUpon>202112081327118_isauthorize.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112081333223_isauthoriz.resx">
-      <DependentUpon>202112081333223_isauthoriz.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202201170817509_addsourceinstepdetails.resx">
+      <DependentUpon>202201170817509_addsourceinstepdetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

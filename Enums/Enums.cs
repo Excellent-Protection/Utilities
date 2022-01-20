@@ -59,7 +59,13 @@ namespace Utilities.Enums
         ConfirmedPaymentWasMade = 100000002,
         WaitingConfirmation = 100000004,
         FullRefundHasbeenMade = 100000015,
-        RefundIsUnderWay = 100000014
+        RefundIsUnderWay = 100000014,
+        PostPonded=	100000003,
+        Running=	100000005,
+        NoAvailable=	100000013
+
+
+//Part of the amount has been refunded	100000016
     }
 
     public enum CustomerTicketSectorType
