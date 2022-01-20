@@ -328,6 +328,7 @@
     <Compile Include="GlobalManagers\GlobalManager.cs" />
     <Compile Include="GlobalManagers\Labor\DynamicStepsManager.cs" />
     <Compile Include="GlobalManagers\Labor\Identity\ApplicationUserManager.cs" />
+    <Compile Include="GlobalManagers\Labor\SettingsManager.cs" />
     <Compile Include="GlobalManagers\Labor\StepManager.cs" />
     <Compile Include="GlobalManagers\CRM\SmsManager.cs" />
     <Compile Include="GlobalManagers\MailManager.cs" />
@@ -371,6 +372,7 @@
     <Compile Include="GlobalViewModels\Custom\ServiceStepResponseVm.cs" />
     <Compile Include="GlobalViewModels\Custom\UserProfileDataVm.cs" />
     <Compile Include="GlobalViewModels\Labor\ApplicationUserVm.cs" />
+    <Compile Include="GlobalViewModels\Labor\SettingVM.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDataVm.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDetailsVm.cs" />
     <Compile Include="GlobalViewModels\ResponseVm.cs" />
@@ -435,11 +437,10 @@
     <Compile Include="Migrations\202111161404127_shortners.designer.cs">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
     </Compile>
-
     <Compile Include="Migrations\202201170817509_addsourceinstepdetails.cs" />
     <Compile Include="Migrations\202201170817509_addsourceinstepdetails.designer.cs">
       <DependentUpon>202201170817509_addsourceinstepdetails.cs</DependentUpon>
-
+    </Compile>
     <Compile Include="Migrations\202112150911421_config.cs" />
     <Compile Include="Migrations\202112150911421_config.designer.cs">
       <DependentUpon>202112150911421_config.cs</DependentUpon>
@@ -455,7 +456,6 @@
     <Compile Include="Migrations\202112081333223_isauthoriz.cs" />
     <Compile Include="Migrations\202112081333223_isauthoriz.designer.cs">
       <DependentUpon>202112081333223_isauthoriz.cs</DependentUpon>
-
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
@@ -540,10 +540,9 @@
     <EmbeddedResource Include="Migrations\202111161404127_shortners.resx">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Migrations\202201170817509_addsourceinstepdetails.resx">
       <DependentUpon>202201170817509_addsourceinstepdetails.cs</DependentUpon>
-
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112150911421_config.resx">
       <DependentUpon>202112150911421_config.cs</DependentUpon>
     </EmbeddedResource>
@@ -555,7 +554,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112081333223_isauthoriz.resx">
       <DependentUpon>202112081333223_isauthoriz.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

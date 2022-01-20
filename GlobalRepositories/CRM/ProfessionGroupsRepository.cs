@@ -92,8 +92,7 @@ namespace Utilities.GlobalRepositories.CRM
          
             return res;
 
-            var _service = CRMService.Service;
-
+         
 
       
           

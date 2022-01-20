@@ -100,7 +100,6 @@ namespace Utilities.Defaults
         public const string EmployeeSkills = "new_employeeskills";
         public const string Skill = "new_skill";
         public const string ResourceGroupNationality = "new_resourcegroupnationalities";
-        public const string Profession_ProfessionGroup = "Profession_ProfessionGroup";
 
         //public const string Profession_ProfessionGroup = "new_new_professiongroup_new_profession";
 
