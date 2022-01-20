@@ -28,8 +28,6 @@ namespace Utilities.GlobalManagers.CRM
         }
 
 
-
-
         public object this[string Name]
         {
             get
@@ -40,7 +38,7 @@ namespace Utilities.GlobalManagers.CRM
                     var Parse = bool.TryParse(result.Value.ToLower(), out bool settingboolean);
                     if (Parse)
                     {
-                        return settingboolean 
+                        return settingboolean
                         ;
                     }
                     if (result.Type != ExcSettingsType.String)
@@ -51,14 +49,35 @@ namespace Utilities.GlobalManagers.CRM
                             return settinginteger;
                         }
                     }
-                    return  result.Value;
-                }                
+                    return result.Value;
+                }
                 else
                 {
                     return null;
                 }
             }
         }
+    
+        public T GetSettingValueByName<T>(string settingName, T DefaultValue)
+        {
+            try
+            {
+
+                var result = GetSettingByName(settingName);
+                if (result != null && !string.IsNullOrEmpty(result.Value))
+                {
+                    return (T)Convert.ChangeType(result.Value, typeof(T));
+                }
+                return DefaultValue;
+            }
+
+            catch (Exception e)
+            {
+                return DefaultValue;
+            }
+        }
+
+
         public ExcSettingsVm GetSettingByName(string key)
         {
 
@@ -74,6 +93,9 @@ namespace Utilities.GlobalManagers.CRM
                         break;
                     case RecordSource.Mobile:
                         setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Mobile || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile || a.ApplyTo == null));
+                        break;
+                    case RecordSource.CRMPortal:
+                        setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.CRMNewPortal || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo == null));
 
                         break;
                 }

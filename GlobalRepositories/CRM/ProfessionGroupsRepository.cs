@@ -1,8 +1,10 @@
-﻿using Microsoft.Xrm.Sdk.Query;
+﻿using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 using Models.CRM;
 using Models.CRM.Individual_Contract;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ using Utilities.Helpers;
 
 namespace Utilities.GlobalRepositories.CRM
 {
-    public class ProfessionGroupsRepository :BaseCrmEntityRepository
+    public class ProfessionGroupsRepository : BaseCrmEntityRepository
     {
         public ProfessionGroupsRepository(RequestUtility requestUtility) :
             base(requestUtility, CrmEntityNamesMapping.ProfessionGroup, "new_professiongroupid", "new_name", "new_namearabic")
@@ -60,8 +62,24 @@ namespace Utilities.GlobalRepositories.CRM
 
         }
 
+        //public List<string> GetProfessionsId(string ProfGroupId)
+        //{
+
+        //    var _service = CRMService.Service;
+
+        //    var query = new QueryExpression(CrmEntityNamesMapping.Profession);
+        //    query.AddLink(CrmEntityNamesMapping.Profession_ProfessionGroup, "new_professionid", "new_professionid");
+        //    query.LinkEntities[0].LinkCriteria.AddCondition("new_professiongroupid", ConditionOperator.Equal, ProfGroupId);
+        //    var res= _service.RetrieveMultiple(query).Entities.Select(a => a.Id.ToString()).ToList();
+        //    return res;
+
+        //}
+
+
+
         public List<string> GetProfessionsId(string ProfGroupId)
         {
+
 
             var _service = CRMService.Service;
 
@@ -73,6 +91,12 @@ namespace Utilities.GlobalRepositories.CRM
                     .ToEntity<ProfessionGroups>().Defaultprofession.Id.ToString());
          
             return res;
+
+            var _service = CRMService.Service;
+
+
+      
+          
 
         }
 

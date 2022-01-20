@@ -7,7 +7,7 @@
     {
         public override void Up()
         {
-            AddColumn("dbo.paymentMethods", "Platforms", c => c.String());
+            //AddColumn("dbo.paymentMethods", "Platforms", c => c.String());
         }
         
         public override void Down()

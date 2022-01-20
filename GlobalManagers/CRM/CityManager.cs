@@ -26,7 +26,7 @@ namespace Utilities.GlobalManagers.CRM
         
 
 
-        public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId)
+        public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId=null)
         {
             try
             {
@@ -46,7 +46,10 @@ namespace Utilities.GlobalManagers.CRM
         }
 
 
-        public ResponseVm<string> CheckDistrictAvilabilityForService(string serviceId, string districtId)
+
+        public ResponseVm<string> CheckDistrictAvilabilityForService( string districtId, string serviceId=null)
+
+
         {
             try
             {
