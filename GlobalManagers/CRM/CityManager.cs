@@ -53,7 +53,7 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var result = _repo.CheckDistrictAvilabilityForService(serviceId,districtId);
+                var result = _repo.CheckDistrictAvilabilityForService(districtId,serviceId);
                 if (result)
                 {
                     return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
