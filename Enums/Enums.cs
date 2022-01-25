@@ -39,7 +39,8 @@ namespace Utilities.Enums
     {
         Business = 2,
         Individuals = 3,
-        HeadOffice = 1
+        HeadOffice = 1,
+        Hourly = 100000000
     }
     public enum ApplyToShiftEnum
     {
