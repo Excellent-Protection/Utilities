@@ -23,7 +23,28 @@ namespace Utilities.GlobalManagers.CRM
             _repo = new CityRepository();
         }
 
-        
+
+        public ResponseVm<string> CheckCityAndDistrictAvilabilityForService(string cityId, string districtId, ServiceType serviceType, string serviceId = null)
+        {
+            try
+            {
+                var CityAvilability = _repo.CheckCityAvilabilityForService(cityId, serviceType, serviceId);
+                if (CityAvilability)
+                {
+                    var DistrictAvilability = _repo.CheckDistrictAvilabilityForService(districtId, serviceId);
+                    if (DistrictAvilability)
+                        return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
+                }
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("CityNotAvilableForService", "Shared") };
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("cityId", cityId ),("DistrictId",districtId));
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
+            }
+        }
+
 
 
         public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId=null)

@@ -22,7 +22,7 @@ namespace Utilities.Mappers.Profiles
            .IgnoreAllPropertiesWithAnInaccessibleSetter()
            .ReverseMap()
            .ForMember(a => a.Id, opt => opt.MapFrom(s => s.Id != null ? s.Id.ToString() : null))
-           .ForMember(a => a.IconUrl, opt => opt.MapFrom(s => s.Icon != null ? ConfigurationManager.AppSettings["ServiceImages"].ToString() + s.Icon.Name.ToString() : null))
+           .ForMember(a => a.IconUrl, opt => opt.MapFrom(s => s.IconImageUrl != null ? ConfigurationManager.AppSettings["ServiceImages"].ToString() + s.IconImageUrl : null))
            .ForMember(a => a.Name, opt => opt.ResolveUsing(new ApplyLanguage(), src => new MappingTranslation(MapperConfig.lang, src.ArabicName, src.EnglishName)))
            .ForMember(a => a.Description, opt => opt.ResolveUsing(new ApplyLanguage(), src => new MappingTranslation(MapperConfig.lang, src.ArabicDescription, src.EnglishDescription)))
            .ForMember(a => a.ServiceNote, opt => opt.ResolveUsing(new ApplyLanguage(), src => new MappingTranslation(MapperConfig.lang, src.ServiceNoteAr, src.ServiceNoteEn)))

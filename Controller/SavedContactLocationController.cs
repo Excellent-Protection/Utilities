@@ -36,11 +36,11 @@ namespace Utilities.Controller
 
         [HttpGet]
         [Route("ContactSavedAddress")]
-        public HttpResponseMessage GetContactPreviousLocations(string contactId)
+        public HttpResponseMessage GetContactPreviousLocations(string contactId,string serviceId)
         {
             using (ContactLocationManager _mngr = new ContactLocationManager(RequestUtility))
             {
-                var result = _mngr.GetAllPrevLocationsByContactId(contactId);
+                var result = _mngr.GetAllPrevLocationsByContactId(contactId, serviceId);
                 return Response<ContactMainSubPreviouseLocationsVm>(result);
             }
         }

@@ -40,7 +40,7 @@ namespace Utilities.GlobalManagers.CRM
 
 
 
-        public ResponseVm<ContactMainSubPreviouseLocationsVm> GetAllPrevLocationsByContactId(string contactId)
+        public ResponseVm<ContactMainSubPreviouseLocationsVm> GetAllPrevLocationsByContactId(string contactId,string serviceId)
         {
             try
             {
@@ -49,6 +49,19 @@ namespace Utilities.GlobalManagers.CRM
                 if (PrevLocResult != null)
                 {
                     var PrevLocList = PrevLocResult.Select(a => a.ToEntity<ContactPreviousLocation>()).ToModelListData<SavedLocationVm>().ToList();
+
+                    using (CityManager CityManager=new CityManager(RequestUtility))
+                    {
+                        foreach (var item in PrevLocList)
+                        {
+                           var res= CityManager.CheckCityAndDistrictAvilabilityForService(item.CityId, item.DistrictId, ServiceType.Hourly, serviceId);
+                            if(res.Status != HttpStatusCodeEnum.Ok)
+                                item.AvailableForHourly = false;
+                            else
+                                item.AvailableForHourly = true;
+                        }
+                    }
+                       
 
                     ContactMainSubPreviouseLocationsVm result = new ContactMainSubPreviouseLocationsVm()
                     {
