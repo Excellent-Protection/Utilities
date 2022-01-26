@@ -35,7 +35,7 @@ namespace Utilities.GlobalManagers.CRM
                     if (DistrictAvilability)
                         return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
                 }
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("CityNotAvilableForService", "Shared") };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("CityNotAvilableForService", "Shared") ,Code="300.1"};
 
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
                 }
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("CityNotAvilableForService", "Shared") };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("CityNotAvilableForService", "Shared"), Code = "300.1" };
 
             }
             catch(Exception ex)
@@ -79,7 +79,7 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
                 }
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("districtNotAvilableForService", "Shared") };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("districtNotAvilableForService", "Shared"), Code = "300.1" };
 
             }
             catch (Exception ex)

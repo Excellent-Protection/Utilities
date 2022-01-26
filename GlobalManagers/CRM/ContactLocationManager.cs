@@ -40,7 +40,7 @@ namespace Utilities.GlobalManagers.CRM
 
 
 
-        public ResponseVm<ContactMainSubPreviouseLocationsVm> GetAllPrevLocationsByContactId(string contactId,string serviceId)
+        public ResponseVm<ContactMainSubPreviouseLocationsVm> GetAllPrevLocationsByContactId(string contactId,string serviceId = null)
         {
             try
             {

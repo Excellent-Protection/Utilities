@@ -36,7 +36,7 @@ namespace Utilities.Controller
 
         [HttpGet]
         [Route("ContactSavedAddress")]
-        public HttpResponseMessage GetContactPreviousLocations(string contactId,string serviceId)
+        public HttpResponseMessage GetContactPreviousLocations(string contactId,string serviceId=null)
         {
             using (ContactLocationManager _mngr = new ContactLocationManager(RequestUtility))
             {
