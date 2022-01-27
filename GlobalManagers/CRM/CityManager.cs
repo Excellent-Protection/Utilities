@@ -34,10 +34,10 @@ namespace Utilities.GlobalManagers.CRM
                     var DistrictAvilability = _repo.CheckDistrictAvilabilityForService(districtId, serviceId);
                     if (DistrictAvilability)
                         return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
-                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("tellmewhenserviceavailablefordistrict", "Shared"), Code = "300.1" };
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("tellmewhenserviceavailablefordistrict", "HourlyResources"), Code = "300.1" };
 
                 }
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("tellmewhenserviceavailableforcity", "Shared") ,Code="300.1"};
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("tellmewhenserviceavailableforcity", "HourlyResources") ,Code="300.1"};
 
             }
             catch (Exception ex)
