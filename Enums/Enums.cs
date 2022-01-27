@@ -819,7 +819,7 @@ namespace Utilities.Enums
     public enum AvailableForRenew
     {
         Yes=1,
-        SamePakage=2
+        SamePackage= 2
 
     }
     public enum AvailableForNew
