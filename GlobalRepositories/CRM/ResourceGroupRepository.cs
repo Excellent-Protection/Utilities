@@ -54,6 +54,21 @@ namespace Utilities.GlobalRepositories.CRM
 
         }
 
+
+        public List<ResourceGroup> GetResourceGroupsByService(string serivceId)
+        {
+
+            var _service = CRMService.Service;
+            var query = new QueryExpression(CrmEntityNamesMapping.ResourceGroup);
+            query.ColumnSet = new ColumnSet(true);
+            query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+            query.Criteria.AddCondition("new_service", ConditionOperator.Equal, new Guid(serivceId));
+
+            var resourceGroups = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<ResourceGroup>()).ToList();
+            return resourceGroups;
+
+        }
+
         public List<string> GetNationalitiesId(string resourceGropId)
         {
             try

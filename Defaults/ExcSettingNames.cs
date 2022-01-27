@@ -10,5 +10,6 @@ namespace Utilities.Defaults
     {
         public const string BankTransferAvailableForPaymentRequest = "BankTransferAvailableForPaymentRequest";
         public const string OnlinePaymentUrl = "OnlinePaymentUrl";
+        public const string FirstVisitExpiryAfter = "FirstVisitExpiryAfter";
     }
 }

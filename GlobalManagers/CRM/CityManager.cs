@@ -23,7 +23,30 @@ namespace Utilities.GlobalManagers.CRM
             _repo = new CityRepository();
         }
 
-        
+
+        public ResponseVm<string> CheckCityAndDistrictAvilabilityForService(string cityId, string districtId, ServiceType serviceType, string serviceId = null)
+        {
+            try
+            {
+                var CityAvilability = _repo.CheckCityAvilabilityForService(cityId, serviceType, serviceId);
+                if (CityAvilability)
+                {
+                    var DistrictAvilability = _repo.CheckDistrictAvilabilityForService(districtId, serviceId);
+                    if (DistrictAvilability)
+                        return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("tellmewhenserviceavailablefordistrict", "HourlyResources"), Code = "300.1" };
+
+                }
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("tellmewhenserviceavailableforcity", "HourlyResources") ,Code="300.1"};
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("cityId", cityId ),("DistrictId",districtId));
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
+            }
+        }
+
 
 
         public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId=null)
@@ -35,7 +58,7 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
                 }
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("CityNotAvilableForService", "Shared") };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("CityNotAvilableForService", "Shared"), Code = "300.1" };
 
             }
             catch(Exception ex)
@@ -46,17 +69,19 @@ namespace Utilities.GlobalManagers.CRM
         }
 
 
+
         public ResponseVm<string> CheckDistrictAvilabilityForService( string districtId, string serviceId=null)
+
 
         {
             try
             {
-                var result = _repo.CheckDistrictAvilabilityForService(serviceId,districtId);
+                var result = _repo.CheckDistrictAvilabilityForService(districtId,serviceId);
                 if (result)
                 {
                     return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
                 }
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("districtNotAvilableForService", "Shared") };
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("districtNotAvilableForService", "Shared"), Code = "300.1" };
 
             }
             catch (Exception ex)
@@ -73,10 +98,11 @@ namespace Utilities.GlobalManagers.CRM
             {
                 var cities =new List<BaseQuickLookupVm>();
                 if (serviceId == null)
+
                     cities = _repo.GetALlActiveCities().ToModelListData<BaseQuickLookupVm>().ToList();
                 else
                     cities = _repo.GetHourlyCities(serviceId).ToModelListData<BaseQuickLookupVm>().ToList();
-                return new ResponseVm<List<BaseQuickLookupVm>> {Status= HttpStatusCodeEnum.Ok , Data= cities };
+                return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data = cities };
             }
             catch (Exception ex)
             {

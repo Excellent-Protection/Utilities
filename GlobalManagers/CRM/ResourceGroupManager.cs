@@ -30,7 +30,22 @@ namespace Utilities.GlobalManagers.CRM
         {
         }
 
-        public ResponseVm<List<BaseQuickLookupWithImageVm>> GetResourceGroup(string professiongroupId , ServiceType? serviceType = null)
+
+        public ResponseVm<List<BaseQuickLookupWithImageVm>> GetResourceGroupsByService(string serviceId)
+        {
+            try
+            {
+                var res = _repo.GetResourceGroupsByService(serviceId).Select(a => a.Toclass<BaseQuickLookupWithImageVm>()).ToList();
+                return new ResponseVm<List<BaseQuickLookupWithImageVm>>() { Status = HttpStatusCodeEnum.Ok, Data = res };
+            }
+            catch (Exception e)
+            {
+                return new ResponseVm<List<BaseQuickLookupWithImageVm>>() { Status = HttpStatusCodeEnum.IneternalServerError };
+            }
+        }
+
+        public ResponseVm<List<BaseQuickLookupWithImageVm>> GetResourceGroup(string professiongroupId, ServiceType? servicetype)
+
         {
             try
             {

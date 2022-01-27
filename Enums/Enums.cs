@@ -39,7 +39,8 @@ namespace Utilities.Enums
     {
         Business = 2,
         Individuals = 3,
-        HeadOffice = 1
+        HeadOffice = 1,
+        Hourly = 100000000
     }
     public enum ApplyToShiftEnum
     {
@@ -59,7 +60,13 @@ namespace Utilities.Enums
         ConfirmedPaymentWasMade = 100000002,
         WaitingConfirmation = 100000004,
         FullRefundHasbeenMade = 100000015,
-        RefundIsUnderWay = 100000014
+        RefundIsUnderWay = 100000014,
+        PostPonded=	100000003,
+        Running=	100000005,
+        NoAvailable=	100000013
+
+
+//Part of the amount has been refunded	100000016
     }
 
     public enum CustomerTicketSectorType
@@ -622,10 +629,11 @@ namespace Utilities.Enums
     }
     public enum PromotionOfferType
     {
-        DiscountPercentage = 1,
-        FixedDiscount = 2,
-        HourPriceDicount = 3,
-        FreeVisits = 4,
+        Discount = 1,
+        HourPrice = 2,
+        FreeVisits = 3,
+        None=4
+    
     }
     public enum IndividualContractProcedureStatus
     {
@@ -871,10 +879,21 @@ namespace Utilities.Enums
 
     public enum ChangedAttributesforSelectedHourlyPricing
     {
-        NumOfWorkers=1,
-        NumOfHours=2,
-        ServiceShifts=3,
-        NumOfVisits = 4,
-        ContractDuration=5
+        //same name in ChangedAttributesWithSelectedHourlyPricing setting and SelectedHourlyPricingVm model
+        EmployeeNumber = 1,
+        HoursNumber= 2,
+        VisitShift = 3,
+        WeeklyVisits = 4,
+        ContractDuration=5,
+        ResourceGroupId=6
     }
+
+
+    public enum VisitType
+    {
+        Ordinary=1,
+        Gift=2,
+        Vacation=3
+    }
+
 }

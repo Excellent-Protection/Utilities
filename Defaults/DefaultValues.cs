@@ -57,6 +57,12 @@ namespace Utilities.Defaults
         public const string DealingWithMainAddressName = "DealingWithMainAddress";
         public const string PackagePropertiesSettingName = "PackageProperties";
         public const string RenewPackagePropertiesSettingName = "RenewPackageProperties";
+        
+        public const string SelectedPackagePropertiesSettingName = "SelectedPackageProperties";
+        public const string DefaultSelectedPackagePropertiesSettingName = "DefaultSelectedPackageProperties";
+        public const string HourlyPackagePropertiesSettingName = "HourlyPackageProperties";
+
+
         public const string RequestDetailsPackagePropertiesSettingName = "RequestDetailsPackageProperties";
         public const string DaysBeforeEndContractToShowRenewBtnSettingName = "DaysBeforeEndContractToShowRenewBtn";
         public const string IncludInsuranceWithRenewSettingName = "IncludInsuranceWithRenew";
@@ -111,6 +117,10 @@ namespace Utilities.Defaults
         public const string RenewPackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
         public const int RenewOptionValue = 2;//new contract
         public const string QcTeamEmail = "e.shahin@excp.sa,";
+
+        public const string SelectedPackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
+        public const string HourlyPackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
+
         public const int SystemVersion = 2; //new version
 
 

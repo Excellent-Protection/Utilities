@@ -27,7 +27,7 @@ namespace Utilities.Controller
         [Route("DynamicSteps")]
         public HttpResponseMessage GetDynamicSteps(int serviceType)
         {
-            using (DynamicStepsManager _mngr = new DynamicStepsManager())
+            using (DynamicStepsManager _mngr = new DynamicStepsManager(RequestUtility))
             {
                 var result = _mngr.GetDynamicSteps(serviceType);
                 return Response<List<StepDetailsVm>>(result);
@@ -38,7 +38,7 @@ namespace Utilities.Controller
         [Route("FirstStep")]
         public HttpResponseMessage GetFirstStep(int serviceType)
         {
-            using (DynamicStepsManager _mngr = new DynamicStepsManager())
+            using (DynamicStepsManager _mngr = new DynamicStepsManager(RequestUtility))
             {
                 var result = _mngr.GetFirstStep(serviceType);
                 return Response<StepDetailsVm>(result);
@@ -49,7 +49,7 @@ namespace Utilities.Controller
         [Route("StepDetailsByActionName")]
         public HttpResponseMessage GetStepDetailsByActionName(ServiceType serviceType, string actionName)
         {
-            using (DynamicStepsManager _mngr = new DynamicStepsManager())
+            using (DynamicStepsManager _mngr = new DynamicStepsManager(RequestUtility))
             {
                 var result = _mngr.GetStepDetailsByActionNameAndServiceType(serviceType, actionName);
                 return Response<StepDetailsVm>(result);
@@ -60,7 +60,7 @@ namespace Utilities.Controller
         [Route("NextActionDetailsByActionName")]
         public HttpResponseMessage GetNextActionDetailsByActionName(ServiceType serviceType, string actionName)
         {
-            using (DynamicStepsManager _mngr = new DynamicStepsManager())
+            using (DynamicStepsManager _mngr = new DynamicStepsManager(RequestUtility))
             {
                 var result = _mngr.GetNextStepDetailsByCurrentActionName(actionName, serviceType);
                 return Response<StepDetailsVm>(result);

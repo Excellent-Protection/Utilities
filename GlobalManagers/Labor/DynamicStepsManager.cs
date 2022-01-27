@@ -17,9 +17,9 @@ namespace Utilities.GlobalManagers.Labor
     public class DynamicStepsManager : IDisposable
     {
         DynamicStepsRepository _repo;
-        public DynamicStepsManager()
+        public DynamicStepsManager(RequestUtility requestUtility) 
         {
-            _repo = new DynamicStepsRepository();
+            _repo = new DynamicStepsRepository(requestUtility);
         }
         public void Dispose()
         {
@@ -30,10 +30,10 @@ namespace Utilities.GlobalManagers.Labor
             switch (serviceType)
             {
                 case (int)ServiceType.Individual:
-                    return GetIndividualServiceSteps();
+                    return GetServiceSteps(serviceType);
 
                 case (int)ServiceType.Hourly:
-                    return null;
+                    return GetServiceSteps(serviceType);
                 default:
                     return GetRenewSteps();
             }
@@ -44,10 +44,10 @@ namespace Utilities.GlobalManagers.Labor
             switch (serviceType)
             {
                 case (int)ServiceType.Individual:
-                    return GetIndividualServiceFirstStep();
+                    return GetServiceFirstStep(serviceType);
 
                 case (int)ServiceType.Hourly:
-                    return null;
+                    return GetServiceFirstStep(serviceType);
                 case (int)ServiceType.Renew:
                     return GetRenewFirstStep();
                 default:
@@ -78,10 +78,10 @@ namespace Utilities.GlobalManagers.Labor
             switch (serviceType)
             {
                 case ServiceType.Individual:
-                    return GetIndivStepDetailsByActionName(actionName);
+                    return GetStepDetailsByActionName(actionName, serviceType);
 
                 case ServiceType.Hourly:
-                    return null;
+                    return GetStepDetailsByActionName(actionName, serviceType);
                 case ServiceType.Renew:
                    return GetRenewStepDetailsByActionName(actionName);
                 default:
@@ -97,10 +97,10 @@ namespace Utilities.GlobalManagers.Labor
             switch (serviceType)
             {
                 case ServiceType.Individual:
-                    return GetIndivStepDetailsByActionName(actionName);
+                    return GetStepDetailsByActionName(actionName,serviceType);
 
                 case ServiceType.Hourly:
-                    return null;
+                    return GetStepDetailsByActionName(actionName, serviceType);
                 case ServiceType.Renew:
                     return GetRenewStepDetailsByActionName(actionName);
                 default:
@@ -109,33 +109,11 @@ namespace Utilities.GlobalManagers.Labor
 
         }
 
-
-
-
-        #region DynamicSteps
-
-
-        #region Individual Steps 
-        public ResponseVm<List<StepDetailsVm>> GetIndividualServiceSteps()
+        public ResponseVm<StepDetailsVm> GetServiceFirstStep(int serviceType)
         {
             try
             {
-                var steps = _repo.GetIndividualServiceSteps().ToclassList<StepDetailsVm, StepsDetails>().ToList();
-                return new ResponseVm<List<StepDetailsVm>> { Status = HttpStatusCodeEnum.Ok, Data = steps };
-            }
-            catch (Exception ex)
-            {
-                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
-                return new ResponseVm<List<StepDetailsVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "Error in Get Dynamic Steps " };
-
-            }
-        }
-
-        public ResponseVm<StepDetailsVm> GetIndividualServiceFirstStep()
-        {
-            try
-            {
-                var result = _repo.GetIndividualServiceFirstStep().Toclass<StepDetailsVm, StepsDetails>();
+                var result = _repo.GetServiceFirstStep(serviceType).Toclass<StepDetailsVm, StepsDetails>();
                 return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
             }
             catch (Exception ex)
@@ -146,6 +124,28 @@ namespace Utilities.GlobalManagers.Labor
 
             }
         }
+
+
+        #region DynamicSteps
+
+
+        #region Individual Steps 
+        public ResponseVm<List<StepDetailsVm>> GetServiceSteps(int serviceType)
+        {
+            try
+            {
+                var steps = _repo.GetServiceSteps(serviceType).ToclassList<StepDetailsVm, StepsDetails>().ToList();
+                return new ResponseVm<List<StepDetailsVm>> { Status = HttpStatusCodeEnum.Ok, Data = steps };
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                return new ResponseVm<List<StepDetailsVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "Error in Get Dynamic Steps " };
+
+            }
+        }
+
+
 
 
         public ResponseVm<StepDetailsVm> GetRenewFirstStep()
@@ -164,11 +164,26 @@ namespace Utilities.GlobalManagers.Labor
             }
         }
 
-        public ResponseVm<StepDetailsVm> GetIndivStepDetailsByActionName(string actionName)
+        //public ResponseVm<StepDetailsVm> GetIndivStepDetailsByActionName(string actionName)
+        //{
+        //    try
+        //    {
+        //        var result = _repo.GetIndivStepDetailsByActionName(actionName ).Toclass<StepDetailsVm, StepsDetails>();
+        //        return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+        //        return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "An Error Occurrred" };
+        //    }
+        //}
+
+        public ResponseVm<StepDetailsVm> GetStepDetailsByActionName(string actionName, ServiceType serviceType)
         {
             try
             {
-                var result = _repo.GetIndivStepDetailsByActionName(actionName ).Toclass<StepDetailsVm, StepsDetails>();
+                var result = _repo.GetStepDetailsByActionName(actionName, serviceType).Toclass<StepDetailsVm, StepsDetails>();
                 return new ResponseVm<StepDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = result };
             }
             catch (Exception ex)

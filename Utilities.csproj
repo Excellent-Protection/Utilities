@@ -280,6 +280,7 @@
     <Compile Include="Controller\ContactAddressController.cs" />
     <Compile Include="Controller\ContactController.cs" />
     <Compile Include="Controller\DynamicStepsController.cs" />
+    <Compile Include="Controller\GeneralController.cs" />
     <Compile Include="Controller\NationalityController.cs" />
     <Compile Include="Controller\ProfessionController.cs" />
     <Compile Include="Controller\ProfessionGroupsController.cs" />
@@ -317,6 +318,7 @@
     <Compile Include="GlobalManagers\CRM\ContactManager.cs" />
     <Compile Include="GlobalManagers\CRM\DashboardManager.cs" />
     <Compile Include="GlobalManagers\CRM\EmployeeManager.cs" />
+    <Compile Include="GlobalManagers\CRM\GeneralManager.cs" />
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionGroupsManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionManager.cs" />
@@ -326,6 +328,7 @@
     <Compile Include="GlobalManagers\GlobalManager.cs" />
     <Compile Include="GlobalManagers\Labor\DynamicStepsManager.cs" />
     <Compile Include="GlobalManagers\Labor\Identity\ApplicationUserManager.cs" />
+    <Compile Include="GlobalManagers\Labor\SettingsManager.cs" />
     <Compile Include="GlobalManagers\Labor\StepManager.cs" />
     <Compile Include="GlobalManagers\CRM\SmsManager.cs" />
     <Compile Include="GlobalManagers\MailManager.cs" />
@@ -369,6 +372,7 @@
     <Compile Include="GlobalViewModels\Custom\ServiceStepResponseVm.cs" />
     <Compile Include="GlobalViewModels\Custom\UserProfileDataVm.cs" />
     <Compile Include="GlobalViewModels\Labor\ApplicationUserVm.cs" />
+    <Compile Include="GlobalViewModels\Labor\SettingVM.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDataVm.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDetailsVm.cs" />
     <Compile Include="GlobalViewModels\ResponseVm.cs" />
@@ -395,6 +399,7 @@
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Service_DisplayServiceVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepData_StepDataVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepDetails_StepDetailsVmProfile.cs" />
     <Compile Include="Mappers\Resolvers\ApplyLanguage.cs" />
@@ -432,6 +437,10 @@
     <Compile Include="Migrations\202111161404127_shortners.cs" />
     <Compile Include="Migrations\202111161404127_shortners.designer.cs">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201170817509_addsourceinstepdetails.cs" />
+    <Compile Include="Migrations\202201170817509_addsourceinstepdetails.designer.cs">
+      <DependentUpon>202201170817509_addsourceinstepdetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202112150911421_config.cs" />
     <Compile Include="Migrations\202112150911421_config.designer.cs">
@@ -531,6 +540,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111161404127_shortners.resx">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201170817509_addsourceinstepdetails.resx">
+      <DependentUpon>202201170817509_addsourceinstepdetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112150911421_config.resx">
       <DependentUpon>202112150911421_config.cs</DependentUpon>

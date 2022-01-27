@@ -21,10 +21,19 @@ namespace Utilities.Controller
 
         }
 
-
+        [HttpGet]
+        [Route("GetResourceGroupsByService")]
+        public HttpResponseMessage GetResourceGroupsByService(string serviceId)
+        {
+            using (ResourceGroupManager _mngr = new ResourceGroupManager(RequestUtility))
+            {
+                var res = _mngr.GetResourceGroupsByService(serviceId);
+                return Response<List<BaseQuickLookupWithImageVm>>(res);
+            }
+        }
         [HttpGet]
         [Route("AvailableResourceGroups")]
-        public HttpResponseMessage GetAvailableResourceGroup(string professionGroupId  , ServiceType? serviceType = null)
+        public HttpResponseMessage GetAvailableResourceGroup(string professionGroupId=null  , ServiceType? serviceType = null , string serviceId=null)
         {
 
             using (ResourceGroupManager _Mngr = new ResourceGroupManager(RequestUtility))
@@ -34,5 +43,8 @@ namespace Utilities.Controller
 
             }
         }
+
+
+
     }
 }
