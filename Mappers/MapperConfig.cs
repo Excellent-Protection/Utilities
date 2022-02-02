@@ -11,6 +11,7 @@ namespace Utilities.Mappers
 {
     public static class MapperConfig
     {
+        public static bool IsEnglish { get; set; }
         public static string lang { get; set; }
         static IEnumerable<Type> _profiles { get; set; }
         public static void ConfigureMapping(IEnumerable<Type> Profiles)

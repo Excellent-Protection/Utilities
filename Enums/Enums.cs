@@ -40,7 +40,7 @@ namespace Utilities.Enums
         Business = 2,
         Individuals = 3,
         HeadOffice = 1,
-        Hourly = 100000000
+        Hourly = 4
     }
     public enum ApplyToShiftEnum
     {
@@ -894,6 +894,12 @@ namespace Utilities.Enums
         Ordinary=1,
         Gift=2,
         Vacation=3
+    }
+
+    public enum EvaluationBy
+    {
+        Customer = 100000000,
+        Labor = 100000001
     }
 
 }
