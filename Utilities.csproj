@@ -355,6 +355,7 @@
     <Compile Include="GlobalViewModels\CRM\ServiceVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BaseQuickLookupWithImageVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BoolWithString.cs" />
+    <Compile Include="GlobalViewModels\Custom\BulkEntitiesResult.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactDetailsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactMainSubPreviouseLocationsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactUsVm.cs" />
@@ -511,12 +512,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{9bd14d55-2fd4-42a4-901e-e386d007399c}</Project>
-      <Name>Models</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\202109191048321_stepsTabels.resx">
       <DependentUpon>202109191048321_stepsTabels.cs</DependentUpon>
     </EmbeddedResource>
@@ -567,7 +562,12 @@
     <EmbeddedResource Include="Resources\SuccessFaildMessagesResources.ar.resx" />
     <EmbeddedResource Include="Resources\SuccessFaildMessagesResources.resx" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{9bd14d55-2fd4-42a4-901e-e386d007399c}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

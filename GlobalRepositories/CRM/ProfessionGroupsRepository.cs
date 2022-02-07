@@ -39,8 +39,32 @@ namespace Utilities.GlobalRepositories.CRM
             var _service = CRMService.Service;
             var querypricing = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
             querypricing.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
-            querypricing.Criteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
+            //querypricing.Criteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
             querypricing.ColumnSet = new ColumnSet(true);
+            FilterExpression filter2 = new FilterExpression(LogicalOperator.Or);
+            switch (RequestUtility.Source)
+            {
+                case RecordSource.CRMPortal:
+                    {
+                        filter2.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.CRMNewPortal.ToString() + "%");
+                        break;
+                    }
+                case RecordSource.Mobile:
+                    {
+                        filter2.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.Mobile.ToString() + "%");
+                        filter2.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.WebAndMobile.ToString() + "%");
+
+                        break;
+                    }
+                case RecordSource.Web:
+                default:
+                    {
+                        filter2.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.Web.ToString() + "%");
+                        filter2.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.WebAndMobile.ToString() + "%");
+                        break;
+                    }
+            }
+            querypricing.Criteria.AddFilter(filter2);
             var Pricing = _service.RetrieveMultiple(querypricing).Entities.Select(a => a.ToEntity<IndividualPricing>()).ToList();
             var professionsIds = Pricing.Where(a => a.ProfessionGroup != null).Select(a => a.ProfessionGroup.Id.ToString()).Distinct().ToList();
             var professionQuery = new QueryExpression(CrmEntityNamesMapping.ProfessionGroup);
