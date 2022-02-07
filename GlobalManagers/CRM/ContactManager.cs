@@ -91,7 +91,17 @@ namespace Utilities.GlobalManagers.CRM
             {
                 using (var _globalRep = new GlobalCrmRepository())
                 {
-                    bool isCompleted = _globalRep.GetEmptyFieldsNamesForRecord(CrmEntityNamesMapping.Contact, "contactid", contactId, new[] { "new_gender", "new_idnumer",  "new_contactnationality" }).Count() == 0;
+                    bool isCompleted = true;
+                    var CompleteProfileRequiredFields = new ExcSettingsManager(RequestUtility).GetSettingByNameAndSource(DefaultValues.CompleteProfileRequiredFieldsSettingName, RequestUtility.Source.Value);
+                    if (CompleteProfileRequiredFields != null)
+                    {
+                        string[] CompleteProfileRequiredFieldsList = CompleteProfileRequiredFields.Value.Replace(" ", "").Split(',');
+                        isCompleted = _globalRep.GetEmptyFieldsNamesForRecord(CrmEntityNamesMapping.Contact, "contactid", contactId,  CompleteProfileRequiredFieldsList).Count() == 0;
+                    }
+                    else
+                    {
+                        isCompleted = _globalRep.GetEmptyFieldsNamesForRecord(CrmEntityNamesMapping.Contact, "contactid", contactId, DefaultValues.completeProfileFieldsDefaultValues).Count() == 0;
+                    }
                     return isCompleted;
                 }
             }

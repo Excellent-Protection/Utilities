@@ -229,6 +229,13 @@ namespace Utilities.Defaults
 
 
         public const string OnlinePaymentUrl = "/#/payment?contractId=@id&type=@type";
+        #region CompleteProfileSetting
+        public const string CompleteProfileRequiredFieldsSettingName = "CompleteProfileRequiredFields";
+        public const string ContactDetailsFieldsSettingName = "ContactDetailsFields";
+
+        public static string[] completeProfileFieldsDefaultValues = new[] { "new_gender", "new_idnumer", "new_contactnationality" };
+        public static string[] ContactDetailsDefaultValues = new[] { "new_gender", "new_idnumer", "new_contactcity", "new_contactnationality", "emailaddress1", "jobtitle" };
+        #endregion
 
 
 

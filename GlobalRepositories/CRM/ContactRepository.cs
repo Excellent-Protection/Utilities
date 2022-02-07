@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilities.DataAccess.CRM;
 using Utilities.Defaults;
+using Utilities.GlobalManagers.CRM;
 using Utilities.Helpers;
 
 namespace Utilities.GlobalRepositories.CRM
@@ -24,8 +25,18 @@ namespace Utilities.GlobalRepositories.CRM
      
         public Contact GetContactDetails(string contactId)
         {
+            var ContactDetailsFields = new ExcSettingsManager(RequestUtility).GetSettingByNameAndSource(DefaultValues.ContactDetailsFieldsSettingName, RequestUtility.Source.Value);
             var _service = CRMService.Service;
-            var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new Microsoft.Xrm.Sdk.Query.ColumnSet("new_gender", "new_idnumer", "new_contactcity", "new_contactnationality", "emailaddress1"  , "jobtitle")).ToEntity<Contact>();
+            var contact = new Contact();
+            if (ContactDetailsFields != null)
+            {
+                string[] ContactDetailsFieldsList = ContactDetailsFields.Value.Replace(" ","").Split(',');
+                contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new Microsoft.Xrm.Sdk.Query.ColumnSet(ContactDetailsFieldsList)).ToEntity<Contact>();
+            }
+            else
+            {
+                contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new Microsoft.Xrm.Sdk.Query.ColumnSet(DefaultValues.ContactDetailsDefaultValues)).ToEntity<Contact>();
+            }
             return contact;
         }
 

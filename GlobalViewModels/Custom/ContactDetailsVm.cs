@@ -15,6 +15,7 @@ namespace Utilities.GlobalViewModels.Custom
         public int?   Gender { get; set; }
         public string JobTitle { get; set; }
         public string Email { get; set; }
+        public string OtherMobilePhone { get; set; }
 
     }
 }
