@@ -33,8 +33,7 @@ namespace Utilities.Mappers.Profiles
             .ForMember(a => a.HouseNumber, o => o.MapFrom(s => s.HouseNumber))
             .ForMember(a => a.HouseType, o => o.ResolveUsing(new FromOptionSetToInt(), s => s.HouseType))
             .ForMember(a => a.Type, o => o.ResolveUsing(new FromOptionSetToInt(), s => s.Type))
-
-            .ForMember(a => a.AvailableForIndividual, o => o.MapFrom(s => s.Attributes.Contains("new_city.new_forindividual") ? ((AliasedValue)s.Attributes["new_city.new_forindividual"]).Value : s.City.Name))
+             .ForMember(a => a.AvailableForIndividual, o => o.MapFrom(s => s.Attributes.Contains("new_city.new_forindividual") && s["new_city.new_forindividual"] != DBNull.Value ? ((AliasedValue)s.Attributes["new_city.new_forindividual"]).Value : false))
             //.ForMember(a => a.AvailableForHourly, o => o.MapFrom(s => s.Attributes.Contains("new_city.new_isdalal") ? ((AliasedValue)s.Attributes["new_city.new_isdalal"]).Value : s.City.Name))
 
             ;
