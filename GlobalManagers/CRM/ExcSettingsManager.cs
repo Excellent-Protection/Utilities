@@ -35,6 +35,7 @@ namespace Utilities.GlobalManagers.CRM
                 var result = GetSettingByName(Name);
                 if (result != null)
                 {
+                    result.Value=result.Value ?? "";
                     var Parse = bool.TryParse(result.Value.ToLower(), out bool settingboolean);
                     if (Parse)
                     {
