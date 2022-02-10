@@ -28,7 +28,7 @@ namespace Utilities.GlobalRepositories.CRM
             var ContactDetailsFields = new ExcSettingsManager(RequestUtility).GetSettingByNameAndSource(DefaultValues.ContactDetailsFieldsSettingName, RequestUtility.Source.Value);
             var _service = CRMService.Service;
             var contact = new Contact();
-            if (ContactDetailsFields != null)
+            if (ContactDetailsFields.Value != null)
             {
                 string[] ContactDetailsFieldsList = ContactDetailsFields.Value.Replace(" ","").Split(',');
                 contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new Microsoft.Xrm.Sdk.Query.ColumnSet(ContactDetailsFieldsList)).ToEntity<Contact>();
