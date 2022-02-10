@@ -76,8 +76,9 @@ namespace Utilities.Defaults
         public const string PaymentAvailableSettingName = "IsPaymentAvailable";
         public const string QcTeamEmailSettingName = "QcTeamEmail";
         public const string SystemVersionSettingName = "SystemVersion";
-
-
+        public const string IndividualRequestPaymentTimeSettingName = "IndividualRequestPaymentTime";
+        public const string HourlyRequestPaymentTimeSettingName = "HourlyRequestPaymentTime";
+        
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
         public const string IsSelectEmployeeFromHouseBuildingAvailableSettingName = "IsSelectEmployeeFromHouseBuildingAvailableSetting";
@@ -131,6 +132,8 @@ namespace Utilities.Defaults
         public const string ShowCustomerWalletSettingName = "ShowCustomerWallet";
         public const bool ShowCustomerWalletSetting = false;
         public const bool IsPaymentAvailable = false;
+
+        public const decimal paymnetTimeDefault = 120;
 
         public const bool TamayousSystemAvailable = false;
         public const string ShowTamayousSetting = "TamayousPayment";
@@ -229,7 +232,7 @@ namespace Utilities.Defaults
 
 
         public const string OnlinePaymentUrl = "/#/payment?contractId=@id&type=@type";
-
+        public const string RenewLink = "/#/dashboard/individual-contracts/renew-contract/@id";
 
 
     }
