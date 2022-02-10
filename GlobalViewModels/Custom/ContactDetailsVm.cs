@@ -17,5 +17,7 @@ namespace Utilities.GlobalViewModels.Custom
         public string Email { get; set; }
         public string OtherMobilePhone { get; set; }
 
+        public string DetailsField { get; set; }
+
     }
 }

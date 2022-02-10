@@ -118,6 +118,11 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 var contactDetails = _repo.GetContactDetails(contactId).Toclass<ContactDetailsVm>();
+                var ContactDetailsFields = new ExcSettingsManager(RequestUtility).GetSettingByNameAndSource(DefaultValues.ContactDetailsFieldsSettingName, RequestUtility.Source.Value);
+                if(ContactDetailsFields != null)
+                {
+                    contactDetails.DetailsField = ContactDetailsFields.Value;
+                }
                 return new ResponseVm<ContactDetailsVm> { Status = HttpStatusCodeEnum.Ok, Data = contactDetails };
 
             }
