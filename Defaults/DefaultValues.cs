@@ -76,8 +76,9 @@ namespace Utilities.Defaults
         public const string PaymentAvailableSettingName = "IsPaymentAvailable";
         public const string QcTeamEmailSettingName = "QcTeamEmail";
         public const string SystemVersionSettingName = "SystemVersion";
-
-
+        public const string IndividualRequestPaymentTimeSettingName = "IndividualRequestPaymentTime";
+        public const string HourlyRequestPaymentTimeSettingName = "HourlyRequestPaymentTime";
+        
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
         public const string IsSelectEmployeeFromHouseBuildingAvailableSettingName = "IsSelectEmployeeFromHouseBuildingAvailableSetting";
@@ -132,6 +133,8 @@ namespace Utilities.Defaults
         public const string ShowCustomerWalletSettingName = "ShowCustomerWallet";
         public const bool ShowCustomerWalletSetting = false;
         public const bool IsPaymentAvailable = false;
+
+        public const decimal paymnetTimeDefault = 120;
 
         public const bool TamayousSystemAvailable = false;
         public const string ShowTamayousSetting = "TamayousPayment";
@@ -230,6 +233,7 @@ namespace Utilities.Defaults
 
 
         public const string OnlinePaymentUrl = "/#/payment?contractId=@id&type=@type";
+
         #region CompleteProfileSetting
         public const string CompleteProfileRequiredFieldsSettingName = "CompleteProfileRequiredFields";
         public const string ContactDetailsFieldsSettingName = "ContactDetailsFields";
@@ -237,6 +241,8 @@ namespace Utilities.Defaults
         public static string[] completeProfileFieldsDefaultValues = new[] { "new_gender", "new_idnumer", "new_contactnationality" };
         public static string[] ContactDetailsDefaultValues = new[] { "new_gender", "new_idnumer", "new_contactcity", "new_contactnationality", "emailaddress1", "jobtitle" };
         #endregion
+
+        public const string RenewLink = "/#/dashboard/individual-contracts/renew-contract/@id";
 
 
 
