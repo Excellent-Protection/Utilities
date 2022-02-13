@@ -33,6 +33,7 @@ namespace Utilities.Defaults
         public const string TomorrowVisitSms = "TomorrowVisitSms";
         public const string AllCountriesId = "c9da5d56-a54a-e311-8887-00155d010303";
         public const string BlockCountryId = "30ce18ed-4afe-e611-80d5-0050568411f9";
+        public const string OnlineWebUrl = "OnlineWebUrl";
 
 
 
