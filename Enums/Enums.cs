@@ -901,5 +901,9 @@ namespace Utilities.Enums
         Customer = 100000000,
         Labor = 100000001
     }
-
+    public enum ContactOrRequestSetting
+    {
+        CONTACT,
+        REQUEST
+    }
 }

@@ -63,7 +63,7 @@ namespace Utilities.Defaults
         public const string DefaultSelectedPackagePropertiesSettingName = "DefaultSelectedPackageProperties";
         public const string HourlyPackagePropertiesSettingName = "HourlyPackageProperties";
 
-
+        public const string ContactDetailsPackagePropertiesSettingName = "ContactDetailsPackageProperties";
         public const string RequestDetailsPackagePropertiesSettingName = "RequestDetailsPackageProperties";
         public const string DaysBeforeEndContractToShowRenewBtnSettingName = "DaysBeforeEndContractToShowRenewBtn";
         public const string IncludInsuranceWithRenewSettingName = "IncludInsuranceWithRenew";
@@ -77,8 +77,9 @@ namespace Utilities.Defaults
         public const string PaymentAvailableSettingName = "IsPaymentAvailable";
         public const string QcTeamEmailSettingName = "QcTeamEmail";
         public const string SystemVersionSettingName = "SystemVersion";
-
-
+        public const string IndividualRequestPaymentTimeSettingName = "IndividualRequestPaymentTime";
+        public const string HourlyRequestPaymentTimeSettingName = "HourlyRequestPaymentTime";
+        
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
         public const string IsSelectEmployeeFromHouseBuildingAvailableSettingName = "IsSelectEmployeeFromHouseBuildingAvailableSetting";
@@ -115,6 +116,7 @@ namespace Utilities.Defaults
         public const string IndividualRequestDocumentCode = "SD-11111";
 
         public const string PackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
+        public const string ContactDetailsPackageProperties = "{'packageDisplayName': {'type': 'string'},'finalPriceToPay': {'type': 'currency'},'discount': {'type': 'currency'},'packagePriceAfterDiscount': {'type': 'currency'},'activationAmount':{'type': 'currency'},'advancedAmount': {'type': 'currency'},'vatAmountOfFinalPrice': {'type': 'currency'},'packagePrice': {'type': 'currency'   },'professionGroupName':{'type': 'string'},'amountInsurance': {'type': 'currency'}}";
         public const string RequestDetailsPackageProperties = "{'packageDisplayName': {'type': 'string'},'finalPriceToPay': {'type': 'currency'},'discount': {'type': 'currency'},'packagePriceAfterDiscount': {'type': 'currency'},'activationAmount':{'type': 'currency'},'advancedAmount': {'type': 'currency'},'vatAmountOfFinalPrice': {'type': 'currency'},'packagePrice': {'type': 'currency'   },'professionGroupName':{'type': 'string'},'amountInsurance': {'type': 'currency'}}";
         public const string RenewPackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
         public const int RenewOptionValue = 2;//new contract
@@ -132,6 +134,8 @@ namespace Utilities.Defaults
         public const string ShowCustomerWalletSettingName = "ShowCustomerWallet";
         public const bool ShowCustomerWalletSetting = false;
         public const bool IsPaymentAvailable = false;
+
+        public const decimal paymnetTimeDefault = 120;
 
         public const bool TamayousSystemAvailable = false;
         public const string ShowTamayousSetting = "TamayousPayment";
@@ -230,6 +234,7 @@ namespace Utilities.Defaults
 
 
         public const string OnlinePaymentUrl = "/#/payment?contractId=@id&type=@type";
+
         #region CompleteProfileSetting
         public const string CompleteProfileRequiredFieldsSettingName = "CompleteProfileRequiredFields";
         public const string ContactDetailsFieldsSettingName = "ContactDetailsFields";
@@ -237,6 +242,8 @@ namespace Utilities.Defaults
         public static string[] completeProfileFieldsDefaultValues = new[] { "new_gender", "new_idnumer", "new_contactnationality" };
         public static string[] ContactDetailsDefaultValues = new[] { "new_gender", "new_idnumer", "new_contactcity", "new_contactnationality", "emailaddress1", "jobtitle" };
         #endregion
+
+        public const string RenewLink = "/#/dashboard/individual-contracts/renew-contract/@id";
 
 
 

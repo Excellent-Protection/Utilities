@@ -29,6 +29,8 @@ namespace Utilities.GlobalRepositories.CRM
             var _service = CRMService.Service;
             var query = new QueryExpression(CrmEntityNamesMapping.ProfessionGroup);
             query.ColumnSet = new ColumnSet(true);
+            query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+            query.Criteria.AddCondition("new_forindivdual", ConditionOperator.Equal, true);
             var peofessionGroups = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<ProfessionGroups>()).ToList();
             return peofessionGroups;
 
@@ -39,6 +41,7 @@ namespace Utilities.GlobalRepositories.CRM
             var _service = CRMService.Service;
             var querypricing = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
             querypricing.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+            
             //querypricing.Criteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
             querypricing.ColumnSet = new ColumnSet(true);
             FilterExpression filter2 = new FilterExpression(LogicalOperator.Or);
@@ -70,7 +73,7 @@ namespace Utilities.GlobalRepositories.CRM
             var professionQuery = new QueryExpression(CrmEntityNamesMapping.ProfessionGroup);
             FilterExpression filter = new FilterExpression();
             filter.AddCondition("new_professiongroupid", ConditionOperator.In, professionsIds.ToArray());
-
+            filter.AddCondition("new_forindivdual", ConditionOperator.Equal, true);
             professionQuery.Criteria.AddFilter(filter);
             professionQuery.ColumnSet = new ColumnSet(true);
             var professions = _service.RetrieveMultiple(professionQuery).Entities.Select(a => a.ToEntity<ProfessionGroups>()).ToList();
