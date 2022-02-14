@@ -28,11 +28,17 @@ namespace Utilities.GlobalRepositories.CRM
                 PrevLocationQuery.AddLink(CrmEntityNamesMapping.District, "new_district", "new_districtid", JoinOperator.Inner);
                 PrevLocationQuery.LinkEntities[0].Columns = new ColumnSet("new_englsihname", "new_name", "new_forindividual" , "new_isdalal");
                 PrevLocationQuery.LinkEntities[0].EntityAlias = CrmEntityNamesMapping.City;
-                PrevLocationQuery.LinkEntities[1].Columns = new ColumnSet("new_englishname", "new_name");
+            PrevLocationQuery.LinkEntities[0].LinkCriteria.AddCondition("statecode", ConditionOperator.Equal, (int)CrmEntityState.Active);
+
+            PrevLocationQuery.LinkEntities[1].Columns = new ColumnSet("new_englishname", "new_name");
                 PrevLocationQuery.LinkEntities[1].EntityAlias = CrmEntityNamesMapping.District;
-                PrevLocationQuery.Criteria.AddCondition("new_latitude", ConditionOperator.NotNull);
+            PrevLocationQuery.LinkEntities[1].LinkCriteria.AddCondition("statecode", ConditionOperator.Equal, (int)CrmEntityState.Active);
+
+            PrevLocationQuery.Criteria.AddCondition("new_latitude", ConditionOperator.NotNull);
                 PrevLocationQuery.Criteria.AddCondition("new_longitude", ConditionOperator.NotNull);
-               PrevLocationQuery.AddOrder("createdon", OrderType.Descending);
+            PrevLocationQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, (int)CrmEntityState.Active);
+
+            PrevLocationQuery.AddOrder("createdon", OrderType.Descending);
                 var _service = CRMService.Service;
                 var PrevLocResult = _service.RetrieveMultiple(PrevLocationQuery).Entities;
 
@@ -56,13 +62,18 @@ namespace Utilities.GlobalRepositories.CRM
                     PrevLocationQuery.Criteria.AddCondition("new_type", ConditionOperator.Equal, type);
                 }
                 PrevLocationQuery.ColumnSet = new ColumnSet(true);
-                PrevLocationQuery.AddLink(CrmEntityNamesMapping.City, "new_city", "new_cityid", JoinOperator.Inner);
+            PrevLocationQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, (int)CrmEntityState.Active);
+
+            PrevLocationQuery.AddLink(CrmEntityNamesMapping.City, "new_city", "new_cityid", JoinOperator.Inner);
                 PrevLocationQuery.AddLink(CrmEntityNamesMapping.District, "new_district", "new_districtid", JoinOperator.Inner);
                 PrevLocationQuery.LinkEntities[0].Columns = new ColumnSet("new_englsihname", "new_forindividual", "new_isdalal");
                 PrevLocationQuery.LinkEntities[0].EntityAlias = CrmEntityNamesMapping.City;
+                PrevLocationQuery.LinkEntities[0].LinkCriteria.AddCondition("statecode", ConditionOperator.Equal, (int)CrmEntityState.Active);
                 PrevLocationQuery.LinkEntities[1].Columns = new ColumnSet("new_englishname");
                 PrevLocationQuery.LinkEntities[1].EntityAlias = CrmEntityNamesMapping.District;
-                PrevLocationQuery.Criteria.AddCondition("new_latitude", ConditionOperator.NotNull);
+              PrevLocationQuery.LinkEntities[1].LinkCriteria.AddCondition("statecode", ConditionOperator.Equal, (int)CrmEntityState.Active);
+
+            PrevLocationQuery.Criteria.AddCondition("new_latitude", ConditionOperator.NotNull);
                 PrevLocationQuery.Criteria.AddCondition("new_longitude", ConditionOperator.NotNull);
                 var _service = CRMService.Service;
                 var PrevLocResult = _service.RetrieveMultiple(PrevLocationQuery).Entities;
