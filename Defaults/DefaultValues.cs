@@ -81,6 +81,7 @@ namespace Utilities.Defaults
         public const string SystemVersionSettingName = "SystemVersion";
         public const string IndividualRequestPaymentTimeSettingName = "IndividualRequestPaymentTime";
         public const string HourlyRequestPaymentTimeSettingName = "HourlyRequestPaymentTime";
+        public const string FlexPaymentTimeSettingName = "FlexPaymentTime";
         
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
