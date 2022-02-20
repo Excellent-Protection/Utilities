@@ -459,6 +459,14 @@
     <Compile Include="Migrations\202112081333223_isauthoriz.designer.cs">
       <DependentUpon>202112081333223_isauthoriz.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202101221269_additionalnumber.cs" />
+    <Compile Include="Migrations\202202101221269_additionalnumber.designer.cs">
+      <DependentUpon>202202101221269_additionalnumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202130810113_shortenerurl.cs" />
+    <Compile Include="Migrations\202202130810113_shortenerurl.designer.cs">
+      <DependentUpon>202202130810113_shortenerurl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
     <Compile Include="Enums\UserLanguage.cs" />
@@ -550,6 +558,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112081333223_isauthoriz.resx">
       <DependentUpon>202112081333223_isauthoriz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202101221269_additionalnumber.resx">
+      <DependentUpon>202202101221269_additionalnumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202130810113_shortenerurl.resx">
+      <DependentUpon>202202130810113_shortenerurl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

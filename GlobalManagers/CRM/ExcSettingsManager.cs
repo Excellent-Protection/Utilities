@@ -84,7 +84,7 @@ namespace Utilities.GlobalManagers.CRM
 
             try
             {
-                var source = RequestUtility.Source.Value;
+                var source =RequestUtility.Source!=null? RequestUtility.Source.Value: (RecordSource?)null;
                 ExcSettings setting = null ;
                 switch (source)
                 {
@@ -97,6 +97,10 @@ namespace Utilities.GlobalManagers.CRM
                         break;
                     case RecordSource.CRMPortal:
                         setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.CRMNewPortal || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo == null));
+                        break;
+                    default:
+                        setting = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == key && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Mobile || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.CRMNewPortal || a.ApplyTo == null));
+
 
                         break;
                 }

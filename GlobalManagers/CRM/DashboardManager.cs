@@ -72,7 +72,7 @@ namespace Utilities.GlobalManagers.CRM
                 
                 obj.AlmostOverContracts = indvContracts.Where(a => a.StatusCode.Value == (int)IndividualContractStatus.ActiveLaborDelivered &&a.ServiceEndDate.HasValue && (DateTime.Now - a.ServiceEndDate.Value).TotalDays <=defaultDays ).ToList().Count()
                    + hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.ConfirmedByFinance && a.RemainingVisit == 1).ToList().Count();
-                obj.CommingVisits = hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.ConfirmedByFinance).Select(a => new { remain = a.RemainingVisit != null ? a.RemainingVisit.Value / a.NoOfWorker.Value : 0 }).Select(a => a.remain).Sum();
+                obj.CommingVisits = hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.ConfirmedByFinance).Select(a => new { remain = a.RemainingVisit != null ? a.RemainingVisit.Value /  (a.NoOfWorker==null?1:a.NoOfWorker.Value) : 0 }).Select(a => a.remain).Sum();
                 return obj;
             }
             catch(Exception ex)
