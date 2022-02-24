@@ -119,7 +119,7 @@ namespace Utilities.GlobalManagers.CRM
             {
                 var contactDetails = _repo.GetContactDetails(contactId).Toclass<ContactDetailsVm>();
                 var ContactDetailsFields = new ExcSettingsManager(RequestUtility).GetSettingByNameAndSource(DefaultValues.ContactDetailsFieldsSettingName, RequestUtility.Source.Value);
-                if(ContactDetailsFields.Value != null)
+                if(ContactDetailsFields?.Value != null)
                 {
                     contactDetails.DetailsField = ContactDetailsFields.Value.Replace(" ", "").Split(',');
                 }
