@@ -288,6 +288,7 @@
     <Compile Include="Controller\ResourceGroupController.cs" />
     <Compile Include="Controller\SavedContactLocationController.cs" />
     <Compile Include="Controller\ServiceController.cs" />
+    <Compile Include="Controller\UrlShortenerConverterController.cs" />
     <Compile Include="Controller\ShortenerUrlController.cs" />
     <Compile Include="Controller\StepDataController.cs" />
     <Compile Include="ConvertDocToPDF.cs" />
