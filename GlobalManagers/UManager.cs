@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Xrm.Sdk;
 using Models.Labor;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities.DataAccess.CRM;
 using Utilities.DataAccess.Labor;
 using Utilities.GlobalManagers.CRM;
 using Utilities.Helpers;
@@ -103,6 +105,31 @@ namespace Utilities.GlobalManagers
 
         public void Dispose()
         {
+        }
+
+
+        public Tuple<string, string> SetProjectTimeSheetURLS(string ProjectTimeSheetID, string UID)
+        {
+            var ISVLink = new ExcSettingsManager(RequestUtility)["ISVURL"];
+       
+            string ProjectTimeSheetURL = String.Format("{0}{1}{2}{3}{4}", ISVLink, "Emp/TimeSheet/BSCustTS.aspx?id=", ProjectTimeSheetID,
+                "&UID=", UID);
+           
+            var KAMShortUrl = GenerateShotUrl(ProjectTimeSheetURL + "&type=kam");
+            var CustomerShortUrl = GenerateShotUrl(ProjectTimeSheetURL + "&type=customer");
+            try
+            {
+                Entity ProjectTimeSheet = new Entity("new_projecttimesheet");
+                ProjectTimeSheet.Id = new Guid(ProjectTimeSheetID);
+                ProjectTimeSheet["new_kamurl"] = KAMShortUrl;
+                ProjectTimeSheet["new_customerurl"] = CustomerShortUrl;
+                CRMService.Service.Update(ProjectTimeSheet);
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("ProjectTimeSheetID", ProjectTimeSheetID));
+            }
+            return Tuple.Create(KAMShortUrl, CustomerShortUrl);
         }
     }
 }
