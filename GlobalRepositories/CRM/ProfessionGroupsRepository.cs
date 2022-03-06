@@ -43,6 +43,8 @@ namespace Utilities.GlobalRepositories.CRM
             querypricing.ColumnSet = new ColumnSet(true);
             var Pricing = _service.RetrieveMultiple(querypricing).Entities.Select(a => a.ToEntity<IndividualPricing>()).ToList();
             var professionsIds = Pricing.Where(a => a.ProfessionGroup != null).Select(a => a.ProfessionGroup.Id.ToString()).Distinct().ToList();
+            if (professionsIds.Count ==0)
+                return new List<ProfessionGroups> { };
             var professionQuery = new QueryExpression(CrmEntityNamesMapping.ProfessionGroup);
             FilterExpression filter = new FilterExpression();
             filter.AddCondition("new_professiongroupid", ConditionOperator.In, professionsIds.ToArray());
