@@ -9,24 +9,29 @@ using Utilities.Enums;
 using System.Web.Mvc;
 using System.Web.Mvc.Filters;
 using System.Web.Http.Filters;
+using System.Linq;
 
 namespace Utilities.Filters
 {
    public class StepFilter : AuthorizationFilterAttribute
     {
         ServiceType _serviceType;
+
         public StepFilter(ServiceType serviceType)
         {
             _serviceType = serviceType;
+
         }
 
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             //var serviceType = int.Parse(HttpContext.Current.Request.Params["serviceType"]);
             //var actionName = HttpContext.Current.Request.Params["actionName"];
+            var source = int.Parse(actionContext.Request.Headers.GetValues("source").First());
 
             var actionName = actionContext.ActionDescriptor.ActionName;
-            using (DynamicStepsManager _mgr = new DynamicStepsManager())
+     
+            using (DynamicStepsManager _mgr = new DynamicStepsManager(new RequestUtility{Source=(RecordSource)source}))
             {
                 var step = _mgr.GetStepDetailsByActionNameAndServiceType(_serviceType, actionName);
                 if (step.Data == null)

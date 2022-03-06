@@ -10,11 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Utilities</RootNamespace>
     <AssemblyName>Utilities</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
@@ -53,7 +56,7 @@
       <HintPath>..\Dependencies\GenerateEncodedSignature.dll</HintPath>
     </Reference>
     <Reference Include="IdentityModel, Version=5.1.0.0, Culture=neutral, PublicKeyToken=e7877f4675df049f, processorArchitecture=MSIL">
-      <HintPath>..\packages\IdentityModel.5.1.0\lib\net472\IdentityModel.dll</HintPath>
+      <HintPath>..\packages\IdentityModel.5.1.0\lib\net461\IdentityModel.dll</HintPath>
     </Reference>
     <Reference Include="ISVGeneralServices">
       <HintPath>..\Dependencies\ISVGeneralServices.dll</HintPath>
@@ -107,13 +110,13 @@
       <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.1\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Logging, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.13.1\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.13.1\lib\net461\Microsoft.IdentityModel.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Protocols, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.6.13.1\lib\net472\Microsoft.IdentityModel.Protocols.dll</HintPath>
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.6.13.1\lib\net461\Microsoft.IdentityModel.Protocols.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.13.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.13.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.13.1\lib\net461\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
@@ -203,7 +206,7 @@
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -277,6 +280,7 @@
     <Compile Include="Controller\ContactAddressController.cs" />
     <Compile Include="Controller\ContactController.cs" />
     <Compile Include="Controller\DynamicStepsController.cs" />
+    <Compile Include="Controller\GeneralController.cs" />
     <Compile Include="Controller\NationalityController.cs" />
     <Compile Include="Controller\ProfessionController.cs" />
     <Compile Include="Controller\ProfessionGroupsController.cs" />
@@ -284,6 +288,7 @@
     <Compile Include="Controller\ResourceGroupController.cs" />
     <Compile Include="Controller\SavedContactLocationController.cs" />
     <Compile Include="Controller\ServiceController.cs" />
+    <Compile Include="Controller\UrlShortenerConverterController.cs" />
     <Compile Include="Controller\ShortenerUrlController.cs" />
     <Compile Include="Controller\StepDataController.cs" />
     <Compile Include="ConvertDocToPDF.cs" />
@@ -314,6 +319,7 @@
     <Compile Include="GlobalManagers\CRM\ContactManager.cs" />
     <Compile Include="GlobalManagers\CRM\DashboardManager.cs" />
     <Compile Include="GlobalManagers\CRM\EmployeeManager.cs" />
+    <Compile Include="GlobalManagers\CRM\GeneralManager.cs" />
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionGroupsManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionManager.cs" />
@@ -325,7 +331,6 @@
     <Compile Include="GlobalManagers\Labor\Identity\ApplicationUserManager.cs" />
     <Compile Include="GlobalManagers\Labor\SettingsManager.cs" />
     <Compile Include="GlobalManagers\Labor\StepManager.cs" />
-    <Compile Include="GlobalManagers\Labor\SettingsManager.cs" />
     <Compile Include="GlobalManagers\CRM\SmsManager.cs" />
     <Compile Include="GlobalManagers\MailManager.cs" />
     <Compile Include="GlobalManagers\ProfileManager.cs" />
@@ -351,6 +356,7 @@
     <Compile Include="GlobalViewModels\CRM\ServiceVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BaseQuickLookupWithImageVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BoolWithString.cs" />
+    <Compile Include="GlobalViewModels\Custom\BulkEntitiesResult.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactDetailsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactMainSubPreviouseLocationsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactUsVm.cs" />
@@ -372,7 +378,6 @@
     <Compile Include="GlobalViewModels\Labor\StepDataVm.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDetailsVm.cs" />
     <Compile Include="GlobalViewModels\ResponseVm.cs" />
-    <Compile Include="GlobalViewModels\Labor\SettingVM.cs" />
     <Compile Include="GlobalViewModels\MailToSendVM.cs" />
     <Compile Include="GlobalViewModels\ResultVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
@@ -396,6 +401,7 @@
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Service_DisplayServiceVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepData_StepDataVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepDetails_StepDetailsVmProfile.cs" />
     <Compile Include="Mappers\Resolvers\ApplyLanguage.cs" />
@@ -434,6 +440,10 @@
     <Compile Include="Migrations\202111161404127_shortners.designer.cs">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201170817509_addsourceinstepdetails.cs" />
+    <Compile Include="Migrations\202201170817509_addsourceinstepdetails.designer.cs">
+      <DependentUpon>202201170817509_addsourceinstepdetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202112150911421_config.cs" />
     <Compile Include="Migrations\202112150911421_config.designer.cs">
       <DependentUpon>202112150911421_config.cs</DependentUpon>
@@ -449,6 +459,14 @@
     <Compile Include="Migrations\202112081333223_isauthoriz.cs" />
     <Compile Include="Migrations\202112081333223_isauthoriz.designer.cs">
       <DependentUpon>202112081333223_isauthoriz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202101221269_additionalnumber.cs" />
+    <Compile Include="Migrations\202202101221269_additionalnumber.designer.cs">
+      <DependentUpon>202202101221269_additionalnumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202130810113_shortenerurl.cs" />
+    <Compile Include="Migrations\202202130810113_shortenerurl.designer.cs">
+      <DependentUpon>202202130810113_shortenerurl.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
@@ -503,12 +521,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{9bd14d55-2fd4-42a4-901e-e386d007399c}</Project>
-      <Name>Models</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\202109191048321_stepsTabels.resx">
       <DependentUpon>202109191048321_stepsTabels.cs</DependentUpon>
     </EmbeddedResource>
@@ -533,7 +545,9 @@
     <EmbeddedResource Include="Migrations\202111161404127_shortners.resx">
       <DependentUpon>202111161404127_shortners.cs</DependentUpon>
     </EmbeddedResource>
-
+    <EmbeddedResource Include="Migrations\202201170817509_addsourceinstepdetails.resx">
+      <DependentUpon>202201170817509_addsourceinstepdetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112150911421_config.resx">
       <DependentUpon>202112150911421_config.cs</DependentUpon>
     </EmbeddedResource>
@@ -546,6 +560,12 @@
     <EmbeddedResource Include="Migrations\202112081333223_isauthoriz.resx">
       <DependentUpon>202112081333223_isauthoriz.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202101221269_additionalnumber.resx">
+      <DependentUpon>202202101221269_additionalnumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202130810113_shortenerurl.resx">
+      <DependentUpon>202202130810113_shortenerurl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EnumResources.ar.Designer.cs</LastGenOutput>
@@ -557,7 +577,12 @@
     <EmbeddedResource Include="Resources\SuccessFaildMessagesResources.ar.resx" />
     <EmbeddedResource Include="Resources\SuccessFaildMessagesResources.resx" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{9bd14d55-2fd4-42a4-901e-e386d007399c}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

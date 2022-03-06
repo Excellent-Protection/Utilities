@@ -23,7 +23,7 @@ namespace Utilities.Mappers.Profiles
             .ForMember(a => a.CityName, o => o.ResolveUsing(new EntityReferenceNameToStringResolver(), s => s.City))
             .ForMember(a => a.CityName, s => s.ResolveUsing(new ApplyLanguage(), src => new MappingTranslation(MapperConfig.lang, src.Attributes.Contains("new_city.new_name") ? ((AliasedValue)src.Attributes["new_city.new_name"]).Value.ToString() : null, src.Attributes.Contains("new_city.new_englsihname") ? ((AliasedValue)src.Attributes["new_city.new_englsihname"]).Value.ToString() : null)))
             .ForMember(a => a.DistrictName, s => s.ResolveUsing(new ApplyLanguage(), src => new MappingTranslation(MapperConfig.lang, src.Attributes.Contains("new_district.new_name") ? ((AliasedValue)src.Attributes["new_district.new_name"]).Value.ToString() : null, src.Attributes.Contains("new_district.new_englishname") ? ((AliasedValue)src.Attributes["new_district.new_englishname"]).Value.ToString() : null)))
-
+            .ForMember(a => a.DistrictId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.District))
 
             .ForMember(a => a.FloorNo, o => o.ResolveUsing(new FromOptionSetToInt(), s=>s.FloorNumber))
             .ForMember(a => a.Latitude, o => o.MapFrom(s =>!string.IsNullOrEmpty( s.Latitude)? s.Latitude : null))
@@ -33,8 +33,9 @@ namespace Utilities.Mappers.Profiles
             .ForMember(a => a.HouseNumber, o => o.MapFrom(s => s.HouseNumber))
             .ForMember(a => a.HouseType, o => o.ResolveUsing(new FromOptionSetToInt(), s => s.HouseType))
             .ForMember(a => a.Type, o => o.ResolveUsing(new FromOptionSetToInt(), s => s.Type))
-            .ForMember(a => a.AvailableForIndividual, o => o.MapFrom(s => s.Attributes.Contains("new_city.new_forindividual") ? ((AliasedValue)s.Attributes["new_city.new_forindividual"]).Value : s.City.Name))
-            .ForMember(a => a.AvailableForHourly, o => o.MapFrom(s => s.Attributes.Contains("new_city.new_isdalal") ? ((AliasedValue)s.Attributes["new_city.new_isdalal"]).Value : s.City.Name))
+             .ForMember(a => a.AvailableForIndividual, o => o.MapFrom(s => s.Attributes.Contains("new_city.new_forindividual") && s["new_city.new_forindividual"] != DBNull.Value ? ((AliasedValue)s.Attributes["new_city.new_forindividual"]).Value : false))
+            //.ForMember(a => a.AvailableForHourly, o => o.MapFrom(s => s.Attributes.Contains("new_city.new_isdalal") ? ((AliasedValue)s.Attributes["new_city.new_isdalal"]).Value : s.City.Name))
+
             ;
         }
     }

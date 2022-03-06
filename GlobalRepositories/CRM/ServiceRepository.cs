@@ -62,7 +62,7 @@ namespace HourlySectorLib.Repositories
             var query = new QueryExpression(CrmEntityNamesMapping.Service);
             query.Criteria.AddCondition("new_projectid", ConditionOperator.Equal, projectId);
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, (int)CrmEntityState.Active);
-            query.ColumnSet = new ColumnSet("new_serviceid", "new_servicenamearabic", "new_serviceenglishname", "new_arabicdescription", "new_englishdescription", "new_icon");
+            query.ColumnSet = new ColumnSet("new_serviceid", "new_servicenamearabic", "new_serviceenglishname", "new_arabicdescription", "new_englishdescription", "new_iconimage", "new_servicenote", "new_servicenotear");
             return _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Service>());
 
         }
@@ -102,6 +102,18 @@ namespace HourlySectorLib.Repositories
             return Service.ContractRestrictUnpaid?.Value;
 
         }
+        public Service GetCalendarDays(string serviceId)
+        {
+            var _service = CRMService.Service;
+            var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_servicecalendar")).ToEntity<Service>();
+            return service;
 
+        }
+        public Service GetServiceTerms(string serviceId, string servicetermsField)
+        {
+            var _service = CRMService.Service;
+            var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet(servicetermsField)).ToEntity<Service>();
+            return service;
+        }
     }
 }

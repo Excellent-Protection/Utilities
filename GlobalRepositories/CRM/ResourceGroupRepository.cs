@@ -29,7 +29,33 @@ namespace Utilities.GlobalRepositories.CRM
             var querypricing = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
             querypricing.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
             querypricing.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
-            querypricing.Criteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
+//            querypricing.Criteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
+
+            FilterExpression filter = new FilterExpression(LogicalOperator.Or);
+            switch (RequestUtility.Source)
+            {
+                case RecordSource.CRMPortal:
+                    {
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.CRMNewPortal.ToString() + "%");
+                        break;
+                    }
+                case RecordSource.Mobile:
+                    {
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.Mobile.ToString() + "%");
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.WebAndMobile.ToString() + "%");
+
+                        break;
+                    }
+                case RecordSource.Web:
+                default:
+                    {
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.Web.ToString() + "%");
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.WebAndMobile.ToString() + "%");
+                        break;
+                    }
+            }
+            querypricing.Criteria.AddFilter(filter);
+
             querypricing.ColumnSet = new ColumnSet(true);
             var Pricing = _service.RetrieveMultiple(querypricing).Entities.Select(a => a.ToEntity<IndividualPricing>()).ToList();
             var resourceGroupIds = Pricing.Where (a=>a.ResourceGroup!=null).Select(a => a.ResourceGroup.Id.ToString()).Distinct().ToList();
@@ -49,6 +75,21 @@ namespace Utilities.GlobalRepositories.CRM
             query.ColumnSet = new ColumnSet(true);
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
             //query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
+            var resourceGroups = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<ResourceGroup>()).ToList();
+            return resourceGroups;
+
+        }
+
+
+        public List<ResourceGroup> GetResourceGroupsByService(string serivceId)
+        {
+
+            var _service = CRMService.Service;
+            var query = new QueryExpression(CrmEntityNamesMapping.ResourceGroup);
+            query.ColumnSet = new ColumnSet(true);
+            query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+            query.Criteria.AddCondition("new_service", ConditionOperator.Equal, new Guid(serivceId));
+
             var resourceGroups = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<ResourceGroup>()).ToList();
             return resourceGroups;
 

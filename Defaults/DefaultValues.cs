@@ -33,6 +33,7 @@ namespace Utilities.Defaults
         public const string TomorrowVisitSms = "TomorrowVisitSms";
         public const string AllCountriesId = "c9da5d56-a54a-e311-8887-00155d010303";
         public const string BlockCountryId = "30ce18ed-4afe-e611-80d5-0050568411f9";
+        public const string OnlineWebUrl = "OnlineWebUrl";
 
 
 
@@ -41,7 +42,9 @@ namespace Utilities.Defaults
         public const string FixedEmployeeShiftOffsetHoursSettingName = "FixedEmployeeShiftOffsetHours";
         public const int FixedEmployeeShiftOffsetHours = 8;
         public const string FixEmpOnVisitsSettingName= "FixEmployeeOnVisits";
+        public const string BlockEmpOnVisitsSettingName= "BlockEmployee";
         public const bool FixEmpOnVisits = false;
+        public const bool BlockEmpOnVisits = false;
         public const string PostPondVisitSettingName= "PostPondVisit";
         public const bool PostPondVisit= false;
         public const bool PostPondVisitByShift= false;
@@ -57,6 +60,12 @@ namespace Utilities.Defaults
         public const string DealingWithMainAddressName = "DealingWithMainAddress";
         public const string PackagePropertiesSettingName = "PackageProperties";
         public const string RenewPackagePropertiesSettingName = "RenewPackageProperties";
+        
+        public const string SelectedPackagePropertiesSettingName = "SelectedPackageProperties";
+        public const string DefaultSelectedPackagePropertiesSettingName = "DefaultSelectedPackageProperties";
+        public const string HourlyPackagePropertiesSettingName = "HourlyPackageProperties";
+
+        public const string ContactDetailsPackagePropertiesSettingName = "ContactDetailsPackageProperties";
         public const string RequestDetailsPackagePropertiesSettingName = "RequestDetailsPackageProperties";
         public const string DaysBeforeEndContractToShowRenewBtnSettingName = "DaysBeforeEndContractToShowRenewBtn";
         public const string IncludInsuranceWithRenewSettingName = "IncludInsuranceWithRenew";
@@ -69,7 +78,11 @@ namespace Utilities.Defaults
         public const string RenewOptionSettingName = "RenewOption";
         public const string PaymentAvailableSettingName = "IsPaymentAvailable";
         public const string QcTeamEmailSettingName = "QcTeamEmail";
-
+        public const string SystemVersionSettingName = "SystemVersion";
+        public const string IndividualRequestPaymentTimeSettingName = "IndividualRequestPaymentTime";
+        public const string HourlyRequestPaymentTimeSettingName = "HourlyRequestPaymentTime";
+        public const string FlexPaymentTimeSettingName = "FlexPaymentTime";
+        
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
         public const string IsSelectEmployeeFromHouseBuildingAvailableSettingName = "IsSelectEmployeeFromHouseBuildingAvailableSetting";
@@ -106,11 +119,16 @@ namespace Utilities.Defaults
         public const string IndividualRequestDocumentCode = "SD-11111";
 
         public const string PackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
+        public const string ContactDetailsPackageProperties = "{'packageDisplayName': {'type': 'string'},'finalPriceToPay': {'type': 'currency'},'discount': {'type': 'currency'},'packagePriceAfterDiscount': {'type': 'currency'},'activationAmount':{'type': 'currency'},'advancedAmount': {'type': 'currency'},'vatAmountOfFinalPrice': {'type': 'currency'},'packagePrice': {'type': 'currency'   },'professionGroupName':{'type': 'string'},'amountInsurance': {'type': 'currency'}}";
         public const string RequestDetailsPackageProperties = "{'packageDisplayName': {'type': 'string'},'finalPriceToPay': {'type': 'currency'},'discount': {'type': 'currency'},'packagePriceAfterDiscount': {'type': 'currency'},'activationAmount':{'type': 'currency'},'advancedAmount': {'type': 'currency'},'vatAmountOfFinalPrice': {'type': 'currency'},'packagePrice': {'type': 'currency'   },'professionGroupName':{'type': 'string'},'amountInsurance': {'type': 'currency'}}";
         public const string RenewPackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
         public const int RenewOptionValue = 2;//new contract
         public const string QcTeamEmail = "e.shahin@excp.sa,";
 
+        public const string SelectedPackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
+        public const string HourlyPackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
+
+        public const int SystemVersion = 2; //new version
 
 
         public static readonly string[] DateFormat = { "dd-MM-yyyy", "yyyy-MM-dd", "dd/MM/yyyy", "yyyy/MM/dd","MM/dd/yyyy","M/d/yyyy","dd/MM/yyyy hh:mm:ss","d/M/yyyy h:m:s" , "M/d/yyyy h:m:s tt" }; 
@@ -120,6 +138,7 @@ namespace Utilities.Defaults
         public const bool ShowCustomerWalletSetting = false;
         public const bool IsPaymentAvailable = false;
 
+        public const decimal paymnetTimeDefault = 120;
 
         public const bool TamayousSystemAvailable = false;
         public const string ShowTamayousSetting = "TamayousPayment";
@@ -218,6 +237,16 @@ namespace Utilities.Defaults
 
 
         public const string OnlinePaymentUrl = "/#/payment?contractId=@id&type=@type";
+
+        #region CompleteProfileSetting
+        public const string CompleteProfileRequiredFieldsSettingName = "CompleteProfileRequiredFields";
+        public const string ContactDetailsFieldsSettingName = "ContactDetailsFields";
+
+        public static string[] completeProfileFieldsDefaultValues = new[] { "new_gender", "new_idnumer", "new_contactnationality" };
+        public static string[] ContactDetailsDefaultValues = new[] { "new_gender", "new_idnumer", "new_contactcity", "new_contactnationality", "emailaddress1", "jobtitle" };
+        #endregion
+
+        public const string RenewLink = "/#/dashboard/individual-contracts/renew-contract/@id";
 
 
 

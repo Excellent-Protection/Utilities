@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.DataAccess.CRM;
+using Utilities.Defaults;
+using Utilities.GlobalManagers.CRM;
 using Utilities.GlobalViewModels;
 using Utilities.Helpers;
 using Westwind.Globalization;
@@ -49,6 +51,7 @@ namespace Utilities.GlobalManagers
             return _service.RetrieveMultiple(query);
 
         }
+
 
         public void Dispose()
         {

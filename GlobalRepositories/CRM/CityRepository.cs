@@ -185,7 +185,9 @@ namespace Utilities.GlobalRepositories.CRM
             return result;
 
         }
+
         public List<District> GetCityDistricts(string cityId, string serviceId=null)
+
         {
 
             var _service = CRMService.Service;
@@ -210,10 +212,12 @@ namespace Utilities.GlobalRepositories.CRM
                 
 
 
-          
-
             return _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<District>()).Distinct().ToList();
         }
+
+
+
+
         public string GetDistrictPolygon(string districtId)
         {
 

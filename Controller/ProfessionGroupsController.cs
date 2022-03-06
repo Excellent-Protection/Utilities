@@ -25,24 +25,9 @@ namespace Utilities.Controller
 
             using (ProfessionGroupsManager _Mngr = new ProfessionGroupsManager(RequestUtility))
             {
+             
                 var result = _Mngr.GetProfessionGroups(serviceType);
                 return Response <List<BaseQuickLookupWithImageVm >> (result);
-
-            }
-        }
-
-        [HttpGet]
-        [Route("TestProfessions")]
-        public HttpResponseMessage ProfessionTest(string profGroupId, ServiceType? serviceType = null)
-        {
-
-            using (ProfessionGroupsManager _Mngr = new ProfessionGroupsManager(RequestUtility))
-            {
-               
-                var resultsfd = _Mngr.GetProfessionsId(profGroupId);
-                var result = _Mngr.GetProfessionGroups(serviceType);
-
-                return Response<List<BaseQuickLookupWithImageVm>>(result);
 
             }
         }

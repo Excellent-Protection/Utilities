@@ -1,6 +1,8 @@
-﻿using Models.Labor;
+﻿
+using Models.Labor;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +61,35 @@ namespace Utilities.GlobalManagers
                 ++noOfTrys;
                 if (noOfTrys != 5)
                     GenerateShotUrl(longUrl, noOfTrys);
+            }
+            return longUrl;
+        }
+
+
+        public string GenerateShotCrmUrl(string longUrl, int? noOfTrys = 0)
+        {
+            try
+            {
+                using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
+                {
+                    var OnlineAPIUrl = ConfigurationManager.AppSettings["PortalCRMOnline"];
+                    string token = GetAlphanumericID(7);
+                    string shortUrl = OnlineAPIUrl + "/" + RequestUtility.RouteLanguage + "/u/" + token;
+                    var result = unitOfWork.Repository<UrlShortener>().Add(new UrlShortener()
+                    {
+                        ShortUrl = shortUrl.ToLower(),
+                        LongUrl = longUrl,
+                        Name = token.ToLower()
+                    });
+                    unitOfWork.SaveChanges();
+                    return result.ShortUrl;
+                }
+            }
+            catch (Exception ex)
+            {
+                ++noOfTrys;
+                if (noOfTrys != 5)
+                    GenerateShotCrmUrl(longUrl, noOfTrys);
             }
             return longUrl;
         }

@@ -1,6 +1,6 @@
 ﻿using Models.CRM.Individual_Contract;
 using Models.Labor;
-using Models.Labor.DynamicSteps;
+using Models.Labor;
 using System;
 using System.Collections.Generic;
 using System.Linq;

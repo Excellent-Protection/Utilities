@@ -28,9 +28,27 @@ namespace HourlySectorLib.Controller
                 return Response<List<DisplayServiceVm>>(result);
             }
         }
+        [HttpGet]
+        [Route("GetCalendarDays")]
+        public HttpResponseMessage GetCalendarDays(string serviceId)
+        {
+            using (ServiceManager _mngr = new ServiceManager(RequestUtility))
+            {
+                var result = _mngr.GetCalendarDays(serviceId);
+                return Response<List<string>>(result);
+            }
+        }
 
+        [Route("GetServiceTerms")]
+        public HttpResponseMessage GetServiceTerms(string serviceId)
+        {
+            using (ServiceManager serviceManager = new ServiceManager(RequestUtility))
+            {
+                var result = serviceManager.GetServiceTerms(serviceId);
+                return Response<string>(result);
 
-
+            }
+        }
 
     }
 }
