@@ -408,65 +408,13 @@
     <Compile Include="Mappers\Resolvers\ContractPreviouseLocationToSavedLocationVm.cs" />
     <Compile Include="Mappers\Resolvers\DateTimeAddThreeHoursResolver.cs" />
     <Compile Include="Mappers\Resolvers\RelatedEntityToListResolver.cs" />
-    <Compile Include="Migrations\202109191048321_stepsTabels.cs" />
-    <Compile Include="Migrations\202109191048321_stepsTabels.designer.cs">
-      <DependentUpon>202109191048321_stepsTabels.cs</DependentUpon>
+    <Compile Include="Migrations\202203031348385_platformPayment.cs" />
+    <Compile Include="Migrations\202203031348385_platformPayment.designer.cs">
+      <DependentUpon>202203031348385_platformPayment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202110041037477_update-stepHeader.cs" />
-    <Compile Include="Migrations\202110041037477_update-stepHeader.Designer.cs">
-      <DependentUpon>202110041037477_update-stepHeader.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110131135375_addcolumnsteptype.cs" />
-    <Compile Include="Migrations\202110131135375_addcolumnsteptype.designer.cs">
-      <DependentUpon>202110131135375_addcolumnsteptype.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110141331266_stepdatapreviousaction.cs" />
-    <Compile Include="Migrations\202110141331266_stepdatapreviousaction.designer.cs">
-      <DependentUpon>202110141331266_stepdatapreviousaction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110281000057_paymentPlatform.cs" />
-    <Compile Include="Migrations\202110281000057_paymentPlatform.designer.cs">
-      <DependentUpon>202110281000057_paymentPlatform.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110281149381_IsTestPayment.cs" />
-    <Compile Include="Migrations\202110281149381_IsTestPayment.designer.cs">
-      <DependentUpon>202110281149381_IsTestPayment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111161401456_shortner.cs" />
-    <Compile Include="Migrations\202111161401456_shortner.designer.cs">
-      <DependentUpon>202111161401456_shortner.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111161404127_shortners.cs" />
-    <Compile Include="Migrations\202111161404127_shortners.designer.cs">
-      <DependentUpon>202111161404127_shortners.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201170817509_addsourceinstepdetails.cs" />
-    <Compile Include="Migrations\202201170817509_addsourceinstepdetails.designer.cs">
-      <DependentUpon>202201170817509_addsourceinstepdetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112150911421_config.cs" />
-    <Compile Include="Migrations\202112150911421_config.designer.cs">
-      <DependentUpon>202112150911421_config.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112081322546_isauthorized.cs" />
-    <Compile Include="Migrations\202112081322546_isauthorized.designer.cs">
-      <DependentUpon>202112081322546_isauthorized.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112081327118_isauthorize.cs" />
-    <Compile Include="Migrations\202112081327118_isauthorize.designer.cs">
-      <DependentUpon>202112081327118_isauthorize.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112081333223_isauthoriz.cs" />
-    <Compile Include="Migrations\202112081333223_isauthoriz.designer.cs">
-      <DependentUpon>202112081333223_isauthoriz.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202101221269_additionalnumber.cs" />
-    <Compile Include="Migrations\202202101221269_additionalnumber.designer.cs">
-      <DependentUpon>202202101221269_additionalnumber.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202130810113_shortenerurl.cs" />
-    <Compile Include="Migrations\202202130810113_shortenerurl.designer.cs">
-      <DependentUpon>202202130810113_shortenerurl.cs</DependentUpon>
+    <Compile Include="Migrations\202203031412456_paymentTransactionTest.cs" />
+    <Compile Include="Migrations\202203031412456_paymentTransactionTest.designer.cs">
+      <DependentUpon>202203031412456_paymentTransactionTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
@@ -521,50 +469,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202109191048321_stepsTabels.resx">
-      <DependentUpon>202109191048321_stepsTabels.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202203031348385_platformPayment.resx">
+      <DependentUpon>202203031348385_platformPayment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110041037477_update-stepHeader.resx">
-      <DependentUpon>202110041037477_update-stepHeader.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110131135375_addcolumnsteptype.resx">
-      <DependentUpon>202110131135375_addcolumnsteptype.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110141331266_stepdatapreviousaction.resx">
-      <DependentUpon>202110141331266_stepdatapreviousaction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110281000057_paymentPlatform.resx">
-      <DependentUpon>202110281000057_paymentPlatform.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110281149381_IsTestPayment.resx">
-      <DependentUpon>202110281149381_IsTestPayment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111161401456_shortner.resx">
-      <DependentUpon>202111161401456_shortner.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111161404127_shortners.resx">
-      <DependentUpon>202111161404127_shortners.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201170817509_addsourceinstepdetails.resx">
-      <DependentUpon>202201170817509_addsourceinstepdetails.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112150911421_config.resx">
-      <DependentUpon>202112150911421_config.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112081322546_isauthorized.resx">
-      <DependentUpon>202112081322546_isauthorized.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112081327118_isauthorize.resx">
-      <DependentUpon>202112081327118_isauthorize.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112081333223_isauthoriz.resx">
-      <DependentUpon>202112081333223_isauthoriz.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202101221269_additionalnumber.resx">
-      <DependentUpon>202202101221269_additionalnumber.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202130810113_shortenerurl.resx">
-      <DependentUpon>202202130810113_shortenerurl.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202203031412456_paymentTransactionTest.resx">
+      <DependentUpon>202203031412456_paymentTransactionTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

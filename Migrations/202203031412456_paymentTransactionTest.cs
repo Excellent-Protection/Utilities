@@ -3,16 +3,15 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class paymentPlatform : DbMigration
+    public partial class paymentTransactionTest : DbMigration
     {
         public override void Up()
         {
-           // AddColumn("dbo.paymentMethods", "Platforms", c => c.String());
+            AddColumn("dbo.PaymentTransactions", "IsTest", c => c.Boolean(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.paymentMethods", "Platforms");
         }
     }
 }
