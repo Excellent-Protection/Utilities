@@ -74,6 +74,8 @@ namespace Utilities.GlobalRepositories.CRM
                 if (service.DisplayCities.Value == (int)DisplayCitiesForService.onlyServiceCities)
                 {
                     var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
+                    //is available for hourly true
+                    CityQuery.Criteria.AddCondition("new_isdalal", ConditionOperator.Equal,true);
                     CityQuery.AddLink(CrmEntityNamesMapping.ServiceCity, "new_cityid", "new_city");
                     CityQuery.LinkEntities[0].LinkCriteria.AddCondition("new_service", ConditionOperator.Equal, serviceId);
                     CityQuery.LinkEntities[0].LinkCriteria.AddCondition("new_city", ConditionOperator.Equal, cityId);
