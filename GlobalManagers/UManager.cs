@@ -47,7 +47,7 @@ namespace Utilities.GlobalManagers
                 {
                     var OnlineAPIUrl = new ExcSettingsManager(RequestUtility)["OnlineAPIUrl"].ToString();
                     string token = GetAlphanumericID(7);
-                    string shortUrl = OnlineAPIUrl+"/"+RequestUtility.RouteLanguage + "/u/" + token;
+                    string shortUrl = OnlineAPIUrl+ "/u/" + token;
                     var result = unitOfWork.Repository<UrlShortener>().Add(new UrlShortener()
                     {
                         ShortUrl = shortUrl.ToLower(),
