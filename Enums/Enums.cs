@@ -63,10 +63,8 @@ namespace Utilities.Enums
         RefundIsUnderWay = 100000014,
         PostPonded=	100000003,
         Running=	100000005,
-        NoAvailable=	100000013
-
-
-//Part of the amount has been refunded	100000016
+        NoAvailable=100000013,
+        PartOfTheAmounthHasBeenRefunded = 100000016
     }
 
     public enum CustomerTicketSectorType
