@@ -43,8 +43,8 @@ namespace Utilities.Defaults
         public const int FixedEmployeeShiftOffsetHours = 8;
         public const string FixEmpOnVisitsSettingName= "FixEmployeeOnVisits";
         public const string BlockEmpOnVisitsSettingName= "BlockEmployee";
-        public const bool FixEmpOnVisits = false;
-        public const bool BlockEmpOnVisits = false;
+        public const bool FixEmpOnVisits = true;
+        public const bool BlockEmpOnVisits = true;
         public const string PostPondVisitSettingName= "PostPondVisit";
         public const bool PostPondVisit= false;
         public const bool PostPondVisitByShift= false;
