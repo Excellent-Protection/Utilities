@@ -68,9 +68,6 @@ namespace Utilities.GlobalRepositories.CRM
         {
             var _service = CRMService.Service;
             var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_displaycities")).ToEntity<Service>();
-
-            if (service.DisplayCities.Value != (int)DisplayCitiesForService.All)
-            {
                 if (service.DisplayCities.Value == (int)DisplayCitiesForService.onlyServiceCities)
                 {
                     var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
@@ -82,13 +79,16 @@ namespace Utilities.GlobalRepositories.CRM
                     var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
                     return result.Count > 0;
                 }
-                var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_isdalal")).ToEntity<City>();
-                var IsForHourly = city.IsForHourly.HasValue ? city.IsForHourly.Value : false;
-                return IsForHourly;
-
+                else if(service.DisplayCities.Value == (int)DisplayCitiesForService.All)
+                {
+                    var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_isdalal")).ToEntity<City>();
+                    var IsForHourly = city.IsForHourly.HasValue ? city.IsForHourly.Value : false;
+                    return IsForHourly;
             }
-
-            return true;
+            else
+            {
+                return true;
+            }
         }
 
         public bool CheckCityAvailabilityForIndvService(string cityId)
