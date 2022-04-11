@@ -8,10 +8,11 @@ using Models.Labor;
 using Utilities.Mappers;
 using Utilities.Helpers;
 using Utilities.GlobalViewModels.Labor;
+using Utilities.Enums;
 
 namespace Utilities.GlobalManagers.Labor
 {
-    public class SettingsManager:IDisposable
+    public class SettingsManager:IDisposable,IComparable
     {
 
        
@@ -49,7 +50,29 @@ namespace Utilities.GlobalManagers.Labor
                 return setting.Toclass<SettingVM, Setting>();
             }
         }
-        
+        public  bool checkVersion(MobilePhoneSource mobilePhoneSource,string routingVersion)
+        {
+          
+            if(mobilePhoneSource== MobilePhoneSource.Android)
+            {
+                using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
+                {
+                    var setting = unitOfWork.Repository<Setting>().Find(s=>s.Name.ToLower()=="androidversion").FirstOrDefault().Value;
+                    return  routingVersion.CompareTo(setting)>0 ? true : false;
+                } 
+
+            } 
+              else
+            {
+               
+                using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
+                {
+                    var setting = unitOfWork.Repository<Setting>().Find(s => s.Name.ToLower() == "iosversion").FirstOrDefault().Value;
+                    return routingVersion.CompareTo(setting) > 0 ? true : false;
+                }
+            }
+
+        }
         public SettingVM GetById(string id)
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
@@ -73,6 +96,12 @@ namespace Utilities.GlobalManagers.Labor
         {
 
         }
+
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<SettingVM> this[List<string> keys]
         {
             get
