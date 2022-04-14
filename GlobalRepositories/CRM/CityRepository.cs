@@ -9,11 +9,15 @@ using Utilities.DataAccess.CRM;
 using Utilities.Defaults;
 using Utilities.Enums;
 using Utilities.GlobalViewModels;
+using Utilities.Helpers;
 
 namespace Utilities.GlobalRepositories.CRM
 {
-    public class CityRepository
+    public class CityRepository: BaseCrmEntityRepository
     {
+        public CityRepository(RequestUtility RequestUtility) : base(RequestUtility)
+        {
+        }
 
         public bool CheckDistrictAvilabilityForService( string districtId, string serviceId=null)
         {
@@ -116,6 +120,8 @@ namespace Utilities.GlobalRepositories.CRM
             CityQuery.Criteria.AddFilter(OrFilter);
             CityQuery.ColumnSet = new ColumnSet("new_citiesid", "new_name", "new_englsihname");
 
+            var OrderFeild = RequestUtility.Language == UserLanguage.Arabic ? "new_name" : "new_englsihname";
+            CityQuery.AddOrder(OrderFeild, OrderType.Ascending);
             var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
             return result;
         }

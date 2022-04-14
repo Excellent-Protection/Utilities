@@ -20,7 +20,7 @@ namespace Utilities.GlobalManagers.CRM
         public CityManager(RequestUtility requestUtility) : base(requestUtility)
         {
             _requestUtility = RequestUtility;
-            _repo = new CityRepository();
+            _repo = new CityRepository(RequestUtility);
         }
 
 

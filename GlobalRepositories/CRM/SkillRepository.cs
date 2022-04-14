@@ -12,8 +12,11 @@ using Westwind.Globalization;
 
 namespace Utilities.GlobalRepositories.CRM
 {
-   public class SkillRepository
+   public class SkillRepository : BaseCrmEntityRepository
     {
+        public SkillRepository(RequestUtility RequestUtility) : base(RequestUtility)
+        {
+        }
 
         public List<Skill> EmployeeSkills(List<string> employeesId)
         {
