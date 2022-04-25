@@ -23,11 +23,10 @@ namespace Utilities.GlobalManagers.CRM
         public SkillManager(RequestUtility requestUtility) : base(requestUtility)
         {
             _requestUtility = RequestUtility;
-            _repo = new SkillRepository();
+            _repo = new SkillRepository(requestUtility);
         }
         public void Dispose()
         {
-            _repo = new SkillRepository();
         }
         public List<SkillsVm> EmployeeSkills(List<string> employeesId)
         {
