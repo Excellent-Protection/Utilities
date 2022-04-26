@@ -12,6 +12,11 @@ using Utilities.GlobalViewModels.Custom;
 using Utilities.GlobalViewModels.CRM;
 using Utilities.Helpers;
 using Utilities.Mappers;
+using Microsoft.Xrm.Sdk.Query;
+using Utilities.Enums;
+using Utilities.DataAccess.Labor;
+using AuthonticationLib.ViewModels;
+using Models.Labor;
 
 namespace Utilities.GlobalManagers.CRM
 {
@@ -266,7 +271,42 @@ namespace Utilities.GlobalManagers.CRM
             return null;
         }
 
-    
+
+        public bool EditEmail(string crmUserId,string newEmail)
+        {
+            try
+            {
+                if (crmUserId != null)
+                {
+                    var _ctx = new LaborDbContext();
+                    var service = CRMService.Service;
+
+                
+                    var contact = service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(crmUserId), new ColumnSet("emailaddress1")).ToEntity<Contact>(); ;
+                    if (contact != null)
+                    {
+                        contact.Email = newEmail;
+                        service.Update(contact);
+                    }
+
+                    var contactLabor = _ctx.Users.FirstOrDefault(a => a.CrmUserId == crmUserId);
+                    if (contactLabor != null)
+                    {
+                        contactLabor.Email = newEmail;
+                        _ctx.SaveChanges();
+                    }
+                    
+                }
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                return false;
+            }
+        }
 
     }
 

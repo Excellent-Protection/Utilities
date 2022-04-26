@@ -92,5 +92,18 @@ namespace Utilities.Controller
 
         }
 
+
+
+        [HttpPost]
+        [Route("EditEmail")]
+        public bool EditEmail(string contactId, string email)
+        {
+            using (ContactManager _mngr = new ContactManager(RequestUtility))
+            {
+                var result = _mngr.EditEmail(contactId, email);
+                return result;
+            }
+
+        }
     }
 }
