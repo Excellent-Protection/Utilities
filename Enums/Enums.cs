@@ -912,4 +912,9 @@ namespace Utilities.Enums
         CONTACT,
         REQUEST
     }
+    public enum NotificationType
+    {
+        Broadcast = 1,
+        UserDefined = 2
+    }
 }
