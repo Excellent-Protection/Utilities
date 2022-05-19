@@ -29,7 +29,10 @@ namespace Utilities.GlobalManagers.CRM
         {
         }
 
-
+        public ContactVm getContactById( string id )
+        {
+             return _repo.GetContactById(id).Toclass<ContactVm>(); 
+        }
         public ContactVm RegisterContactInPortal(ContactVm contact)
         {
             var crmEntity = _repo.GetContactByPhone(contact.MobilePhone).Toclass<ContactVm>();

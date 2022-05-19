@@ -79,7 +79,17 @@ namespace Utilities.GlobalRepositories.CRM
             var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new ColumnSet("fullname")).ToEntity<Contact>();
             return contact;
         }
+        public Contact GetContactById(string id)
+        {
+            QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Contact);
+            query.ColumnSet = new ColumnSet(true);
+            query.Criteria.AddCondition("contactid", ConditionOperator.Equal,  new Guid(id));
 
+            var _service = CRMService.Service;
+            var contact = _service.RetrieveMultiple(query).Entities.Select(q => q.ToEntity<Contact>()).FirstOrDefault();
+
+            return contact;
+        }
         public bool? IsBlocked(string id)
         {          
             var _service = CRMService.Service;

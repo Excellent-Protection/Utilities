@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilities.DataAccess.Labor;
 using Utilities.Defaults;
+using Utilities.Helpers;
 
 namespace AuthonticationLib.Repositories
 {
@@ -102,5 +103,140 @@ namespace AuthonticationLib.Repositories
                 return await UpdateAsync(currentItem);
             }
         }
+
+        public async Task<bool> GetUserByCrmUserIdAndUpdateReletedEntities(string id)
+        {
+            try
+            {
+                using (LaborDbContext context = new LaborDbContext())
+                {
+                    var currentItem = this.Users.FirstOrDefault(u => u.CrmUserId == id);
+                    var devicesList = context.Devices.Where(d => d.UserId == currentItem.Id).ToList();
+                    if (devicesList.Count() > 0)
+                    {
+                        foreach (var item in devicesList)
+                        {
+                            item.IsDeleted = true;
+
+                        }
+                    }
+                    await context.BulkUpdateAsync(devicesList);
+                    var notificationList = context.UserNotifications.Where(ui => ui.CrmUserId == id).ToList();
+                    if (notificationList.Count() > 0)
+                    {
+                        foreach (var item in notificationList)
+                        {
+
+                            item.IsDeleted = true;
+
+
+                        }
+                    }
+                    await context.BulkUpdateAsync(notificationList);
+                    currentItem.IsDeleted = true;
+                    currentItem.PhoneNumberConfirmed = false;
+                    var result = await UpdateAsync(currentItem);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+             catch(Exception ex)
+            {
+                LogError.Error(new Exception(), System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                return false;
+            }
+            
+
+        }
+        public async Task<bool> ActivateOrDeactivateAsync(string id , string Status )
+        {
+            try
+            {
+                using (LaborDbContext context = new LaborDbContext())
+                {
+                    var currentItem = this.Users.FirstOrDefault(u => u.CrmUserId.ToLower() == id);
+                    if (currentItem.IsDeactivated == true && Status.ToLower() == "active")
+                    {
+                        var devicesList = context.Devices.Where(d => d.UserId == currentItem.Id).ToList();
+                        if (devicesList.Count() > 0)
+                        {
+                            foreach (var item in devicesList)
+                            {
+                                item.IsDeactivated = false;
+
+                            }
+
+                        }
+                        await context.BulkUpdateAsync(devicesList);
+
+                        var notificationList = context.UserNotifications.Where(ui => ui.CrmUserId == id).ToList();
+                        if (notificationList.Count() > 0)
+                        {
+                            foreach (var item in notificationList)
+                            {
+
+                                item.IsDeactivated = false;
+                                await UpdateAsync(currentItem);
+
+                            }
+                        }
+                        await context.BulkUpdateAsync(notificationList);
+
+                        currentItem.IsDeactivated = false;
+                        var result = UpdateAsync(currentItem);
+                        context.SaveChanges();
+                        if (result.Result.Succeeded)
+                            return true;
+                        return false;
+                    }
+
+
+                    if (currentItem.IsDeactivated == false && Status.ToLower() == "inactive")
+                    {
+                        var devicesList = context.Devices.Where(d => d.UserId == currentItem.Id).ToList();
+                        if (devicesList.Count() > 0)
+                        {
+                            foreach (var item in devicesList)
+                            {
+                                item.IsDeactivated = true;
+
+                            }
+
+                        }
+                        await context.BulkUpdateAsync(devicesList);
+
+                        var notificationList = context.UserNotifications.Where(ui => ui.CrmUserId == id).ToList();
+                        if (notificationList.Count() > 0)
+                        {
+                            foreach (var item in notificationList)
+                            {
+
+                                item.IsDeactivated = true;
+                                await UpdateAsync(currentItem);
+
+                            }
+                        }
+                        await context.BulkUpdateAsync(notificationList);
+
+                        currentItem.IsDeactivated = true;
+                        var result = UpdateAsync(currentItem);
+                        context.SaveChanges();
+                        if (result.Result.Succeeded)
+                            return true;
+                        return false;
+                    }
+                }
+
+                return false; 
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(new Exception(), System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                return false;
+            }
+
+        }
+
     }
 }
