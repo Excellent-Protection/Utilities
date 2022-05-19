@@ -1,5 +1,6 @@
 ﻿using HourlySectorLib.Managers;
 using HourlySectorLib.ViewModels.Custom;
+using RecService.Api.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace HourlySectorLib.Controller
     {
         [HttpGet]
         [Route("ServicesForService")]
+        [SignAuthorizationFilter]
         public HttpResponseMessage GetServicesForService(ServiceType serviceType)
         {
             using (ServiceManager _mngr = new ServiceManager(RequestUtility))
