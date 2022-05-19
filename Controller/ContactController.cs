@@ -11,6 +11,7 @@ using Utilities.GlobalManagers;
 using Utilities.GlobalManagers.CRM;
 using Utilities.GlobalManagers.Labor;
 using Utilities.GlobalViewModels;
+using Utilities.GlobalViewModels.CRM;
 using Utilities.GlobalViewModels.Custom;
 using Utilities.Helpers;
 using Westwind.Globalization;
@@ -89,6 +90,24 @@ namespace Utilities.Controller
                 return Response(new ResponseVm<ServiceStepResponseVm> { Status = HttpStatusCodeEnum.Ambiguous, Data = new ServiceStepResponseVm { StepId = stepId, StepDetailsVm = currentStepDetails.Data } });
 
             }
+
+        }
+
+
+        [Route("GetUserByPhoneNumber")]
+        public HttpResponseMessage GetUserByPhoneNumber(string phoneNumber)
+        {
+            if (!string.IsNullOrEmpty(phoneNumber))
+            {
+                using (ContactManager _mngr = new ContactManager(RequestUtility))
+                {
+                    var result = _mngr.GetUserByPhoneNumber(phoneNumber);
+                    return Response(new ResponseVm<ContactVm> { Status = Utilities.HttpStatusCodeEnum.Ok, Data = result });
+
+                }
+            }
+            return Response(new ResponseVm<ContactVm> { Status = HttpStatusCodeEnum.Ambiguous });
+
 
         }
 
