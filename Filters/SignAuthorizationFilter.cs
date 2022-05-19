@@ -134,10 +134,6 @@ namespace RecService.Api.Filters
                                 device.UserId = userId;
                                 _DeviceMngr.UpdateDevice(device);
                             }
-                            else
-                            {
-                                _DeviceMngr.AddUserDevice(userId, deviceId);
-                            }
                         }
                     }
 
