@@ -50,25 +50,16 @@ namespace Utilities.Controller
 
             try
             {
-                if (String.IsNullOrEmpty(id))
-                {
-                    LogError.Error(new Exception(), System.Reflection.MethodBase.GetCurrentMethod().Name + id + "is equal null");
-
-                }
-                if (String.IsNullOrEmpty(Paramter1))
-                {
-                    LogError.Error(new Exception(), System.Reflection.MethodBase.GetCurrentMethod().Name + Paramter1 + "is equal null");
-
-                }
-
-                ContactVm contactDetails;
+                ContactVm contactDetails = new ContactVm();
 
                 if (!String.IsNullOrEmpty(id))
                 {
                     using (ContactManager _mngr = new ContactManager(RequestUtility))
                     {
                         contactDetails = _mngr.getContactById(id);
-                        if (contactDetails == null)
+                    }
+                    //Delete Action
+                    if (contactDetails == null)
                         {
                             using (ApplicationUserManager _userMngr = new ApplicationUserManager(RequestUtility))
                             {
@@ -84,22 +75,24 @@ namespace Utilities.Controller
                                 catch (Exception ex)
                                 {
 
-                                    LogError.Error(new Exception(), System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                                    LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
                                 }
                             }
 
                         }
-                    }
+                   
                 }
-
+                //Activate or Deactivate Action
                 if (!String.IsNullOrEmpty(Paramter1))
                 {
                     using (ApplicationUserManager _userMngr = new ApplicationUserManager(RequestUtility))
-                    {
-                        var result = await _userMngr.ActivateOrDeactivateUserInLaborAsync(id, Paramter1);
-                        if (result)
-                            return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Message = "User status updated successfully" });
-                        return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "User status doesnot updated successfully: Error in change status" });
+                    {   if (contactDetails != null)
+                        {
+                            var result = await _userMngr.ActivateOrDeactivateUserInLaborAsync(id, Paramter1);
+                            if (result)
+                                return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Message = "User status updated successfully" });
+                            return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "User status doesnot updated successfully: Error in change status" });
+                        } 
 
                     }
 
@@ -110,9 +103,10 @@ namespace Utilities.Controller
 
             } 
              catch(Exception ex)
-            { 
-            
-                    LogError.Error(new Exception(), System.Reflection.MethodBase.GetCurrentMethod().Name);
+            {
+
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+
                 throw ex;
             }
         }

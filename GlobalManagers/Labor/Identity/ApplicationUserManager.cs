@@ -154,7 +154,7 @@ namespace Utilities.GlobalManagers.Labor.Identity
             }
             catch (Exception ex)
             {
-                LogError.Error(new Exception(), System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
                 return false;
             }
 
@@ -173,7 +173,7 @@ namespace Utilities.GlobalManagers.Labor.Identity
             }
             catch (Exception ex)
             {
-                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
                 return false; 
             }
             

@@ -108,134 +108,180 @@ namespace AuthonticationLib.Repositories
         {
             try
             {
-                using (LaborDbContext context = new LaborDbContext())
+                using (UnitOfWork _unitOfWork = new UnitOfWork(new DbFactory()))
                 {
                     var currentItem = this.Users.FirstOrDefault(u => u.CrmUserId == id);
-                    var devicesList = context.Devices.Where(d => d.UserId == currentItem.Id).ToList();
+                    var devicesList = _unitOfWork.Repository<Device>().GetAll().Where(d => d.UserId == currentItem.Id).ToList();
                     if (devicesList.Count() > 0)
                     {
                         foreach (var item in devicesList)
                         {
                             item.IsDeleted = true;
-
+                            _unitOfWork.Repository<Device>().Update(item); 
                         }
                     }
-                    await context.BulkUpdateAsync(devicesList);
-                    var notificationList = context.UserNotifications.Where(ui => ui.CrmUserId == id).ToList();
+                
+                    var notificationList = _unitOfWork.Repository<UserNotification>().GetAll().Where(ui => ui.CrmUserId == id).ToList();
                     if (notificationList.Count() > 0)
                     {
                         foreach (var item in notificationList)
                         {
 
                             item.IsDeleted = true;
-
+                            _unitOfWork.Repository<UserNotification>().Update(item);
 
                         }
                     }
-                    await context.BulkUpdateAsync(notificationList);
+                
                     currentItem.IsDeleted = true;
                     currentItem.PhoneNumberConfirmed = false;
                     var result = await UpdateAsync(currentItem);
-                    context.SaveChanges();
+            
                     return true;
                 }
             }
              catch(Exception ex)
             {
-                LogError.Error(new Exception(), System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
                 return false;
             }
             
 
         }
         public async Task<bool> ActivateOrDeactivateAsync(string id , string Status )
-        {
+        {   
             try
             {
-                using (LaborDbContext context = new LaborDbContext())
+                using (UnitOfWork _unitOdWork = new UnitOfWork(new DbFactory()))
                 {
+
                     var currentItem = this.Users.FirstOrDefault(u => u.CrmUserId.ToLower() == id);
-                    if (currentItem.IsDeactivated == true && Status.ToLower() == "active")
+                    //Reactivate user with devices and notifications
+                    if (currentItem !=null && currentItem.IsDeactivated == true && Status.ToLower() == "active")
                     {
-                        var devicesList = context.Devices.Where(d => d.UserId == currentItem.Id).ToList();
+                        //Reactivate related devices
+                        var devicesList = _unitOdWork.Repository<Device>().GetAll().Where(d => d.UserId == currentItem.Id).ToList();
                         if (devicesList.Count() > 0)
                         {
                             foreach (var item in devicesList)
                             {
                                 item.IsDeactivated = false;
-
+                                _unitOdWork.Repository<Device>().Update(item);
                             }
 
                         }
-                        await context.BulkUpdateAsync(devicesList);
+                        //
+                        //Reactivate related notifications
 
-                        var notificationList = context.UserNotifications.Where(ui => ui.CrmUserId == id).ToList();
+                        var notificationList = _unitOdWork.Repository<UserNotification>().GetAll().Where(ui => ui.CrmUserId == id).ToList();
+
                         if (notificationList.Count() > 0)
                         {
                             foreach (var item in notificationList)
                             {
 
                                 item.IsDeactivated = false;
-                                await UpdateAsync(currentItem);
+                                _unitOdWork.Repository<UserNotification>().Update(item);
 
                             }
                         }
-                        await context.BulkUpdateAsync(notificationList);
-
+                       //
+                       //Reactivate user
                         currentItem.IsDeactivated = false;
-                        var result = UpdateAsync(currentItem);
-                        context.SaveChanges();
-                        if (result.Result.Succeeded)
+                        var result = await UpdateAsync(currentItem);
+                     //
+                        if (result.Succeeded)
                             return true;
                         return false;
                     }
 
-
-                    if (currentItem.IsDeactivated == false && Status.ToLower() == "inactive")
+                    //Deactivate user with devices and notifications
+                    else 
                     {
-                        var devicesList = context.Devices.Where(d => d.UserId == currentItem.Id).ToList();
+                        if (currentItem != null && currentItem.IsDeactivated == false && Status.ToLower() == "inactive")
+                        { 
+                            //Deactivate related devices
+                            var devicesList = _unitOdWork.Repository<Device>().GetAll().Where(d => d.UserId == currentItem.Id).ToList();
                         if (devicesList.Count() > 0)
                         {
                             foreach (var item in devicesList)
                             {
                                 item.IsDeactivated = true;
-
+                                _unitOdWork.Repository<Device>().Update(item);
                             }
 
                         }
-                        await context.BulkUpdateAsync(devicesList);
-
-                        var notificationList = context.UserNotifications.Where(ui => ui.CrmUserId == id).ToList();
+                         //
+                         //Deactivate related notifications
+                        var notificationList = _unitOdWork.Repository<UserNotification>().GetAll().Where(ui => ui.CrmUserId == id).ToList();
                         if (notificationList.Count() > 0)
                         {
                             foreach (var item in notificationList)
                             {
 
                                 item.IsDeactivated = true;
-                                await UpdateAsync(currentItem);
+                                _unitOdWork.Repository<UserNotification>().Update(item);
 
                             }
                         }
-                        await context.BulkUpdateAsync(notificationList);
-
+                        //
+                        //Deactivate user
                         currentItem.IsDeactivated = true;
-                        var result = UpdateAsync(currentItem);
-                        context.SaveChanges();
-                        if (result.Result.Succeeded)
+                        var result = await UpdateAsync(currentItem);
+                        //
+                        if (result.Succeeded)
                             return true;
+                        return false;
+                    }
                         return false;
                     }
                 }
-
-                return false; 
-
             }
             catch (Exception ex)
             {
-                LogError.Error(new Exception(), System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                
                 return false;
             }
 
+        } 
+         public  bool UpdateRelatedDevicesAndNotificationsIfExist(string userId, string oldCrmUserId , string newCrmUserId)
+        { try
+            {
+                using (UnitOfWork _unitOfWork  = new UnitOfWork(new DbFactory()))
+                {
+                    var devicesList = _unitOfWork.Repository<Device>().GetAll().Where(d => d.UserId == userId).ToList();
+                    if (devicesList.Count() > 0)
+                    {
+                        foreach (var item in devicesList)
+                        {
+                            item.IsDeleted = false;
+                             _unitOfWork.Repository<Device>().Update(item);
+
+                        }
+                      
+                    }
+                    var notificationList = _unitOfWork.Repository<UserNotification>().GetAll().Where(ui => ui.CrmUserId == oldCrmUserId).ToList();
+                    if (notificationList.Count() > 0)
+                    {
+                        foreach (var item in notificationList)
+                        {
+
+                            item.IsDeleted = false;
+                            item.CrmUserId = newCrmUserId;
+                            _unitOfWork.Repository<UserNotification>().Update(item);
+
+                        }
+                    }
+                    _unitOfWork.SaveChanges();
+                }
+                return true; 
+            } 
+            catch(Exception ex )
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                return false; 
+            }
         }
 
     }
