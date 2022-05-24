@@ -43,8 +43,8 @@ namespace Utilities.Defaults
         public const int FixedEmployeeShiftOffsetHours = 8;
         public const string FixEmpOnVisitsSettingName= "FixEmployeeOnVisits";
         public const string BlockEmpOnVisitsSettingName= "BlockEmployee";
-        public const bool FixEmpOnVisits = false;
-        public const bool BlockEmpOnVisits = false;
+        public const bool FixEmpOnVisits = true;
+        public const bool BlockEmpOnVisits = true;
         public const string PostPondVisitSettingName= "PostPondVisit";
         public const bool PostPondVisit= false;
         public const bool PostPondVisitByShift= false;
@@ -82,7 +82,9 @@ namespace Utilities.Defaults
         public const string IndividualRequestPaymentTimeSettingName = "IndividualRequestPaymentTime";
         public const string HourlyRequestPaymentTimeSettingName = "HourlyRequestPaymentTime";
         public const string FlexPaymentTimeSettingName = "FlexPaymentTime";
-        
+        public const string whatsappNumberSettingName = "whatsappNumber";
+
+
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
         public const string IsSelectEmployeeFromHouseBuildingAvailableSettingName = "IsSelectEmployeeFromHouseBuildingAvailableSetting";
@@ -117,6 +119,7 @@ namespace Utilities.Defaults
         public const string ProceduresReventRenew = "1,2,4";
         public const string SupportEmail = "e.shahin@excp.sa";
         public const string IndividualRequestDocumentCode = "SD-11111";
+        public const string whatsappNumber = "+9668001242420";
 
         public const string PackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
         public const string ContactDetailsPackageProperties = "{'packageDisplayName': {'type': 'string'},'finalPriceToPay': {'type': 'currency'},'discount': {'type': 'currency'},'packagePriceAfterDiscount': {'type': 'currency'},'activationAmount':{'type': 'currency'},'advancedAmount': {'type': 'currency'},'vatAmountOfFinalPrice': {'type': 'currency'},'packagePrice': {'type': 'currency'   },'professionGroupName':{'type': 'string'},'amountInsurance': {'type': 'currency'}}";

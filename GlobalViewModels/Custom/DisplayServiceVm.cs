@@ -12,6 +12,7 @@ namespace HourlySectorLib.ViewModels.Custom
         public string Name { get; set; }
         public string Description { get; set; }
         public string IconUrl { get; set; }
+        public string ServiceBackImageUrl { get; set; }
         public string ServiceNote { get; set; }
     }
 }

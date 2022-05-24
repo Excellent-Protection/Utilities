@@ -45,6 +45,8 @@ namespace Utilities.GlobalManagers
                     if (!string.IsNullOrEmpty(supportEmail))
 
                         MailManager.SendEmail(supportEmail, CCEmail, subject, body, true, "");
+
+
                 return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = DbRes.T("DataSendSuccessfully", "Shared") };
 
             }
@@ -54,6 +56,29 @@ namespace Utilities.GlobalManagers
             }
             return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Data = DbRes.T("AnErrorOccurred", "Shared") };
 
+
+        }
+
+
+        public ResponseVm<string> WhatsappContactUs()
+        {
+            try
+            {
+                string whatsappNumber = DefaultValues.whatsappNumber;
+                var whatsappNumberSetting = new ExcSettingsManager(RequestUtility)[DefaultValues.whatsappNumberSettingName];
+                if (whatsappNumberSetting != null)
+                {
+                    whatsappNumber = whatsappNumberSetting.ToString();
+                }
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = whatsappNumber};
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+            return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Data = DbRes.T("AnErrorOccurred", "Shared") };
 
         }
 

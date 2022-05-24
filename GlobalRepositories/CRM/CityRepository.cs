@@ -9,11 +9,15 @@ using Utilities.DataAccess.CRM;
 using Utilities.Defaults;
 using Utilities.Enums;
 using Utilities.GlobalViewModels;
+using Utilities.Helpers;
 
 namespace Utilities.GlobalRepositories.CRM
 {
-    public class CityRepository
+    public class CityRepository: BaseCrmEntityRepository
     {
+        public CityRepository(RequestUtility RequestUtility) : base(RequestUtility)
+        {
+        }
 
         public bool CheckDistrictAvilabilityForService( string districtId, string serviceId=null)
         {
@@ -68,25 +72,27 @@ namespace Utilities.GlobalRepositories.CRM
         {
             var _service = CRMService.Service;
             var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_displaycities")).ToEntity<Service>();
-
-            if (service.DisplayCities.Value != (int)DisplayCitiesForService.All)
-            {
                 if (service.DisplayCities.Value == (int)DisplayCitiesForService.onlyServiceCities)
                 {
                     var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
+                    //is available for hourly true
+                    CityQuery.Criteria.AddCondition("new_isdalal", ConditionOperator.Equal,true);
                     CityQuery.AddLink(CrmEntityNamesMapping.ServiceCity, "new_cityid", "new_city");
                     CityQuery.LinkEntities[0].LinkCriteria.AddCondition("new_service", ConditionOperator.Equal, serviceId);
                     CityQuery.LinkEntities[0].LinkCriteria.AddCondition("new_city", ConditionOperator.Equal, cityId);
                     var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
                     return result.Count > 0;
                 }
-                var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_isdalal")).ToEntity<City>();
-                var IsForHourly = city.IsForHourly.HasValue ? city.IsForHourly.Value : false;
-                return IsForHourly;
-
+                else if(service.DisplayCities.Value == (int)DisplayCitiesForService.All)
+                {
+                    var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_isdalal")).ToEntity<City>();
+                    var IsForHourly = city.IsForHourly.HasValue ? city.IsForHourly.Value : false;
+                    return IsForHourly;
             }
-
-            return true;
+            else
+            {
+                return true;
+            }
         }
 
         public bool CheckCityAvailabilityForIndvService(string cityId)
@@ -114,6 +120,8 @@ namespace Utilities.GlobalRepositories.CRM
             CityQuery.Criteria.AddFilter(OrFilter);
             CityQuery.ColumnSet = new ColumnSet("new_citiesid", "new_name", "new_englsihname");
 
+            var OrderFeild = RequestUtility.Language == UserLanguage.Arabic ? "new_name" : "new_englsihname";
+            CityQuery.AddOrder(OrderFeild, OrderType.Ascending);
             var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
             return result;
         }

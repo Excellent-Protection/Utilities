@@ -52,6 +52,7 @@ namespace Utilities.DataAccess.Labor
         public DbSet<TamayouzIntegratedDiscount> TamayouzIntegratedDiscount { get; set; }
         public DbSet<StepsHeader> StepsHeader { get; set; }
         public DbSet<StepsDetails> StepsDetails { get; set; }
+        public DbSet<NotificationTemplate> NotificationTemplate { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -52,5 +52,18 @@ namespace Utilities.Controller
             }
         }
 
+
+        [HttpGet]
+        [Route("WhatsappContactUs")]
+        public HttpResponseMessage WhatsappContactUs()
+        {
+            using (ProfileManager _mngr = new ProfileManager(RequestUtility))
+            {
+                var result = _mngr.WhatsappContactUs();
+                return Response<string>(result);
+            }
+        }
+
+
     }
 }

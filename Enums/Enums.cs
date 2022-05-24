@@ -842,6 +842,11 @@ namespace Utilities.Enums
         SameContract = 1,
         NewContract = 2
     }
+    public enum RenewType
+    {
+        Renew = 1,
+        PostpondedRenew = 2
+    }
     public enum FlexContractStatus
     {
         Confirmed = 100000009,
@@ -906,5 +911,10 @@ namespace Utilities.Enums
     {
         CONTACT,
         REQUEST
+    }
+    public enum NotificationType
+    {
+        Broadcast = 1,
+        UserDefined = 2
     }
 }
