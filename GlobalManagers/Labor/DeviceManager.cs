@@ -167,8 +167,7 @@ where DBName.dbo.Devices.UserId is not null
 {0}
 )
 SELECT *
-FROM cte
-WHERE rn = 1", ((!string.IsNullOrEmpty(FieldName) && !string.IsNullOrEmpty(FieldValue)) ? string.Format("and {0} = '{1}'", FieldName, FieldValue) : ""));
+FROM cte", ((!string.IsNullOrEmpty(FieldName) && !string.IsNullOrEmpty(FieldValue)) ? string.Format("and {0} = '{1}'", FieldName, FieldValue) : ""));
                 sql=sql.Replace("DBName", DBName);
                 DataTable dt = CRMAccessDB.SelectQ(sql).Tables[0];
 
@@ -207,8 +206,7 @@ where DBName.dbo.Devices.UserId is not null
 and Contact.new_contactcity is not null and  Contact.new_contdistid is not null 
 )
 SELECT *
-FROM cte
-WHERE rn = 1";
+FROM cte";
                 sql = sql.Replace("DBName", DBName);
                 DataTable dt = CRMAccessDB.SelectQ(sql).Tables[0];
 
@@ -247,8 +245,7 @@ where DBName.dbo.Devices.UserId is not null
 and Contact.new_contactcity is null and  Contact.new_contdistid is null 
 )
 SELECT *
-FROM cte
-WHERE rn = 1";
+FROM cte";
                 sql = sql.Replace("DBName", DBName);
                 DataTable dt = CRMAccessDB.SelectQ(sql).Tables[0];
 
