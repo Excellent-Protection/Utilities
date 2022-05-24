@@ -76,7 +76,7 @@ namespace Utilities.GlobalManagers
                 {
                     var OnlineAPIUrl = ConfigurationManager.AppSettings["PortalCRMOnline"];
                     string token = GetAlphanumericID(7);
-                    string shortUrl = OnlineAPIUrl + "/u/" + token;
+                    string shortUrl = OnlineAPIUrl + "/" + RequestUtility.RouteLanguage + "/u/" + token;
                     var result = unitOfWork.Repository<UrlShortener>().Add(new UrlShortener()
                     {
                         ShortUrl = shortUrl.ToLower(),
