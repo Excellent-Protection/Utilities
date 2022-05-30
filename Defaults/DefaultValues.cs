@@ -84,6 +84,13 @@ namespace Utilities.Defaults
         public const string FlexPaymentTimeSettingName = "FlexPaymentTime";
         public const string whatsappNumberSettingName = "whatsappNumber";
 
+        //Social Media Setting Name
+        public const string FacebookLinkSettingName = "FacebookLink";
+        public const string YouTubeLinkSettingName = "YouTubeLink";
+        public const string LinkedInLinkSettingName = "LinkedInLink";
+        public const string TwitterLinkSettingName = "TwitterLink";
+        public const string InstagramLinkSettingName = "InstagramLink";
+        public const string WebsiteSettingName = "CompanyDomain";
 
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
