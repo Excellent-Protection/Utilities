@@ -26,6 +26,16 @@ namespace Utilities.Controller
                 return Response<string>(result);
             }
         }
+        [HttpGet]
+        [Route("GetSocialMediaLinks")]
+        public HttpResponseMessage GetSocialMediaLinks()
+        {
+            using (GeneralManager _mngr = new GeneralManager(RequestUtility))
+            {
+                var result = _mngr.GetSocialMediaLinks();
+                return Response<Dictionary<string, string>>(result);
+            }
+        }
     }
 }
 
