@@ -68,7 +68,7 @@ namespace Utilities.Helpers
                         }
                 }
 
-              // MapperConfig.lang = controller.RequestUtility.RouteLanguage = langRouting ?? (DefaultValues.Language == UserLanguage.Arabic ? DefaultValues.RouteLang_ar : DefaultValues.RouteLang_en);
+               MapperConfig.lang = controller.RequestUtility.RouteLanguage = langRouting.ToString() ?? (DefaultValues.Language == UserLanguage.Arabic ? DefaultValues.RouteLang_ar : DefaultValues.RouteLang_en);
 
             }
 
