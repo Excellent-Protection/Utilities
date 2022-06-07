@@ -81,7 +81,7 @@ namespace RecService.Api.Filters
                 }
 
             }
-            HandelOnAuthorized(actionContext);
+            //HandelOnAuthorized(actionContext);
         }
 
         void HandelOnAuthorized(HttpActionContext actionContext)
