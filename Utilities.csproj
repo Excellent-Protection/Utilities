@@ -423,6 +423,10 @@
     <Compile Include="Migrations\202205151437176_notificationTemplate.designer.cs">
       <DependentUpon>202205151437176_notificationTemplate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206121217083_getNotifications.cs" />
+    <Compile Include="Migrations\202206121217083_getNotifications.designer.cs">
+      <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
     <Compile Include="Enums\UserLanguage.cs" />
@@ -484,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205151437176_notificationTemplate.resx">
       <DependentUpon>202205151437176_notificationTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206121217083_getNotifications.resx">
+      <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
