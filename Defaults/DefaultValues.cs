@@ -91,7 +91,8 @@ namespace Utilities.Defaults
         public const string TwitterLinkSettingName = "TwitterLink";
         public const string InstagramLinkSettingName = "InstagramLink";
         public const string WebsiteSettingName = "CompanyDomain";
-
+        //Enable Evaluation Edit
+        public const string EnableEvaluationEditSettingName = "EnableEditEvaluation";
 
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
         public const string IsSelectEmployeeFromHouseBuildingAvailableSettingName = "IsSelectEmployeeFromHouseBuildingAvailableSetting";
@@ -109,12 +110,13 @@ namespace Utilities.Defaults
             { "HourlyServicesOffsetEvening", 8},
             { "HourlyServicesOffsetFullDay",  -4}
         };
-
         public static readonly Dictionary<string, int> ServiceDefaultValues = new Dictionary<string, int>() {
             { "MorningStartTime", 8},
             { "EveningStartTime", 16},
             { "FullDayStartTime",  8}
         };
+
+        public const bool EnableEvaluationEdit = true;
         public const bool SelectProfessionsFromPackages = true;
         public const bool SelectNationalitiesFromPackages = true;
         public const bool IsTwoFactorAuthenticationAvailable = false;
