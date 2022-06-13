@@ -110,6 +110,11 @@ namespace Utilities.Defaults
             { "HourlyServicesOffsetFullDay",  -4}
         };
 
+        public static readonly Dictionary<string, int> ServiceDefaultValues = new Dictionary<string, int>() {
+            { "MorningStartTime", 8},
+            { "EveningStartTime", 16},
+            { "FullDayStartTime",  8}
+        };
         public const bool SelectProfessionsFromPackages = true;
         public const bool SelectNationalitiesFromPackages = true;
         public const bool IsTwoFactorAuthenticationAvailable = false;
