@@ -90,6 +90,7 @@ namespace Utilities.Defaults
         public const string LinkedInLinkSettingName = "LinkedInLink";
         public const string TwitterLinkSettingName = "TwitterLink";
         public const string InstagramLinkSettingName = "InstagramLink";
+        public const string CompanyNumberSettingName = "companymobilenumber";
         public const string WebsiteSettingName = "CompanyDomain";
         //Enable Evaluation Edit
         public const string EnableEvaluationEditSettingName = "EnableEditEvaluation";

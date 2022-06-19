@@ -42,7 +42,7 @@ namespace Utilities.GlobalManagers.CRM
         {
             var _excsettingMngr = new ExcSettingsManager(RequestUtility);
             List<string> SocialMediaLinksList =new List<string>() { DefaultValues.FacebookLinkSettingName, DefaultValues.TwitterLinkSettingName, DefaultValues.InstagramLinkSettingName 
-            ,DefaultValues.YouTubeLinkSettingName,DefaultValues.LinkedInLinkSettingName,DefaultValues.WebsiteSettingName};
+            ,DefaultValues.YouTubeLinkSettingName,DefaultValues.LinkedInLinkSettingName,DefaultValues.CompanyNumberSettingName,DefaultValues.WebsiteSettingName};
             var SocialMediaLinks = _excsettingMngr[SocialMediaLinksList];
             return new ResponseVm<Dictionary<string, string>> { Status = HttpStatusCodeEnum.Ok, Data = SocialMediaLinks };
         }
