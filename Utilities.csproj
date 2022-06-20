@@ -364,6 +364,7 @@
     <Compile Include="GlobalViewModels\Custom\ContactUsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\DashboardCounts.cs" />
     <Compile Include="GlobalViewModels\Custom\DisplayServiceVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\EditContactVm.cs" />
     <Compile Include="GlobalViewModels\Custom\EmployeeSkillsDetailVM.cs" />
     <Compile Include="GlobalViewModels\Custom\LocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\CityIdAndNameVm.cs" />
@@ -400,6 +401,7 @@
     <Compile Include="Mappers\Profiles\Contact_ContactVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Country_NationalityProfile.cs" />
     <Compile Include="Mappers\Profiles\District_BaseQuickLookupVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\EditContactVm_ContactProfile.cs" />
     <Compile Include="Mappers\Profiles\Nationality_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
