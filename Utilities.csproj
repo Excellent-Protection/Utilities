@@ -313,6 +313,7 @@
     <Compile Include="Enums\RecordSource.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\SetDoubleDigits.cs" />
+    <Compile Include="Filters\SignAuthorizationFilter.cs" />
     <Compile Include="Filters\StepFilter.cs" />
     <Compile Include="GlobalManagers\CRM\CityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactLocationManager.cs" />
@@ -327,6 +328,7 @@
     <Compile Include="GlobalManagers\CRM\ServiceManager.cs" />
     <Compile Include="GlobalManagers\CRM\SkillManager.cs" />
     <Compile Include="GlobalManagers\GlobalManager.cs" />
+    <Compile Include="GlobalManagers\Labor\DeviceManager.cs" />
     <Compile Include="GlobalManagers\Labor\DynamicStepsManager.cs" />
     <Compile Include="GlobalManagers\Labor\Identity\ApplicationUserManager.cs" />
     <Compile Include="GlobalManagers\Labor\SettingsManager.cs" />
@@ -362,6 +364,7 @@
     <Compile Include="GlobalViewModels\Custom\ContactUsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\DashboardCounts.cs" />
     <Compile Include="GlobalViewModels\Custom\DisplayServiceVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\EditContactVm.cs" />
     <Compile Include="GlobalViewModels\Custom\EmployeeSkillsDetailVM.cs" />
     <Compile Include="GlobalViewModels\Custom\LocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\CityIdAndNameVm.cs" />
@@ -374,6 +377,7 @@
     <Compile Include="GlobalViewModels\Custom\ServiceStepResponseVm.cs" />
     <Compile Include="GlobalViewModels\Custom\UserProfileDataVm.cs" />
     <Compile Include="GlobalViewModels\Labor\ApplicationUserVm.cs" />
+    <Compile Include="GlobalViewModels\Labor\DeviceVM.cs" />
     <Compile Include="GlobalViewModels\Labor\SettingVM.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDataVm.cs" />
     <Compile Include="GlobalViewModels\Labor\StepDetailsVm.cs" />
@@ -397,6 +401,7 @@
     <Compile Include="Mappers\Profiles\Contact_ContactVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Country_NationalityProfile.cs" />
     <Compile Include="Mappers\Profiles\District_BaseQuickLookupVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\EditContactVm_ContactProfile.cs" />
     <Compile Include="Mappers\Profiles\Nationality_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
@@ -415,6 +420,14 @@
     <Compile Include="Migrations\202203031412456_paymentTransactionTest.cs" />
     <Compile Include="Migrations\202203031412456_paymentTransactionTest.designer.cs">
       <DependentUpon>202203031412456_paymentTransactionTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205151437176_notificationTemplate.cs" />
+    <Compile Include="Migrations\202205151437176_notificationTemplate.designer.cs">
+      <DependentUpon>202205151437176_notificationTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206121217083_getNotifications.cs" />
+    <Compile Include="Migrations\202206121217083_getNotifications.designer.cs">
+      <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
@@ -474,6 +487,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203031412456_paymentTransactionTest.resx">
       <DependentUpon>202203031412456_paymentTransactionTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205151437176_notificationTemplate.resx">
+      <DependentUpon>202205151437176_notificationTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206121217083_getNotifications.resx">
+      <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

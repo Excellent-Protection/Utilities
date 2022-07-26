@@ -7,7 +7,7 @@
     {
         public override void Up()
         {
-            AddColumn("dbo.PaymentTransactions", "IsTest", c => c.Boolean(nullable: false));
+           // AddColumn("dbo.PaymentTransactions", "IsTest", c => c.Boolean(nullable: false));
         }
         
         public override void Down()

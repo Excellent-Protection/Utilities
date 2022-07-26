@@ -1,8 +1,10 @@
 ﻿
 //using Microsoft.Crm.Sdk.Messages;
+using HourlySectorLib.ViewModels.Custom;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
+using Microsoft.Xrm.Sdk.Messages;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Utilities.Extensions;
+using Utilities.Helpers;
 
 namespace Utilities.DataAccess.CRM
 {
@@ -72,7 +75,7 @@ namespace Utilities.DataAccess.CRM
                 }
                 //else
 
-                //    CRMPassword = CRMPassword.DecryptText("Ahmed");
+                   // CRMPassword = CRMPassword.DecryptText("Ahmed");
 
                 {
                     string CRMDomain = ConfigurationManager.AppSettings["domain"];
@@ -104,6 +107,105 @@ namespace Utilities.DataAccess.CRM
                 WhoAmIResponse systemUserResponse = (WhoAmIResponse)Service.Execute(systemUserRequest);
                 return systemUserResponse.UserId;
             }
+        }
+        public static void DeleteBulkEntities<T>(List<T> ListOfEntities) where T : Entity
+        {
+            ExecuteMultipleRequest multipleRequest = new ExecuteMultipleRequest()
+            {
+                // Assign settings that define execution behavior: continue on error, return responses.
+                Settings = new ExecuteMultipleSettings()
+                {
+                    ContinueOnError = false,
+                    ReturnResponses = true
+                },
+                // Create an empty organization request collection.
+                Requests = new OrganizationRequestCollection()
+            };
+            foreach (var entityRef in ListOfEntities)
+            {
+                DeleteRequest deleteRequest = new DeleteRequest()
+                {
+                    Target = new EntityReference(entityRef.LogicalName, entityRef.Id)
+                };
+                multipleRequest.Requests.Add(deleteRequest);
+                if (multipleRequest.Requests.Count == 1000)
+                {
+                    ExecuteMultipleResponse multipleResponse = (ExecuteMultipleResponse)Service.Execute(multipleRequest);
+                    multipleRequest = new ExecuteMultipleRequest()
+                    {
+                        // Assign settings that define execution behavior: continue on error, return responses.
+                        Settings = new ExecuteMultipleSettings()
+                        {
+                            ContinueOnError = false,
+                            ReturnResponses = true
+                        },
+                        // Create an empty organization request collection.
+                        Requests = new OrganizationRequestCollection()
+                    };
+                }
+            }
+            if (multipleRequest.Requests.Count <= 1000)
+            {
+                ExecuteMultipleResponse multipleResponse = (ExecuteMultipleResponse)Service.Execute(multipleRequest);
+            }
+        }
+        public static BulkEntitiesResult UpdateBulkEntiteies<T>(List<T> ListOfEntities) where T : Entity
+        {
+            List<UpdateRequest> updateRequests = new List<UpdateRequest>();
+            var multipleRequest = new ExecuteMultipleRequest()
+            {
+                // Assign settings that define execution behavior: continue on error, return responses.
+                Settings = new ExecuteMultipleSettings()
+                {
+                    ContinueOnError = true,
+                    ReturnResponses = true
+                },
+                // Create an empty organization request collection.
+                Requests = new OrganizationRequestCollection()
+            };
+
+            int counts = 0;
+
+            for (int i = 0; i < ListOfEntities.Count; i++)
+            {
+                updateRequests.Add(new UpdateRequest() { Target = ListOfEntities[i] });
+            }
+            var lstlstEntity = SplitUpdateList(updateRequests, 1000);
+            var BulkEntitiesResultreturn = new BulkEntitiesResult { UpdatedEntityId = new List<string>(), NotUpdatedEntityId = new List<string>() };
+            foreach (var lstEntity in lstlstEntity)
+            {
+
+                multipleRequest.Requests.Clear();
+                //times += "Count=" + counts + "Start:" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+
+                multipleRequest.Requests.AddRange(lstEntity);
+
+                ExecuteMultipleResponse multipleResponse = (ExecuteMultipleResponse)Service.Execute(multipleRequest);
+                if (multipleResponse.IsFaulted)
+                {
+                    LogError.Error(new Exception(multipleResponse.Responses[0].Fault.Message, new Exception(multipleResponse.Responses[0].Fault.InnerFault.Message)), System.Reflection.MethodBase.GetCurrentMethod().Name, ("ListOfEntities", multipleResponse.Responses.Where(a => a.Fault != null)));
+                    var faultedIndex = multipleResponse.Responses.Where(a => a.Response != null).Select(a => a.RequestIndex).ToList();
+                    faultedIndex.ForEach(a =>
+                    {
+                        BulkEntitiesResultreturn.NotUpdatedEntityId.Add(lstEntity[a].RequestId.ToString());
+                    });
+                }
+                else
+                {
+                    BulkEntitiesResultreturn.UpdatedEntityId.AddRange(lstEntity.Select(a => a.RequestId.ToString()));
+                }
+
+            }
+            return BulkEntitiesResultreturn;
+        }
+        public static List<List<UpdateRequest>> SplitUpdateList(List<UpdateRequest> locations, int nSize = 30)
+        {
+            var list = new List<List<UpdateRequest>>();
+            for (int i = 0; i < locations.Count; i += nSize)
+            {
+                list.Add(locations.GetRange(i, Math.Min(nSize, locations.Count - i)));
+            }
+            return list;
         }
     }
 }
