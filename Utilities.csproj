@@ -429,6 +429,14 @@
     <Compile Include="Migrations\202206121217083_getNotifications.designer.cs">
       <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206300841310_x.cs" />
+    <Compile Include="Migrations\202206300841310_x.designer.cs">
+      <DependentUpon>202206300841310_x.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206300843483_AddStepDetails.cs" />
+    <Compile Include="Migrations\202206300843483_AddStepDetails.designer.cs">
+      <DependentUpon>202206300843483_AddStepDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
     <Compile Include="Enums\UserLanguage.cs" />
@@ -493,6 +501,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206121217083_getNotifications.resx">
       <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206300841310_x.resx">
+      <DependentUpon>202206300841310_x.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206300843483_AddStepDetails.resx">
+      <DependentUpon>202206300843483_AddStepDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
