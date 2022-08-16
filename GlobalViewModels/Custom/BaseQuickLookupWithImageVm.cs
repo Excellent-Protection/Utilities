@@ -9,5 +9,6 @@ namespace Utilities.GlobalViewModels.Custom
    public class BaseQuickLookupWithImageVm  :BaseQuickLookupVm
     {
         public string Image { get; set; }
+        public bool HasPackage { get; set; }
     }
 }
