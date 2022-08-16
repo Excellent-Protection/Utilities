@@ -40,6 +40,10 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     selectProfFromPackages = bool.Parse( selectProfFromPackages.ToString());
                 }
+                else
+                {
+                    selectProfFromPackages = bool.Parse(getProfessionsFromPackages.ToString());
+                }
                 if(selectProfFromPackages)
                 {
                     return  new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _rep.GetProfessionGroupsFromPackages() };
