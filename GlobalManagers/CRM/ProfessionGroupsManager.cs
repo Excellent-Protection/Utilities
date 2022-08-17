@@ -36,7 +36,7 @@ namespace Utilities.GlobalManagers.CRM
             {
                 var getProfessionsFromPackages =_excSettingMngr[DefaultValues.SelectProfessionsFromPackagesName];
                 var selectProfFromPackages = DefaultValues.SelectProfessionsFromPackages;
-                if (getProfessionsFromPackages!=null)
+                if (getProfessionsFromPackages==null)
                 {
                     selectProfFromPackages = bool.Parse( selectProfFromPackages.ToString());
                 }
