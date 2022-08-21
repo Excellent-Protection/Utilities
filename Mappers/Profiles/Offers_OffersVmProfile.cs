@@ -21,7 +21,7 @@ namespace Utilities.Mappers.Profiles
                                   MapperConfig.source == RecordSource.Web ? ConfigurationManager.AppSettings["OfferWebImages"].ToString()+s.WebImage.Replace(" ", "%20") : null)))
                 .ForMember(a=>a.OfferId,o=>o.MapFrom(s=>s.Id))
                 .ForMember(a=>a.OfferSector,o=>o.MapFrom(s=>(OfferSector)s.OfferSector.Value))
-                .ForMember(a=>a.PricingId,o=>o.MapFrom(s=> (OfferSector)s.OfferSector.Value==OfferSector.Hourly?s.SelectedHourlyPricing : (OfferSector)s.OfferSector.Value == OfferSector.Individual?s.IndividualPricing:s.FlexiblePricing))
+                .ForMember(a=>a.PricingId,o=>o.MapFrom(s=> (OfferSector)s.OfferSector.Value==OfferSector.Hourly?s.SelectedHourlyPricing.Id : (OfferSector)s.OfferSector.Value == OfferSector.Individual?s.IndividualPricing.Id:s.FlexiblePricing.Id))
                 ;
         }
     }

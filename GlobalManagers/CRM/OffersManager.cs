@@ -32,8 +32,8 @@ namespace Utilities.GlobalManagers.CRM
                 query.ColumnSet = new ColumnSet("new_webimage", "new_mobileimage", "new_offersectortype", "new_selectedhourlypricing", "new_individualpricing", "new_flexiblepricing");
                 query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active offers only
                 query.Criteria.AddCondition("new_available", ConditionOperator.Equal, true);
-                query.Criteria.AddCondition("new_datefrom", ConditionOperator.GreaterEqual,DateTime.Now.Date );
-                query.Criteria.AddCondition("new_dateto", ConditionOperator.LessEqual, DateTime.Now.Date);
+                query.Criteria.AddCondition("new_datefrom", ConditionOperator.OnOrBefore, DateTime.Now.Date);
+                query.Criteria.AddCondition("new_dateto", ConditionOperator.OnOrAfter, DateTime.Now.Date);
                 switch (RequestUtility.Source)
                 {
                     case RecordSource.Mobile:
@@ -51,6 +51,7 @@ namespace Utilities.GlobalManagers.CRM
                 {
                     query.Criteria.AddCondition("new_offersectortype", ConditionOperator.Equal, int.Parse(offersector));
                 }
+                query.AddOrder("new_order", OrderType.Ascending);
                 var result = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Offers>()).ToModelListData<OffersVm>().ToList();
                 return new ResponseVm<List<OffersVm>> { Status = HttpStatusCodeEnum.Ok, Data = result };
             }
