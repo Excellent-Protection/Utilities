@@ -57,6 +57,7 @@ namespace Utilities.Defaults
         public const string SelectProfessionsFromPackagesName = "SelectProfessionsFromPackages";
         public const string SelectNationalitiesFromPackagesName = "SelectNationalitiesFromPackages";
         public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthAvailable";
+        public const string IsOneFactorAuthonticationSettingName = "IsOneFactorAuthontication";
         public const string DealingWithMainAddressName = "DealingWithMainAddress";
         public const string PackagePropertiesSettingName = "PackageProperties";
         public const string RenewPackagePropertiesSettingName = "RenewPackageProperties";
@@ -122,6 +123,7 @@ namespace Utilities.Defaults
         public const bool SelectProfessionsFromPackages = true;
         public const bool SelectNationalitiesFromPackages = true;
         public const bool IsTwoFactorAuthenticationAvailable = false;
+        public const bool IsOneFactorAuthonticationAvailable = false;
         public const bool IsDeliveryEmployeeAvailableSetting = false;
         public const bool IsSelectEmployeeFromHouseBuildingAvailableSetting = false;
         public const bool  DealingWithMainAddress = false;

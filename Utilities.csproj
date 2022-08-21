@@ -282,6 +282,7 @@
     <Compile Include="Controller\DynamicStepsController.cs" />
     <Compile Include="Controller\GeneralController.cs" />
     <Compile Include="Controller\NationalityController.cs" />
+    <Compile Include="Controller\OffersController.cs" />
     <Compile Include="Controller\ProfessionController.cs" />
     <Compile Include="Controller\ProfessionGroupsController.cs" />
     <Compile Include="Controller\ProfileController.cs" />
@@ -322,6 +323,7 @@
     <Compile Include="GlobalManagers\CRM\EmployeeManager.cs" />
     <Compile Include="GlobalManagers\CRM\GeneralManager.cs" />
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
+    <Compile Include="GlobalManagers\CRM\OffersManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionGroupsManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionManager.cs" />
     <Compile Include="GlobalManagers\CRM\ResourceGroupManager.cs" />
@@ -354,6 +356,7 @@
     <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\OffersVm.cs" />
     <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ServiceVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BaseQuickLookupWithImageVm.cs" />
@@ -403,6 +406,7 @@
     <Compile Include="Mappers\Profiles\District_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\EditContactVm_ContactProfile.cs" />
     <Compile Include="Mappers\Profiles\Nationality_BaseQuickLookupVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Offers_OffersVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
