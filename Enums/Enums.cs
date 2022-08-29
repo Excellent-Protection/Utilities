@@ -335,7 +335,8 @@ namespace Utilities.Enums
         Completed = 100000005,
         Rejected = 100000006,
         WaitingStartDate = 100000010,
-        PaymentIsPendingConfirmation = 100000011
+        PaymentIsPendingConfirmation = 100000011,
+        AutoRenew= 100000051
     }
     public enum ProcedureClosingReason
     {
