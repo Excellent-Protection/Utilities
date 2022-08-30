@@ -15,7 +15,7 @@ namespace Utilities.Mappers.Profiles
         public ContactProcedureLogger_ContactProcedureLoggerVmProfile()
         {
             CreateMap<ContactProcedureLogger, ContactProcedureLoggerVm>()
-            .ForMember(a => a.PostpondDate, o => o.MapFrom(s => s.PostpondDate))
+            .ForMember(a => a.PostpondDate, o => o.MapFrom(s => s.PostpondDate.Value.AddHours(3)))
            .ForMember(a => a.Contract, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.HourlyContractId))
            .ForMember(a => a.Visit, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.Visit))
           .ForMember(a => a.Proceduretype, opt => opt.MapFrom(s => s.Proceduretype != null ? s.Proceduretype.Value : (int?)null))
