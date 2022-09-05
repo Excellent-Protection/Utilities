@@ -75,6 +75,7 @@ namespace Utilities.Defaults
         public const string IndividualSectorEnabledSettingName = "IndividualSectorEnabled";
         public const string HourlySectorEnabledSettingName = "HourlySectorEnabled";
         public const string IndividualRequestDocumentCodeSettingName = "IndividualRequestDocumentCode";
+        public const string HourlycontractDocumentCodeSettingName = "HourlycontractDocumentCode";
         public const string RenewOptionSettingName = "RenewOption";
         public const string PaymentAvailableSettingName = "IsPaymentAvailable";
         public const string QcTeamEmailSettingName = "QcTeamEmail";
@@ -134,6 +135,7 @@ namespace Utilities.Defaults
         public const string ProceduresReventRenew = "1,2,4";
         public const string SupportEmail = "e.shahin@excp.sa";
         public const string IndividualRequestDocumentCode = "SD-11111";
+        public const string HourlyContractDocumentCode = "HourlyContractTemplate";
         public const string whatsappNumber = "+9668001242420";
 
         public const string PackageProperties = "{'professionGroupName':{ 'type':'string'}, 'packagePrice':{ 'type':'currency'},'discount':{ 'type':'currency'},'packagePriceAfterDiscount':{ 'type':'currency'} , 'activationAmount':{ 'type':'currency'},'advancedAmount':{ 'type':'currency'},'vatAmountOfFinalPrice':{ 'type':'currency'},'amountInsurance':{ 'type':'currency'},'finalPriceToPay':{ 'type':'currency'},'packageDisplayName':{ 'type':'string'} }";
