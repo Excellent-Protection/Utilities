@@ -206,7 +206,7 @@ namespace Utilities.GlobalRepositories.CRM
 
 
 
-            query.ColumnSet = new ColumnSet("new_name", "new_districtid");
+            query.ColumnSet = new ColumnSet("new_name","new_englishname", "new_districtid");
             if (serviceId != null)
             {
                 var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId.ToString()), new ColumnSet("new_displaydistricts")).ToEntity<Service>();

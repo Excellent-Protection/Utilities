@@ -119,7 +119,7 @@
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.13.1\lib\net461\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -364,6 +364,7 @@
     <Compile Include="GlobalViewModels\Custom\ContactUsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\DashboardCounts.cs" />
     <Compile Include="GlobalViewModels\Custom\DisplayServiceVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\EditContactVm.cs" />
     <Compile Include="GlobalViewModels\Custom\EmployeeSkillsDetailVM.cs" />
     <Compile Include="GlobalViewModels\Custom\LocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\CityIdAndNameVm.cs" />
@@ -400,6 +401,7 @@
     <Compile Include="Mappers\Profiles\Contact_ContactVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Country_NationalityProfile.cs" />
     <Compile Include="Mappers\Profiles\District_BaseQuickLookupVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\EditContactVm_ContactProfile.cs" />
     <Compile Include="Mappers\Profiles\Nationality_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
@@ -422,6 +424,18 @@
     <Compile Include="Migrations\202205151437176_notificationTemplate.cs" />
     <Compile Include="Migrations\202205151437176_notificationTemplate.designer.cs">
       <DependentUpon>202205151437176_notificationTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206121217083_getNotifications.cs" />
+    <Compile Include="Migrations\202206121217083_getNotifications.designer.cs">
+      <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206300841310_x.cs" />
+    <Compile Include="Migrations\202206300841310_x.designer.cs">
+      <DependentUpon>202206300841310_x.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206300843483_AddStepDetails.cs" />
+    <Compile Include="Migrations\202206300843483_AddStepDetails.designer.cs">
+      <DependentUpon>202206300843483_AddStepDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
@@ -484,6 +498,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205151437176_notificationTemplate.resx">
       <DependentUpon>202205151437176_notificationTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206121217083_getNotifications.resx">
+      <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206300841310_x.resx">
+      <DependentUpon>202206300841310_x.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206300843483_AddStepDetails.resx">
+      <DependentUpon>202206300843483_AddStepDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

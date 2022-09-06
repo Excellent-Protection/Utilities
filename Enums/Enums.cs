@@ -857,7 +857,8 @@ namespace Utilities.Enums
 
     public enum PricingType
     {
-        Weekly = 11111
+        Weekly = 11111,
+        ALL=25
     }
 
     public enum ContractRestrict
