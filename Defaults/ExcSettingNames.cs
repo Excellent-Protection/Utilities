@@ -14,5 +14,6 @@ namespace Utilities.Defaults
 
         public const string RenewLink = "RenewLink";
         public const string ShowOtherRequest = "ShowOtherRequest";
+        public const string FixEmployeeNameEnglish = "FixEmployeeNameEnglish";
     }
 }
