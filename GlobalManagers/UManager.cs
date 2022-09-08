@@ -68,6 +68,14 @@ namespace Utilities.GlobalManagers
         }
 
 
+
+        public string GenerateShotUrlWithHash(string domain, string longurll, string parameters, int? noOfTrys = 0)
+        {
+            string longUrl = domain + "/#/" + longurll + parameters.Replace(',', '&'); ;
+            string result=GenerateShotUrl(longUrl);
+            return result;
+        }
+
         public string GenerateShotCrmUrl(string longUrl, int? noOfTrys = 0)
         {
             try
