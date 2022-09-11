@@ -126,7 +126,8 @@ namespace Utilities.Enums
         FinancialRequest = 6 ,
         Enterprise = 7 ,
         IndvProcedure = 8,
-        Points = 20
+        Points = 20,
+        Postpond=9
     }
 
     public enum EvaluationSkills
@@ -720,7 +721,8 @@ namespace Utilities.Enums
         PostpondAndChangeVisitShiftEvening = 100000010,
         PostpondAndChangeVisitShiftMorning = 100000011,
         UpgradePackage = 100000013,
-        GiFtPoint = 100000012
+        GiFtPoint = 100000012,
+        PospondRequest = 1
     }
     public enum CollectionsPaymentType
     {

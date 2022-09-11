@@ -84,7 +84,7 @@ namespace Utilities.Defaults
         public const string HourlyRequestPaymentTimeSettingName = "HourlyRequestPaymentTime";
         public const string FlexPaymentTimeSettingName = "FlexPaymentTime";
         public const string whatsappNumberSettingName = "whatsappNumber";
-
+        public const string IndvPaymentAvailableSettingName = "IsIndvPaymentAvailable";
         //Social Media Setting Name
         public const string FacebookLinkSettingName = "FacebookLink";
         public const string YouTubeLinkSettingName = "YouTubeLink";
@@ -157,6 +157,7 @@ namespace Utilities.Defaults
         public const string ShowCustomerWalletSettingName = "ShowCustomerWallet";
         public const bool ShowCustomerWalletSetting = false;
         public const bool IsPaymentAvailable = false;
+        public const bool IndvPaymentAvailable = false;
 
         public const decimal paymnetTimeDefault = 120;
 
