@@ -129,6 +129,13 @@ namespace Utilities.Enums
         Points = 20,
         Postpond=9
     }
+    public enum PaymentSector
+    {
+        All =0,
+        HourlyContract = 1,
+        FlexibleService = 2,
+        IndividualService= 3
+    }
 
     public enum EvaluationSkills
     {
