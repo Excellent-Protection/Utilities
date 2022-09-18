@@ -84,6 +84,7 @@ namespace Utilities.Defaults
         public const string FlexPaymentTimeSettingName = "FlexPaymentTime";
         public const string whatsappNumberSettingName = "whatsappNumber";
 
+        public const string HourlycontractDocumentCodeSettingName = "HourlycontractDocumentCode";
         //Social Media Setting Name
         public const string FacebookLinkSettingName = "FacebookLink";
         public const string YouTubeLinkSettingName = "YouTubeLink";
@@ -160,7 +161,7 @@ namespace Utilities.Defaults
 
         public const bool TamayousSystemAvailable = false;
         public const string ShowTamayousSetting = "TamayousPayment";
-
+        public const string HourlyContractDocumentCode = "HourlyContractTemplate";
         #region LoyaltySettigs
 
         // =========== Setting Names ===============
