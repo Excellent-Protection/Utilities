@@ -26,7 +26,7 @@ namespace Utilities.Mappers.Profiles
                      .ForMember(a => a.Email, o => o.MapFrom(s => s.Email))
                      .ReverseMap()
                    .ForMember(a => a.IdNumber, o => o.MapFrom(s => s.IdentificationNo))
-                   .ForMember(a => a.Gender, o => o.MapFrom(s => s.GenderId))
+                   .ForMember(a => a.Gender, o => o.MapFrom(s => s.GenderId.Value))
                                .ForMember(a => a.JobTitle, o => o.MapFrom(s => s.JobTitle))
                                .ForMember(a => a.OtherMobilePhone, o => o.MapFrom(s => s.OtherMobilePhone))
                      .ForMember(a => a.Email, o => o.MapFrom(s => s.Email))
