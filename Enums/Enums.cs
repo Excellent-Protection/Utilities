@@ -650,6 +650,16 @@ namespace Utilities.Enums
         RequestCompleted = 100000005,
         RequestRejected = 100000006,
         WaitingNewContractStartDate = 100000010,
+        PaiedAndWaitingForReview = 100000045,
+    }
+    
+    public enum ContactProcedureLoggerStatus
+    {
+        New = 1,
+        WaitingForReview = 2,
+       PostPondedSuccessfuly = 3,
+        RequestCancelled = 4,
+        PaiedAndWaitingForReview = 5,
     }
     public enum RecieveWorkerType
     {
