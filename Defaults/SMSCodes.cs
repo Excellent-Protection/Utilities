@@ -10,8 +10,11 @@ namespace Utilities.Defaults
     {
 
         public const string ActivationCode = "ActivationCode";
+        public const string ActivationCodeAutoFill = "ActivationCodeAutoFill";
+        public const string SignInCodeAutoFill = "SignInCodeAutoFill";
         public const string SignInCode = "SignInCode";
         public const string ResetPasswordCode = "ResetPasswordCode";
         public const string ContactPassword = "ContactPassword";
+        public const string ResetPasswordCodeAutoFill = "ResetPasswordCodeAutoFill";
     }
 }
