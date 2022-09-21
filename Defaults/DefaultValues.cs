@@ -163,7 +163,6 @@ namespace Utilities.Defaults
 
         public const bool TamayousSystemAvailable = false;
         public const string ShowTamayousSetting = "TamayousPayment";
-
         #region LoyaltySettigs
 
         // =========== Setting Names ===============
