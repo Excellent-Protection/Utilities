@@ -11,6 +11,6 @@ namespace Utilities.Defaults
         public const string ActivationCode = "ActivationCode";
         public const string SignInCode = "SignInCode";
         public const string ResetPasswordCode = "ResetPasswordCode";
-        public const string ContactPassword = "ContactPassword";
+        public const string ResetPasswordConfirmation = "ResetPasswordConfirmation";
     }
 }
