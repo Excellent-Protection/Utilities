@@ -389,6 +389,7 @@
     <Compile Include="GlobalViewModels\ResultVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
     <Compile Include="Helpers\BaseCrmEntityRepository.cs" />
+    <Compile Include="Helpers\LogUpdateShift.cs" />
     <Compile Include="Helpers\WebService.cs" />
     <Compile Include="Helpers\DateTimeConvertor.cs" />
     <Compile Include="HttpStatusCodeEnum.cs" />

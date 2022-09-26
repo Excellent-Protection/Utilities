@@ -29,6 +29,7 @@ namespace AuthonticationLib.ViewModels
         public string DeletedBy { get; set; }
         public string OwnerId { get; set; }
         public ApplicationUserVm Owner { get; set; }
+        public string SecurityStamp { get; set; }
     }
 }
 
