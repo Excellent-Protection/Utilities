@@ -40,7 +40,8 @@ namespace Utilities.Enums
         Business = 2,
         Individuals = 3,
         HeadOffice = 1,
-        Hourly = 4
+        Hourly = 4,
+        Mediation= 100000002
     }
     public enum ApplyToShiftEnum
     {
@@ -857,7 +858,8 @@ namespace Utilities.Enums
 
     public enum PricingType
     {
-        Weekly = 11111
+        Weekly = 11111,
+        ALL=25
     }
 
     public enum ContractRestrict

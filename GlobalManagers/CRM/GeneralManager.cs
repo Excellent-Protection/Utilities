@@ -38,6 +38,31 @@ namespace Utilities.GlobalManagers.CRM
 
             }
         }
+        public ResponseVm<Dictionary<string, string>> GetSocialMediaLinks()
+        {
+            var _excsettingMngr = new ExcSettingsManager(RequestUtility);
+            List<string> SocialMediaLinksList =new List<string>() { DefaultValues.FacebookLinkSettingName, DefaultValues.TwitterLinkSettingName, DefaultValues.InstagramLinkSettingName 
+            ,DefaultValues.YouTubeLinkSettingName,DefaultValues.LinkedInLinkSettingName,DefaultValues.CompanyNumberSettingName,DefaultValues.WebsiteSettingName};
+            var SocialMediaLinks = _excsettingMngr[SocialMediaLinksList];
+            return new ResponseVm<Dictionary<string, string>> { Status = HttpStatusCodeEnum.Ok, Data = SocialMediaLinks };
+        }
+
+
+        public ResponseVm<string> ShowOtherRequest()
+        {
+            try
+            {
+                var _excsettingMngr = new ExcSettingsManager(RequestUtility);
+                var ShowOtherRequest = _excsettingMngr.GetSettingByName(ExcSettingNames.ShowOtherRequest);
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = ShowOtherRequest.Value };
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                return null;
+
+            }
+        }
         public void Dispose()
         {
         }

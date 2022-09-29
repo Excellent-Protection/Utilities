@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Utilities.GlobalViewModels.Custom
 {
-public    class NationalityVm :BaseQuickLookupVm
+    public class NationalityVm :BaseQuickLookupVm
     {
         public string ImageUrl { get; set; }
         public int EmployeesAvailableNumber { get; set; }
