@@ -43,7 +43,6 @@ namespace Utilities.Enums
         Hourly = 4,
         Mediation= 100000002
         CallCenter = 6
-
     }
     public enum ApplyToShiftEnum
     {
