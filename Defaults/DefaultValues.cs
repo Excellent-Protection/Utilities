@@ -100,6 +100,7 @@ namespace Utilities.Defaults
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
         public const string IsSelectEmployeeFromHouseBuildingAvailableSettingName = "IsSelectEmployeeFromHouseBuildingAvailableSetting";
 
+        public const string ShowIndividualEvaluationButtonSettingName = "ShowIndividualEvaluationButton";
 
         public static readonly Dictionary<string, int> PostPondVisitsFromOffset = new Dictionary<string, int>() {
             { "PostPondVisitFromOffSetMorning",  -2},
@@ -158,6 +159,7 @@ namespace Utilities.Defaults
         public const string ShowCustomerWalletSettingName = "ShowCustomerWallet";
         public const bool ShowCustomerWalletSetting = false;
         public const bool IsPaymentAvailable = false;
+        public const bool IsShowIndividualEvaluationButton = false;
 
         public const decimal paymnetTimeDefault = 120;
 

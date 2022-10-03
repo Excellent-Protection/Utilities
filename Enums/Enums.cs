@@ -42,6 +42,8 @@ namespace Utilities.Enums
         HeadOffice = 1,
         Hourly = 4,
         Mediation= 100000002
+        CallCenter = 6
+
     }
     public enum ApplyToShiftEnum
     {
