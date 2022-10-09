@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -262,8 +263,9 @@ namespace Utilities.Defaults
 
 
         public const string OnlinePaymentUrl = "/#/payment?contractId=@id&type=@type";
-        public const string OnlinePortalUrl = "https://dev.excp.sa:8004";
-        public const string OnlineVisitsUrl = "https://eitinaa.com:8007/hourlyappointment/offlinevisits?ContactId=@contactId";
+        
+        public static readonly string OnlinePortalUrl = ConfigurationManager.AppSettings["OnlinePortalUrl"].ToString();
+        public static readonly string OnlineVisitsUrl = ConfigurationManager.AppSettings["OnlineVisitsUrl"].ToString();
         #region CompleteProfileSetting
         public const string CompleteProfileRequiredFieldsSettingName = "CompleteProfileRequiredFields";
         public const string ContactDetailsFieldsSettingName = "ContactDetailsFields";
