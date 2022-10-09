@@ -34,7 +34,7 @@ namespace Utilities.Defaults
         public const string AllCountriesId = "c9da5d56-a54a-e311-8887-00155d010303";
         public const string BlockCountryId = "30ce18ed-4afe-e611-80d5-0050568411f9";
         public const string OnlineWebUrl = "OnlineWebUrl";
-
+       
 
 
         public const string HourContractShifts_GetShiftsDataForContractSP = "dbo.HourContractShifts_GetShiftsDataForContract"; 
@@ -164,6 +164,9 @@ namespace Utilities.Defaults
         public const decimal paymnetTimeDefault = 120;
 
         public const bool TamayousSystemAvailable = false;
+        public const bool CoronaQuestionnaire = false;
+        public const string CoronaQuestionnaireQuestions = "[]";
+        public const string CoronaQuestionnaireQuestionsAr = "[]";
         public const string ShowTamayousSetting = "TamayousPayment";
         #region LoyaltySettigs
 
@@ -259,7 +262,8 @@ namespace Utilities.Defaults
 
 
         public const string OnlinePaymentUrl = "/#/payment?contractId=@id&type=@type";
-
+        public const string OnlinePortalUrl = "https://dev.excp.sa:8004";
+        public const string OnlineVisitsUrl = "https://eitinaa.com:8007/hourlyappointment/offlinevisits?ContactId=@contactId";
         #region CompleteProfileSetting
         public const string CompleteProfileRequiredFieldsSettingName = "CompleteProfileRequiredFields";
         public const string ContactDetailsFieldsSettingName = "ContactDetailsFields";
@@ -269,7 +273,15 @@ namespace Utilities.Defaults
         #endregion
 
         public const string RenewLink = "/#/dashboard/individual-contracts/renew-contract/@id";
-
+        public const int FirstVisitExpiryAfter = 365;
+        public const string ChangedAttributesSelectedHourlyPrice = "WeeklyVisits,ContractDuration,VisitShift,EmployeeNumber,ResourceGroupId";
+        public const string ShowOtherRequest = "";
+        public const bool BankTransferAvailableForPaymentRequest= false;
+        public const bool ActiveBankTransfer = false;
+        public const string BankTransferShowStartTime = "";
+        public const string BankTransferShowEndTime = "";
+        public const string BankTransfareSelectedDays = "";
+        
 
 
     }

@@ -28,8 +28,9 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 var _excsettingMngr = new ExcSettingsManager(RequestUtility);
-                var FirstVisitExpiryAfter = _excsettingMngr.GetSettingByName(ExcSettingNames.FirstVisitExpiryAfter);
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = FirstVisitExpiryAfter.Value };
+                //var FirstVisitExpiryAfter = _excsettingMngr.GetSettingByName(ExcSettingNames.FirstVisitExpiryAfter);
+                var FirstVisitExpiryAfter = _excsettingMngr.GetSettingValueByName(ExcSettingNames.FirstVisitExpiryAfter,DefaultValues.FirstVisitExpiryAfter);
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = FirstVisitExpiryAfter.ToString() };
             }
             catch (Exception ex)
             {
@@ -53,8 +54,10 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 var _excsettingMngr = new ExcSettingsManager(RequestUtility);
-                var ShowOtherRequest = _excsettingMngr.GetSettingByName(ExcSettingNames.ShowOtherRequest);
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = ShowOtherRequest.Value };
+                //var ShowOtherRequest = _excsettingMngr.GetSettingByName(ExcSettingNames.ShowOtherRequest);
+                var ShowOtherRequest = _excsettingMngr.GetSettingValueByName(ExcSettingNames.ShowOtherRequest,DefaultValues.ShowOtherRequest);
+                
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = ShowOtherRequest };
             }
             catch (Exception ex)
             {

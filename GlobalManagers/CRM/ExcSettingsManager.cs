@@ -79,9 +79,8 @@ namespace Utilities.GlobalManagers.CRM
         }
 
 
-        public ExcSettingsVm GetSettingByName(string key)
+        private ExcSettingsVm GetSettingByName(string key)
         {
-
             try
             {
                 var source =RequestUtility.Source!=null? RequestUtility.Source.Value: (RecordSource?)null;
