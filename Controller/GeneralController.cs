@@ -45,10 +45,8 @@ namespace Utilities.Controller
             using (GeneralManager _mngr = new GeneralManager(RequestUtility))
             {
                 var result = _mngr.ShowOtherRequest();
-                return Response<string>(result);
-            }
-
-           
+                return Response<string>(new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = result.ToString()});
+            }  
         }
 
 
