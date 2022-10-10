@@ -29,7 +29,7 @@ namespace Utilities.GlobalRepositories.CRM
             var querypricing = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
             querypricing.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
             querypricing.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
-//            querypricing.Criteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
+//          querypricing.Criteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
 
             FilterExpression filter = new FilterExpression(LogicalOperator.Or);
             switch (RequestUtility.Source)
@@ -55,7 +55,7 @@ namespace Utilities.GlobalRepositories.CRM
                     }
             }
             querypricing.Criteria.AddFilter(filter);
-
+            querypricing.Criteria.AddCondition("new_availablefornewstring", ConditionOperator.Equal, AvailableForNew.Yes.ToString());
             querypricing.ColumnSet = new ColumnSet(true);
             var Pricing = _service.RetrieveMultiple(querypricing).Entities.Select(a => a.ToEntity<IndividualPricing>()).ToList();
             var resourceGroupIds = Pricing.Where (a=>a.ResourceGroup!=null).Select(a => a.ResourceGroup.Id.ToString()).Distinct().ToList();
