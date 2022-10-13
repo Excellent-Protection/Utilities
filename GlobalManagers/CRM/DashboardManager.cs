@@ -16,11 +16,11 @@ using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.CRM
 {
-   public class DashboardManager: BaseManager, IDisposable 
+    public class DashboardManager : BaseManager, IDisposable
     {
-        public DashboardManager(RequestUtility  requestUtility) : base(requestUtility)
+        public DashboardManager(RequestUtility requestUtility) : base(requestUtility)
         {
-                
+
         }
 
         public ResponseVm<DashboardCounts> DashboardCounts(string contactId)
@@ -30,9 +30,9 @@ namespace Utilities.GlobalManagers.CRM
                 DashboardCounts obj = new DashboardCounts();
                 obj.ContractsCounts = ContactContractsCount(contactId);
                 obj.TicketsCounts = CustomerTicketsCounts(contactId);
-                return  new ResponseVm<DashboardCounts> { Status = HttpStatusCodeEnum.Ok, Data = obj };
+                return new ResponseVm<DashboardCounts> { Status = HttpStatusCodeEnum.Ok, Data = obj };
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
@@ -54,9 +54,9 @@ namespace Utilities.GlobalManagers.CRM
                 // contact hourly contracts 
                 QueryExpression hourlyQuery = new QueryExpression(CrmEntityNamesMapping.ServiceContractPerHour);
                 hourlyQuery.Criteria.AddCondition("new_hindivclintname", ConditionOperator.Equal, contactId);
-                hourlyQuery.ColumnSet = new ColumnSet("new_remainingvisit","statuscode");
+                hourlyQuery.ColumnSet = new ColumnSet("new_totalnotfinished", "statuscode", "new_employeenumber");
                 var hourlyContracts = _service.RetrieveMultiple(hourlyQuery).Entities.Select(a => a.ToEntity<HourlyContract>()).ToList();
-               
+
                 obj.RunningContracts =
                     indvContracts.Where(a => a.StatusCode.Value == (int)IndividualContractStatus.ActiveLaborDelivered).ToList().Count()
                     + hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.ConfirmedByFinance).ToList().Count();
@@ -64,18 +64,26 @@ namespace Utilities.GlobalManagers.CRM
                     indvContracts.Where(a => a.StatusCode.Value == (int)IndividualContractStatus.Cancelled).ToList().Count()
                 + hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.Canceled).ToList().Count();
                 int defaultDays = DefaultValues.DaysBeforeEndContractToShowRenewBtn;
-                    var daysToRenew = new ExcSettingsManager(RequestUtility)[DefaultValues.DaysBeforeEndContractToShowRenewBtnSettingName];
-                    if (daysToRenew != null)
-                    {
-                        defaultDays = int.Parse(daysToRenew.ToString());
-                    }
-                
-                obj.AlmostOverContracts = indvContracts.Where(a => a.StatusCode.Value == (int)IndividualContractStatus.ActiveLaborDelivered &&a.ServiceEndDate.HasValue && (DateTime.Now - a.ServiceEndDate.Value).TotalDays <=defaultDays ).ToList().Count()
+                var daysToRenew = new ExcSettingsManager(RequestUtility)[DefaultValues.DaysBeforeEndContractToShowRenewBtnSettingName];
+                if (daysToRenew != null)
+                {
+                    defaultDays = int.Parse(daysToRenew.ToString());
+                }
+
+                obj.AlmostOverContracts = indvContracts.Where(a => a.StatusCode.Value == (int)IndividualContractStatus.ActiveLaborDelivered && a.ServiceEndDate.HasValue && (DateTime.Now - a.ServiceEndDate.Value).TotalDays <= defaultDays).ToList().Count()
                    + hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.ConfirmedByFinance && a.RemainingVisit == 1).ToList().Count();
-                obj.CommingVisits = hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.ConfirmedByFinance).Select(a => new { remain = a.RemainingVisit != null ? a.RemainingVisit.Value /  (a.NoOfWorker==null?1:a.NoOfWorker.Value) : 0 }).Select(a => a.remain).Sum();
+
+                var confirmedContracts = hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.ConfirmedByFinance);
+              
+                obj.CommingVisits = confirmedContracts.
+                    Select(a => new
+                    {
+                        remain = a.TotalNotFinishedVisits != null ? a.TotalNotFinishedVisits.Value / (a.NoOfWorker == null ? 1 : a.NoOfWorker.Value) : 0
+                    }).
+                    Select(a => a.remain).Sum();
                 return obj;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
@@ -97,13 +105,13 @@ namespace Utilities.GlobalManagers.CRM
                 query.ColumnSet = new ColumnSet("statuscode");
                 var tickets = _service.RetrieveMultiple(query).Entities.Select(e => e.ToEntity<CustomerTicket>()).ToList();
                 //obj.ClosedTickets = tickets.Where(a => a.Status.Value == (int)TicketStatus.ClosedByClient || a.Status.Value == (int)TicketStatus.Rejected ).Count();
-                obj.ClosedTickets = tickets.Where(a => a.Status.Value == (int)CustomerTicketStatus.Servicehadstopped || a.Status.Value == (int)CustomerTicketStatus.Servicehaddonesuccessfully ).Count();
+                obj.ClosedTickets = tickets.Where(a => a.Status.Value == (int)CustomerTicketStatus.Servicehadstopped || a.Status.Value == (int)CustomerTicketStatus.Servicehaddonesuccessfully).Count();
                 obj.AllTickets = tickets.Count();
                 //obj.OpeningTickets = tickets.Where(a => a.Status.Value != (int)TicketStatus.Cancelled || a.Status.Value != (int)TicketStatus.Rejected || a.Status.Value != (int)TicketStatus.ClosedByClient).ToList().Count();
                 obj.OpeningTickets = tickets.Where(a => a.Status.Value != (int)CustomerTicketStatus.Servicehadstopped && a.Status.Value != (int)CustomerTicketStatus.Servicehaddonesuccessfully).ToList().Count();
                 return obj;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
