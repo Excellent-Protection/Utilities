@@ -84,7 +84,8 @@ namespace Utilities.Defaults
         public const string HourlyRequestPaymentTimeSettingName = "HourlyRequestPaymentTime";
         public const string FlexPaymentTimeSettingName = "FlexPaymentTime";
         public const string whatsappNumberSettingName = "whatsappNumber";
-
+        public const string AutoFillCodeSettingName = "AutoFillCode";
+        public const string ResetPasswordLinkSettingName = "ResetPasswordLink";
         //Social Media Setting Name
         public const string FacebookLinkSettingName = "FacebookLink";
         public const string YouTubeLinkSettingName = "YouTubeLink";
@@ -162,7 +163,6 @@ namespace Utilities.Defaults
 
         public const bool TamayousSystemAvailable = false;
         public const string ShowTamayousSetting = "TamayousPayment";
-
         #region LoyaltySettigs
 
         // =========== Setting Names ===============
