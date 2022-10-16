@@ -931,4 +931,9 @@ namespace Utilities.Enums
         Web=1,
         Mobile=2
     }
+    public enum IndividualPricingOrder
+    {
+        new_contractamount= 0,
+        new_contractmonths= 1
+    }
 }

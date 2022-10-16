@@ -374,6 +374,7 @@
     <Compile Include="GlobalViewModels\Custom\DistrictQuickLookupVm.cs" />
     <Compile Include="GlobalViewModels\Custom\MappingTranslation.cs" />
     <Compile Include="GlobalViewModels\Custom\NationalityVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\OrderVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ProfessionVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ResultMessageVM.cs" />
     <Compile Include="GlobalViewModels\Custom\SavedLocationVm.cs" />

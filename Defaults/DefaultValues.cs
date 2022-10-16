@@ -270,7 +270,8 @@ namespace Utilities.Defaults
 
         public const string RenewLink = "/#/dashboard/individual-contracts/renew-contract/@id";
 
-
+        public const string ContractAmount = "new_contractamount";
+        public const string ContractPeriod = "new_contractmonths";
 
     }
 }
