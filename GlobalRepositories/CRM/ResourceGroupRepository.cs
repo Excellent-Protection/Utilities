@@ -112,6 +112,59 @@ namespace Utilities.GlobalRepositories.CRM
                 return null;
             }
         }
+        public List<ResourceGroup> GetResourceGroupsFromIndividualPackagesByCity(string professionGroupId, string cityId)
+        {
+            var _service = CRMService.Service;
+            var querypricing = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
+            if (!string.IsNullOrEmpty(cityId))
+            {
+                LinkEntity linkEntity1 = new LinkEntity(CrmEntityNamesMapping.IndividualPricing, CrmRelationsNameMapping.IndividualContractPricing_City, "new_indvpriceid", "new_indvpriceid", JoinOperator.Inner);
+                LinkEntity linkEntity2 = new LinkEntity(CrmRelationsNameMapping.IndividualContractPricing_City, CrmEntityNamesMapping.City, "new_cityid", "new_cityid", JoinOperator.Inner);
+                linkEntity2.Columns = new Microsoft.Xrm.Sdk.Query.ColumnSet(true);
+                linkEntity2.EntityAlias = "city";
+                linkEntity2.LinkCriteria.AddCondition("new_cityid", ConditionOperator.Equal, cityId); //to filter by cities
+
+                linkEntity1.LinkEntities.Add(linkEntity2);
+                querypricing.LinkEntities.Add(linkEntity1);
+            }
+            querypricing.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+            querypricing.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
+            //          querypricing.Criteria.AddCondition("new_displaypricing", ConditionOperator.In, (int)DisplayPricingFor.Mobile, (int)DisplayPricingFor.WebAndMobile, (int)DisplayPricingFor.All);
+
+            FilterExpression filter = new FilterExpression(LogicalOperator.Or);
+            switch (RequestUtility.Source)
+            {
+                case RecordSource.CRMPortal:
+                    {
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.CRMNewPortal.ToString() + "%");
+                        break;
+                    }
+                case RecordSource.Mobile:
+                    {
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.Mobile.ToString() + "%");
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.WebAndMobile.ToString() + "%");
+
+                        break;
+                    }
+                case RecordSource.Web:
+                default:
+                    {
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.Web.ToString() + "%");
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.WebAndMobile.ToString() + "%");
+                        break;
+                    }
+            }
+            querypricing.Criteria.AddFilter(filter);
+            querypricing.Criteria.AddCondition("new_availablefornewstring", ConditionOperator.Equal, AvailableForNew.Yes.ToString());
+            querypricing.ColumnSet = new ColumnSet(true);
+            var Pricing = _service.RetrieveMultiple(querypricing).Entities.Select(a => a.ToEntity<IndividualPricing>()).ToList();
+            var resourceGroupIds = Pricing.Where(a => a.ResourceGroup != null).Select(a => a.ResourceGroup.Id.ToString()).Distinct().ToList();
+            var resourceGroupQuery = new QueryExpression(CrmEntityNamesMapping.ResourceGroup);
+            resourceGroupQuery.Criteria.AddCondition("new_resourcegroupid", ConditionOperator.In, resourceGroupIds.ToArray());
+            resourceGroupQuery.ColumnSet = new ColumnSet(true);
+            var resourceGroups = _service.RetrieveMultiple(resourceGroupQuery).Entities.Select(a => a.ToEntity<ResourceGroup>()).ToList();
+            return resourceGroups;
+        }
 
     }
 }
