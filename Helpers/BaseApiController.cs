@@ -26,15 +26,15 @@ namespace Utilities.Helpers
         public BaseApiController()
         {
             RequestUtility = new RequestUtility();
-         
-              //  PriceFormate  =int.Parse(new ExcSettingsManager(this.RequestUtility)["PriceFormate"].ToString());
 
-            }
+            //  PriceFormate  =int.Parse(new ExcSettingsManager(this.RequestUtility)["PriceFormate"].ToString());
+
+        }
 
         protected override void Initialize(HttpControllerContext controllerContext)
         {
 
-            var controller = controllerContext.Controller as BaseApiController; 
+            var controller = controllerContext.Controller as BaseApiController;
             if (controller != null)
             {
                 IEnumerable<IHttpRouteData> subroutes = (IEnumerable<IHttpRouteData>)controllerContext.RouteData.Values["MS_SubRoutes"];
@@ -47,14 +47,14 @@ namespace Utilities.Helpers
                             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-UK");
                             Thread.CurrentThread.CurrentCulture.DateTimeFormat = new System.Globalization.CultureInfo("en-UK").DateTimeFormat;
                             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-                           controller.RequestUtility.Language = UserLanguage.English;
+                            controller.RequestUtility.Language = UserLanguage.English;
                             break;
                         }
                     case "ar":
                         {
 
                             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar-SA");
-                            Thread.CurrentThread.CurrentCulture.DateTimeFormat = new System.Globalization.CultureInfo("ar-SA").DateTimeFormat;
+                            Thread.CurrentThread.CurrentCulture.DateTimeFormat = new System.Globalization.CultureInfo("en-UK").DateTimeFormat;
                             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
                             controller.RequestUtility.Language = UserLanguage.Arabic;
                             break;
@@ -64,12 +64,12 @@ namespace Utilities.Helpers
                             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(DefaultValues.DefaultLanguageRoute);
                             Thread.CurrentThread.CurrentCulture.DateTimeFormat = new System.Globalization.CultureInfo("en-UK").DateTimeFormat;
                             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-                           controller.RequestUtility.Language = DefaultValues.Language;
+                            controller.RequestUtility.Language = DefaultValues.Language;
                             break;
                         }
                 }
 
-               MapperConfig.lang = controller.RequestUtility.RouteLanguage = langRouting.ToString() ?? (DefaultValues.Language == UserLanguage.Arabic ? DefaultValues.RouteLang_ar : DefaultValues.RouteLang_en);
+                MapperConfig.lang = controller.RequestUtility.RouteLanguage = langRouting.ToString() ?? (DefaultValues.Language == UserLanguage.Arabic ? DefaultValues.RouteLang_ar : DefaultValues.RouteLang_en);
 
             }
 
@@ -82,19 +82,19 @@ namespace Utilities.Helpers
         {
             return Request.CreateResponse((HttpStatusCode)statusCode, result);
         }
-        protected HttpResponseMessage Response(HttpStatusCodeEnum statusCode,bool result)
-           
+        protected HttpResponseMessage Response(HttpStatusCodeEnum statusCode, bool result)
+
         {
             return Request.CreateResponse((HttpStatusCode)statusCode, result);
         }
         protected HttpResponseMessage Response(HttpStatusCodeEnum statusCode)
-        {       
+        {
             return Request.CreateResponse(statusCode);
         }
         protected HttpResponseMessage NotFoundResponse(string Message)
         {
             var response = new ResponseVm<object> { Status = HttpStatusCodeEnum.NotFound, Message = Message };
-            return Request.CreateResponse(HttpStatusCode.NotFound,response);
+            return Request.CreateResponse(HttpStatusCode.NotFound, response);
         }
         protected HttpResponseMessage AmbigiousResponse(string Message)
         {
@@ -110,7 +110,7 @@ namespace Utilities.Helpers
         protected HttpResponseMessage OKResponse<T>(T Data)
         {
             var response = new ResponseVm<object>() { Data = Data, Status = HttpStatusCodeEnum.Ok };
-            return Request.CreateResponse(HttpStatusCode.OK,response);
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         protected HttpResponseMessage Response<T>(ResponseVm<T> result)
