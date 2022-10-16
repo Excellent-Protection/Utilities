@@ -44,7 +44,8 @@ namespace Utilities.Helpers
                 {
                     case "en":
                         {
-                            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar-SA");
+                            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-UK");
+                            Thread.CurrentThread.CurrentCulture.DateTimeFormat = new System.Globalization.CultureInfo("en-UK").DateTimeFormat;
                             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
                            controller.RequestUtility.Language = UserLanguage.English;
                             break;
@@ -53,7 +54,7 @@ namespace Utilities.Helpers
                         {
 
                             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar-SA");
-                            Thread.CurrentThread.CurrentCulture.DateTimeFormat = new System.Globalization.CultureInfo("en-UK").DateTimeFormat;
+                            Thread.CurrentThread.CurrentCulture.DateTimeFormat = new System.Globalization.CultureInfo("ar-SA").DateTimeFormat;
                             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
                             controller.RequestUtility.Language = UserLanguage.Arabic;
                             break;
