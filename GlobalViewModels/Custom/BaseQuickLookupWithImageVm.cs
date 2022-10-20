@@ -10,5 +10,6 @@ namespace Utilities.GlobalViewModels.Custom
     {
         public string Image { get; set; }
         public bool HasPackage { get; set; }
+        public string Description { get; set; }
     }
 }
