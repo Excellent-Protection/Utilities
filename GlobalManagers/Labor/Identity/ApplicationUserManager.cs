@@ -21,7 +21,7 @@ using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.Labor.Identity
 {
- public   class ApplicationUserManager : BaseManager
+    public class ApplicationUserManager : BaseManager, IDisposable
 
     {
         private LaborDbContext _ctx;
@@ -149,13 +149,56 @@ namespace Utilities.GlobalManagers.Labor.Identity
                 var user = _repository.Users.FirstOrDefault(t => t.Id == userId).ToApplicationUserVModel<ApplicationUser, UserProfileDataVm>();
                 return new ResponseVm<UserProfileDataVm> { Status = HttpStatusCodeEnum.Ok, Data = user };
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
             return new ResponseVm<UserProfileDataVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred", "Shared") };
         }
 
+        public async Task<bool> SetIsDeletedForUserUsingCrmUserId(string crmUserId)
+        {
+            try
+            {
+                var result = await _repository.GetUserByCrmUserIdAndUpdateReletedEntities(crmUserId);
+                if (result)
+                    return true;
+
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                return false;
+            }
+
+        }
+
+        public async Task<bool> ActivateOrDeactivateUserInLaborAsync(string userId, string Status)
+        {
+            try
+            {
+                var result = await _repository.ActivateOrDeactivateAsync(userId, Status);
+                if (result)
+                    return true;
+
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                return false;
+            }
+
+
+        }
+
+        public void Dispose()
+        {
+
+        }
     }
 }
 

@@ -22,7 +22,7 @@ namespace Utilities.GlobalRepositories.CRM
 
         }
 
-     
+
         public Contact GetContactDetails(string contactId)
         {
             var ContactDetailsFields = new ExcSettingsManager(RequestUtility).GetSettingByNameAndSource(DefaultValues.ContactDetailsFieldsSettingName, RequestUtility.Source.Value);
@@ -30,7 +30,7 @@ namespace Utilities.GlobalRepositories.CRM
             var contact = new Contact();
             if (ContactDetailsFields.Value != null)
             {
-                string[] ContactDetailsFieldsList = ContactDetailsFields.Value.Replace(" ","").Split(',');
+                string[] ContactDetailsFieldsList = ContactDetailsFields.Value.Replace(" ", "").Split(',');
                 contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new Microsoft.Xrm.Sdk.Query.ColumnSet(ContactDetailsFieldsList)).ToEntity<Contact>();
             }
             else
@@ -43,13 +43,13 @@ namespace Utilities.GlobalRepositories.CRM
         public bool IsIdentiefierExist(string id, string IdNo)
         {
 
-                QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Contact);
-                query.Criteria.AddCondition("new_idnumer", ConditionOperator.Equal, IdNo);
-                query.Criteria.AddCondition("contactid", ConditionOperator.NotEqual, id);
-                var _Service = CRMService.Service;
-                var Result = _Service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Contact>());
-                if (Result.Count() > 0)
-                    return true;
+            QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Contact);
+            query.Criteria.AddCondition("new_idnumer", ConditionOperator.Equal, IdNo);
+            query.Criteria.AddCondition("contactid", ConditionOperator.NotEqual, id);
+            var _Service = CRMService.Service;
+            var Result = _Service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Contact>());
+            if (Result.Count() > 0)
+                return true;
 
             return false;
 
@@ -73,7 +73,7 @@ namespace Utilities.GlobalRepositories.CRM
             return contact;
         }
 
-       public Contact GetContactName (string contactId)
+        public Contact GetContactName(string contactId)
         {
             var _service = CRMService.Service;
             var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(contactId), new ColumnSet("fullname")).ToEntity<Contact>();
@@ -81,12 +81,24 @@ namespace Utilities.GlobalRepositories.CRM
         }
 
         public bool? IsBlocked(string id)
-        {          
+        {
             var _service = CRMService.Service;
             var contact = _service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(id), new ColumnSet("new_blacklist")).ToEntity<Contact>();
 
             return contact == null ? false : contact.IsBlocked;
 
+        }
+
+        public Contact GetContactById(string id)
+        {
+            QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Contact);
+            query.ColumnSet = new ColumnSet("contactid");
+            query.Criteria.AddCondition("contactid", ConditionOperator.Equal, new Guid(id));
+
+            var _service = CRMService.Service;
+            var contact = _service.RetrieveMultiple(query).Entities.Select(q => q.ToEntity<Contact>()).FirstOrDefault();
+
+            return contact;
         }
     }
 }
