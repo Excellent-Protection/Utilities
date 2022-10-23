@@ -48,18 +48,18 @@ namespace Utilities.GlobalManagers.CRM
         }
 
 
-        public ResponseVm<string> ShowOtherRequest()
+        public bool ShowOtherRequest()
         {
             try
             {
                 var _excsettingMngr = new ExcSettingsManager(RequestUtility);
-                var ShowOtherRequest = _excsettingMngr.GetSettingByName(ExcSettingNames.ShowOtherRequest);
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = ShowOtherRequest.Value };
+                var ShowOtherRequest = _excsettingMngr.GetSettingByName(ExcSettingNames.ShowOtherRequest)?.Value?? "false";
+                return bool.Parse(ShowOtherRequest) ;
             }
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
-                return null;
+                return false;
 
             }
         }
