@@ -43,6 +43,18 @@ namespace Utilities.Controller
 
             }
         }
+        [HttpGet]
+        [Route("AvailableResourceGroupsWithCity")]
+        public HttpResponseMessage GetAvailableResourceGroup(string professionGroupId = null, ServiceType? serviceType = null, string serviceId = null, string cityId = null)
+        {
+
+            using (ResourceGroupManager _Mngr = new ResourceGroupManager(RequestUtility))
+            {
+                var result = _Mngr.GetResourceGroupWithCity(professionGroupId, serviceType, cityId);
+                return Response<List<BaseQuickLookupWithImageVm>>(result);
+
+            }
+        }
 
 
 

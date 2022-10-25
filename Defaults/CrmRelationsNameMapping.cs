@@ -57,5 +57,7 @@ namespace Utilities.Defaults
         public const string FlexContract_RecieptVoucher = "new_new_flexibleserviceperhour_new_receiptvoucher_flexibleserviceperhour";
         public const string FlexContract_Appointment = "new_new_flexibleserviceperhour_new_hourlyappointment_flexibleserviceperhour";
         public const string SkillDetails_EmloyeeSkills = "new_new_employeeskillsdetails_new_employeeskills_Skills2";
+        //Evaluation Trigger
+        public const string EvaluationTrigger_EvaluationCriteria = "new_new_evaluationtrigger_new_evaluationcrite";
     }
 }

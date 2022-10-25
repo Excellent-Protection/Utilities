@@ -13,6 +13,7 @@ namespace Utilities.Mappers
     {
     
         public static string lang { get; set; }
+        public static RecordSource source { get; set; }
         static IEnumerable<Type> _profiles { get; set; }
         public static void ConfigureMapping(IEnumerable<Type> Profiles)
         {

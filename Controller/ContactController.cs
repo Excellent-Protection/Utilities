@@ -31,9 +31,9 @@ namespace Utilities.Controller
 
         //[HttpGet]
         //[Route("IsProfileCompleted")]
-        //public HttpResponseMessage IsProfileCompleted (string contactId)
+        //public HttpResponseMessage IsProfileCompleted(string contactId)
         //{
-        //    using (ContactManager _mngr= new ContactManager(RequestUtility))
+        //    using (ContactManager _mngr = new ContactManager(RequestUtility))
         //    {
         //        var isCompleted = _mngr.IsProfileCompleted(contactId);
         //        return Response<bool>(isCompleted);

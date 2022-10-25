@@ -72,6 +72,35 @@ namespace Utilities.GlobalManagers.CRM
                 };
             }
         }
+        public ResponseVm<List<BaseQuickLookupWithImageVm>> GetResourceGroupWithCity(string professiongroupId, ServiceType? servicetype,string cityId)
+
+        {
+            try
+            {
+                var getProfessionsFromPackages = _excSettingMngr[DefaultValues.SelectNationalitiesFromPackagesName];
+                var selectProfFromPackages = DefaultValues.SelectNationalitiesFromPackages;
+                if (getProfessionsFromPackages != null)
+                {
+                    selectProfFromPackages = bool.Parse(selectProfFromPackages.ToString());
+                }
+                if (selectProfFromPackages)
+                {
+                    return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _repo.GetResourceGroupsFromIndividualPackagesByCity(professiongroupId,cityId).ToModelListData<BaseQuickLookupWithImageVm, ResourceGroup>().ToList() };
+                }
+                return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _repo.GetResourceGroups().ToModelListData<BaseQuickLookupWithImageVm, ResourceGroup>().ToList() };
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                return new ResponseVm<List<BaseQuickLookupWithImageVm>>
+                {
+                    Status = HttpStatusCodeEnum.IneternalServerError,
+                    Message = DbRes.T("AnerrorOccurred", "Shared")
+                };
+            }
+        }
+
 
     }
 }

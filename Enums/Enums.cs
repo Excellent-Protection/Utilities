@@ -41,7 +41,8 @@ namespace Utilities.Enums
         Individuals = 3,
         HeadOffice = 1,
         Hourly = 4,
-        Mediation= 100000002
+        Mediation= 100000002,
+        CallCenter = 6
     }
     public enum ApplyToShiftEnum
     {
@@ -62,10 +63,12 @@ namespace Utilities.Enums
         WaitingConfirmation = 100000004,
         FullRefundHasbeenMade = 100000015,
         RefundIsUnderWay = 100000014,
-        PostPonded=	100000003,
-        Running=	100000005,
-        NoAvailable=100000013,
-        PartOfTheAmounthHasBeenRefunded = 100000016
+        PostPonded = 100000003,
+        Running = 100000005,
+        NoAvailable = 100000013
+
+
+        //Part of the amount has been refunded	100000016
     }
 
     public enum CustomerTicketSectorType
@@ -122,8 +125,8 @@ namespace Utilities.Enums
         IndividualContractRequest = 3,
         IndividualContract = 4,
         RenewIndividualContract = 5,
-        FinancialRequest = 6 ,
-        Enterprise = 7 ,
+        FinancialRequest = 6,
+        Enterprise = 7,
         IndvProcedure = 8,
         Points = 20
     }
@@ -321,8 +324,8 @@ namespace Utilities.Enums
     public enum CollectionPaymentMethod
     {
         TransferFromWallet = 10,
-        Points=20,
-        TamayouzSystem=100
+        Points = 20,
+        TamayouzSystem = 100
     }
     public enum CustomerRequestEnum
     {
@@ -334,7 +337,8 @@ namespace Utilities.Enums
         Completed = 100000005,
         Rejected = 100000006,
         WaitingStartDate = 100000010,
-        PaymentIsPendingConfirmation = 100000011
+        PaymentIsPendingConfirmation = 100000011,
+        AutoRenew= 100000051
     }
     public enum ProcedureClosingReason
     {
@@ -629,11 +633,11 @@ namespace Utilities.Enums
     public enum PromotionOfferType
     {
         PercentDiscount = 1,
-        FixedDiscount=2,
+        FixedDiscount = 2,
         HourPrice = 3,
         FreeVisits = 4,
-        None=5
-    
+        None = 5
+
     }
     public enum IndividualContractProcedureStatus
     {
@@ -771,9 +775,9 @@ namespace Utilities.Enums
 
     public enum FinancialRequestBillStatus
     {
-        BillNew = 0 ,
-        BillUpdated = 1 ,
-        BillExpired = 2 ,
+        BillNew = 0,
+        BillUpdated = 1,
+        BillExpired = 2,
         BillCreate = 3
     }
 
@@ -781,7 +785,7 @@ namespace Utilities.Enums
     {
         New = 1,
         SmsSent = 2,
-        paid = 3 ,
+        paid = 3,
         Cancelled = 4,
         PaymentIsPendingConfirmation = 5
     }
@@ -795,45 +799,45 @@ namespace Utilities.Enums
     public enum SearchByType
 
     {
-        FreeText=1,
-        DropDownList=2,
+        FreeText = 1,
+        DropDownList = 2,
     }
 
     public enum SortType
     {
-        Ascending =0,
-        Descending=1
+        Ascending = 0,
+        Descending = 1
     }
 
     public enum ServiceType
     {
-        Individual =1,
-        Hourly=2,
-        Renew=3
+        Individual = 1,
+        Hourly = 2,
+        Renew = 3
     }
 
     public enum ContactLocationType
     {
-        Main=1,
-        Sub=2
+        Main = 1,
+        Sub = 2
     }
 
     public enum DynamicStepType
     {
-        Stratigy=1,
-        PageUi=2,
-        PostAction=3
+        Stratigy = 1,
+        PageUi = 2,
+        PostAction = 3
     }
     public enum AvailableForRenew
     {
-        Yes=1,
-        SamePackage= 2
+        Yes = 1,
+        SamePackage = 2
 
     }
     public enum AvailableForNew
     {
-        Yes=1,
-        No=2
+        Yes = 1,
+        No = 2
     }
 
     public enum RenewOption
@@ -859,14 +863,14 @@ namespace Utilities.Enums
     public enum PricingType
     {
         Weekly = 11111,
-        ALL=25
+        ALL = 25
     }
 
     public enum ContractRestrict
     {
         OnlyOneUnpaidContractForSameService = 1,
-        OnlyOneUnpaidContractForAnyService=2,
-        UnResrtricted=3
+        OnlyOneUnpaidContractForAnyService = 2,
+        UnResrtricted = 3
     }
     public enum DisplayCitiesForService
     {
@@ -887,19 +891,19 @@ namespace Utilities.Enums
     {
         //same name in ChangedAttributesWithSelectedHourlyPricing setting and SelectedHourlyPricingVm model
         EmployeeNumber = 1,
-        HoursNumber= 2,
+        HoursNumber = 2,
         VisitShift = 3,
         WeeklyVisits = 4,
-        ContractDuration=5,
-        ResourceGroupId=6
+        ContractDuration = 5,
+        ResourceGroupId = 6
     }
 
 
     public enum VisitType
     {
-        Ordinary=1,
-        Gift=2,
-        Vacation=3
+        Ordinary = 1,
+        Gift = 2,
+        Vacation = 3
     }
 
     public enum EvaluationBy
@@ -916,5 +920,21 @@ namespace Utilities.Enums
     {
         Broadcast = 1,
         UserDefined = 2
+    }
+    public enum OfferSector
+    {
+        Hourly = 1,
+        Individual = 2,
+        Flexible = 3
+    }
+    public enum AvailableForOffers
+    {
+        Web=1,
+        Mobile=2
+    }
+    public enum IndividualPricingOrder
+    {
+        new_contractamount= 0,
+        new_contractmonths= 1
     }
 }

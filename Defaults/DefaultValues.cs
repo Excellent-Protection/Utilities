@@ -57,6 +57,7 @@ namespace Utilities.Defaults
         public const string SelectProfessionsFromPackagesName = "SelectProfessionsFromPackages";
         public const string SelectNationalitiesFromPackagesName = "SelectNationalitiesFromPackages";
         public const string IsTwoFactorAuthenticationAvailableName = "IsTwoFactorAuthAvailable";
+        public const string IsOneFactorAuthonticationSettingName = "IsOneFactorAuthontication";
         public const string DealingWithMainAddressName = "DealingWithMainAddress";
         public const string PackagePropertiesSettingName = "PackageProperties";
         public const string RenewPackagePropertiesSettingName = "RenewPackageProperties";
@@ -100,6 +101,7 @@ namespace Utilities.Defaults
         public const string IsDeliveryEmployeeAvailableSettingName = "IsDeliveryEmployeeAvailableSetting";
         public const string IsSelectEmployeeFromHouseBuildingAvailableSettingName = "IsSelectEmployeeFromHouseBuildingAvailableSetting";
 
+        public const string ShowIndividualEvaluationButtonSettingName = "ShowIndividualEvaluationButton";
 
         public static readonly Dictionary<string, int> PostPondVisitsFromOffset = new Dictionary<string, int>() {
             { "PostPondVisitFromOffSetMorning",  -2},
@@ -123,6 +125,7 @@ namespace Utilities.Defaults
         public const bool SelectProfessionsFromPackages = true;
         public const bool SelectNationalitiesFromPackages = true;
         public const bool IsTwoFactorAuthenticationAvailable = false;
+        public const bool IsOneFactorAuthonticationAvailable = false;
         public const bool IsDeliveryEmployeeAvailableSetting = false;
         public const bool IsSelectEmployeeFromHouseBuildingAvailableSetting = false;
         public const bool  DealingWithMainAddress = false;
@@ -158,6 +161,7 @@ namespace Utilities.Defaults
         public const string ShowCustomerWalletSettingName = "ShowCustomerWallet";
         public const bool ShowCustomerWalletSetting = false;
         public const bool IsPaymentAvailable = false;
+        public const bool IsShowIndividualEvaluationButton = false;
 
         public const decimal paymnetTimeDefault = 120;
 
@@ -268,7 +272,8 @@ namespace Utilities.Defaults
 
         public const string RenewLink = "/#/dashboard/individual-contracts/renew-contract/@id";
 
-
+        public const string ContractAmount = "new_contractamount";
+        public const string ContractPeriod = "new_contractmonths";
 
     }
 }

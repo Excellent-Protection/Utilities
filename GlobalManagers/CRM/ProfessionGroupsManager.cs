@@ -36,15 +36,19 @@ namespace Utilities.GlobalManagers.CRM
             {
                 var getProfessionsFromPackages =_excSettingMngr[DefaultValues.SelectProfessionsFromPackagesName];
                 var selectProfFromPackages = DefaultValues.SelectProfessionsFromPackages;
-                if (getProfessionsFromPackages!=null)
+                if (getProfessionsFromPackages==null)
                 {
                     selectProfFromPackages = bool.Parse( selectProfFromPackages.ToString());
                 }
+                else
+                {
+                    selectProfFromPackages = bool.Parse(getProfessionsFromPackages.ToString());
+                }
                 if(selectProfFromPackages)
                 {
-                    return  new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _rep.GetProfessionGroupsFromPackages().ToModelListData<BaseQuickLookupWithImageVm, ProfessionGroups>().ToList() };
+                    return  new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _rep.GetProfessionGroupsFromPackages() };
                 }
-                return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _rep.GetProfessionGroups().ToModelListData<BaseQuickLookupWithImageVm, ProfessionGroups>().ToList() };
+                return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _rep.GetProfessionGroups()};
           
             }
             catch (Exception ex)

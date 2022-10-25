@@ -100,9 +100,13 @@ namespace Utilities.Defaults
         public const string EmployeeSkills = "new_employeeskills";
         public const string Skill = "new_skill";
         public const string ResourceGroupNationality = "new_resourcegroupnationalities";
+        public const string Offers = "new_offers";
+
+        //evaluation trigger
+        public const string EvaluationTrigger = "new_evaluationtrigger";
 
         //public const string Profession_ProfessionGroup = "new_new_professiongroup_new_profession";
-
+        public const string Account = "account";
 
     }
 }

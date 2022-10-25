@@ -282,6 +282,7 @@
     <Compile Include="Controller\DynamicStepsController.cs" />
     <Compile Include="Controller\GeneralController.cs" />
     <Compile Include="Controller\NationalityController.cs" />
+    <Compile Include="Controller\OffersController.cs" />
     <Compile Include="Controller\ProfessionController.cs" />
     <Compile Include="Controller\ProfessionGroupsController.cs" />
     <Compile Include="Controller\ProfileController.cs" />
@@ -322,6 +323,7 @@
     <Compile Include="GlobalManagers\CRM\EmployeeManager.cs" />
     <Compile Include="GlobalManagers\CRM\GeneralManager.cs" />
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
+    <Compile Include="GlobalManagers\CRM\OffersManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionGroupsManager.cs" />
     <Compile Include="GlobalManagers\CRM\ProfessionManager.cs" />
     <Compile Include="GlobalManagers\CRM\ResourceGroupManager.cs" />
@@ -354,6 +356,7 @@
     <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\OffersVm.cs" />
     <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ServiceVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BaseQuickLookupWithImageVm.cs" />
@@ -371,6 +374,7 @@
     <Compile Include="GlobalViewModels\Custom\DistrictQuickLookupVm.cs" />
     <Compile Include="GlobalViewModels\Custom\MappingTranslation.cs" />
     <Compile Include="GlobalViewModels\Custom\NationalityVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\OrderVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ProfessionVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ResultMessageVM.cs" />
     <Compile Include="GlobalViewModels\Custom\SavedLocationVm.cs" />
@@ -404,6 +408,7 @@
     <Compile Include="Mappers\Profiles\District_BaseQuickLookupVmProfile.cs" />
     <Compile Include="Mappers\Profiles\EditContactVm_ContactProfile.cs" />
     <Compile Include="Mappers\Profiles\Nationality_BaseQuickLookupVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Offers_OffersVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ProfessionGroups_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
@@ -414,29 +419,9 @@
     <Compile Include="Mappers\Resolvers\ContractPreviouseLocationToSavedLocationVm.cs" />
     <Compile Include="Mappers\Resolvers\DateTimeAddThreeHoursResolver.cs" />
     <Compile Include="Mappers\Resolvers\RelatedEntityToListResolver.cs" />
-    <Compile Include="Migrations\202203031348385_platformPayment.cs" />
-    <Compile Include="Migrations\202203031348385_platformPayment.designer.cs">
-      <DependentUpon>202203031348385_platformPayment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203031412456_paymentTransactionTest.cs" />
-    <Compile Include="Migrations\202203031412456_paymentTransactionTest.designer.cs">
-      <DependentUpon>202203031412456_paymentTransactionTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205151437176_notificationTemplate.cs" />
-    <Compile Include="Migrations\202205151437176_notificationTemplate.designer.cs">
-      <DependentUpon>202205151437176_notificationTemplate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202206121217083_getNotifications.cs" />
     <Compile Include="Migrations\202206121217083_getNotifications.designer.cs">
       <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206300841310_x.cs" />
-    <Compile Include="Migrations\202206300841310_x.designer.cs">
-      <DependentUpon>202206300841310_x.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202206300843483_AddStepDetails.cs" />
-    <Compile Include="Migrations\202206300843483_AddStepDetails.designer.cs">
-      <DependentUpon>202206300843483_AddStepDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
@@ -491,23 +476,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202203031348385_platformPayment.resx">
-      <DependentUpon>202203031348385_platformPayment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203031412456_paymentTransactionTest.resx">
-      <DependentUpon>202203031412456_paymentTransactionTest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205151437176_notificationTemplate.resx">
-      <DependentUpon>202205151437176_notificationTemplate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206121217083_getNotifications.resx">
       <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206300841310_x.resx">
-      <DependentUpon>202206300841310_x.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202206300843483_AddStepDetails.resx">
-      <DependentUpon>202206300843483_AddStepDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
