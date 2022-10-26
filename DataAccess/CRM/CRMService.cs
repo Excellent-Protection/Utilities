@@ -5,9 +5,11 @@ using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Tooling.Connector;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
@@ -23,7 +25,23 @@ namespace Utilities.DataAccess.CRM
 {
     public class CRMService
     {
-         static IOrganizationService GetCRMService(string ServerURL, string Organization, string UserName, string Password, string DomainName, string UserGuid)
+        private static IOrganizationService _serviceInstance = GetService();
+        private static object _lockObject = new object();
+
+        private static IOrganizationService GetService()
+        {
+            var connectionFilePath = ConfigurationManager.AppSettings["connectionfile"];
+            var connectionString = File.ReadAllText(connectionFilePath);
+            var svc = new CrmServiceClient(connectionString);
+            CrmServiceClient conn = new CrmServiceClient(connectionString);
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            ServicePointManager.ServerCertificateValidationCallback =
+                delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
+            var client = new CrmServiceClient(connectionString);
+            return (IOrganizationService)client.OrganizationServiceProxy;
+        }
+
+        static IOrganizationService GetCRMService(string ServerURL, string Organization, string UserName, string Password, string DomainName, string UserGuid)
         {
             // CRMService.OrganizationServiceClient client = new OrganizationServiceClient();
             //  return client;
@@ -48,41 +66,82 @@ namespace Utilities.DataAccess.CRM
             return GetCRMService(ServerURL, Organization, UserName, Password, DomainName, "");
         }
 
+        //public static IOrganizationService Service
+        //{
+        //    get
+        //    {
+
+
+        //        string CRMServerURL = ConfigurationManager.AppSettings["serverUrl"];
+        //        string CRMOrganiza = ConfigurationManager.AppSettings["organization"];
+        //        string CRMUserName = ConfigurationManager.AppSettings["username"];
+        //        string CRMPassword = ConfigurationManager.AppSettings["password"];
+
+        //        HttpContext context = HttpContext.Current;
+        //        String strCookieName = "passcookiesforax1";
+
+        //        if (checkIfCookieExist(strCookieName, context))
+        //        {
+        //            HttpCookie cookie = context.Request.Cookies[strCookieName];
+
+        //            String strCookieValue = cookie.Value.ToString();
+        //            var values = strCookieValue.Replace("===", ";").Split(';');
+
+        //            CRMUserName = values[0];
+        //            CRMPassword = values[1];
+        //            CRMPassword = Convert.ToBase64String(Encoding.UTF8.GetBytes(CRMPassword));
+        //        }
+        //       // else
+        //         //   CRMPassword = CRMPassword.DecryptText("Ahmed");
+
+        //        {
+        //            string CRMDomain = ConfigurationManager.AppSettings["domain"];
+
+        //            //context.Session[serviceSessionId] =
+
+        //            return GetCRMService(CRMServerURL, CRMOrganiza, CRMUserName, CRMPassword, CRMDomain);
+
+        //        }
+        //    }
+        //}
+
         public static IOrganizationService Service
+
         {
             get
             {
-                
-
-                string CRMServerURL = ConfigurationManager.AppSettings["serverUrl"];
-                string CRMOrganiza = ConfigurationManager.AppSettings["organization"];
-                string CRMUserName = ConfigurationManager.AppSettings["username"];
-                string CRMPassword = ConfigurationManager.AppSettings["password"];
-
-                HttpContext context = HttpContext.Current;
-                String strCookieName = "passcookiesforax1";
-               
-                if (checkIfCookieExist(strCookieName, context))
+                try
                 {
-                    HttpCookie cookie = context.Request.Cookies[strCookieName];
-
-                    String strCookieValue = cookie.Value.ToString();
-                    var values = strCookieValue.Replace("===", ";").Split(';');
-
-                    CRMUserName = values[0];
-                    CRMPassword = values[1];
-                    CRMPassword = Convert.ToBase64String(Encoding.UTF8.GetBytes(CRMPassword));
+                    if (_serviceInstance == null)
+                    {
+                        lock (_lockObject)
+                        {
+                            if (_serviceInstance == null)
+                                _serviceInstance = GetService();
+                        }
+                    }
+                    return _serviceInstance;
                 }
-               // else
-                 //   CRMPassword = CRMPassword.DecryptText("Ahmed");
-
+                catch (Exception ex)
                 {
-                    string CRMDomain = ConfigurationManager.AppSettings["domain"];
+                    if (ex.Message.Contains("disposed"))
+                    {
+                        try
+                        {
+                            lock (_lockObject)
 
-                    //context.Session[serviceSessionId] =
-
-                    return GetCRMService(CRMServerURL, CRMOrganiza, CRMUserName, CRMPassword, CRMDomain);
-
+                            {
+                                if (_serviceInstance == null)
+                                    _serviceInstance = GetService();
+                            }
+                            return _serviceInstance;
+                        }
+                        catch (Exception)
+                        {
+                            return null;
+                        }
+                    }
+                    return null;
                 }
             }
         }
