@@ -271,10 +271,6 @@ namespace Utilities.GlobalManagers.CRM
         }
 
 
-        public ContactVm getContactById(string id)
-        {
-            return _repo.GetContactById(id).Toclass<ContactVm>();
-        }
 
 
     }

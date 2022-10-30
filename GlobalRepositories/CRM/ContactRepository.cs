@@ -99,16 +99,6 @@ namespace Utilities.GlobalRepositories.CRM
 
         }
 
-        public Contact GetContactById(string id)
-        {
-            QueryExpression query = new QueryExpression(CrmEntityNamesMapping.Contact);
-            query.ColumnSet = new ColumnSet("contactid");
-            query.Criteria.AddCondition("contactid", ConditionOperator.Equal, new Guid(id));
-
-            var _service = CRMService.Service;
-            var contact = _service.RetrieveMultiple(query).Entities.Select(q => q.ToEntity<Contact>()).FirstOrDefault();
-
-            return contact;
-        }
+      
     }
 }
