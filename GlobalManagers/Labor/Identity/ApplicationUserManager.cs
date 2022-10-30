@@ -21,7 +21,7 @@ using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.Labor.Identity
 {
- public   class ApplicationUserManager : BaseManager
+ public   class ApplicationUserManager : BaseManager,IDisposable
 
     {
         private LaborDbContext _ctx;
@@ -141,7 +141,43 @@ namespace Utilities.GlobalManagers.Labor.Identity
             }
 
         }
+        public async Task<bool> ActivateOrDeactivateUserInLaborAsync( string userId, string Status)
+        {
+            try
+            {
+                var result = await _repository.ActivateOrDeactivateAsync(userId ,  Status );
+                if (result)
+                    return true;
 
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                return false;
+            }
+
+
+        }
+        public async Task<bool> SetIsDeletedForUserUsingCrmUserId(string crmUserId )
+        {
+            try
+            {
+                var result =  await _repository.GetUserByCrmUserIdAndUpdateReletedEntities(crmUserId);
+                if (result)
+                return true;
+                
+                return false; 
+               
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                return false; 
+            }
+            
+        }
         public ResponseVm<UserProfileDataVm> GetUserProfileData(string userId)
         {
             try
@@ -156,6 +192,10 @@ namespace Utilities.GlobalManagers.Labor.Identity
             return new ResponseVm<UserProfileDataVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred", "Shared") };
         }
 
+        public void Dispose()
+        {
+           
+        }
     }
 }
 
