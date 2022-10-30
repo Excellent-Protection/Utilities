@@ -21,7 +21,7 @@ namespace HourlySectorLib.Controller
     {
         [HttpGet]
         [Route("ServicesForService")]
-        [SignAuthorizationFilter]
+       // [SignAuthorizationFilter]
         public HttpResponseMessage GetServicesForService(ServiceType serviceType)
         {
             using (ServiceManager _mngr = new ServiceManager(RequestUtility))

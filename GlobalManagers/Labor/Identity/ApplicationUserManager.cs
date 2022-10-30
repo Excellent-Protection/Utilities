@@ -23,6 +23,7 @@ namespace Utilities.GlobalManagers.Labor.Identity
 {
  public   class ApplicationUserManager : BaseManager,IDisposable
 
+
     {
         private LaborDbContext _ctx;
         private ApplicationUserRepository _repository;
@@ -185,16 +186,21 @@ namespace Utilities.GlobalManagers.Labor.Identity
                 var user = _repository.Users.FirstOrDefault(t => t.Id == userId).ToApplicationUserVModel<ApplicationUser, UserProfileDataVm>();
                 return new ResponseVm<UserProfileDataVm> { Status = HttpStatusCodeEnum.Ok, Data = user };
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
             return new ResponseVm<UserProfileDataVm> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnErrorOccurred", "Shared") };
         }
 
+   
+
+   
+
         public void Dispose()
         {
-           
+
+
         }
     }
 }

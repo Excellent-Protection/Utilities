@@ -12,7 +12,9 @@ namespace Utilities
         NotFound = 404,
         Ambiguous = 300,
         newVersionMob = 306,
+
         IneternalServerError =500,
+
         NotAllowed=405
     }
 }

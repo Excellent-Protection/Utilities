@@ -117,10 +117,12 @@ namespace AuthonticationLib.Repositories
                         foreach (var item in devicesList)
                         {
                             item.IsDeleted = true;
+
                             _unitOfWork.Repository<Device>().Update(item); 
                         }
                     }
                 
+
                     var notificationList = _unitOfWork.Repository<UserNotification>().GetAll().Where(ui => ui.CrmUserId == id).ToList();
                     if (notificationList.Count() > 0)
                     {
@@ -132,6 +134,7 @@ namespace AuthonticationLib.Repositories
 
                         }
                     }
+
                 
                     currentItem.IsDeleted = true;
                     currentItem.PhoneNumberConfirmed = false;
@@ -140,27 +143,39 @@ namespace AuthonticationLib.Repositories
                     return true;
                 }
             }
-             catch(Exception ex)
+           
+            catch (Exception ex)
+
             {
-                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
                 return false;
             }
+
             
 
         }
-        public async Task<bool> ActivateOrDeactivateAsync(string id , string Status )
-        {   
+
+
+
+        public async Task<bool> ActivateOrDeactivateAsync(string id, string Status)
+        {
+
             try
             {
                 using (UnitOfWork _unitOdWork = new UnitOfWork(new DbFactory()))
                 {
-
                     var currentItem = this.Users.FirstOrDefault(u => u.CrmUserId.ToLower() == id);
+                    var devicesList = _unitOdWork.Repository<Device>().GetAll().Where(d => d.UserId == currentItem.Id).ToList();
+
                     //Reactivate user with devices and notifications
+                    var notificationList = _unitOdWork.Repository<UserNotification>().GetAll().Where(ui => ui.CrmUserId == id).ToList();
+
                     if (currentItem !=null && currentItem.IsDeactivated == true && Status.ToLower() == "active")
+
+
                     {
                         //Reactivate related devices
-                        var devicesList = _unitOdWork.Repository<Device>().GetAll().Where(d => d.UserId == currentItem.Id).ToList();
+                      
                         if (devicesList.Count() > 0)
                         {
                             foreach (var item in devicesList)
@@ -173,7 +188,6 @@ namespace AuthonticationLib.Repositories
                         //
                         //Reactivate related notifications
 
-                        var notificationList = _unitOdWork.Repository<UserNotification>().GetAll().Where(ui => ui.CrmUserId == id).ToList();
 
                         if (notificationList.Count() > 0)
                         {
@@ -185,23 +199,27 @@ namespace AuthonticationLib.Repositories
 
                             }
                         }
+
                        //
                        //Reactivate user
                         currentItem.IsDeactivated = false;
                         var result = await UpdateAsync(currentItem);
                      //
+
+    
                         if (result.Succeeded)
                             return true;
                         return false;
                     }
 
                     //Deactivate user with devices and notifications
+
                     else 
                     {
                         if (currentItem != null && currentItem.IsDeactivated == false && Status.ToLower() == "inactive")
                         { 
                             //Deactivate related devices
-                            var devicesList = _unitOdWork.Repository<Device>().GetAll().Where(d => d.UserId == currentItem.Id).ToList();
+                         
                         if (devicesList.Count() > 0)
                         {
                             foreach (var item in devicesList)
@@ -213,7 +231,6 @@ namespace AuthonticationLib.Repositories
                         }
                          //
                          //Deactivate related notifications
-                        var notificationList = _unitOdWork.Repository<UserNotification>().GetAll().Where(ui => ui.CrmUserId == id).ToList();
                         if (notificationList.Count() > 0)
                         {
                             foreach (var item in notificationList)
@@ -231,15 +248,20 @@ namespace AuthonticationLib.Repositories
                         //
                         if (result.Succeeded)
                             return true;
-                        return false;
                     }
                         return false;
+
+                    
+                       
+                       
+                      
                     }
                 }
             }
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
+
                 
                 return false;
             }
@@ -283,6 +305,7 @@ namespace AuthonticationLib.Repositories
                 return false; 
             }
         }
+
 
     }
 }

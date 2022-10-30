@@ -12,6 +12,7 @@ using Utilities.GlobalViewModels.Custom;
 using Utilities.GlobalViewModels.CRM;
 using Utilities.Helpers;
 using Utilities.Mappers;
+using Microsoft.Xrm.Sdk.Query;
 
 namespace Utilities.GlobalManagers.CRM
 {
@@ -269,7 +270,12 @@ namespace Utilities.GlobalManagers.CRM
             return null;
         }
 
-    
+
+        public ContactVm getContactById(string id)
+        {
+            return _repo.GetContactById(id).Toclass<ContactVm>();
+        }
+
 
     }
 
