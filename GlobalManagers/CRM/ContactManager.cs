@@ -273,6 +273,25 @@ namespace Utilities.GlobalManagers.CRM
 
 
 
+        public ContactVm GetUserByPhoneNumber(string phoneNumber)
+        {
+            try
+            {
+                var contact = _repo.GetContactByPhone(phoneNumber).Toclass<ContactVm>();
+                return contact;
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+            }
+            return null;
+        }
+
+
+
+
+
     }
 
 }

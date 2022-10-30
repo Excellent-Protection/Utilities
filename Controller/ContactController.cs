@@ -237,5 +237,23 @@ namespace Utilities.Controller
 
         }
 
+
+        [Route("GetUserByPhoneNumber")]
+        public HttpResponseMessage GetUserByPhoneNumber(string phoneNumber)
+        {
+            if (!string.IsNullOrEmpty(phoneNumber))
+            {
+                using (ContactManager _mngr = new ContactManager(RequestUtility))
+                {
+                    var result = _mngr.GetUserByPhoneNumber(phoneNumber);
+                    return Response(new ResponseVm<ContactVm> { Status = Utilities.HttpStatusCodeEnum.Ok, Data = result });
+
+                }
+            }
+            return Response(new ResponseVm<ContactVm> { Status = HttpStatusCodeEnum.Ambiguous });
+
+
+        }
+
     }
 }
