@@ -319,6 +319,7 @@
     <Compile Include="GlobalManagers\CRM\CityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactLocationManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactManager.cs" />
+    <Compile Include="GlobalManagers\CRM\ContactProcedureLoggerManager.cs" />
     <Compile Include="GlobalManagers\CRM\DashboardManager.cs" />
     <Compile Include="GlobalManagers\CRM\EmployeeManager.cs" />
     <Compile Include="GlobalManagers\CRM\GeneralManager.cs" />
@@ -341,6 +342,7 @@
     <Compile Include="GlobalManagers\UManager.cs" />
     <Compile Include="GlobalRepositories\CRM\CityRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ContactLocationRepository.cs" />
+    <Compile Include="GlobalRepositories\CRM\ContactProcedureLoggerRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ContactRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\EmployeeRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\GlobalCrmRepository.cs" />
@@ -355,6 +357,7 @@
     <Compile Include="GlobalViewModels\CRM\CollectionVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactLocationVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactPreviousLocationVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\ContactProcedureLoggerVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ContactVm.cs" />
     <Compile Include="GlobalViewModels\CRM\OffersVm.cs" />
     <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
@@ -365,6 +368,7 @@
     <Compile Include="GlobalViewModels\Custom\ContactDetailsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactMainSubPreviouseLocationsVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ContactUsVm.cs" />
+    <Compile Include="GlobalViewModels\Custom\CreateShiftVm.cs" />
     <Compile Include="GlobalViewModels\Custom\DashboardCounts.cs" />
     <Compile Include="GlobalViewModels\Custom\DisplayServiceVm.cs" />
     <Compile Include="GlobalViewModels\Custom\EditContactVm.cs" />
@@ -403,6 +407,7 @@
     <Compile Include="Mappers\Profiles\ContactDetailsVm_ContactProfile.cs" />
     <Compile Include="Mappers\Profiles\ContactPreviousLocation_ContactLocationVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ContactPreviousLocation_SavedLocationVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\ContactProcedureLogger_ContactProcedureLoggerVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Contact_ContactVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Country_NationalityProfile.cs" />
     <Compile Include="Mappers\Profiles\District_BaseQuickLookupVmProfile.cs" />
