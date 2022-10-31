@@ -13,6 +13,10 @@ using Utilities.GlobalViewModels.CRM;
 using Utilities.Helpers;
 using Utilities.Mappers;
 using Microsoft.Xrm.Sdk.Query;
+using Utilities.Enums;
+using Utilities.DataAccess.Labor;
+using AuthonticationLib.ViewModels;
+using Models.Labor;
 
 namespace Utilities.GlobalManagers.CRM
 {
@@ -23,16 +27,16 @@ namespace Utilities.GlobalManagers.CRM
         public ContactManager(RequestUtility requestUtility) : base(requestUtility)
         {
             _repo = new ContactRepository(RequestUtility);
-     
+
         }
 
         public void Dispose()
         {
         }
 
-        public ContactVm getContactById( string id )
+        public ContactVm getContactById(string id)
         {
-             return _repo.GetContactById(id).Toclass<ContactVm>(); 
+            return _repo.GetContactById(id).Toclass<ContactVm>();
         }
         public ContactVm RegisterContactInPortal(ContactVm contact)
         {
@@ -100,7 +104,7 @@ namespace Utilities.GlobalManagers.CRM
                     if (CompleteProfileRequiredFields != null)
                     {
                         string[] CompleteProfileRequiredFieldsList = CompleteProfileRequiredFields.Value.Replace(" ", "").Split(',');
-                        isCompleted = _globalRep.GetEmptyFieldsNamesForRecord(CrmEntityNamesMapping.Contact, "contactid", contactId,  CompleteProfileRequiredFieldsList).Count() == 0;
+                        isCompleted = _globalRep.GetEmptyFieldsNamesForRecord(CrmEntityNamesMapping.Contact, "contactid", contactId, CompleteProfileRequiredFieldsList).Count() == 0;
                     }
                     else
                     {
@@ -123,7 +127,7 @@ namespace Utilities.GlobalManagers.CRM
             {
                 var contactDetails = _repo.GetContactDetails(contactId).Toclass<ContactDetailsVm>();
                 var ContactDetailsFields = new ExcSettingsManager(RequestUtility).GetSettingByNameAndSource(DefaultValues.ContactDetailsFieldsSettingName, RequestUtility.Source.Value);
-                if(ContactDetailsFields?.Value != null)
+                if (ContactDetailsFields?.Value != null)
                 {
                     contactDetails.DetailsField = ContactDetailsFields.Value.Replace(" ", "").Split(',');
                 }
@@ -194,7 +198,7 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 var contactNationality = _repo.GetContactNationality(contactId);
-                    var nationalityId=contactNationality.NationalityId!=null ?contactNationality.NationalityId.Id.ToString(): null;
+                var nationalityId = contactNationality.NationalityId != null ? contactNationality.NationalityId.Id.ToString() : null;
                 return nationalityId == DefaultValues.SaudiNationalityId ? true : false;
             }
             catch (Exception ex)
@@ -209,12 +213,12 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var   contactData = _repo.GetContactNationality(contactId);
-                if(contactData!=null && contactData.NationalityId!=null)    
-                return contactData.NationalityId.Id.ToString();
+                var contactData = _repo.GetContactNationality(contactId);
+                if (contactData != null && contactData.NationalityId != null)
+                    return contactData.NationalityId.Id.ToString();
                 return null;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
@@ -262,15 +266,13 @@ namespace Utilities.GlobalManagers.CRM
                 var contactName = _repo.GetContactName(contactId).FullName;
                 return contactName;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
             }
             return null;
         }
-
-
 
 
         public ContactVm GetUserByPhoneNumber(string phoneNumber)
@@ -283,11 +285,44 @@ namespace Utilities.GlobalManagers.CRM
             catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
-
+                return null;
             }
-            return null;
         }
 
+        public bool EditEmail(string crmUserId, string newEmail)
+        {
+            try
+            {
+                if (crmUserId != null)
+                {
+                    var _ctx = new LaborDbContext();
+                    var service = CRMService.Service;
+
+
+                    var contact = service.Retrieve(CrmEntityNamesMapping.Contact, new Guid(crmUserId), new ColumnSet("emailaddress1")).ToEntity<Contact>(); ;
+                    if (contact != null)
+                    {
+                        contact.Email = newEmail;
+                        service.Update(contact);
+                    }
+
+                    var contactLabor = _ctx.Users.FirstOrDefault(a => a.CrmUserId == crmUserId);
+                    if (contactLabor != null)
+                    {
+                        contactLabor.Email = newEmail;
+                        _ctx.SaveChanges();
+                    }
+
+                }
+                return true;
+    }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+            }
+            return false;
+        }
 
 
 

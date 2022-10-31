@@ -41,6 +41,9 @@ namespace Utilities.Controller
 
         //}
 
+
+
+
         [HttpPost]
         [Route("ChangeContactStatus")]
         public async Task<HttpResponseMessage> ChangeContactStatusAsync(string id, string Paramter1)
@@ -111,76 +114,6 @@ namespace Utilities.Controller
         }
 
 
-
-        [HttpPost]
-        [Route("ChangeContactStatus")]
-        public async Task<HttpResponseMessage> ChangeContactStatusAsync(string id, string Paramter1)
-        {  
-
-            try
-            {
-                ContactVm contactDetails = new ContactVm();
-
-                if (!String.IsNullOrEmpty(id))
-                {
-                    using (ContactManager _mngr = new ContactManager(RequestUtility))
-                    {
-                        contactDetails = _mngr.getContactById(id);
-                    }
-                    //Delete Action
-                    if (contactDetails == null)
-                        {
-                            using (ApplicationUserManager _userMngr = new ApplicationUserManager(RequestUtility))
-                            {
-                                try
-                                {
-                                    var result = await _userMngr.SetIsDeletedForUserUsingCrmUserId(id);
-                                    if (result == true)
-                                        return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Message = "User status updated successfully" });
-
-                                    return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "User status doenot updated successfully:Error in update is deleted" });
-
-                                }
-                                catch (Exception ex)
-                                {
-
-                                    LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
-                                }
-                            }
-
-                        }
-                   
-                }
-                //Activate or Deactivate Action
-                if (!String.IsNullOrEmpty(Paramter1))
-                {
-                    using (ApplicationUserManager _userMngr = new ApplicationUserManager(RequestUtility))
-                    {   if (contactDetails != null)
-                        {
-                            var result = await _userMngr.ActivateOrDeactivateUserInLaborAsync(id, Paramter1);
-                            if (result)
-                                return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Message = "User status updated successfully" });
-                            return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = "User status doesnot updated successfully: Error in change status" });
-                        } 
-
-                    }
-
-                }
-
-
-                return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Message = "No Update Ocurred: try again" });
-
-            } 
-             catch(Exception ex)
-            {
-
-                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name + ex.InnerException == null ? ex.Message : ex.InnerException.Message);
-
-                throw ex;
-            }
-        }
-
-
         [HttpGet]
         [Route("ContactDetails")]
         public HttpResponseMessage ContactDetails(string contactId)
@@ -237,7 +170,6 @@ namespace Utilities.Controller
 
         }
 
-
         [Route("GetUserByPhoneNumber")]
         public HttpResponseMessage GetUserByPhoneNumber(string phoneNumber)
         {
@@ -255,5 +187,16 @@ namespace Utilities.Controller
 
         }
 
+        [HttpPost]
+        [Route("EditEmail")]
+        public bool EditEmail(string contactId, string email)
+        {
+            using (ContactManager _mngr = new ContactManager(RequestUtility))
+            {
+                var result = _mngr.EditEmail(contactId, email);
+                return result;
+            }
+
+        }
     }
 }
