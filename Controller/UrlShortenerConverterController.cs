@@ -33,6 +33,24 @@ namespace Utilities.Controller
         }
 
 
+        [Route("GetShortenerUrlWithHash")]
+        [HttpGet]
+        public HttpResponseMessage GetShortenerUrlWithHash(string domain, string longUrl, string parameters)
+        {
+            try
+            {
+                using (var _mngr = new UManager(RequestUtility))
+                {
+                    var ShotUrl = _mngr.GenerateShotUrlWithHash(domain, longUrl, parameters);
+                    return Response(new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = ShotUrl });
+                }
+            }
+            catch { }
+
+            return null;
+        }
+
+
         [HttpGet]
         [Route("ProjectTimeSheetURLS")]
         public IHttpActionResult ProjectTimeSheetURLS(string id, string UID)
