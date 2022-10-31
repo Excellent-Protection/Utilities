@@ -20,10 +20,10 @@ namespace Utilities.Mappers.Profiles
       
                .ReverseMap()
                 .ForMember(a => a.Key, o => o.MapFrom(s => s.Id))
-                  .ForMember(a => a.Value, opt => opt.ResolveUsing(new ApplyLanguage(), a => new MappingTranslation(MapperConfig.lang, a.NameAr, a.Name)))
+                  .ForMember(a => a.Value, opt => opt.ResolveUsing(new ApplyLanguage(), a => new MappingTranslation(MapperConfig.lang, a.NameAr, a.Attributes.Contains("new_displayenglishname") ? a.Attributes["new_displayenglishname"].ToString() : (a.Name!=null?a.Name:null))))
 
                 .ForMember(a=>a.Image , o=>o.MapFrom(s=>s.ImageUrl!=null ?ConfigurationManager.AppSettings["ProfessionGroupsImagesFolder"].ToString() +s.ImageUrl  :""))
-                .ForMember(a=>a.Description,o=>o.MapFrom(s=>s.Description))
+                .ForMember(a=>a.Description, opt => opt.ResolveUsing(new ApplyLanguage(), a => new MappingTranslation(MapperConfig.lang, a.Description, a.Attributes.Contains("new_descriptionenglish") ? a.Attributes["new_descriptionenglish"].ToString() : null)))
                 ;
         }
     }
