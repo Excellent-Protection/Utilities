@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Utilities.Enums;
+using Utilities.Extensions;
 using Utilities.GlobalManagers;
 using Utilities.GlobalManagers.CRM;
 using Utilities.GlobalViewModels;

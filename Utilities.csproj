@@ -329,6 +329,7 @@
     <Compile Include="GlobalManagers\CRM\ProfessionManager.cs" />
     <Compile Include="GlobalManagers\CRM\ResourceGroupManager.cs" />
     <Compile Include="GlobalManagers\CRM\ServiceManager.cs" />
+    <Compile Include="GlobalManagers\CRM\SettingsCRMManager.cs" />
     <Compile Include="GlobalManagers\CRM\SkillManager.cs" />
     <Compile Include="GlobalManagers\GlobalManager.cs" />
     <Compile Include="GlobalManagers\Labor\DeviceManager.cs" />
@@ -362,6 +363,7 @@
     <Compile Include="GlobalViewModels\CRM\OffersVm.cs" />
     <Compile Include="GlobalViewModels\CRM\RecieptVoucherCRMVm.cs" />
     <Compile Include="GlobalViewModels\CRM\ServiceVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\SettingCRMVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BaseQuickLookupWithImageVm.cs" />
     <Compile Include="GlobalViewModels\Custom\BoolWithString.cs" />
     <Compile Include="GlobalViewModels\Custom\BulkEntitiesResult.cs" />
