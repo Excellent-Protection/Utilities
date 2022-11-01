@@ -74,6 +74,7 @@ namespace Utilities.Defaults
         public const string PointGift = "new_pointgift";
 
         public const string ExcSettings = "new_excsettings";
+        public const string ExcSettingGroups = "new_excsettinggroup";
         public const string SmsText = "new_smstext";
 
         public const string Project = "new_project";

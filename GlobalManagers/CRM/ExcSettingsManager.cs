@@ -183,7 +183,11 @@ namespace Utilities.GlobalManagers.CRM
                         predicateName = predicateName.Or(p => p.Name == a);
                     });
                     Expression<Func<ExcSettings, bool>> KeysExpression = predicateName;
+                   
+                    
                     var predicateApplyTo = PredicateBuilder.False<ExcSettings>();
+
+
                     predicateApplyTo = predicateApplyTo.Or(p => p.ApplyTo.Value == (int)ApplyToOrDisplayFor.All);
                     switch (_requestUtility.Source)
                     {
@@ -217,6 +221,23 @@ namespace Utilities.GlobalManagers.CRM
 
             }
         }
+
+
+        public Dictionary<string, string> GetSettingList(List<string> keys)
+        {         
+                try
+                {
+                    var setting = _ctx.CreateQuery<ExcSettings>().AsExpandable().ToList();
+                    return setting.Where(a => keys.Contains(a.ExcSettingsId.ToString())).ToList().ToDictionary(a => a.Name, a => a.Value);
+                }
+                catch (Exception ex)
+                {
+                    LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                }
+                return null;
+        }
+
+
         public Dictionary<string, Dictionary<string, string>> GetServicesSetting(List<string> serviceIds, List<string> Keys = null)
         {
             try

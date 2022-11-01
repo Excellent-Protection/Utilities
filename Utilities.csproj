@@ -286,6 +286,7 @@
     <Compile Include="Controller\ContactAddressController.cs" />
     <Compile Include="Controller\ContactController.cs" />
     <Compile Include="Controller\DynamicStepsController.cs" />
+    <Compile Include="Controller\ExcSettingController.cs" />
     <Compile Include="Controller\GeneralController.cs" />
     <Compile Include="Controller\NationalityController.cs" />
     <Compile Include="Controller\OffersController.cs" />
@@ -328,6 +329,7 @@
     <Compile Include="GlobalManagers\CRM\ContactProcedureLoggerManager.cs" />
     <Compile Include="GlobalManagers\CRM\DashboardManager.cs" />
     <Compile Include="GlobalManagers\CRM\EmployeeManager.cs" />
+    <Compile Include="GlobalManagers\CRM\ExcSettingManager.cs" />
     <Compile Include="GlobalManagers\CRM\GeneralManager.cs" />
     <Compile Include="GlobalManagers\CRM\NationalityManager.cs" />
     <Compile Include="GlobalManagers\CRM\OffersManager.cs" />
@@ -352,6 +354,7 @@
     <Compile Include="GlobalRepositories\CRM\ContactProcedureLoggerRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ContactRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\EmployeeRepository.cs" />
+    <Compile Include="GlobalRepositories\CRM\ExcSettingRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\GlobalCrmRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\NationalityRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ProfessionGroupsRepository.cs" />
