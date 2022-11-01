@@ -23,7 +23,7 @@ namespace Utilities.GlobalRepositories.CRM
 
         }
 
-        public List<ResourceGroup> GetResourceGroupsFromIndividualPackages(string professionGroupId)
+        public List<ResourceGroup> GetResourceGroupsFromIndividualPackages(string professionGroupId, ServiceType? serviceType = null)
         {
             var _service = CRMService.Service;
             var querypricing = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
@@ -61,19 +61,27 @@ namespace Utilities.GlobalRepositories.CRM
             var resourceGroupIds = Pricing.Where (a=>a.ResourceGroup!=null).Select(a => a.ResourceGroup.Id.ToString()).Distinct().ToList();
             var resourceGroupQuery = new QueryExpression(CrmEntityNamesMapping.ResourceGroup);
             resourceGroupQuery.Criteria.AddCondition("new_resourcegroupid", ConditionOperator.In, resourceGroupIds.ToArray());
+           
+            if(serviceType == ServiceType.Individual) 
+            resourceGroupQuery.Criteria.AddCondition("new_individualfor", ConditionOperator.Equal,true);
+          
             resourceGroupQuery.ColumnSet = new ColumnSet(true);
             var resourceGroups = _service.RetrieveMultiple(resourceGroupQuery).Entities.Select(a => a.ToEntity<ResourceGroup>()).ToList();
             return resourceGroups;
         }
 
 
-        public List<ResourceGroup> GetResourceGroups()
+        public List<ResourceGroup> GetResourceGroups(ServiceType? serviceType = null)
         {
 
             var _service = CRMService.Service;
             var query = new QueryExpression(CrmEntityNamesMapping.ResourceGroup);
             query.ColumnSet = new ColumnSet(true);
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+          
+            if (serviceType == ServiceType.Individual)
+                query.Criteria.AddCondition("new_individualfor", ConditionOperator.Equal, true);
+
             //query.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionGroupId);
             var resourceGroups = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<ResourceGroup>()).ToList();
             return resourceGroups;
