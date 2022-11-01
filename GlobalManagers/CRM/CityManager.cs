@@ -13,14 +13,16 @@ using Westwind.Globalization;
 
 namespace Utilities.GlobalManagers.CRM
 {
-    public class CityManager : BaseManager , IDisposable
+    public class CityManager : BaseManager, IDisposable
     {
         CityRepository _repo;
         internal RequestUtility _requestUtility;
+        ExcSettingsManager _excSettingMngr;
         public CityManager(RequestUtility requestUtility) : base(requestUtility)
         {
             _requestUtility = RequestUtility;
             _repo = new CityRepository(RequestUtility);
+            _excSettingMngr = new ExcSettingsManager(RequestUtility);
         }
 
 
@@ -49,6 +51,7 @@ namespace Utilities.GlobalManagers.CRM
 
 
 
+
         public ResponseVm<string> CheckCityAvilabilityForService(string cityId, ServiceType serviceType, string serviceId=null)
         {
             try
@@ -61,7 +64,7 @@ namespace Utilities.GlobalManagers.CRM
                 return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = DbRes.T("CityNotAvilableForService", "Shared"), Code = "300.1" };
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("cityId", cityId));
                 return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
@@ -91,8 +94,47 @@ namespace Utilities.GlobalManagers.CRM
             }
         }
 
+        public ResponseVm<string> CheckAddressAvilabilityForService(string CityId, string districtId, string serviceId = null)
+        {
+            try
+            {
+                var message = "";
+                var canCreateLead =_excSettingMngr.GetSettingValueByName("CanCreateLead",DefaultValues.CanCreateLead);
+                var CityAvilability = CheckCityAvilabilityForService(CityId, serviceId != null ? ServiceType.Hourly : ServiceType.Individual, serviceId);
 
-        public ResponseVm< List<BaseQuickLookupVm>> GetActiveCities(string serviceId=null)
+                if (CityAvilability.Status == HttpStatusCodeEnum.Ambiguous)
+                {
+                    message = serviceId == null ? DbRes.T("cancreateorderbyurl", "Shared") : canCreateLead ? DbRes.T("tellmewhenserviceisavailable", "Shared") : CityAvilability.Message;
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = message, Code = canCreateLead ? "300.1" : "" };
+                }
+
+
+                if (CityAvilability.Status == HttpStatusCodeEnum.Ok)
+                {
+                    var DistrictAvilability = CheckDistrictAvilabilityForService(serviceId, districtId);
+
+                    if (DistrictAvilability.Status == HttpStatusCodeEnum.Ambiguous)
+                    {
+                        message = serviceId == null ? DbRes.T("cancreateorderbyurl", "Shared") : canCreateLead ? DbRes.T("tellmewhenserviceisavailable", "Shared") : DistrictAvilability.Message;
+                        return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ambiguous, Message = message, Code = canCreateLead ? "300.1" : "" };
+                    }
+
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok };
+                }
+
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
+
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("districtId", districtId));
+                return new ResponseVm<string> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
+            }
+        }
+
+
+
+        public ResponseVm<List<BaseQuickLookupVm>> GetActiveCities(string serviceId = null)
         {
             try
             {
@@ -120,21 +162,21 @@ namespace Utilities.GlobalManagers.CRM
                 return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data = districts };
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
                 return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
 
             }
         }
-    public ResponseVm<string>  GetDistrictPolygon (string districtId)
+        public ResponseVm<string> GetDistrictPolygon(string districtId)
         {
             try
             {
                 var polygon = _repo.GetDistrictPolygon(districtId);
                 return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = polygon };
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
 
@@ -149,7 +191,7 @@ namespace Utilities.GlobalManagers.CRM
                 var cost = _repo.GetCityDeliveryCost(cityId).IndividualContractDeliveryCost;
                 return cost != null ? cost.Value : 0;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
                 return 0;

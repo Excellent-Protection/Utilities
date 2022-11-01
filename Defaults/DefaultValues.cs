@@ -296,6 +296,7 @@ namespace Utilities.Defaults
         public const string BankTransferShowStartTime = "";
         public const string BankTransferShowEndTime = "";
         public const string BankTransfareSelectedDays = "";
+        public const bool CanCreateLead = true;
 
     }
 }
