@@ -75,6 +75,7 @@ namespace Utilities.Defaults
         public const string SupportEmailSettingName = "SupportEmail";
         public const string IndividualSectorEnabledSettingName = "IndividualSectorEnabled";
         public const string HourlySectorEnabledSettingName = "HourlySectorEnabled";
+        public const string BusinessSectorEnabledSettingName = "BusinessSectorEnabled";
         public const string IndividualRequestDocumentCodeSettingName = "IndividualRequestDocumentCode";
         public const string HourlycontractDocumentCodeSettingName = "HourlycontractDocumentCode";
         public const string RenewOptionSettingName = "RenewOption";
@@ -136,6 +137,7 @@ namespace Utilities.Defaults
         public const bool IsRenewAvailable = false;
         public const bool IndividualSectorEnabled = false;
         public const bool HourlySectorEnabled = false;
+        public const bool BusinessSectorEnabled = false;
         public const string ProceduresReventRenew = "1,2,4";
         public const string SupportEmail = "e.shahin@excp.sa";
         public const string IndividualRequestDocumentCode = "SD-11111";
