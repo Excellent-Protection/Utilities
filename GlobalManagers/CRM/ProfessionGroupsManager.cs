@@ -30,7 +30,7 @@ namespace Utilities.GlobalManagers.CRM
             
         }
 
-        public ResponseVm <List<BaseQuickLookupWithImageVm>> GetProfessionGroups(ServiceType? serviceType = null)
+        public ResponseVm < List<BaseQuickLookupWithImageVm>> GetProfessionGroups(ServiceType? serviceType = null)
         {
             try
             {
@@ -46,11 +46,10 @@ namespace Utilities.GlobalManagers.CRM
                 }
                 if(selectProfFromPackages)
                 {
-
-                    return  new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _rep.GetProfessionGroupsFromPackages(serviceType) };
+                    return  new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _rep.GetProfessionGroupsFromPackages() };
                 }
-                return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _rep.GetProfessionGroups(serviceType) };
-         
+                return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _rep.GetProfessionGroups()};
+          
             }
             catch (Exception ex)
             {
