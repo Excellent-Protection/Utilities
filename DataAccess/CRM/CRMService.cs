@@ -78,7 +78,7 @@ namespace Utilities.DataAccess.CRM
             NetworkCredential clntCredentials = new System.Net.NetworkCredential(UserName, Password, DomainName);
             Uri orgUri = new Uri(ServerURL + "/" + Organization + "/XRMServices/2011/Organization.svc");
 
-            var client = new CrmServiceClient(clntCredentials, Microsoft.Xrm.Tooling.Connector.AuthenticationType.IFD, HostName, "5555", Organization, false, false, null);
+            var client = new CrmServiceClient(clntCredentials, Microsoft.Xrm.Tooling.Connector.AuthenticationType.IFD, HostName, "5555", Organization, false, true, null);
             //OrganizationServiceProxy orgService = new OrganizationServiceProxy(orgUri, null, clntCredentials, null);
 
             return (IOrganizationService)client.OrganizationServiceProxy;
