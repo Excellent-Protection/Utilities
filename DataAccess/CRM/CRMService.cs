@@ -60,7 +60,7 @@ namespace Utilities.DataAccess.CRM
             string Password = ConfigurationManager.AppSettings["password"];
             string DomainName = ConfigurationManager.AppSettings["domain"];
             string HostName = ConfigurationManager.AppSettings["HostName"];
-            Password = Password.DecryptText("Ahmed");
+            //Password = Password.DecryptText("Ahmed");
             HttpContext context = HttpContext.Current;
             String strCookieName = "passcookiesforax1";
 
