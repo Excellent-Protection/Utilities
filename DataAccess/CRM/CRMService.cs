@@ -22,7 +22,7 @@ using Utilities.Helpers;
 
 namespace Utilities.DataAccess.CRM
 {
-    public class CRMService
+    public class CRMService:IDisposable
     {
 
         private static IOrganizationService _serviceInstance = GetService();
@@ -271,6 +271,13 @@ namespace Utilities.DataAccess.CRM
                 list.Add(locations.GetRange(i, Math.Min(nSize, locations.Count - i)));
             }
             return list;
+        }
+        public void Dispose()
+        {
+            GC.KeepAlive(_serviceInstance);
+
+            GC.KeepAlive(Service);
+
         }
     }
 }
