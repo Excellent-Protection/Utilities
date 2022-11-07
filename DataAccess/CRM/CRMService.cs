@@ -22,7 +22,7 @@ using Utilities.Helpers;
 
 namespace Utilities.DataAccess.CRM
 {
-    public class CRMService
+    public class CRMService:IDisposable
     {
 
         private static IOrganizationService _serviceInstance = GetService();
@@ -60,7 +60,7 @@ namespace Utilities.DataAccess.CRM
             string Password = ConfigurationManager.AppSettings["password"];
             string DomainName = ConfigurationManager.AppSettings["domain"];
             string HostName = ConfigurationManager.AppSettings["HostName"];
-            Password = Password.DecryptText("Ahmed");
+            //Password = Password.DecryptText("Ahmed");
             HttpContext context = HttpContext.Current;
             String strCookieName = "passcookiesforax1";
 
@@ -78,7 +78,7 @@ namespace Utilities.DataAccess.CRM
             NetworkCredential clntCredentials = new System.Net.NetworkCredential(UserName, Password, DomainName);
             Uri orgUri = new Uri(ServerURL + "/" + Organization + "/XRMServices/2011/Organization.svc");
 
-            var client = new CrmServiceClient(clntCredentials, Microsoft.Xrm.Tooling.Connector.AuthenticationType.IFD, HostName, "5555", Organization, false, false, null);
+            var client = new CrmServiceClient(clntCredentials, Microsoft.Xrm.Tooling.Connector.AuthenticationType.IFD, HostName, "5555", Organization, false, true, null);
             //OrganizationServiceProxy orgService = new OrganizationServiceProxy(orgUri, null, clntCredentials, null);
 
             return (IOrganizationService)client.OrganizationServiceProxy;
@@ -271,6 +271,13 @@ namespace Utilities.DataAccess.CRM
                 list.Add(locations.GetRange(i, Math.Min(nSize, locations.Count - i)));
             }
             return list;
+        }
+        public void Dispose()
+        {
+            GC.KeepAlive(_serviceInstance);
+
+            GC.KeepAlive(Service);
+
         }
     }
 }
