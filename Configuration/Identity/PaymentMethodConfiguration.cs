@@ -17,7 +17,9 @@ namespace Utilities.DataAccess.Configuration.Identity
             Property(a => a.Name).HasMaxLength(250);
             Property(a => a.DeletedBy).HasMaxLength(250);
             Property(a => a.EntityId).HasMaxLength(250);
-            Property(a => a.EntityIdTest).HasMaxLength(250);
+            Property(a => a.Authorization).HasMaxLength(250);
+            Property(a => a.CheckOutUrl).HasMaxLength(250);
+            Property(a => a.QueryUrl).HasMaxLength(250);
             Property(a => a.BrandName).HasMaxLength(50);
             Property(a => a.ImageUrl).HasMaxLength(400);
         }
