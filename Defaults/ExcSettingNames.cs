@@ -16,5 +16,8 @@ namespace Utilities.Defaults
         public const string ShowOtherRequest = "ShowOtherRequest";
         public const string FixEmployeeNameEnglish = "FixEmployeeNameEnglish";
         public const string VatAmountAddedToPackagePrice = "VatAmountAddedToPackagePrice";
+        public const string IndividualSectorEnabled = "IndividualSectorEnabled";
+        public const string HourlySectorEnabled= "HourlySectorEnabled";
+        public const string BusinessSectorEnabled = "BusinessSectorEnabled";
     }
 }

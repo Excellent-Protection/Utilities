@@ -74,9 +74,6 @@ namespace Utilities.Defaults
         public const string IsRenewAvailableSettingName = "IsRenewAvailable";
         public const string ProceduresReventRenewSettingname = "ProceduresReventRenew";
         public const string SupportEmailSettingName = "SupportEmail";
-        public const string IndividualSectorEnabledSettingName = "IndividualSectorEnabled";
-        public const string HourlySectorEnabledSettingName = "HourlySectorEnabled";
-        public const string BusinessSectorEnabledSettingName = "BusinessSectorEnabled";
         public const string IndividualRequestDocumentCodeSettingName = "IndividualRequestDocumentCode";
         public const string HourlycontractDocumentCodeSettingName = "HourlycontractDocumentCode";
         public const string RenewOptionSettingName = "RenewOption";
