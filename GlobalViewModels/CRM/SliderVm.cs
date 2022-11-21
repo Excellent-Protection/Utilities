@@ -15,7 +15,6 @@ namespace Utilities.GlobalViewModels.CRM
         public string Image { get; set; }
         public string Url { get; set; }
         public SliderType SliderType { get; set; }
-        //public List<OffersVm> Offers { get; set; }
 
     }
 }

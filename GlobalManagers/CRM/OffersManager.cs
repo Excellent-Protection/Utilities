@@ -29,14 +29,6 @@ namespace Utilities.GlobalManagers.CRM
             {
                 var _service = CRMService.Service;
                 var query = new QueryExpression(CrmEntityNamesMapping.Offers);
-                query.AddLink(CrmEntityNamesMapping.SliderItems, "new_slideritem", "new_slideritemid", JoinOperator.Inner);
-                query.LinkEntities[0].EntityAlias=CrmEntityNamesMapping.SliderItems;
-                query.LinkEntities[0].Columns=new ColumnSet("new_slideritemid","new_name");
-                query.AddLink(CrmEntityNamesMapping.IndividualDiscount, "new_individualdiscount", "new_individualdiscountid", JoinOperator.Inner);
-                query.LinkEntities[1].EntityAlias = CrmEntityNamesMapping.IndividualDiscount;
-                query.LinkEntities[1].Columns = new ColumnSet("new_individualdiscountid", "new_name", "new_discountpercentage", "new_defaultpricing");
-                query.LinkEntities[1].LinkCriteria.AddCondition("new_fromdate", ConditionOperator.OnOrBefore, DateTime.Now.Date);
-                query.LinkEntities[1].LinkCriteria.AddCondition("new_todate", ConditionOperator.OnOrAfter, DateTime.Now.Date);
                 query.ColumnSet = new ColumnSet("new_webimage", "new_mobileimage", "new_offersectortype", "new_selectedhourlypricing", "new_individualpricing", "new_flexiblepricing", "new_individualdiscount", "new_slideritem");
                 query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active offers only
                 query.Criteria.AddCondition("new_available", ConditionOperator.Equal, true);

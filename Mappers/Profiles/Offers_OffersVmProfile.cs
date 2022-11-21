@@ -26,19 +26,11 @@ namespace Utilities.Mappers.Profiles
                 .ForMember(a=>a.OfferId,o=>o.MapFrom(s=>s.Id))
                 .ForMember(a=>a.OfferSector,o=>o.MapFrom(s=>(OfferSector)s.OfferSector.Value))
                 .ForMember(a=>a.PricingId,o=>o.MapFrom(s=> (OfferSector)s.OfferSector.Value==OfferSector.Hourly?s.SelectedHourlyPricing.Id : (OfferSector)s.OfferSector.Value == OfferSector.Individual?s.IndividualPricing.Id:s.FlexiblePricing.Id))
-                .ForMember(a => a.individualDiscount, o => o.MapFrom(s => new IndividualDiscountVm()
-                {
-                    Id= s.Attributes.Contains("new_individualdiscount.new_individualdiscountid") ? ((AliasedValue)s.Attributes["new_individualdiscount.new_individualdiscountid"]).Value.ToString() : null,
-                    DefaultPricing = s.Attributes.Contains("new_individualdiscount.new_defaultpricing") ? ((EntityReference)((AliasedValue)s.Attributes["new_individualdiscount.new_defaultpricing"]).Value).Id.ToString() : null,
-                    Code = s.Attributes.Contains("new_individualdiscount.new_name") ?((AliasedValue)s.Attributes["new_individualdiscount.new_name"]).Value.ToString() : null,
-                    Discount = s.Attributes.Contains("new_individualdiscount.new_discountpercentage") ?((AliasedValue)s.Attributes["new_individualdiscount.new_discountpercentage"]).Value.ToString() : null
-                }))
-                .ForMember(a=>a.SliderItem,o=>o.MapFrom(s=> new BaseQuickLookupVm()
-                {
-                    Key= s.Attributes.Contains("new_slideritem.new_slideritemid") ? ((AliasedValue)s.Attributes["new_slideritem.new_slideritemid"]).Value.ToString() : null,
-                    Value = s.Attributes.Contains("new_slideritem.new_name") ? ((AliasedValue)s.Attributes["new_slideritem.new_name"]).Value.ToString() : null,
-                }))
-
+                .ForMember(a=>a.SliderItemName,o=>o.MapFrom(s=>s.SliderItem.Name))
+                .ForMember(a=>a.IndividualDiscountCode,o=>o.MapFrom(s=>s.IndividualDiscount.Name))
+                //entity refernce
+                .ForMember(a => a.IndividualDiscountId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.IndividualDiscount))
+                .ForMember(a => a.SliderItemId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.SliderItem))
                 ;
         }
     }

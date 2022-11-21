@@ -27,10 +27,6 @@ namespace Utilities.Mappers.Profiles
                 .ForMember(a => a.SliderType, o => o.MapFrom(s => (SliderType)s.Type.Value))
                 .ForMember(a => a.Description, o => o.MapFrom(s => s.Description))
                 .ForMember(a => a.Name, o => o.MapFrom(s => s.Name));
-                 //list
-                //.ForMember(a => a.Offers, opt => opt.MapFrom(s => s.RelatedEntities.Contains(new Relationship()
-                 //{ SchemaName = CrmRelationsNameMapping.SliderItem_Offers }) ? s.RelatedEntities[new Relationship()
-                 //{ SchemaName = CrmRelationsNameMapping.SliderItem_Offers }].Entities.Select(o => o.ToEntity<Offers>()).ToModelListData<OffersVm>() : null));
         }
     }
 }
