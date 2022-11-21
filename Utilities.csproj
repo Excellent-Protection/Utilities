@@ -310,6 +310,7 @@
     <Compile Include="Controller\ResourceGroupController.cs" />
     <Compile Include="Controller\SavedContactLocationController.cs" />
     <Compile Include="Controller\ServiceController.cs" />
+    <Compile Include="Controller\SliderController.cs" />
     <Compile Include="Controller\UrlShortenerConverterController.cs" />
     <Compile Include="Controller\ShortenerUrlController.cs" />
     <Compile Include="Controller\StepDataController.cs" />
@@ -353,6 +354,7 @@
     <Compile Include="GlobalManagers\CRM\ServiceManager.cs" />
     <Compile Include="GlobalManagers\CRM\SettingsCRMManager.cs" />
     <Compile Include="GlobalManagers\CRM\SkillManager.cs" />
+    <Compile Include="GlobalManagers\CRM\SliderManager.cs" />
     <Compile Include="GlobalManagers\GlobalManager.cs" />
     <Compile Include="GlobalManagers\Labor\DeviceManager.cs" />
     <Compile Include="GlobalManagers\Labor\DynamicStepsManager.cs" />
@@ -375,6 +377,7 @@
     <Compile Include="GlobalRepositories\CRM\ResourceGroupRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ServiceRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\SkillRepository.cs" />
+    <Compile Include="GlobalRepositories\CRM\SliderRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\DynamicStepsRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\StepRepository.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
@@ -409,6 +412,7 @@
     <Compile Include="GlobalViewModels\Custom\SavedLocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ServiceStepResponseVm.cs" />
     <Compile Include="GlobalViewModels\Custom\UserProfileDataVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\IndividualDiscountVm.cs" />
     <Compile Include="GlobalViewModels\Labor\ApplicationUserVm.cs" />
     <Compile Include="GlobalViewModels\Labor\DeviceVM.cs" />
     <Compile Include="GlobalViewModels\Labor\SettingVM.cs" />
@@ -417,6 +421,7 @@
     <Compile Include="GlobalViewModels\ResponseVm.cs" />
     <Compile Include="GlobalViewModels\MailToSendVM.cs" />
     <Compile Include="GlobalViewModels\ResultVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\SliderVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
     <Compile Include="Helpers\BaseCrmEntityRepository.cs" />
     <Compile Include="Helpers\LogUpdateShift.cs" />
@@ -443,6 +448,7 @@
     <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Service_DisplayServiceVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Slider_SliderVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepData_StepDataVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepDetails_StepDetailsVmProfile.cs" />
     <Compile Include="Mappers\Resolvers\ApplyLanguage.cs" />

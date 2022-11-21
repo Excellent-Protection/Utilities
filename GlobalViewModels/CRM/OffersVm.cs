@@ -13,5 +13,7 @@ namespace Utilities.GlobalViewModels.CRM
         public OfferSector OfferSector { get; set; }
         public string PricingId { get; set; }
         public string Image { get; set; }
+        public BaseQuickLookupVm SliderItem { get; set; }
+        public IndividualDiscountVm individualDiscount { get; set; }
     }
 }
