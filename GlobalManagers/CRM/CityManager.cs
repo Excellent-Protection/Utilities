@@ -213,6 +213,20 @@ namespace Utilities.GlobalManagers.CRM
                 return 0;
             }
         }
+        public ResponseVm<List<BaseQuickLookupVm>> GetAvailableCitiesForIndividual()
+        {
+            try
+            {
+                var result = _repo.GetAvailableCitiesForIndividual();
+                return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data=result };
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+                return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
+            }
+        }
 
         public void Dispose()
         {

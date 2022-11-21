@@ -248,5 +248,33 @@ namespace Utilities.GlobalRepositories.CRM
             var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_recieveworkertype")).ToEntity<City>();
             return city;
         }
+        public List<BaseQuickLookupVm> GetAvailableCitiesForIndividual()
+        {
+            var _service = CRMService.Service;
+
+            var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
+            CityQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active city
+
+            var OrFilter = new FilterExpression(LogicalOperator.Or);
+            OrFilter.AddCondition("new_availablefor", ConditionOperator.In, 1, 3);   //1 show for all   ,3 mobile and web
+            OrFilter.AddCondition("new_availablefor", ConditionOperator.Null);
+
+            CityQuery.Criteria.AddFilter(OrFilter);
+
+            var AndFilter = new FilterExpression(LogicalOperator.And);
+            AndFilter.AddCondition("new_forindividual", ConditionOperator.Equal, true);
+            CityQuery.Criteria.AddFilter(AndFilter);
+
+
+            CityQuery.ColumnSet = new ColumnSet("new_citiesid", "new_name", "new_englsihname");
+
+            var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
+            var cities = result.Select(a => new BaseQuickLookupVm()
+            {
+                Key = a.CityId.ToString(),
+                Value = RequestUtility.Language == UserLanguage.Arabic ? a.ArabicName : a.EnglishName,
+            }).ToList();
+            return cities;
+        }
     }
 }
