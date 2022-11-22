@@ -27,7 +27,7 @@ namespace Utilities.Mappers.Profiles
                 .ForMember(a => a.SliderType, o => o.MapFrom(s => (SliderType)s.Type.Value))
                 .ForMember(a => a.Description, o => o.MapFrom(s => s.Description))
                 .ForMember(a => a.Name, o => o.MapFrom(s => s.Name))
-                .ForMember(a=>a.SliderTypeName,o=>o.MapFrom(s=>(SliderType)s.Type.Value==SliderType.OffersRelated?SliderType.OffersRelated.ToString():SliderType.FixedImage.ToString()))
+                .ForMember(a => a.SliderTypeName, o => o.MapFrom(s => (SliderType)s.Type.Value == SliderType.OffersRelated ? SliderType.OffersRelated.ToString() : SliderType.FixedImage.ToString()));
         }
     }
 }

@@ -45,25 +45,6 @@ namespace Utilities.GlobalManagers.CRM
                 };
             }
         }
-        public ResponseVm<List<OffersVm>> GetOffersBySliderItem(string SliderItemId)
-        {
-            try
-            {
-                var Offers = _rep.GetOffersBySliderItem(SliderItemId);
-                return new ResponseVm<List<OffersVm>> { Status = HttpStatusCodeEnum.Ok, Data = Offers };
-            }
-            catch (Exception ex)
-            {
-                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
-                return new ResponseVm<List<OffersVm>>
-                {
-                    Status = HttpStatusCodeEnum.IneternalServerError,
-                    Message = "An Error Occurred"
-                };
-            }
-        }
-
-
         public void Dispose()
         {
         }

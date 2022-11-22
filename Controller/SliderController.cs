@@ -29,15 +29,5 @@ namespace Utilities.Controller
                 return Response<List<SliderVm>>(result);
             }
         }
-        [HttpGet]
-        [Route("GetOffersBySliderItem")]
-        public HttpResponseMessage GetOffersBySliderItem(string SliderItemId)
-        {
-            using (SliderManager _mngr = new SliderManager(RequestUtility))
-            {
-                var result = _mngr.GetOffersBySliderItem(SliderItemId);
-                return Response<List<OffersVm>>(result);
-            }
-        }
     }
 }
