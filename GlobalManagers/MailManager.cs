@@ -46,6 +46,7 @@ namespace Utilities.GlobalManagers
                 smtpClient.Timeout = (60 * 5 * 1000);
                 smtpClient.Port = 587;
                 smtpClient.EnableSsl = true;
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
                 message.From = fromAddress;
                 message.Subject = pSubject + " - " + DateTime.Now.Date.ToString().Split(' ')[0];
                 message.IsBodyHtml = true;

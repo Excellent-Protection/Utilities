@@ -253,6 +253,7 @@ namespace Utilities.GlobalRepositories.CRM
             var _service = CRMService.Service;
 
             var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
+            LinkEntity linkEntity2 = new LinkEntity(CrmEntityNamesMapping.City, CrmRelationsNameMapping.IndividualContractPricing_City, "new_cityid", "new_cityid", JoinOperator.Inner);
             CityQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active city
 
             var OrFilter = new FilterExpression(LogicalOperator.Or);
@@ -266,8 +267,9 @@ namespace Utilities.GlobalRepositories.CRM
             CityQuery.Criteria.AddFilter(AndFilter);
 
 
-            CityQuery.ColumnSet = new ColumnSet("new_citiesid", "new_name", "new_englsihname");
-
+            CityQuery.ColumnSet = new ColumnSet("new_cityid", "new_name", "new_englsihname");
+            CityQuery.Distinct = true;
+            CityQuery.LinkEntities.Add(linkEntity2);
             var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
             var cities = result.Select(a => new BaseQuickLookupVm()
             {
