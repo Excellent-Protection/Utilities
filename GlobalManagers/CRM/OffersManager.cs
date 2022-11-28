@@ -66,7 +66,7 @@ namespace Utilities.GlobalManagers.CRM
             try {
                 var _service = CRMService.Service;
                 var query = new QueryExpression(CrmEntityNamesMapping.Offers);
-                query.ColumnSet = new ColumnSet("new_webimage", "new_mobileimage", "new_offersectortype", "new_selectedhourlypricing", "new_individualpricing", "new_flexiblepricing");
+                query.ColumnSet = new ColumnSet("new_webimage", "new_mobileimage", "new_offersectortype", "new_selectedhourlypricing", "new_individualpricing", "new_flexiblepricing","new_slideritem", "new_individualdiscount");
                 query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active SliderItems only
                 switch (RequestUtility.Source)
                 {
