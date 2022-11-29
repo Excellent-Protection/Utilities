@@ -401,6 +401,7 @@
     <Compile Include="GlobalViewModels\Custom\DisplayServiceVm.cs" />
     <Compile Include="GlobalViewModels\Custom\EditContactVm.cs" />
     <Compile Include="GlobalViewModels\Custom\EmployeeSkillsDetailVM.cs" />
+    <Compile Include="GlobalViewModels\Custom\IndvAvailableCityVm.cs" />
     <Compile Include="GlobalViewModels\Custom\LocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\CityIdAndNameVm.cs" />
     <Compile Include="GlobalViewModels\Custom\DistrictQuickLookupVm.cs" />
@@ -455,9 +456,9 @@
     <Compile Include="Mappers\Resolvers\ContractPreviouseLocationToSavedLocationVm.cs" />
     <Compile Include="Mappers\Resolvers\DateTimeAddThreeHoursResolver.cs" />
     <Compile Include="Mappers\Resolvers\RelatedEntityToListResolver.cs" />
-    <Compile Include="Migrations\202206121217083_getNotifications.cs" />
-    <Compile Include="Migrations\202206121217083_getNotifications.designer.cs">
-      <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
+    <Compile Include="Migrations\202209011211136_AddSectorToPaymentMethod.cs" />
+    <Compile Include="Migrations\202209011211136_AddSectorToPaymentMethod.Designer.cs">
+      <DependentUpon>202209011211136_AddSectorToPaymentMethod.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RequestUtility.cs" />
@@ -512,8 +513,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202206121217083_getNotifications.resx">
-      <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202209011211136_AddSectorToPaymentMethod.resx">
+      <DependentUpon>202209011211136_AddSectorToPaymentMethod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EnumResources.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
