@@ -134,9 +134,9 @@ namespace Utilities.Enums
     public enum PaymentSector
     {
         All =0,
-        HourlyContract = 1,
-        FlexibleService = 2,
-        IndividualService= 3
+        HourlySectorPayment = 1,
+        
+        IndividualSectorPayment= 2
     }
 
     public enum EvaluationSkills
