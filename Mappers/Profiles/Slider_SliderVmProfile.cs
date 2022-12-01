@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Utilities.Defaults;
 using Utilities.Enums;
 using Utilities.GlobalViewModels.CRM;
+using Utilities.Mappers.Resolvers;
 
 namespace Utilities.Mappers.Profiles
 {

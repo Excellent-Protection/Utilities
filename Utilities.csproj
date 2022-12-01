@@ -455,6 +455,7 @@
     <Compile Include="Mappers\Resolvers\ApplyLanguage.cs" />
     <Compile Include="Mappers\Resolvers\ContractPreviouseLocationToSavedLocationVm.cs" />
     <Compile Include="Mappers\Resolvers\DateTimeAddThreeHoursResolver.cs" />
+    <Compile Include="Mappers\Resolvers\FromOffersToListOffersVm.cs" />
     <Compile Include="Mappers\Resolvers\RelatedEntityToListResolver.cs" />
     <Compile Include="Migrations\202209011211136_AddSectorToPaymentMethod.cs" />
     <Compile Include="Migrations\202209011211136_AddSectorToPaymentMethod.Designer.cs">

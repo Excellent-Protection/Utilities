@@ -33,6 +33,11 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 var SliderItems=_rep.GetSliderItems(type);
+                using (OffersManager _OffersManager=new OffersManager(RequestUtility))
+                {
+                    SliderItems.ForEach(a => a.offers = _OffersManager.GetOffersBySliderItem(a.SliderItemId).Data);
+                }
+
                 return new ResponseVm<List<SliderVm>> { Status=HttpStatusCodeEnum.Ok,Data= SliderItems};
             }
             catch(Exception ex)

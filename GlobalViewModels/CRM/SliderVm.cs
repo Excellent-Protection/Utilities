@@ -17,6 +17,7 @@ namespace Utilities.GlobalViewModels.CRM
         public SliderType SliderType { get; set; }
         public string SliderTypeName { get;set; }
         public string ExternalUrl { get; set; }
+        public IEnumerable<OffersVm> offers { get; set; }
 
     }
 }

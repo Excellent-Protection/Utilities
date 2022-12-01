@@ -213,11 +213,11 @@ namespace Utilities.GlobalManagers.CRM
                 return 0;
             }
         }
-        public ResponseVm<List<BaseQuickLookupVm>> GetAvailableCitiesForIndividual()
+        public ResponseVm<List<BaseQuickLookupVm>> GetAvailableCitiesForIndividual(string ProfessionId)
         {
             try
             {
-                var result = _repo.GetAvailableCitiesForIndividual();
+                var result = _repo.GetAvailableCitiesForIndividual(ProfessionId);
                 return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data=result };
             }
             catch (Exception ex)

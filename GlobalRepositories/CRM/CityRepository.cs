@@ -1,4 +1,6 @@
-﻿using Microsoft.Xrm.Sdk.Query;
+﻿using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 using Models.CRM;
 using System;
 using System.Collections.Generic;
@@ -248,12 +250,11 @@ namespace Utilities.GlobalRepositories.CRM
             var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_recieveworkertype")).ToEntity<City>();
             return city;
         }
-        public List<BaseQuickLookupVm> GetAvailableCitiesForIndividual()
+        public List<BaseQuickLookupVm> GetAvailableCitiesForIndividual(string professionId)
         {
             var _service = CRMService.Service;
 
             var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
-            LinkEntity linkEntity2 = new LinkEntity(CrmEntityNamesMapping.City, CrmRelationsNameMapping.IndividualContractPricing_City, "new_cityid", "new_cityid", JoinOperator.Inner);
             CityQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active city
 
             var OrFilter = new FilterExpression(LogicalOperator.Or);
@@ -264,12 +265,21 @@ namespace Utilities.GlobalRepositories.CRM
 
             var AndFilter = new FilterExpression(LogicalOperator.And);
             AndFilter.AddCondition("new_forindividual", ConditionOperator.Equal, true);
-            CityQuery.Criteria.AddFilter(AndFilter);
 
+            CityQuery.Criteria.AddFilter(AndFilter);
 
             CityQuery.ColumnSet = new ColumnSet("new_cityid", "new_name", "new_englsihname");
             CityQuery.Distinct = true;
-            CityQuery.LinkEntities.Add(linkEntity2);
+
+            LinkEntity CityPricingLink = new LinkEntity(CrmEntityNamesMapping.City, CrmRelationsNameMapping.IndividualContractPricing_City, "new_cityid", "new_cityid", JoinOperator.Inner);
+            if (!string.IsNullOrEmpty(professionId))
+            {
+                LinkEntity PricingProfessionLink = new LinkEntity(CrmRelationsNameMapping.IndividualContractPricing_City, CrmEntityNamesMapping.IndividualPricing, "new_indvpriceid", "new_indvpriceid", JoinOperator.Inner);
+                PricingProfessionLink.LinkCriteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionId);
+                CityPricingLink.LinkEntities.Add(PricingProfessionLink);
+            }
+            CityQuery.LinkEntities.Add(CityPricingLink);
+
             var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
             var cities = result.Select(a => new BaseQuickLookupVm()
             {
@@ -277,6 +287,12 @@ namespace Utilities.GlobalRepositories.CRM
                 Value = RequestUtility.Language == UserLanguage.Arabic ? a.ArabicName : a.EnglishName,
             }).ToList();
             return cities;
+
+            //var service = CRMService.Service;
+            //var PricingQuery = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
+            //PricingQuery.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionId);
+
+
         }
     }
 }
