@@ -19,5 +19,6 @@ namespace Utilities.Defaults
         public const string IndividualSectorEnabled = "IndividualSectorEnabled";
         public const string HourlySectorEnabled= "HourlySectorEnabled";
         public const string BusinessSectorEnabled = "BusinessSectorEnabled";
+        public const string EnableHourlyLead = "EnableHourlyLead";
     }
 }

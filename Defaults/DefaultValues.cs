@@ -294,6 +294,6 @@ namespace Utilities.Defaults
         public const string BankTransferShowEndTime = "";
         public const string BankTransfareSelectedDays = "";
         public const bool CanCreateLead = true;
-
+        public const bool EnableHourlyLead = true;
     }
 }
