@@ -51,8 +51,7 @@ namespace Utilities.GlobalRepositories.CRM
                 query.Criteria.AddCondition("new_type", ConditionOperator.Equal, type);
             }
             query.AddOrder("createdon", OrderType.Descending);
-            var result1 = _service.RetrieveMultiple(query).Entities;
-                var result=result1.Select(a => a.ToEntity<Slider>()).ToModelListData<SliderVm>().ToList();
+            var result = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Slider>()).ToModelListData<SliderVm>().Distinct().ToList();
             return result;
 
         }
