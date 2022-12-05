@@ -28,7 +28,7 @@ namespace Utilities.GlobalRepositories.CRM
             var _service = CRMService.Service;
 
             var query = new QueryExpression(CrmEntityNamesMapping.SliderItems);
-            query.ColumnSet = new ColumnSet("new_slideritemid", "new_description", "new_mobileimage", "new_mobileurl", "new_name", "new_type", "new_availablefor", "new_webimage", "new_weburl");
+            query.ColumnSet = new ColumnSet("new_slideritemid", "new_description", "new_mobileimage", "new_mobileurl", "new_name", "new_type", "new_availablefor", "new_webimage", "new_weburl", "new_externalurl");
             query.AddLink(CrmEntityNamesMapping.Offers, "new_slideritemid", "new_slideritem", JoinOperator.LeftOuter);
             query.LinkEntities[0].EntityAlias ="Offers";
             query.LinkEntities[0].Columns = new ColumnSet("new_webimage", "new_mobileimage", "new_offersectortype", "new_selectedhourlypricing", "new_individualpricing", "new_flexiblepricing");
