@@ -30,9 +30,9 @@ namespace Utilities.GlobalManagers
             {
                 string CurrentCSEmail =ConfigurationManager.AppSettings["CSEmail"];
                 string CurrentCSPassword = ConfigurationManager.AppSettings["CSPassword"];
-                string exchangeDomain = "smtp.office365.com";
-                string SMTPServer = "smtp.office365.com";
-
+                string exchangeDomain = ConfigurationManager.AppSettings["exchangeDomain"];
+                string SMTPServer = ConfigurationManager.AppSettings["SMTPServer"];
+                
                 SmtpClient smtpClient = new SmtpClient();
                 NetworkCredential basicCredential = new NetworkCredential(CurrentCSEmail, CurrentCSPassword, exchangeDomain);
                 System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
