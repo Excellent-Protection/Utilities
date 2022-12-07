@@ -65,11 +65,11 @@ namespace Utilities.Controller
         //}
         [HttpGet]
         [Route("IndividualAvailableCities")]
-        public HttpResponseMessage GetIndividualAvailableCities(string ProfessionId=null)
+        public HttpResponseMessage GetIndividualAvailableCities(string ProfessionId=null,string PricingId=null)
         {
             using (CityManager _mngr = new CityManager(RequestUtility))
             {
-                var result = _mngr.GetAvailableCitiesForIndividual(ProfessionId);
+                var result = _mngr.GetAvailableCitiesForIndividual(ProfessionId, PricingId);
                 return Response<List<BaseQuickLookupVm>>(result);
             }
         }

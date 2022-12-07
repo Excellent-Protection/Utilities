@@ -295,5 +295,6 @@ namespace Utilities.Defaults
         public const string BankTransfareSelectedDays = "";
         public const bool CanCreateLead = true;
         public const bool EnableHourlyLead = true;
+        public const string SelectOfferStep = "SelectOffer";
     }
 }

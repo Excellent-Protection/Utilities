@@ -12,6 +12,7 @@ using Utilities.Defaults;
 using Utilities.Enums;
 using Utilities.GlobalViewModels;
 using Utilities.Helpers;
+using Models.CRM.Individual_Contract;
 
 namespace Utilities.GlobalRepositories.CRM
 {
@@ -250,7 +251,7 @@ namespace Utilities.GlobalRepositories.CRM
             var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_recieveworkertype")).ToEntity<City>();
             return city;
         }
-        public List<BaseQuickLookupVm> GetAvailableCitiesForIndividual(string professionId)
+        public List<BaseQuickLookupVm> GetAvailableCitiesForIndividual(string professionId,string pricingId=null)
         {
             var _service = CRMService.Service;
 
@@ -277,6 +278,8 @@ namespace Utilities.GlobalRepositories.CRM
                 LinkEntity PricingProfessionLink = new LinkEntity(CrmRelationsNameMapping.IndividualContractPricing_City, CrmEntityNamesMapping.IndividualPricing, "new_indvpriceid", "new_indvpriceid", JoinOperator.Inner);
                 PricingProfessionLink.LinkCriteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionId);
                 CityPricingLink.LinkEntities.Add(PricingProfessionLink);
+                if(!string.IsNullOrEmpty(pricingId))
+                    PricingProfessionLink.LinkCriteria.AddCondition("new_indvpriceid", ConditionOperator.Equal, pricingId);
             }
             CityQuery.LinkEntities.Add(CityPricingLink);
 
@@ -293,6 +296,65 @@ namespace Utilities.GlobalRepositories.CRM
             //PricingQuery.Criteria.AddCondition("new_professiongroup", ConditionOperator.Equal, professionId);
 
 
+        }
+        public bool CheckCityIsInPricing(string CityId,string PricingId)
+        {
+            var query = new QueryExpression(CrmEntityNamesMapping.IndividualPricing);
+
+            if (!string.IsNullOrEmpty(CityId))
+            {
+                LinkEntity linkEntity1 = new LinkEntity(CrmEntityNamesMapping.IndividualPricing, CrmRelationsNameMapping.IndividualContractPricing_City, "new_indvpriceid", "new_indvpriceid", JoinOperator.Inner);
+                LinkEntity linkEntity2 = new LinkEntity(CrmRelationsNameMapping.IndividualContractPricing_City, CrmEntityNamesMapping.City, "new_cityid", "new_cityid", JoinOperator.Inner);
+                linkEntity2.Columns = new Microsoft.Xrm.Sdk.Query.ColumnSet(true);
+                linkEntity2.EntityAlias = "city";
+                linkEntity2.LinkCriteria.AddCondition("new_cityid", ConditionOperator.Equal, CityId); //to filter by cities
+                linkEntity1.LinkEntities.Add(linkEntity2);
+                query.LinkEntities.Add(linkEntity1);
+            }
+            query.Criteria.AddCondition("new_indvpriceid",ConditionOperator.Equal, PricingId);
+            //active pricing => Active=0
+            query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+            //Pricing Available For Renew
+            query.Criteria.AddCondition("new_availablefornewstring", ConditionOperator.Equal, AvailableForRenew.Yes.ToString());
+            //Is available for web and mobile => available=true
+            FilterExpression filter = new FilterExpression(LogicalOperator.Or);
+            //Is available for web and mobile => available=true
+            switch (RequestUtility.Source)
+            {
+                case RecordSource.CRMPortal:
+                    {
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.CRMNewPortal.ToString() + "%");
+                        break;
+                    }
+                case RecordSource.Mobile:
+                    {
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.Mobile.ToString() + "%");
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.WebAndMobile.ToString() + "%");
+
+                        break;
+                    }
+                case RecordSource.Web:
+                default:
+                    {
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.Web.ToString() + "%");
+                        filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.WebAndMobile.ToString() + "%");
+                        break;
+                    }
+            }
+            query.Criteria.AddFilter(filter);
+            FilterExpression StartDateFilter = new FilterExpression(LogicalOperator.Or);
+            FilterExpression EndDateFilter = new FilterExpression(LogicalOperator.Or);
+            StartDateFilter.AddCondition("new_pricestartdate", ConditionOperator.Null);
+            StartDateFilter.AddCondition("new_pricestartdate", ConditionOperator.OnOrBefore, DateTime.Now);
+            EndDateFilter.AddCondition("new_priceenddate", ConditionOperator.Null);
+            EndDateFilter.AddCondition("new_priceenddate", ConditionOperator.OnOrAfter, DateTime.Now);
+            query.Criteria.AddFilter(StartDateFilter);
+            query.Criteria.AddFilter(EndDateFilter);
+            query.Distinct = true;
+            query.ColumnSet = new ColumnSet("new_indvpriceid");
+            var _service = CRMService.Service;
+            var pricing=_service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<IndividualPricing>()).ToList();
+            return pricing.Count > 0 ? true : false;
         }
     }
 }

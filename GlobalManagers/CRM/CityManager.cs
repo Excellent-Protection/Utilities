@@ -213,11 +213,11 @@ namespace Utilities.GlobalManagers.CRM
                 return 0;
             }
         }
-        public ResponseVm<List<BaseQuickLookupVm>> GetAvailableCitiesForIndividual(string ProfessionId)
+        public ResponseVm<List<BaseQuickLookupVm>> GetAvailableCitiesForIndividual(string ProfessionId,string PricingId=null)
         {
             try
             {
-                var result = _repo.GetAvailableCitiesForIndividual(ProfessionId);
+                var result = _repo.GetAvailableCitiesForIndividual(ProfessionId,PricingId);
                 return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.Ok, Data=result };
             }
             catch (Exception ex)
@@ -227,6 +227,19 @@ namespace Utilities.GlobalManagers.CRM
                 return new ResponseVm<List<BaseQuickLookupVm>> { Status = HttpStatusCodeEnum.IneternalServerError, Message = DbRes.T("AnerrorOccurred", "Shared") };
             }
         }
+        public bool CheckCityIsInPricing(string CityId,string PricingId)
+        {
+            try
+            {
+                return _repo.CheckCityIsInPricing(CityId, PricingId);
+            }
+            catch(Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                return false;
+            }
+        }
+
 
         public void Dispose()
         {
