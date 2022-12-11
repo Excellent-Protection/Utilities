@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Crm.Sdk.Messages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,5 +20,9 @@ namespace Utilities.Defaults
         public const string IndividualSectorEnabled = "IndividualSectorEnabled";
         public const string HourlySectorEnabled= "HourlySectorEnabled";
         public const string BusinessSectorEnabled = "BusinessSectorEnabled";
+
+        public const string EnableHourlyLead = "EnableHourlyLead";
+        public const string SendOTPMailToUser = "SendOTPMailToUser";
+
     }
 }
