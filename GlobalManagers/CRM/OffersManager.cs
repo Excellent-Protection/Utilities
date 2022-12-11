@@ -29,11 +29,7 @@ namespace Utilities.GlobalManagers.CRM
             {
                 var _service = CRMService.Service;
                 var query = new QueryExpression(CrmEntityNamesMapping.Offers);
-                LinkEntity Slider = new LinkEntity( CrmEntityNamesMapping.Offers, CrmEntityNamesMapping.SliderItems, "new_slideritem", "new_slideritemid", JoinOperator.LeftOuter);
-                Slider.Columns = new ColumnSet("new_description");
-                Slider.EntityAlias=CrmEntityNamesMapping.SliderItems;
-                query.LinkEntities.Add(Slider);
-                query.ColumnSet = new ColumnSet("new_name", "new_datefrom", "new_dateto", "new_webimage", "new_mobileimage", "new_offersectortype", "new_selectedhourlypricing", "new_individualpricing", "new_flexiblepricing", "new_individualdiscount", "new_slideritem");
+                query.ColumnSet = new ColumnSet("new_name", "new_datefrom", "new_dateto", "new_webimage", "new_mobileimage", "new_offersectortype", "new_selectedhourlypricing", "new_individualpricing", "new_flexiblepricing", "new_individualdiscount", "new_slideritem","new_description");
                 query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active offers only
                 query.Criteria.AddCondition("new_available", ConditionOperator.Equal, true);
                 query.Criteria.AddCondition("new_datefrom", ConditionOperator.OnOrBefore, DateTime.Now.Date);
@@ -70,11 +66,7 @@ namespace Utilities.GlobalManagers.CRM
             try {
                 var _service = CRMService.Service;
                 var query = new QueryExpression(CrmEntityNamesMapping.Offers);
-                query.ColumnSet = new ColumnSet("new_name", "new_datefrom", "new_dateto", "new_webimage", "new_mobileimage", "new_offersectortype", "new_selectedhourlypricing", "new_individualpricing", "new_flexiblepricing","new_slideritem", "new_individualdiscount");
-                LinkEntity Slider = new LinkEntity(CrmEntityNamesMapping.Offers, CrmEntityNamesMapping.SliderItems, "new_slideritem", "new_slideritemid", JoinOperator.LeftOuter);
-                Slider.Columns = new ColumnSet("new_description");
-                Slider.EntityAlias = CrmEntityNamesMapping.SliderItems;
-                query.LinkEntities.Add(Slider);
+                query.ColumnSet = new ColumnSet("new_name", "new_datefrom", "new_dateto", "new_webimage", "new_mobileimage", "new_offersectortype", "new_selectedhourlypricing", "new_individualpricing", "new_flexiblepricing","new_slideritem", "new_individualdiscount", "new_description");
                 query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);//active SliderItems only
                 switch (RequestUtility.Source)
                 {

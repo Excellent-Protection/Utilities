@@ -20,6 +20,6 @@ namespace Utilities.GlobalViewModels.CRM
         public string IndividualDiscountCode { get; set; }
         public DateTime OfferDateFrom { get; set; }
         public DateTime OffersDateTo { get; set; }
-        public string SliderDescription { get; set; }
+        public string Description { get; set; }
     }
 }

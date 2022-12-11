@@ -31,7 +31,7 @@ namespace Utilities.Mappers.Profiles
                 .ForMember(a=>a.OfferName,o=>o.MapFrom(s=>s.Name))
                 .ForMember(a=>a.OfferDateFrom,o=>o.MapFrom(s=>s.DateFrom!=null?s.DateFrom:null))
                 .ForMember(a=>a.OffersDateTo,o=>o.MapFrom(s=>s.DateTo!=null?s.DateTo:null))
-                .ForMember(a => a.SliderDescription, o => o.MapFrom(s => s.Attributes.Contains("new_slideritem.new_description") ?((AliasedValue)s.Attributes["new_slideritem.new_description"]).Value.ToString():null))
+                .ForMember(a => a.Description,o=>o.MapFrom(s=>s.Description))
                 //entity refernce
                 .ForMember(a => a.IndividualDiscountId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.IndividualDiscount))
                 .ForMember(a => a.SliderItemId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.SliderItem))
