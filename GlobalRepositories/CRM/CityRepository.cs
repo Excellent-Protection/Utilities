@@ -311,6 +311,10 @@ namespace Utilities.GlobalRepositories.CRM
                 linkEntity1.LinkEntities.Add(linkEntity2);
                 query.LinkEntities.Add(linkEntity1);
             }
+            else
+            {
+                return false;
+            }
             query.Criteria.AddCondition("new_indvpriceid",ConditionOperator.Equal, PricingId);
             //active pricing => Active=0
             query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);

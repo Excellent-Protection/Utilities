@@ -35,10 +35,13 @@ namespace Utilities.GlobalManagers.CRM
                 var SliderItems=_rep.GetSliderItems(type);
                 using (OffersManager _OffersManager=new OffersManager(RequestUtility))
                 {
-                    SliderItems.ForEach(a => a.offers = _OffersManager.GetOffersBySliderItem(a.SliderItemId).Data);
+                    SliderItems.ForEach(a => {
+                        if(a.SliderType==SliderType.OffersRelated)
+                            a.offers = _OffersManager.GetOffersBySliderItem(a.SliderItemId).Data;
+                    });
                 }
 
-                return new ResponseVm<List<SliderVm>> { Status=HttpStatusCodeEnum.Ok,Data= SliderItems};
+                return new ResponseVm<List<SliderVm>> { Status=HttpStatusCodeEnum.Ok,Data= SliderItems.Where(a=>(a.SliderType==SliderType.OffersRelated&&a.offers.Count()>0)||a.SliderType==SliderType.FixedImage).ToList()};
             }
             catch(Exception ex)
             {
