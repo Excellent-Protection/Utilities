@@ -102,6 +102,8 @@ namespace Utilities.Defaults
         public const string Skill = "new_skill";
         public const string ResourceGroupNationality = "new_resourcegroupnationalities";
         public const string Offers = "new_offers";
+        public const string SliderItems = "new_slideritem";
+        public const string IndividualDiscount = "new_individualdiscount";
 
         //evaluation trigger
         public const string EvaluationTrigger = "new_evaluationtrigger";
