@@ -956,4 +956,9 @@ namespace Utilities.Enums
         new_contractamount= 0,
         new_contractmonths= 1
     }
+    public enum SliderType
+    {
+        FixedImage=0,
+        OffersRelated=1
+    }
 }

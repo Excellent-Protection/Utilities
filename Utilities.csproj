@@ -312,6 +312,7 @@
     <Compile Include="Controller\ResourceGroupController.cs" />
     <Compile Include="Controller\SavedContactLocationController.cs" />
     <Compile Include="Controller\ServiceController.cs" />
+    <Compile Include="Controller\SliderController.cs" />
     <Compile Include="Controller\UrlShortenerConverterController.cs" />
     <Compile Include="Controller\ShortenerUrlController.cs" />
     <Compile Include="Controller\StepDataController.cs" />
@@ -355,6 +356,7 @@
     <Compile Include="GlobalManagers\CRM\ServiceManager.cs" />
     <Compile Include="GlobalManagers\CRM\SettingsCRMManager.cs" />
     <Compile Include="GlobalManagers\CRM\SkillManager.cs" />
+    <Compile Include="GlobalManagers\CRM\SliderManager.cs" />
     <Compile Include="GlobalManagers\GlobalManager.cs" />
     <Compile Include="GlobalManagers\Labor\DeviceManager.cs" />
     <Compile Include="GlobalManagers\Labor\DynamicStepsManager.cs" />
@@ -377,6 +379,7 @@
     <Compile Include="GlobalRepositories\CRM\ResourceGroupRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\ServiceRepository.cs" />
     <Compile Include="GlobalRepositories\CRM\SkillRepository.cs" />
+    <Compile Include="GlobalRepositories\CRM\SliderRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\DynamicStepsRepository.cs" />
     <Compile Include="GlobalRepositories\Labor\StepRepository.cs" />
     <Compile Include="GlobalViewModels\BaseQuickLookupVm.cs" />
@@ -400,6 +403,7 @@
     <Compile Include="GlobalViewModels\Custom\DisplayServiceVm.cs" />
     <Compile Include="GlobalViewModels\Custom\EditContactVm.cs" />
     <Compile Include="GlobalViewModels\Custom\EmployeeSkillsDetailVM.cs" />
+    <Compile Include="GlobalViewModels\Custom\IndvAvailableCityVm.cs" />
     <Compile Include="GlobalViewModels\Custom\LocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\CityIdAndNameVm.cs" />
     <Compile Include="GlobalViewModels\Custom\DistrictQuickLookupVm.cs" />
@@ -411,6 +415,7 @@
     <Compile Include="GlobalViewModels\Custom\SavedLocationVm.cs" />
     <Compile Include="GlobalViewModels\Custom\ServiceStepResponseVm.cs" />
     <Compile Include="GlobalViewModels\Custom\UserProfileDataVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\IndividualDiscountVm.cs" />
     <Compile Include="GlobalViewModels\Labor\ApplicationUserVm.cs" />
     <Compile Include="GlobalViewModels\Labor\DeviceVM.cs" />
     <Compile Include="GlobalViewModels\Labor\SettingVM.cs" />
@@ -419,6 +424,7 @@
     <Compile Include="GlobalViewModels\ResponseVm.cs" />
     <Compile Include="GlobalViewModels\MailToSendVM.cs" />
     <Compile Include="GlobalViewModels\ResultVm.cs" />
+    <Compile Include="GlobalViewModels\CRM\SliderVm.cs" />
     <Compile Include="Helpers\BaseApiController.cs" />
     <Compile Include="Helpers\BaseCrmEntityRepository.cs" />
     <Compile Include="Helpers\LogUpdateShift.cs" />
@@ -445,15 +451,17 @@
     <Compile Include="Mappers\Profiles\RecieptVoucherCrm_RecieptVoucherVmProfile.cs" />
     <Compile Include="Mappers\Profiles\ResourceGroup_BaseQuickLookupWithImageVmProfile.cs" />
     <Compile Include="Mappers\Profiles\Service_DisplayServiceVmProfile.cs" />
+    <Compile Include="Mappers\Profiles\Slider_SliderVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepData_StepDataVmProfile.cs" />
     <Compile Include="Mappers\Profiles\StepDetails_StepDetailsVmProfile.cs" />
     <Compile Include="Mappers\Resolvers\ApplyLanguage.cs" />
     <Compile Include="Mappers\Resolvers\ContractPreviouseLocationToSavedLocationVm.cs" />
     <Compile Include="Mappers\Resolvers\DateTimeAddThreeHoursResolver.cs" />
+    <Compile Include="Mappers\Resolvers\FromOffersToListOffersVm.cs" />
     <Compile Include="Mappers\Resolvers\RelatedEntityToListResolver.cs" />
-    <Compile Include="Migrations\202206121217083_getNotifications.cs" />
-    <Compile Include="Migrations\202206121217083_getNotifications.designer.cs">
-      <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
+    <Compile Include="Migrations\202209011211136_AddSectorToPaymentMethod.cs" />
+    <Compile Include="Migrations\202209011211136_AddSectorToPaymentMethod.Designer.cs">
+      <DependentUpon>202209011211136_AddSectorToPaymentMethod.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202209011211136_AddSectorToPaymentMethod.cs" />
     <Compile Include="Migrations\202209011211136_AddSectorToPaymentMethod.Designer.cs">
@@ -520,8 +528,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202206121217083_getNotifications.resx">
-      <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202209011211136_AddSectorToPaymentMethod.resx">
+      <DependentUpon>202209011211136_AddSectorToPaymentMethod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209011211136_AddSectorToPaymentMethod.resx">
       <DependentUpon>202209011211136_AddSectorToPaymentMethod.cs</DependentUpon>
