@@ -120,6 +120,11 @@ namespace Utilities.GlobalManagers.Labor.Identity
             var user = await _repository.FindByIdAsync(id);
             return user.ToApplicationUserVModel<ApplicationUser, ApplicationUserVm>();
         }
+        public ApplicationUserVm FindByUserName(string username)
+        {
+            var user =  _repository.FindByName(username);
+            return user.ToApplicationUserVModel<ApplicationUser, ApplicationUserVm>();
+        }
         public async Task<ApplicationUser> FindAsync(string Username, string Password)
         {
             var user = await Repository.FindAsync(Username, Password);

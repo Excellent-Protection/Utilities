@@ -289,6 +289,7 @@ namespace Utilities.Defaults
         public const string ChangedAttributesSelectedHourlyPrice = "WeeklyVisits,ContractDuration,VisitShift,EmployeeNumber,ResourceGroupId";
         public const bool ShowOtherRequest = true;
         public const bool BankTransferAvailableForPaymentRequest= false;
+        public const bool BankTransferAvailableForIndividual= false;
         public const bool ActiveBankTransfer = false;
         public const string BankTransferShowStartTime = "";
         public const string BankTransferShowEndTime = "";

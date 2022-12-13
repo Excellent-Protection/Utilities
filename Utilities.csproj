@@ -455,6 +455,10 @@
     <Compile Include="Migrations\202206121217083_getNotifications.designer.cs">
       <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209011211136_AddSectorToPaymentMethod.cs" />
+    <Compile Include="Migrations\202209011211136_AddSectorToPaymentMethod.Designer.cs">
+      <DependentUpon>202209011211136_AddSectorToPaymentMethod.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202211141222186_paymentmethodbysector.cs" />
     <Compile Include="Migrations\202211141222186_paymentmethodbysector.designer.cs">
       <DependentUpon>202211141222186_paymentmethodbysector.cs</DependentUpon>
@@ -518,6 +522,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202206121217083_getNotifications.resx">
       <DependentUpon>202206121217083_getNotifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209011211136_AddSectorToPaymentMethod.resx">
+      <DependentUpon>202209011211136_AddSectorToPaymentMethod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211141222186_paymentmethodbysector.resx">
       <DependentUpon>202211141222186_paymentmethodbysector.cs</DependentUpon>
