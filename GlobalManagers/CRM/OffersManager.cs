@@ -52,8 +52,55 @@ namespace Utilities.GlobalManagers.CRM
                     query.Criteria.AddCondition("new_offersectortype", ConditionOperator.Equal, int.Parse(offersector));
                 }
                 query.AddOrder("new_order", OrderType.Ascending);
-                var result = _service.RetrieveMultiple(query).Entities.Select(a => a.ToEntity<Offers>()).ToModelListData<OffersVm>().ToList();
-                return new ResponseVm<List<OffersVm>> { Status = HttpStatusCodeEnum.Ok, Data = result };
+                LinkEntity SelectedHourlyPricing = new LinkEntity("new_offers", "new_selectedhourlypricing", "new_selectedhourlypricing", "new_selectedhourlypricingid", JoinOperator.LeftOuter);
+                SelectedHourlyPricing.LinkCriteria.AddCondition("new_isavaliable", ConditionOperator.Equal, true);
+                SelectedHourlyPricing.LinkCriteria.AddCondition("statecode", ConditionOperator.Equal, 0); //active
+                SelectedHourlyPricing.EntityAlias = CrmEntityNamesMapping.SelectedHourlyPricing;
+                SelectedHourlyPricing.Columns = new ColumnSet("new_selectedhourlypricingid");
+                LinkEntity IndvPricing = new LinkEntity("new_offers", "new_indvprice", "new_individualpricing", "new_indvpriceid", JoinOperator.LeftOuter);
+                IndvPricing.LinkCriteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+                IndvPricing.LinkCriteria.AddCondition("new_availablefornewstring", ConditionOperator.Equal, AvailableForRenew.Yes.ToString());
+                //Is available for web and mobile => available=true
+                FilterExpression filter = new FilterExpression(LogicalOperator.Or);
+                //Is available for web and mobile => available=true
+                switch (RequestUtility.Source)
+                {
+                    case RecordSource.CRMPortal:
+                        {
+                            filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.CRMNewPortal.ToString() + "%");
+                            break;
+                        }
+                    case RecordSource.Mobile:
+                        {
+                            filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.Mobile.ToString() + "%");
+                            filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.WebAndMobile.ToString() + "%");
+
+                            break;
+                        }
+                    case RecordSource.Web:
+                    default:
+                        {
+                            filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.Web.ToString() + "%");
+                            filter.AddCondition("new_displaypricingfor", ConditionOperator.Like, "%" + DisplayPricingFor.WebAndMobile.ToString() + "%");
+                            break;
+                        }
+                }
+                IndvPricing.LinkCriteria.AddFilter(filter);
+                FilterExpression StartDateFilter = new FilterExpression(LogicalOperator.Or);
+                FilterExpression EndDateFilter = new FilterExpression(LogicalOperator.Or);
+                StartDateFilter.AddCondition("new_pricestartdate", ConditionOperator.Null);
+                StartDateFilter.AddCondition("new_pricestartdate", ConditionOperator.LessThan, DateTime.Now);
+                EndDateFilter.AddCondition("new_priceenddate", ConditionOperator.Null);
+                EndDateFilter.AddCondition("new_priceenddate", ConditionOperator.GreaterThan, DateTime.Now);
+                IndvPricing.LinkCriteria.AddFilter(StartDateFilter);
+                IndvPricing.LinkCriteria.AddFilter(EndDateFilter);
+                IndvPricing.EntityAlias = CrmEntityNamesMapping.IndividualPricing;
+                IndvPricing.Columns = new ColumnSet("new_indvpriceid");
+                query.LinkEntities.Add(IndvPricing);
+                query.LinkEntities.Add(SelectedHourlyPricing);
+                var result1 = _service.RetrieveMultiple(query).Entities;
+                var result=result1.Select(a => a.ToEntity<Offers>()).ToModelListData<OffersVm>().ToList();
+                return new ResponseVm<List<OffersVm>> { Status = HttpStatusCodeEnum.Ok, Data = result.Where(s=>s.PricingId!=null).ToList() };
             }
             catch(Exception ex)
             {

@@ -25,7 +25,6 @@ namespace Utilities.Mappers.Profiles
                                   MapperConfig.source == RecordSource.Web ? ConfigurationManager.AppSettings["OfferWebImages"].ToString()+s.WebImage.Replace(" ", "%20") : null)))
                 .ForMember(a=>a.OfferId,o=>o.MapFrom(s=>s.Id))
                 .ForMember(a=>a.OfferSector,o=>o.MapFrom(s=>(OfferSector)s.OfferSector.Value))
-                .ForMember(a=>a.PricingId,o=>o.MapFrom(s=> (OfferSector)s.OfferSector.Value==OfferSector.Hourly?s.SelectedHourlyPricing.Id : (OfferSector)s.OfferSector.Value == OfferSector.Individual?s.IndividualPricing.Id:s.FlexiblePricing.Id))
                 .ForMember(a=>a.SliderItemName,o=>o.MapFrom(s=>s.SliderItem.Name))
                 .ForMember(a=>a.IndividualDiscountCode,o=>o.MapFrom(s=>s.IndividualDiscount.Name))
                 .ForMember(a=>a.OfferName,o=>o.MapFrom(s=>s.Name))
@@ -35,6 +34,7 @@ namespace Utilities.Mappers.Profiles
                 //entity refernce
                 .ForMember(a => a.IndividualDiscountId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.IndividualDiscount))
                 .ForMember(a => a.SliderItemId, o => o.ResolveUsing(new EntityReferenceIdToStringResolver(), s => s.SliderItem))
+                .ForMember(a => a.PricingId, o => o.MapFrom(s => (OfferSector)s.OfferSector.Value == OfferSector.Hourly ? (s.Attributes.Contains("new_selectedhourlypricing.new_selectedhourlypricingid") ? s.Attributes["new_selectedhourlypricing.new_selectedhourlypricingid"]:null) : (OfferSector)s.OfferSector.Value == OfferSector.Individual ? (s.Attributes.Contains("new_indvprice.new_indvpriceid") ? s.Attributes["new_indvprice.new_indvpriceid.new_selectedhourlypricingid"] : null) : s.FlexiblePricing.Id))
                 ;
         }
     }
