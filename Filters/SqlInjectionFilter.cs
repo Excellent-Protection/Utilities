@@ -58,21 +58,15 @@ namespace Utilities.Filters
 
         private bool IsUpdatedForMobile(HttpActionContext actionContext)
         {
-
-            // if (actionContext.Request.Method != HttpMethod.Get) return true;
-            var settingsMgr = new SettingsManager();
-
-            var re = actionContext.Request;
-            var headers = re.Headers;
+            var headers = actionContext.Request.Headers;
             string Source = "";
-            Version MobileVersion =null;
-            string Platform = "";           
             if (headers.Contains("source"))
             {
                 Source = headers.GetValues("source").First();
             }
             if (Source == "2" || Source == "3")
                 return true;
+            Version MobileVersion = null;
             if (headers.Contains("version"))
             {
                 MobileVersion = new Version(headers.GetValues("version").First());
@@ -81,14 +75,15 @@ namespace Utilities.Filters
             {
                 return false;
             }
+            string Platform = "";
             if (headers.Contains("platform"))
             {
                 Platform = headers.GetValues("platform").First();
-            }
-            
+            }         
 
             if (Source == "1")
             {
+                var settingsMgr = new SettingsManager();
                 string CurrentAndroidVersion = settingsMgr["AndroidVersion"].Value;
                 string CurrentIOSVersion = settingsMgr["IOSVersion"].Value;
                 if (Platform.ToLower() == "android")
