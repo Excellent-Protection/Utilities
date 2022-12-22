@@ -258,7 +258,8 @@ namespace Utilities.Enums
     public enum NetTypeEnum
     {
         Branch = 0,
-        OnDelivery = 1
+        OnDelivery = 1,
+        HoldPayment = 2
     }
 
     //for employees
