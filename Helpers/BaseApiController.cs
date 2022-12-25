@@ -102,6 +102,11 @@ namespace Utilities.Helpers
 
             return Request.CreateResponse(HttpStatusCode.Ambiguous, response);
         }
+        protected HttpResponseMessage RedirectResponse<T>(T Data)
+        {
+            var response = new ResponseVm<object>() { Data = Data, Status = HttpStatusCodeEnum.Redirect };
+            return Request.CreateResponse(HttpStatusCode.Redirect, response);
+        }
         protected HttpResponseMessage InternalServerErrorResponse(string Message)
         {
             var response = new ResponseVm<object> { Status = HttpStatusCodeEnum.IneternalServerError, Message = Message };

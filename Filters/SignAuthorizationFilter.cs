@@ -13,7 +13,7 @@ using Utilities.Helpers;
 using Utilities.GlobalManagers.Labor;
 using Utilities.GlobalViewModels.Labor;
 
-namespace RecService.Api.Filters
+namespace Utilities.Filters
 {
     public class SignAuthorizationFilter
         : AuthorizationFilterAttribute
