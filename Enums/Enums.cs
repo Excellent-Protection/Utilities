@@ -585,8 +585,9 @@ namespace Utilities.Enums
     }
     public enum InsurancePaymentMethod
     {
-        Insurance = 1,
-        Sanad = 2
+        WithoutInsurance = 1,
+        Sanad = 2,
+        Insurance=3
     }
     public enum IndividualPricingType
     {
