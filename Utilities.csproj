@@ -12,7 +12,6 @@
     <AssemblyName>Utilities</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -339,7 +338,9 @@
     <Compile Include="Enums\RecordSource.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\SetDoubleDigits.cs" />
+    <Compile Include="Filters\ApiGeneralFilter.cs" />
     <Compile Include="Filters\SignAuthorizationFilter.cs" />
+    <Compile Include="Filters\SqlInjectionFilter.cs" />
     <Compile Include="Filters\StepFilter.cs" />
     <Compile Include="GlobalManagers\CRM\CityManager.cs" />
     <Compile Include="GlobalManagers\CRM\ContactLocationManager.cs" />
