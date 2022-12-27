@@ -104,6 +104,7 @@ namespace Utilities.Defaults
         public const string IsSelectEmployeeFromHouseBuildingAvailableSettingName = "IsSelectEmployeeFromHouseBuildingAvailableSetting";
 
         public const string ShowIndividualEvaluationButtonSettingName = "ShowIndividualEvaluationButton";
+        public const string PaymentTimeoutTaskTeamNameSettingName = "PaymentTimeoutTaskTeamName";
 
         public static readonly Dictionary<string, int> PostPondVisitsFromOffset = new Dictionary<string, int>() {
             { "PostPondVisitFromOffSetMorning",  -2},
@@ -273,6 +274,7 @@ namespace Utilities.Defaults
         
         public static readonly string OnlinePortalUrl = ConfigurationManager.AppSettings["OnlinePortalUrl"].ToString();
         public static readonly string OnlineVisitsUrl = ConfigurationManager.AppSettings["OnlineVisitsUrl"].ToString();
+        public static readonly string PaymentTimeoutTaskTeamName = "PaymentTimeoutReviewTeam";
         #region CompleteProfileSetting
         public const string CompleteProfileRequiredFieldsSettingName = "CompleteProfileRequiredFields";
         public const string ContactDetailsFieldsSettingName = "ContactDetailsFields";

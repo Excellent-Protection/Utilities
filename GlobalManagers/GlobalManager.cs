@@ -51,7 +51,14 @@ namespace Utilities.GlobalManagers
             return _service.RetrieveMultiple(query);
 
         }
-
+       public static Guid? GetTeamIdByTeamName(string name)
+        {
+            QueryExpression query = new QueryExpression("team");
+            query.Criteria.AddCondition("name", ConditionOperator.Equal, name);
+            var _service = CRMService.Service;
+            var id= _service.RetrieveMultiple(query).Entities[0]?.Id;
+            return id;
+        }
 
         public void Dispose()
         {
