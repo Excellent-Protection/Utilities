@@ -588,6 +588,7 @@ namespace Utilities.Enums
         WithoutInsurance = 1,
         Sanad = 2,
         Insurance=3
+
     }
     public enum IndividualPricingType
     {
