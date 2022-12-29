@@ -73,29 +73,33 @@ namespace Utilities.GlobalRepositories.CRM
 
         public bool CheckCityAvailabilityForHourlyService(string cityId, string serviceId)
         {
-            var _service = CRMService.Service;
-            var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_displaycities")).ToEntity<Service>();
+            if (!string.IsNullOrEmpty(serviceId))
+            {
+                var _service = CRMService.Service;
+                var service = _service.Retrieve(CrmEntityNamesMapping.Service, new Guid(serviceId), new ColumnSet("new_displaycities")).ToEntity<Service>();
                 if (service.DisplayCities.Value == (int)DisplayCitiesForService.onlyServiceCities)
                 {
                     var CityQuery = new QueryExpression(CrmEntityNamesMapping.City);
                     //is available for hourly true
-                    CityQuery.Criteria.AddCondition("new_isdalal", ConditionOperator.Equal,true);
+                    CityQuery.Criteria.AddCondition("new_isdalal", ConditionOperator.Equal, true);
                     CityQuery.AddLink(CrmEntityNamesMapping.ServiceCity, "new_cityid", "new_city");
                     CityQuery.LinkEntities[0].LinkCriteria.AddCondition("new_service", ConditionOperator.Equal, serviceId);
                     CityQuery.LinkEntities[0].LinkCriteria.AddCondition("new_city", ConditionOperator.Equal, cityId);
                     var result = _service.RetrieveMultiple(CityQuery).Entities.Select(a => a.ToEntity<City>()).Distinct().ToList();
                     return result.Count > 0;
                 }
-                else if(service.DisplayCities.Value == (int)DisplayCitiesForService.All)
+                else if (service.DisplayCities.Value == (int)DisplayCitiesForService.All)
                 {
                     var city = _service.Retrieve(CrmEntityNamesMapping.City, new Guid(cityId), new ColumnSet("new_isdalal")).ToEntity<City>();
                     var IsForHourly = city.IsForHourly.HasValue ? city.IsForHourly.Value : false;
                     return IsForHourly;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else
-            {
-                return true;
-            }
+            return true;
         }
 
         public bool CheckCityAvailabilityForIndvService(string cityId)
