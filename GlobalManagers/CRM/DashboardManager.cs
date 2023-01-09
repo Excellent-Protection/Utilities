@@ -63,12 +63,9 @@ namespace Utilities.GlobalManagers.CRM
                 obj.CanceledContracts =
                     indvContracts.Where(a => a.StatusCode.Value == (int)IndividualContractStatus.Cancelled).ToList().Count()
                 + hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.Canceled).ToList().Count();
-                int defaultDays = DefaultValues.DaysBeforeEndContractToShowRenewBtn;
-                var daysToRenew = new ExcSettingsManager(RequestUtility)[DefaultValues.DaysBeforeEndContractToShowRenewBtnSettingName];
-                if (daysToRenew != null)
-                {
-                    defaultDays = int.Parse(daysToRenew.ToString());
-                }
+
+                ExcSettingsManager excSettingManager = new ExcSettingsManager(RequestUtility);
+                var defaultDays = excSettingManager.GetSettingValueByName(DefaultValues.DaysBeforeEndContractToShowRenewBtnSettingName, DefaultValues.DaysBeforeEndContractToShowRenewBtn);
 
                 obj.AlmostOverContracts = indvContracts.Where(a => a.StatusCode.Value == (int)IndividualContractStatus.ActiveLaborDelivered && a.ServiceEndDate.HasValue && (DateTime.Now - a.ServiceEndDate.Value).TotalDays <= defaultDays).ToList().Count()
                    + hourlyContracts.Where(a => a.StatusCode.Value == (int)ServiceContractPerHourStatus.ConfirmedByFinance && a.RemainingVisit == 1).ToList().Count();

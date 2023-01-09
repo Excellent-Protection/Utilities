@@ -34,16 +34,8 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var getProfessionsFromPackages =_excSettingMngr[DefaultValues.SelectProfessionsFromPackagesName];
-                var selectProfFromPackages = DefaultValues.SelectProfessionsFromPackages;
-                if (getProfessionsFromPackages==null)
-                {
-                    selectProfFromPackages = bool.Parse( selectProfFromPackages.ToString());
-                }
-                else
-                {
-                    selectProfFromPackages = bool.Parse(getProfessionsFromPackages.ToString());
-                }
+                var selectProfFromPackages = _excSettingMngr.GetSettingValueByName(DefaultValues.SelectProfessionsFromPackagesName, DefaultValues.SelectProfessionsFromPackages);
+                
                 if(selectProfFromPackages)
                 {
                     return  new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _rep.GetProfessionGroupsFromPackages() };

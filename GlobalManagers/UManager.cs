@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilities.DataAccess.CRM;
 using Utilities.DataAccess.Labor;
+using Utilities.Defaults;
 using Utilities.GlobalManagers.CRM;
 using Utilities.Helpers;
 
@@ -45,17 +46,20 @@ namespace Utilities.GlobalManagers
             {
                 using (UnitOfWork unitOfWork = new UnitOfWork(new DbFactory()))
                 {
-                    var OnlineAPIUrl = new ExcSettingsManager(RequestUtility)["OnlineAPIUrl"].ToString();
-                    string token = GetAlphanumericID(7);
-                    string shortUrl = OnlineAPIUrl + "/" + RequestUtility.RouteLanguage + "/u/" + token;
-                    var result = unitOfWork.Repository<UrlShortener>().Add(new UrlShortener()
+                    using (ExcSettingsManager excSettingsManager = new ExcSettingsManager(RequestUtility))
                     {
-                        ShortUrl = shortUrl.ToLower(),
-                        LongUrl = longUrl,
-                        Name = token.ToLower()
-                    });
-                    unitOfWork.SaveChanges();
-                    return result.ShortUrl;
+                        var OnlineAPIUrl = excSettingsManager.GetSettingValueByName(DefaultValues.OnlineAPIUrlSettingName, DefaultValues.OnlineAPIUrl);
+                        string token = GetAlphanumericID(7);
+                        string shortUrl = OnlineAPIUrl + "/" + RequestUtility.RouteLanguage + "/u/" + token;
+                        var result = unitOfWork.Repository<UrlShortener>().Add(new UrlShortener()
+                        {
+                            ShortUrl = shortUrl.ToLower(),
+                            LongUrl = longUrl,
+                            Name = token.ToLower()
+                        });
+                        unitOfWork.SaveChanges();
+                        return result.ShortUrl;
+                    }
                 }
             }
             catch(Exception ex)
@@ -118,26 +122,28 @@ namespace Utilities.GlobalManagers
 
         public Tuple<string, string> SetProjectTimeSheetURLS(string ProjectTimeSheetID, string UID)
         {
-            var ISVLink = new ExcSettingsManager(RequestUtility)["ISVURL"];
-       
-            string ProjectTimeSheetURL = String.Format("{0}{1}{2}{3}{4}", ISVLink, "Emp/TimeSheet/BSCustTS.aspx?id=", ProjectTimeSheetID,
-                "&UID=", UID);
-           
-            var KAMShortUrl = GenerateShotUrl(ProjectTimeSheetURL + "&type=kam");
-            var CustomerShortUrl = GenerateShotUrl(ProjectTimeSheetURL + "&type=customer");
-            try
+            using (ExcSettingsManager excSettingsManager = new ExcSettingsManager(RequestUtility))
             {
-                Entity ProjectTimeSheet = new Entity("new_projecttimesheet");
-                ProjectTimeSheet.Id = new Guid(ProjectTimeSheetID);
-                ProjectTimeSheet["new_kamurl"] = KAMShortUrl;
-                ProjectTimeSheet["new_customerurl"] = CustomerShortUrl;
-                CRMService.Service.Update(ProjectTimeSheet);
+                var ISVLink = excSettingsManager.GetSettingValueByName(DefaultValues.ISVUrlSettingName, DefaultValues.ISVUrl);
+                string ProjectTimeSheetURL = String.Format("{0}{1}{2}{3}{4}", ISVLink, "Emp/TimeSheet/BSCustTS.aspx?id=", ProjectTimeSheetID,
+                    "&UID=", UID);
+
+                var KAMShortUrl = GenerateShotUrl(ProjectTimeSheetURL + "&type=kam");
+                var CustomerShortUrl = GenerateShotUrl(ProjectTimeSheetURL + "&type=customer");
+                try
+                {
+                    Entity ProjectTimeSheet = new Entity("new_projecttimesheet");
+                    ProjectTimeSheet.Id = new Guid(ProjectTimeSheetID);
+                    ProjectTimeSheet["new_kamurl"] = KAMShortUrl;
+                    ProjectTimeSheet["new_customerurl"] = CustomerShortUrl;
+                    CRMService.Service.Update(ProjectTimeSheet);
+                }
+                catch (Exception ex)
+                {
+                    LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("ProjectTimeSheetID", ProjectTimeSheetID));
+                }
+                return Tuple.Create(KAMShortUrl, CustomerShortUrl);
             }
-            catch (Exception ex)
-            {
-                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("ProjectTimeSheetID", ProjectTimeSheetID));
-            }
-            return Tuple.Create(KAMShortUrl, CustomerShortUrl);
         }
     }
 }

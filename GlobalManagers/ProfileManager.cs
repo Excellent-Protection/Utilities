@@ -25,30 +25,27 @@ namespace Utilities.GlobalManagers
             try
             {
                 //get support email 
-
-                string supportEmail = DefaultValues.SupportEmail;
-                var supportEmailSetting = new ExcSettingsManager(RequestUtility)[DefaultValues.SupportEmailSettingName];
-                if (supportEmailSetting != null)
+                using (ExcSettingsManager excSettingsManager = new ExcSettingsManager(RequestUtility))
                 {
-                    supportEmail = supportEmailSetting.ToString();
-                }
-                string CCEmail = "";
-                string subject = "User Want To Communicate";
-                string body = "<div style='direction:ltr;'>";
-                body += "User Data" +"</br>"
-                     + "Name:  " + model.Name+"</br>" +
-                     "Phone:  " +model.PhoneNumber + "</br>" +
-                      "Email:  "+ model.Email +"</br>"+
-                       "Message:  " + model.MessageTitle +"</br>"+model.MessageDetails;
-                body += "</div>";
+                    string supportEmail = excSettingsManager.GetSettingValueByName(DefaultValues.SupportEmailSettingName, DefaultValues.SupportEmail);
+
+                    string CCEmail = "";
+                    string subject = "User Want To Communicate";
+                    string body = "<div style='direction:ltr;'>";
+                    body += "User Data" + "</br>"
+                         + "Name:  " + model.Name + "</br>" +
+                         "Phone:  " + model.PhoneNumber + "</br>" +
+                          "Email:  " + model.Email + "</br>" +
+                           "Message:  " + model.MessageTitle + "</br>" + model.MessageDetails;
+                    body += "</div>";
 
                     if (!string.IsNullOrEmpty(supportEmail))
 
                         MailManager.SendEmail(supportEmail, CCEmail, subject, body, true, "");
 
 
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = DbRes.T("DataSendSuccessfully", "Shared") };
-
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = DbRes.T("DataSendSuccessfully", "Shared") };
+                }
             }
             catch(Exception ex)
             {
@@ -64,14 +61,12 @@ namespace Utilities.GlobalManagers
         {
             try
             {
-                string whatsappNumber = DefaultValues.whatsappNumber;
-                var whatsappNumberSetting = new ExcSettingsManager(RequestUtility)[DefaultValues.whatsappNumberSettingName];
-                if (whatsappNumberSetting != null)
+                using (ExcSettingsManager excSettingsManager = new ExcSettingsManager(RequestUtility))
                 {
-                    whatsappNumber = whatsappNumberSetting.ToString();
+                    string whatsappNumber = excSettingsManager.GetSettingValueByName(DefaultValues.whatsappNumberSettingName, DefaultValues.whatsappNumber);
+                     
+                    return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = whatsappNumber };
                 }
-                return new ResponseVm<string> { Status = HttpStatusCodeEnum.Ok, Data = whatsappNumber};
-
             }
             catch (Exception ex)
             {

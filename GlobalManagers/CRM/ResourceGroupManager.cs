@@ -49,12 +49,8 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var getProfessionsFromPackages = _excSettingMngr[DefaultValues.SelectNationalitiesFromPackagesName];
-                var selectProfFromPackages = DefaultValues.SelectNationalitiesFromPackages;
-                if (getProfessionsFromPackages != null)
-                {
-                    selectProfFromPackages = bool.Parse(selectProfFromPackages.ToString());
-                }
+                var selectProfFromPackages = _excSettingMngr.GetSettingValueByName(DefaultValues.SelectNationalitiesFromPackagesName, DefaultValues.SelectNationalitiesFromPackages);
+                
                 if (selectProfFromPackages)
                 {
                     return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _repo.GetResourceGroupsFromIndividualPackages(professiongroupId).ToModelListData<BaseQuickLookupWithImageVm, ResourceGroup>().ToList() };
@@ -77,12 +73,8 @@ namespace Utilities.GlobalManagers.CRM
         {
             try
             {
-                var getProfessionsFromPackages = _excSettingMngr[DefaultValues.SelectNationalitiesFromPackagesName];
-                var selectProfFromPackages = DefaultValues.SelectNationalitiesFromPackages;
-                if (getProfessionsFromPackages != null)
-                {
-                    selectProfFromPackages = bool.Parse(selectProfFromPackages.ToString());
-                }
+                var selectProfFromPackages = _excSettingMngr.GetSettingValueByName(DefaultValues.SelectNationalitiesFromPackagesName, DefaultValues.SelectNationalitiesFromPackages);
+                
                 if (selectProfFromPackages)
                 {
                     return new ResponseVm<List<BaseQuickLookupWithImageVm>> { Status = HttpStatusCodeEnum.Ok, Data = _repo.GetResourceGroupsFromIndividualPackagesByCity(professiongroupId,cityId).ToModelListData<BaseQuickLookupWithImageVm, ResourceGroup>().ToList() };

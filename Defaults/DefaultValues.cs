@@ -273,6 +273,10 @@ namespace Utilities.Defaults
         
         public static readonly string OnlinePortalUrl = ConfigurationManager.AppSettings["OnlinePortalUrl"].ToString();
         public static readonly string OnlineVisitsUrl = ConfigurationManager.AppSettings["OnlineVisitsUrl"].ToString();
+        public static readonly string ISVUrl = ConfigurationManager.AppSettings["IsvUrl"].ToString();
+        public const string OnlineAPIUrlSettingName = "OnlineAPIUrl";
+        public const string ISVUrlSettingName = "IsvUrl";
+        public static readonly string OnlineAPIUrl = ConfigurationManager.AppSettings["OnlineAPIUrl"].ToString();
         #region CompleteProfileSetting
         public const string CompleteProfileRequiredFieldsSettingName = "CompleteProfileRequiredFields";
         public const string ContactDetailsFieldsSettingName = "ContactDetailsFields";
