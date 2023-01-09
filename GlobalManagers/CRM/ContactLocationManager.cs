@@ -111,7 +111,12 @@ namespace Utilities.GlobalManagers.CRM
             try
             {
                 ContactPreviousLocation Location = LocationVm.ToCrmEntity<ContactPreviousLocation, ContactLocationVm>();
-               var isExist=   _repo.isAlreadyExist(LocationVm);
+                if (LocationVm.FloorNo == null)
+                {
+                    LocationVm.FloorNo = DefaultValues.FloorNumber;
+                    Location.FloorNumber = new OptionSetValue(DefaultValues.FloorNumber);
+                }
+                var isExist=   _repo.isAlreadyExist(LocationVm);
                 if (isExist)
                 {
                     return new ResponseVm<string> { Status = HttpStatusCodeEnum.NotAllowed, Message = DbRes.T("LocationAddedBefore", "Shared") };

@@ -299,5 +299,7 @@ namespace Utilities.Defaults
 
         public const bool EnableHourlyLead = true;
         public const bool SendOTPMailToUser = false;
+
+        public const int FloorNumber = 0;
     }
 }
