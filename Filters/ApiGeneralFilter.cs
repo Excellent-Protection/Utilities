@@ -61,18 +61,26 @@ namespace Utilities.Filters
                     {
                         case (int)RecordSource.Mobile:
                             {
+                                MapperConfig.source = RecordSource.Mobile;
                                 controller.RequestUtility.Source = RecordSource.Mobile;
                                 var mobilesource = actionContext.Request.Headers.GetValues("platform").First();
                                 controller.RequestUtility.PhoneSource = !string.IsNullOrEmpty(mobilesource) && mobilesource.ToLower() == "android" ? MobilePhoneSource.Android : MobilePhoneSource.Apple;
                                 break;
                             }
                         case (int)RecordSource.Web:
+                            MapperConfig.source = RecordSource.Web;
                             controller.RequestUtility.Source = RecordSource.Web;
                             break;
                         case (int)RecordSource.Plugin:
+                            MapperConfig.source = RecordSource.Plugin;
                             controller.RequestUtility.Source = RecordSource.Plugin;
                             break;
+                        case (int)RecordSource.CRMPortal:
+                            MapperConfig.source = RecordSource.CRMPortal;
+                            controller.RequestUtility.Source = RecordSource.CRMPortal;
+                            break;
                         default:
+                            MapperConfig.source = DefaultValues.Source;
                             controller.RequestUtility.Source = DefaultValues.Source;
                             break;
                     }
