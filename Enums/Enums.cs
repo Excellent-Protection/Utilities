@@ -835,7 +835,8 @@ namespace Utilities.Enums
     {
         Individual = 1,
         Hourly = 2,
-        Renew = 3
+        Renew = 3,
+        HourlyContractConfirmation = 4
     }
 
     public enum ContactLocationType

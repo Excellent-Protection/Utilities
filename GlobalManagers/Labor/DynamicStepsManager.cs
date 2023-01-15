@@ -28,6 +28,7 @@ namespace Utilities.GlobalManagers.Labor
 
         public ResponseVm<List<StepDetailsVm>> GetDynamicSteps(int serviceType)
         {
+            return GetServiceSteps(serviceType);
             switch (serviceType)
             {
                 case (int)ServiceType.Individual:
@@ -42,6 +43,7 @@ namespace Utilities.GlobalManagers.Labor
         }
         public ResponseVm<StepDetailsVm> GetFirstStep(int serviceType)
         {
+            return GetServiceFirstStep(serviceType);
             switch (serviceType)
             {
                 case (int)ServiceType.Individual:
@@ -75,7 +77,7 @@ namespace Utilities.GlobalManagers.Labor
 
         public ResponseVm<StepDetailsVm> GetStepDetailsByActionNameAndServiceType(ServiceType serviceType, string actionName)
         {
-
+            return GetStepDetailsByActionName(actionName, serviceType);
             switch (serviceType)
             {
                 case ServiceType.Individual:
