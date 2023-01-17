@@ -86,6 +86,7 @@ namespace Utilities.Defaults
         public const string whatsappNumberSettingName = "whatsappNumber";
 
         public const string AutoFillCodeSettingName = "AutoFillCode";
+        public static readonly bool AutoFillCode =false;
         public const string ResetPasswordLinkSettingName = "ResetPasswordLink";
         public const string IndvPaymentAvailableSettingName = "IsIndvPaymentAvailable";
 
@@ -274,6 +275,7 @@ namespace Utilities.Defaults
         public static readonly string OnlinePortalUrl = ConfigurationManager.AppSettings["OnlinePortalUrl"].ToString();
         public static readonly string OnlineVisitsUrl = ConfigurationManager.AppSettings["OnlineVisitsUrl"].ToString();
         public static readonly string ISVUrl = ConfigurationManager.AppSettings["IsvUrl"].ToString();
+        public const string OnlinePortalUrlSettingName = "OnlinePortalUrl";
         public const string OnlineAPIUrlSettingName = "OnlineAPIUrl";
         public const string ISVUrlSettingName = "IsvUrl";
         public static readonly string OnlineAPIUrl = ConfigurationManager.AppSettings["OnlineAPIUrl"].ToString();
@@ -305,5 +307,14 @@ namespace Utilities.Defaults
         public const bool SendOTPMailToUser = false;
 
         public const int FloorNumber = 0;
+
+        public const string MaxPostponedSettingName = "MaxPostponed";
+        public static readonly int MaxPostponed= 0;      
+        public const string PostpondFactorSettingName = "postpondfactor";
+        public static readonly int PostpondFactor = 0;     
+        public const string ChangedAttributesWithSelectedHourlyPricingSettingName = "ChangedAttributesWithSelectedHourlyPricing";
+        public static readonly string ChangedAttributesWithSelectedHourlyPricing = "";
+        public const string EnableAttributesWithSelectedHourlyPricingSettingName = "EnableAttributesWithSelectedHourlyPricing";
+        public static readonly string EnableAttributesWithSelectedHourlyPricing = "";
     }
 }

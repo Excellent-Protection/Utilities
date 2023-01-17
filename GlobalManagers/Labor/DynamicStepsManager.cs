@@ -54,7 +54,6 @@ namespace Utilities.GlobalManagers.Labor
                 default:
                     return null;
             }
-
         }
 
           public ResponseVm<StepDetailsVm> GetLastStep(int serviceType)

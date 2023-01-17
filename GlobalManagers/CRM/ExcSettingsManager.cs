@@ -78,6 +78,36 @@ namespace Utilities.GlobalManagers.CRM
             }
         }
 
+        public T GetSettingByNameAndSource<T>(string settingName, T DefaultValue, RecordSource source)
+        {
+            try
+            {
+
+                ExcSettings settings = null;
+                switch (source)
+                {
+                    case RecordSource.Web:
+                        settings = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == settingName && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Web || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile || a.ApplyTo == null));
+
+                        break;
+                    case RecordSource.Mobile:
+                        settings = _ctx.CreateQuery<ExcSettings>().FirstOrDefault(a => a.Name == settingName && (a.ApplyTo.Value == (int)ApplyToOrDisplayFor.Mobile || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.All || a.ApplyTo.Value == (int)ApplyToOrDisplayFor.WebAndMobile || a.ApplyTo == null));
+
+                        break;
+                }
+                if (settings != null && !string.IsNullOrEmpty(settings.Value))
+                {
+                    return (T)Convert.ChangeType(settings.Value, typeof(T));
+                }
+                return DefaultValue;
+            }
+            catch (Exception ex)
+            {
+                LogError.Error(ex, System.Reflection.MethodBase.GetCurrentMethod().Name, ("key", settingName));
+                return DefaultValue;
+            }
+
+        }
 
         private ExcSettingsVm GetSettingByName(string key)
         {
@@ -342,6 +372,7 @@ namespace Utilities.GlobalManagers.CRM
             }
             return null;
         }
+
 
         public void Dispose()
         {
